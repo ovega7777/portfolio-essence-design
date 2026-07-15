@@ -269,7 +269,7 @@ function NoComply() {
         <div className="mx-auto max-w-7xl">
           <div className="nc-tile nc-tape">
             <img
-              src={hero}
+              src={hero.url}
               alt="No Comply — brutalist streetwear collage"
               width={1600}
               height={900}
