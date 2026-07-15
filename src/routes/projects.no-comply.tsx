@@ -1208,11 +1208,11 @@ function NoComply() {
         </div>
       </footer>
 
-      {open && active && (
+      {open && active && activeImage && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={`${active.name} — enlarged view`}
+          aria-label={`${active.name} — lookbook`}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-nc-ink/95 p-4 md:p-10"
           onClick={close}
         >
@@ -1228,50 +1228,85 @@ function NoComply() {
             Close ✕
           </button>
 
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              prev();
-            }}
-            aria-label="Previous image"
-            className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:left-6"
-          >
-            ←
-          </button>
+          {activeImageCount > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prev();
+                }}
+                aria-label="Previous image"
+                className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:left-6"
+              >
+                ←
+              </button>
 
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              next();
-            }}
-            aria-label="Next image"
-            className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:right-6"
-          >
-            →
-          </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  next();
+                }}
+                aria-label="Next image"
+                className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:right-6"
+              >
+                →
+              </button>
+            </>
+          )}
 
           <figure
             className="relative flex max-h-full max-w-6xl flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={active.img.url}
-              alt={active.name}
-              className="max-h-[80vh] w-auto max-w-full object-contain"
+              key={activeImage.url}
+              src={activeImage.url}
+              alt={activeImage.alt}
+              onError={(e) => (e.currentTarget.style.visibility = "hidden")}
+              className="max-h-[75vh] w-auto max-w-full object-contain"
             />
             <figcaption className="mt-4 flex w-full items-baseline justify-between gap-4 border-t-2 border-nc-cream pt-3 text-nc-cream">
               <div>
                 <p className="nc-display text-xl leading-tight">{active.name}</p>
                 <p className="nc-display text-xs tracking-[0.25em] text-nc-cream/70">
-                  {active.type}
+                  {activeImage.label} · {active.type}
                 </p>
               </div>
               <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
-                {active.code} · {(lightboxIndex ?? 0) + 1}/{displayed.length}
+                {active.code} · {lightbox.index + 1}/{activeImageCount}
               </span>
             </figcaption>
+
+            {activeImageCount > 1 && (
+              <div className="mt-4 flex w-full flex-wrap justify-center gap-2">
+                {activeImages.map((img, i) => (
+                  <button
+                    key={img.url}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLightbox({ code: active.code, index: i });
+                    }}
+                    aria-label={`Show ${img.label}`}
+                    aria-current={i === lightbox.index}
+                    className={`relative h-16 w-16 overflow-hidden border-2 bg-white transition-colors sm:h-20 sm:w-20 ${
+                      i === lightbox.index
+                        ? "border-nc-red"
+                        : "border-nc-cream/40 hover:border-nc-cream"
+                    }`}
+                  >
+                    <img
+                      src={img.url}
+                      alt=""
+                      loading="lazy"
+                      className="block h-full w-full object-contain p-1"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </figure>
         </div>
       )}
