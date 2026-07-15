@@ -40,6 +40,16 @@ import trousersBrownPatch from "../assets/militia/trousers-brown-patch.png.asset
 import jacketNavyBack from "../assets/militia/jacket-navy-back.png.asset.json";
 import cargoBlackWide from "../assets/militia/cargo-black-wide.png.asset.json";
 import cargoShortsMulti from "../assets/militia/cargo-shorts-multi.png.asset.json";
+import jacketLeatherBomberBrown from "../assets/militia/jacket-leather-bomber-brown.png.asset.json";
+import teeComplyShowgirlsNavy from "../assets/militia/tee-comply-showgirls-navy.png.asset.json";
+import zippoAceSilver from "../assets/militia/zippo-ace-silver.png.asset.json";
+import cargoPlaidCharcoal from "../assets/militia/cargo-plaid-charcoal.png.asset.json";
+import jacketLeatherBomberBlackBack from "../assets/militia/jacket-leather-bomber-black-back.png.asset.json";
+import pinsSetPatriot from "../assets/militia/pins-set-patriot.png.asset.json";
+import knitHoodieZipRed from "../assets/militia/knit-hoodie-zip-red.png.asset.json";
+import dogTagsGrimReaper from "../assets/militia/dog-tags-grim-reaper.png.asset.json";
+import hoodieWashBlackBack from "../assets/militia/hoodie-wash-black-back.png.asset.json";
+import shirtOliveEpaulet from "../assets/militia/shirt-olive-epaulet.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
@@ -82,6 +92,16 @@ const militia = [
   { img: jacketNavyBack, name: "Officer Chore Jacket — Navy", code: "M-38", type: "Outerwear" },
   { img: cargoBlackWide, name: "Wide Cargo Trouser — Black", code: "M-39", type: "Trouser" },
   { img: cargoShortsMulti, name: "Multi-Pocket Cargo Short", code: "M-40", type: "Shorts" },
+  { img: jacketLeatherBomberBrown, name: "Leather Bomber — Brown", code: "M-41", type: "Outerwear" },
+  { img: teeComplyShowgirlsNavy, name: "Comply Showgirls Tee — Navy", code: "M-42", type: "Tee" },
+  { img: zippoAceSilver, name: "Ace Zippo — Silver", code: "M-43", type: "Accessory" },
+  { img: cargoPlaidCharcoal, name: "Plaid Cargo Trouser — Charcoal", code: "M-44", type: "Trouser" },
+  { img: jacketLeatherBomberBlackBack, name: "Leather Bomber — Black Back", code: "M-45", type: "Outerwear" },
+  { img: pinsSetPatriot, name: "Patriot Pin Set", code: "M-46", type: "Accessory" },
+  { img: knitHoodieZipRed, name: "Zip Knit Hoodie — Red", code: "M-47", type: "Knitwear" },
+  { img: dogTagsGrimReaper, name: "Dog Tags — Grim Reaper", code: "M-48", type: "Accessory" },
+  { img: hoodieWashBlackBack, name: "Washed Hoodie — Back", code: "M-49", type: "Hoodie" },
+  { img: shirtOliveEpaulet, name: "Sergeant Overshirt — Olive", code: "M-50", type: "Shirt" },
 ];
 
 export const Route = createFileRoute("/projects/no-comply")({
