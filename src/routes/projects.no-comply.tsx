@@ -169,6 +169,57 @@ function NoComply() {
         </div>
       </section>
 
+      {/* MILITIA collection */}
+      <section className="border-b-4 border-nc-ink px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="nc-display mb-3 inline-block bg-nc-red px-3 py-1 text-sm text-nc-cream tracking-[0.3em]">
+                Drop 01
+              </p>
+              <h2 className="nc-display text-5xl leading-[0.9] text-nc-ink md:text-7xl">
+                No Comply <span className="nc-scribble-underline">Militia</span>
+              </h2>
+            </div>
+            <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
+              // 10 pieces / Fall 2025
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-14 lg:grid-cols-3">
+            {militia.map((p, i) => {
+              const tilts = ["nc-tilt-l", "", "nc-tilt-r", "", "nc-tilt-l", "nc-tilt-r"];
+              const tilt = tilts[i % tilts.length];
+              return (
+                <figure key={p.code} className="group">
+                  <div className={`nc-tile aspect-[4/5] bg-nc-cream ${tilt}`}>
+                    <img
+                      src={p.img.url}
+                      alt={p.name}
+                      loading="lazy"
+                      className="block h-full w-full object-cover"
+                    />
+                  </div>
+                  <figcaption className="mt-4 flex items-baseline justify-between gap-3">
+                    <div>
+                      <p className="nc-display text-xl text-nc-ink leading-tight">
+                        {p.name}
+                      </p>
+                      <p className="nc-display text-xs tracking-[0.25em] text-nc-ink/70">
+                        {p.type}
+                      </p>
+                    </div>
+                    <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
+                      {p.code}
+                    </span>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Facts */}
       <section className="border-b-4 border-nc-ink px-6 py-16">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
