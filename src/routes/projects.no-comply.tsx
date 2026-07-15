@@ -548,61 +548,135 @@ function NoComply() {
                 No Comply <span className="nc-scribble-underline">Militia</span>
               </h2>
             </div>
-            <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
+            <span className="nc-display text-xs tracking-[0.3em] text-nc-ink sm:text-sm">
               // {militia.length} pieces / Fall 2025
             </span>
           </div>
 
-          {/* Category filter */}
-          <div className="mb-12 flex flex-wrap items-center gap-3 border-y-2 border-nc-ink py-4">
-            <span className="nc-display text-xs tracking-[0.3em] text-nc-ink/70">
-              Shop by
-            </span>
-            {(["All", ...CATEGORIES] as const).map((cat) => {
-              const count =
-                cat === "All" ? militia.length : militiaByCategory[cat].length;
-              const isActive = activeCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => {
-                    setActiveCategory(cat);
-                    setLightboxIndex(null);
-                  }}
-                  className={`nc-display border-2 px-3 py-1 text-xs tracking-[0.25em] transition-colors ${
-                    isActive
-                      ? "border-nc-red bg-nc-red text-nc-cream"
-                      : "border-nc-ink bg-nc-cream text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
-                  }`}
-                  aria-pressed={isActive}
-                >
-                  {cat} <span className="opacity-70">({count})</span>
-                </button>
-              );
-            })}
+          {/* Controls: category chips + sort + search */}
+          <div className="mb-10 border-y-2 border-nc-ink">
+            {/* Category chips (horizontal scroll on mobile) */}
+            <div className="-mx-6 overflow-x-auto px-6 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex min-w-max items-center gap-2 sm:flex-wrap sm:gap-3">
+                <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
+                  Shop by
+                </span>
+                {(["All", ...CATEGORIES] as const).map((cat) => {
+                  const count =
+                    cat === "All"
+                      ? militia.length
+                      : militiaByCategory[cat].length;
+                  const isActive = activeCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setCategory(cat)}
+                      className={`nc-display shrink-0 whitespace-nowrap border-2 px-3 py-1.5 text-[10px] tracking-[0.2em] transition-colors sm:text-xs sm:tracking-[0.25em] ${
+                        isActive
+                          ? "border-nc-red bg-nc-red text-nc-cream"
+                          : "border-nc-ink bg-nc-cream text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                      }`}
+                      aria-pressed={isActive}
+                    >
+                      {cat} <span className="opacity-70">({count})</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Sort + Search */}
+            <div className="grid gap-3 border-t-2 border-nc-ink px-0 py-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
+              <label className="flex min-w-0 items-center gap-2 border-2 border-nc-ink bg-nc-cream px-3 py-2">
+                <span aria-hidden className="nc-display text-sm text-nc-ink/70">
+                  ⌕
+                </span>
+                <input
+                  type="search"
+                  value={search.q}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search this collection…"
+                  aria-label="Search Militia items"
+                  className="nc-display w-full min-w-0 bg-transparent text-sm tracking-[0.15em] text-nc-ink placeholder:text-nc-ink/50 focus:outline-none"
+                />
+                {search.q && (
+                  <button
+                    type="button"
+                    onClick={() => setQuery("")}
+                    aria-label="Clear search"
+                    className="nc-display shrink-0 text-xs tracking-[0.2em] text-nc-red hover:underline"
+                  >
+                    Clear
+                  </button>
+                )}
+              </label>
+
+              <div className="-mx-6 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:overflow-visible sm:px-0">
+                <div className="flex min-w-max items-center gap-2 sm:min-w-0 sm:flex-wrap">
+                  <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
+                    Sort
+                  </span>
+                  {SORTS.map((s) => {
+                    const isActive = sort === s;
+                    return (
+                      <button
+                        key={s}
+                        type="button"
+                        onClick={() => setSort(s)}
+                        className={`nc-display shrink-0 whitespace-nowrap border-2 px-3 py-1.5 text-[10px] tracking-[0.2em] transition-colors sm:text-xs sm:tracking-[0.25em] ${
+                          isActive
+                            ? "border-nc-ink bg-nc-ink text-nc-cream"
+                            : "border-nc-ink bg-nc-cream text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                        }`}
+                        aria-pressed={isActive}
+                      >
+                        {SORT_LABELS[s]}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {activeCategory === "All" ? (
-            CATEGORIES.map((cat) => {
-              const items = militiaByCategory[cat];
+          {/* Results */}
+          {displayed.length === 0 ? (
+            <div className="border-2 border-dashed border-nc-ink/40 p-10 text-center">
+              <p className="nc-display text-xl text-nc-ink">No matches.</p>
+              <p className="nc-display mt-2 text-xs tracking-[0.25em] text-nc-ink/70">
+                Try a different search or category.
+              </p>
+              {(search.q || activeCategory !== "All") && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setQuery("");
+                    setCategory("All");
+                  }}
+                  className="nc-display mt-6 border-2 border-nc-ink bg-nc-cream px-3 py-1.5 text-xs tracking-[0.25em] text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                >
+                  Reset filters
+                </button>
+              )}
+            </div>
+          ) : activeCategory === "All" && groupedDisplayed ? (
+            groupedDisplayed.map(({ cat, items }) => {
               if (items.length === 0) return null;
               return (
-                <div key={cat} className="mb-20 last:mb-0">
-                  <div className="mb-8 flex items-end justify-between border-b-2 border-nc-ink pb-3">
-                    <h3 className="nc-display text-3xl leading-none text-nc-ink md:text-4xl">
+                <div key={cat} className="mb-16 last:mb-0 sm:mb-20">
+                  <div className="mb-6 flex items-end justify-between gap-3 border-b-2 border-nc-ink pb-3 sm:mb-8">
+                    <h3 className="nc-display text-2xl leading-none text-nc-ink sm:text-3xl md:text-4xl">
                       {cat}
                     </h3>
-                    <span className="nc-display text-xs tracking-[0.3em] text-nc-ink/70">
+                    <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
                       {String(items.length).padStart(2, "0")} pieces
                     </span>
                   </div>
                   <CategoryGrid
                     items={items}
                     onOpen={(code) =>
-                      setLightboxIndex(
-                        militiaOrdered.findIndex((m) => m.code === code),
-                      )
+                      setLightboxIndex(displayed.findIndex((m) => m.code === code))
                     }
                   />
                 </div>
