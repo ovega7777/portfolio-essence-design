@@ -98,6 +98,16 @@ import modelFlagHoodieM2 from "../assets/militia-models/model-flag-hoodie-m2.png
 import modelShearlingBomberBlackM2 from "../assets/militia-models/model-shearling-bomber-black-m2.png.asset.json";
 import modelSergeantShirtBlackM2 from "../assets/militia-models/model-sergeant-shirt-black-m2.png.asset.json";
 import modelKnitHoodieOliveDuffelW from "../assets/militia-models/model-knit-hoodie-olive-duffel-w.png.asset.json";
+import modelCroppedJacketWideCargoW from "../assets/militia-models/model-cropped-jacket-wide-cargo-w.png.asset.json";
+import modelCroppedJacketUtilityBagW from "../assets/militia-models/model-cropped-jacket-utility-bag-w.png.asset.json";
+import modelZipKnitHoodieRedM from "../assets/militia-models/model-zip-knit-hoodie-red-m.png.asset.json";
+import modelNightCamoTeeM from "../assets/militia-models/model-night-camo-tee-m.png.asset.json";
+import modelSergeantShirtCargoW2 from "../assets/militia-models/model-sergeant-shirt-cargo-w2.png.asset.json";
+import modelNavyPatchedPlaidM from "../assets/militia-models/model-navy-patched-plaid-m.png.asset.json";
+import modelBodysuitNudeW from "../assets/militia-models/model-bodysuit-nude-w.png.asset.json";
+import modelAnorakOliveBalloonW from "../assets/militia-models/model-anorak-olive-balloon-w.png.asset.json";
+import modelKnitHoodieOliveM2 from "../assets/militia-models/model-knit-hoodie-olive-m2.png.asset.json";
+import modelNavyCamoTeeW from "../assets/militia-models/model-navy-camo-tee-w.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
