@@ -344,6 +344,12 @@ function CategoryGrid({
                     loading="lazy"
                     className="absolute inset-0 block h-full w-full object-contain p-3 opacity-0 transition-all duration-300 group-hover:scale-[1.01] group-hover:opacity-100 sm:p-4"
                   />
+                  <span
+                    aria-hidden
+                    className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-nc-ink bg-nc-cream px-2 py-0.5 text-[9px] tracking-[0.25em] text-nc-ink transition-colors group-hover:border-nc-red group-hover:bg-nc-red group-hover:text-nc-cream sm:right-3 sm:top-3 sm:text-[10px]"
+                  >
+                    Look
+                  </span>
                 </>
               ) : (
                 <img
