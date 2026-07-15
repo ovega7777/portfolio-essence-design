@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
-import noComplyThumb from "../assets/no-comply-hero.jpg";
+import noComplyThumb from "../assets/no-comply-hero.png.asset.json";
 import luckyDayThumb from "../assets/lucky-day-thumb.jpg";
 
 export const Route = createFileRoute("/projects/")({
