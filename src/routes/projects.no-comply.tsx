@@ -112,6 +112,16 @@ const militia = [
   { img: dogTagsGrimReaper, name: "Dog Tags — Grim Reaper", code: "M-48", type: "Accessory" },
   { img: hoodieWashBlackBack, name: "Washed Hoodie — Back", code: "M-49", type: "Hoodie" },
   { img: shirtOliveEpaulet, name: "Sergeant Overshirt — Olive", code: "M-50", type: "Shirt" },
+  { img: vestLacedBlack, name: "Laced Utility Vest", code: "M-51", type: "Outerwear" },
+  { img: patchUsaGothic, name: "USA Gothic Patch", code: "M-52", type: "Accessory" },
+  { img: nylonBalloonPants, name: "Nylon Balloon Pant", code: "M-53", type: "Trouser" },
+  { img: bomberShearlingBrownBack, name: "Shearling Bomber — Back", code: "M-54", type: "Outerwear" },
+  { img: overshirtCreamEpaulet, name: "Officer Overshirt — Cream", code: "M-55", type: "Shirt" },
+  { img: jacketDistressedBlackBack, name: "Distressed Rider — Back", code: "M-56", type: "Outerwear" },
+  { img: cargoBlackBack, name: "Wide Cargo — Black Back", code: "M-57", type: "Trouser" },
+  { img: knitHoodieOlivePatched, name: "Patched Knit Hoodie — Olive", code: "M-58", type: "Knitwear" },
+  { img: nylonHoodieBuckleBack, name: "Buckle Nylon Hoodie — Back", code: "M-59", type: "Outerwear" },
+  { img: cargoOlivePleated, name: "Pleated Cargo — Olive", code: "M-60", type: "Trouser" },
 ];
 
 export const Route = createFileRoute("/projects/no-comply")({
