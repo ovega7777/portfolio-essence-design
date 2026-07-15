@@ -50,6 +50,16 @@ import knitHoodieZipRed from "../assets/militia/knit-hoodie-zip-red.png.asset.js
 import dogTagsGrimReaper from "../assets/militia/dog-tags-grim-reaper.png.asset.json";
 import hoodieWashBlackBack from "../assets/militia/hoodie-wash-black-back.png.asset.json";
 import shirtOliveEpaulet from "../assets/militia/shirt-olive-epaulet.png.asset.json";
+import vestLacedBlack from "../assets/militia/vest-laced-black.png.asset.json";
+import patchUsaGothic from "../assets/militia/patch-usa-gothic.png.asset.json";
+import nylonBalloonPants from "../assets/militia/nylon-balloon-pants.png.asset.json";
+import bomberShearlingBrownBack from "../assets/militia/bomber-shearling-brown-back.png.asset.json";
+import overshirtCreamEpaulet from "../assets/militia/overshirt-cream-epaulet.png.asset.json";
+import jacketDistressedBlackBack from "../assets/militia/jacket-distressed-black-back.png.asset.json";
+import cargoBlackBack from "../assets/militia/cargo-black-back.png.asset.json";
+import knitHoodieOlivePatched from "../assets/militia/knit-hoodie-olive-patched.png.asset.json";
+import nylonHoodieBuckleBack from "../assets/militia/nylon-hoodie-buckle-back.png.asset.json";
+import cargoOlivePleated from "../assets/militia/cargo-olive-pleated.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
@@ -102,6 +112,16 @@ const militia = [
   { img: dogTagsGrimReaper, name: "Dog Tags — Grim Reaper", code: "M-48", type: "Accessory" },
   { img: hoodieWashBlackBack, name: "Washed Hoodie — Back", code: "M-49", type: "Hoodie" },
   { img: shirtOliveEpaulet, name: "Sergeant Overshirt — Olive", code: "M-50", type: "Shirt" },
+  { img: vestLacedBlack, name: "Laced Utility Vest", code: "M-51", type: "Outerwear" },
+  { img: patchUsaGothic, name: "USA Gothic Patch", code: "M-52", type: "Accessory" },
+  { img: nylonBalloonPants, name: "Nylon Balloon Pant", code: "M-53", type: "Trouser" },
+  { img: bomberShearlingBrownBack, name: "Shearling Bomber — Back", code: "M-54", type: "Outerwear" },
+  { img: overshirtCreamEpaulet, name: "Officer Overshirt — Cream", code: "M-55", type: "Shirt" },
+  { img: jacketDistressedBlackBack, name: "Distressed Rider — Back", code: "M-56", type: "Outerwear" },
+  { img: cargoBlackBack, name: "Wide Cargo — Black Back", code: "M-57", type: "Trouser" },
+  { img: knitHoodieOlivePatched, name: "Patched Knit Hoodie — Olive", code: "M-58", type: "Knitwear" },
+  { img: nylonHoodieBuckleBack, name: "Buckle Nylon Hoodie — Back", code: "M-59", type: "Outerwear" },
+  { img: cargoOlivePleated, name: "Pleated Cargo — Olive", code: "M-60", type: "Trouser" },
 ];
 
 export const Route = createFileRoute("/projects/no-comply")({
@@ -262,7 +282,7 @@ function NoComply() {
               </h2>
             </div>
             <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
-              // 40 pieces / Fall 2025
+              // 60 pieces / Fall 2025
             </span>
           </div>
 
