@@ -1,5 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "../assets/no-comply-hero.jpg";
+import teeBlack from "../assets/militia/tee-black.png.asset.json";
+import teeWhite from "../assets/militia/tee-white.png.asset.json";
+import teeOlive from "../assets/militia/tee-olive.png.asset.json";
+import teeCamo from "../assets/militia/tee-camo.png.asset.json";
+import knitHoodie from "../assets/militia/knit-hoodie.png.asset.json";
+import fieldShirt from "../assets/militia/field-shirt.png.asset.json";
+import nylonPants from "../assets/militia/nylon-pants.png.asset.json";
+import trousers from "../assets/militia/trousers.png.asset.json";
+import cap from "../assets/militia/cap.png.asset.json";
+import zippo from "../assets/militia/zippo.png.asset.json";
+
+const militia = [
+  { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
+  { img: knitHoodie, name: "Rib Knit Hoodie", code: "M-02", type: "Knitwear" },
+  { img: nylonPants, name: "Nylon Wide Trouser", code: "M-03", type: "Bottoms" },
+  { img: trousers, name: "Pleated Wide Trouser", code: "M-04", type: "Bottoms" },
+  { img: teeBlack, name: "Comply Baby Tee — Black", code: "M-05", type: "Tee" },
+  { img: teeWhite, name: "Comply Baby Tee — White", code: "M-06", type: "Tee" },
+  { img: teeOlive, name: "Comply Baby Tee — Olive", code: "M-07", type: "Tee" },
+  { img: teeCamo, name: "USA Camo Tee", code: "M-08", type: "Tee" },
+  { img: cap, name: "Distressed Militia Cap", code: "M-09", type: "Headwear" },
+  { img: zippo, name: "Bury Me Face Down Zippo", code: "M-10", type: "Object" },
+];
 
 export const Route = createFileRoute("/projects/no-comply")({
   head: () => ({
