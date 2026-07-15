@@ -221,17 +221,25 @@ export const Route = createFileRoute("/projects/no-comply")({
 });
 
 function NoComply() {
+  const [activeCategory, setActiveCategory] = useState<Category | "All">("All");
+  const displayed =
+    activeCategory === "All" ? militiaOrdered : militiaByCategory[activeCategory];
+
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const open = lightboxIndex !== null;
 
   const close = useCallback(() => setLightboxIndex(null), []);
   const prev = useCallback(
-    () => setLightboxIndex((i) => (i === null ? i : (i - 1 + militia.length) % militia.length)),
-    [],
+    () =>
+      setLightboxIndex((i) =>
+        i === null ? i : (i - 1 + displayed.length) % displayed.length,
+      ),
+    [displayed.length],
   );
   const next = useCallback(
-    () => setLightboxIndex((i) => (i === null ? i : (i + 1) % militia.length)),
-    [],
+    () =>
+      setLightboxIndex((i) => (i === null ? i : (i + 1) % displayed.length)),
+    [displayed.length],
   );
 
   useEffect(() => {
@@ -250,7 +258,7 @@ function NoComply() {
     };
   }, [open, close, prev, next]);
 
-  const active = lightboxIndex !== null ? militia[lightboxIndex] : null;
+  const active = lightboxIndex !== null ? displayed[lightboxIndex] : null;
 
   return (
     <div className="no-comply min-h-screen">
