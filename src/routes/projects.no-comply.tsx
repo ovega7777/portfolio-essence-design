@@ -207,6 +207,20 @@ type LookbookShot = {
 };
 
 const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
+  "M-04": [
+    {
+      img: modelZipKnitHoodieRedM,
+      alt: "Model wearing the pleated wide trouser with oxblood knit hoodie",
+    },
+    {
+      img: modelNightCamoTeeM,
+      alt: "Model wearing the pleated wide trouser with night camo tee",
+    },
+    {
+      img: modelNavyCamoTeeW,
+      alt: "Model wearing the pleated wide trouser with navy camo tee",
+    },
+  ],
   "M-11": [
     {
       img: modelFlagHoodieBlack,
@@ -222,6 +236,10 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       img: modelShirtNavyPatchedW,
       alt: "Model wearing the patched service overshirt in navy",
     },
+    {
+      img: modelNavyPatchedPlaidM,
+      alt: "Second model wearing the patched service overshirt with plaid cargo",
+    },
   ],
   "M-18": [
     {
@@ -229,10 +247,26 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       alt: "Model carrying the olive stencil duffel",
     },
   ],
+  "M-22": [
+    {
+      img: modelNightCamoTeeM,
+      alt: "Model wearing the night camo logo tee",
+    },
+  ],
+  "M-23": [
+    {
+      img: modelNavyPatchedPlaidM,
+      alt: "Model wearing the plaid cargo trouser",
+    },
+  ],
   "M-26": [
     {
       img: modelCargoShortsBagLook,
       alt: "Model wearing the utility carryall crossbody",
+    },
+    {
+      img: modelCroppedJacketUtilityBagW,
+      alt: "Second model wearing the utility carryall crossbody",
     },
   ],
   "M-28": [
@@ -244,6 +278,20 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       img: modelCroppedJacketBlackM2,
       alt: "Second model wearing the pinned cropped jacket",
     },
+    {
+      img: modelCroppedJacketWideCargoW,
+      alt: "Third model wearing the pinned cropped jacket",
+    },
+    {
+      img: modelCroppedJacketUtilityBagW,
+      alt: "Fourth model wearing the pinned cropped jacket with carryall",
+    },
+  ],
+  "M-32": [
+    {
+      img: modelNavyCamoTeeW,
+      alt: "Model wearing the No Comply USA tiger camo tee",
+    },
   ],
   "M-34": [
     {
@@ -254,11 +302,23 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       img: modelSergeantShirtBlackM2,
       alt: "Second model wearing the Sergeant Overshirt",
     },
+    {
+      img: modelSergeantShirtCargoW2,
+      alt: "Third model wearing the Sergeant Overshirt",
+    },
   ],
   "M-39": [
     {
       img: modelSergeantShirtBlackW,
       alt: "Model wearing the wide black cargo trouser",
+    },
+    {
+      img: modelCroppedJacketWideCargoW,
+      alt: "Second model wearing the wide black cargo trouser",
+    },
+    {
+      img: modelSergeantShirtCargoW2,
+      alt: "Third model wearing the wide black cargo trouser",
     },
   ],
   "M-40": [
@@ -271,10 +331,20 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       alt: "Second model wearing the multi-pocket cargo short",
     },
   ],
+  "M-47": [
+    {
+      img: modelZipKnitHoodieRedM,
+      alt: "Model wearing the red zip knit hoodie",
+    },
+  ],
   "M-53": [
     {
       img: modelNylonAnorakBlack,
       alt: "Model wearing the nylon balloon pant",
+    },
+    {
+      img: modelAnorakOliveBalloonW,
+      alt: "Second model wearing the nylon balloon pant in olive",
     },
   ],
   "M-58": [
@@ -285,6 +355,10 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
     {
       img: modelKnitHoodieOliveDuffelW,
       alt: "Second model wearing the olive patched knit hoodie",
+    },
+    {
+      img: modelKnitHoodieOliveM2,
+      alt: "Third model wearing the olive patched knit hoodie",
     },
   ],
   "M-64": [
@@ -317,6 +391,18 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       alt: "Second model wearing the patched black cap",
     },
   ],
+  "M-73": [
+    {
+      img: modelAnorakOliveBalloonW,
+      alt: "Model wearing the olive nylon balloon pant",
+    },
+  ],
+  "M-74": [
+    {
+      img: modelAnorakOliveBalloonW,
+      alt: "Model wearing the olive buckle anorak",
+    },
+  ],
   "M-75": [
     {
       img: modelShearlingBomberBlack,
@@ -335,6 +421,12 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
     {
       img: modelKnitHoodieRedW,
       alt: "Model wearing the oxblood zip knit hoodie",
+    },
+  ],
+  "M-77": [
+    {
+      img: modelAnorakOliveBalloonW,
+      alt: "Model wearing the olive nylon balloon pant",
     },
   ],
 };
