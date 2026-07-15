@@ -397,48 +397,76 @@ function NoComply() {
               </h2>
             </div>
             <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
-              // 77 pieces / Fall 2025
+              // {militia.length} pieces / Fall 2025
             </span>
           </div>
 
-          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-14 lg:grid-cols-3">
-            {militia.map((p, i) => {
-              const tilts = ["nc-tilt-l", "", "nc-tilt-r", "", "nc-tilt-l", "nc-tilt-r"];
-              const tilt = tilts[i % tilts.length];
+          {/* Category filter */}
+          <div className="mb-12 flex flex-wrap items-center gap-3 border-y-2 border-nc-ink py-4">
+            <span className="nc-display text-xs tracking-[0.3em] text-nc-ink/70">
+              Shop by
+            </span>
+            {(["All", ...CATEGORIES] as const).map((cat) => {
+              const count =
+                cat === "All" ? militia.length : militiaByCategory[cat].length;
+              const isActive = activeCategory === cat;
               return (
-                <figure key={p.code} className="group">
-                  <button
-                    type="button"
-                    onClick={() => setLightboxIndex(i)}
-                    aria-label={`View ${p.name} larger`}
-                    className={`nc-tile block aspect-[4/5] w-full cursor-zoom-in bg-nc-cream ${tilt} transition-transform focus:outline-none focus-visible:ring-4 focus-visible:ring-nc-red`}
-                  >
-                    <img
-                      src={p.img.url}
-                      alt={p.name}
-                      loading="lazy"
-                      className="block h-full w-full object-cover"
-                    />
-                  </button>
-                  <figcaption className="mt-4 flex items-baseline justify-between gap-3">
-                    <div>
-                      <p className="nc-display text-xl text-nc-ink leading-tight">
-                        {p.name}
-                      </p>
-                      <p className="nc-display text-xs tracking-[0.25em] text-nc-ink/70">
-                        {p.type}
-                      </p>
-                    </div>
-                    <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
-                      {p.code}
-                    </span>
-                  </figcaption>
-                </figure>
+                <button
+                  key={cat}
+                  type="button"
+                  onClick={() => {
+                    setActiveCategory(cat);
+                    setLightboxIndex(null);
+                  }}
+                  className={`nc-display border-2 px-3 py-1 text-xs tracking-[0.25em] transition-colors ${
+                    isActive
+                      ? "border-nc-red bg-nc-red text-nc-cream"
+                      : "border-nc-ink bg-nc-cream text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  {cat} <span className="opacity-70">({count})</span>
+                </button>
               );
             })}
           </div>
+
+          {activeCategory === "All" ? (
+            CATEGORIES.map((cat) => {
+              const items = militiaByCategory[cat];
+              if (items.length === 0) return null;
+              return (
+                <div key={cat} className="mb-20 last:mb-0">
+                  <div className="mb-8 flex items-end justify-between border-b-2 border-nc-ink pb-3">
+                    <h3 className="nc-display text-3xl leading-none text-nc-ink md:text-4xl">
+                      {cat}
+                    </h3>
+                    <span className="nc-display text-xs tracking-[0.3em] text-nc-ink/70">
+                      {String(items.length).padStart(2, "0")} pieces
+                    </span>
+                  </div>
+                  <CategoryGrid
+                    items={items}
+                    onOpen={(code) =>
+                      setLightboxIndex(
+                        militiaOrdered.findIndex((m) => m.code === code),
+                      )
+                    }
+                  />
+                </div>
+              );
+            })
+          ) : (
+            <CategoryGrid
+              items={displayed}
+              onOpen={(code) =>
+                setLightboxIndex(displayed.findIndex((m) => m.code === code))
+              }
+            />
+          )}
         </div>
       </section>
+
 
       {/* Facts */}
       <section className="border-b-4 border-nc-ink px-6 py-16">
