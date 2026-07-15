@@ -623,6 +623,128 @@ export const Route = createFileRoute("/projects/no-comply")({
   component: NoComply,
 });
 
+function ProductCard({
+  p,
+  onOpen,
+}: {
+  p: MilitiaItem;
+  onOpen: (code: string) => void;
+}) {
+  const lookbook = LOOKBOOK_BY_CODE[p.code] ?? [];
+  const hasLook = lookbook.length > 0;
+  const totalCycle = 1 + lookbook.length;
+  const [cycleIdx, setCycleIdx] = useState(0);
+  const [baseLoaded, setBaseLoaded] = useState(false);
+  const [baseFailed, setBaseFailed] = useState(false);
+
+  const currentUrl = cycleIdx === 0 ? p.img.url : lookbook[cycleIdx - 1].img.url;
+  const currentAlt = cycleIdx === 0 ? p.name : lookbook[cycleIdx - 1].alt;
+  const hoverShot = hasLook ? lookbook[0] : null;
+
+  return (
+    <figure className="group flex flex-col">
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
+        {/* Skeleton until first paint completes; hides SSR flash of stale/missing */}
+        {!baseLoaded && !baseFailed && (
+          <div className="absolute inset-0 animate-pulse bg-nc-ink/5" aria-hidden />
+        )}
+        <button
+          type="button"
+          onClick={() => onOpen(p.code)}
+          aria-label={
+            hasLook ? `Open lookbook for ${p.name}` : `View ${p.name} larger`
+          }
+          className="absolute inset-0 block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
+        >
+          {hasLook ? (
+            <>
+              <img
+                key={`base-${p.code}-${cycleIdx}`}
+                src={currentUrl}
+                alt={currentAlt}
+                loading="lazy"
+                decoding="async"
+                onLoad={() => setBaseLoaded(true)}
+                onError={() => {
+                  setBaseFailed(true);
+                  setBaseLoaded(true);
+                }}
+                className="absolute inset-0 block h-full w-full object-contain p-4 transition-all duration-300 group-hover:scale-[1.03] sm:p-6 md:group-hover:opacity-0"
+              />
+              {hoverShot && (
+                <img
+                  src={hoverShot.img.url}
+                  alt={hoverShot.alt}
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) =>
+                    (e.currentTarget.style.visibility = "hidden")
+                  }
+                  className="pointer-events-none absolute inset-0 hidden h-full w-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:p-4 md:block"
+                />
+              )}
+              <span
+                aria-hidden
+                className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-nc-ink bg-white px-2 py-0.5 text-[9px] tracking-[0.25em] text-nc-ink transition-colors group-hover:border-nc-red group-hover:bg-nc-red group-hover:text-nc-cream sm:right-3 sm:top-3 sm:text-[10px]"
+              >
+                Look · {lookbook.length}
+              </span>
+            </>
+          ) : (
+            <img
+              src={p.img.url}
+              alt={p.name}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setBaseLoaded(true)}
+              onError={() => {
+                setBaseFailed(true);
+                setBaseLoaded(true);
+              }}
+              className="block h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 sm:p-6"
+            />
+          )}
+          {baseFailed && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white p-4 text-center">
+              <span className="nc-display text-[10px] tracking-[0.25em] text-nc-ink/50">
+                Image unavailable
+              </span>
+            </div>
+          )}
+        </button>
+
+        {/* Tap-to-cycle for touch devices (hidden on hover-capable md+ screens) */}
+        {hasLook && totalCycle > 1 && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setCycleIdx((i) => (i + 1) % totalCycle);
+              setBaseLoaded(false);
+              setBaseFailed(false);
+            }}
+            aria-label={`Cycle to next image (${cycleIdx + 1} of ${totalCycle})`}
+            className="nc-display absolute bottom-2 right-2 z-10 border-2 border-nc-ink bg-white/95 px-2 py-1 text-[10px] tracking-[0.2em] text-nc-ink hover:bg-nc-red hover:text-nc-cream md:hidden"
+          >
+            {cycleIdx + 1}/{totalCycle} ↻
+          </button>
+        )}
+      </div>
+      <figcaption className="mt-3 flex flex-col gap-1 sm:mt-4">
+        <span className="nc-display text-[10px] tracking-[0.3em] text-nc-ink/60">
+          No Comply · {p.code}
+        </span>
+        <p className="text-sm leading-snug text-nc-ink sm:text-base">
+          {p.name}
+        </p>
+        <p className="text-xs uppercase tracking-wide text-nc-ink/60">
+          {p.type}
+        </p>
+      </figcaption>
+    </figure>
+  );
+}
+
 function CategoryGrid({
   items,
   onOpen,
@@ -632,62 +754,9 @@ function CategoryGrid({
 }) {
   return (
     <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-14 lg:grid-cols-4">
-      {items.map((p) => {
-        const lookbook = LOOKBOOK_BY_CODE[p.code];
-
-        return (
-          <figure key={p.code} className="group flex flex-col">
-            <button
-              type="button"
-              onClick={() => onOpen(p.code)}
-              aria-label={`View ${p.name} larger`}
-              className="relative block aspect-[3/4] w-full cursor-zoom-in overflow-hidden bg-nc-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
-            >
-              {lookbook && lookbook.length > 0 ? (
-                <>
-                  <img
-                    src={p.img.url}
-                    alt={p.name}
-                    loading="lazy"
-                    className="absolute inset-0 block h-full w-full object-contain p-4 transition-all duration-300 group-hover:scale-[1.03] group-hover:opacity-0 sm:p-6"
-                  />
-                  <img
-                    src={lookbook[0].img.url}
-                    alt={lookbook[0].alt}
-                    loading="lazy"
-                    className="absolute inset-0 block h-full w-full object-contain p-3 opacity-0 transition-all duration-300 group-hover:scale-[1.01] group-hover:opacity-100 sm:p-4"
-                  />
-                  <span
-                    aria-hidden
-                    className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-nc-ink bg-nc-cream px-2 py-0.5 text-[9px] tracking-[0.25em] text-nc-ink transition-colors group-hover:border-nc-red group-hover:bg-nc-red group-hover:text-nc-cream sm:right-3 sm:top-3 sm:text-[10px]"
-                  >
-                    {lookbook.length > 1 ? `Look · ${lookbook.length}` : "Look"}
-                  </span>
-                </>
-
-              ) : (
-                <img
-                  src={p.img.url}
-                  alt={p.name}
-                  loading="lazy"
-                  className="block h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 sm:p-6"
-                />
-              )}
-            </button>
-            <figcaption className="mt-3 flex flex-col gap-1 sm:mt-4">
-              <span className="nc-display text-[10px] tracking-[0.3em] text-nc-ink/60">
-                No Comply · {p.code}
-              </span>
-              <p className="text-sm leading-snug text-nc-ink sm:text-base">
-                {p.name}
-              </p>
-              <p className="text-xs uppercase tracking-wide text-nc-ink/60">
-                {p.type}
-              </p>
-            </figcaption>
-          </figure>
-        );
-      })}
+      {items.map((p) => (
+        <ProductCard key={p.code} p={p} onOpen={onOpen} />
+      ))}
     </div>
   );
 }
