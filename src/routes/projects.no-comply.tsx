@@ -180,6 +180,37 @@ export const Route = createFileRoute("/projects/no-comply")({
 });
 
 function NoComply() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const open = lightboxIndex !== null;
+
+  const close = useCallback(() => setLightboxIndex(null), []);
+  const prev = useCallback(
+    () => setLightboxIndex((i) => (i === null ? i : (i - 1 + militia.length) % militia.length)),
+    [],
+  );
+  const next = useCallback(
+    () => setLightboxIndex((i) => (i === null ? i : (i + 1) % militia.length)),
+    [],
+  );
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") prev();
+      else if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open, close, prev, next]);
+
+  const active = lightboxIndex !== null ? militia[lightboxIndex] : null;
+
   return (
     <div className="no-comply min-h-screen">
       {/* Punk nav */}
