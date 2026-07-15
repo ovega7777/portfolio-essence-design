@@ -117,9 +117,18 @@ import modelZipKnitHoodieRedM2 from "../assets/militia-models/model-zip-knit-hoo
 import modelShowgirlsWhiteTeeW from "../assets/militia-models/model-showgirls-white-tee-w.png.asset.json";
 import modelShowgirlsNavyTeeW from "../assets/militia-models/model-showgirls-navy-tee-w.png.asset.json";
 
-const militia = [
+type AssetPointer = typeof teeBlack;
+type MilitiaItem = {
+  img: AssetPointer;
+  name: string;
+  code: string;
+  type: string;
+  back?: AssetPointer;
+};
+
+const militia: MilitiaItem[] = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
-  { img: knitHoodie, name: "Rib Knit Hoodie", code: "M-02", type: "Knitwear" },
+  { img: knitHoodie, back: knitHoodieBack, name: "Rib Knit Hoodie", code: "M-02", type: "Knitwear" },
   { img: nylonPants, name: "Nylon Wide Trouser", code: "M-03", type: "Bottoms" },
   { img: trousers, name: "Pleated Wide Trouser", code: "M-04", type: "Bottoms" },
   { img: teeBlack, name: "Comply Baby Tee — Black", code: "M-05", type: "Tee" },
@@ -129,7 +138,6 @@ const militia = [
   { img: cap, name: "Distressed Militia Cap", code: "M-09", type: "Headwear" },
   { img: zippo, name: "Bury Me Face Down Zippo", code: "M-10", type: "Object" },
   { img: hoodieFlag, name: "Kill Me I'm American Hoodie", code: "M-11", type: "Fleece" },
-  { img: knitHoodieBack, name: "Elbow-Patch Knit Hoodie", code: "M-12", type: "Knitwear" },
   { img: shirtNavyPatched, name: "Patched Service Overshirt", code: "M-13", type: "Outerwear" },
   { img: jacketCream, name: "Bone Chore Jacket", code: "M-14", type: "Outerwear" },
   { img: cargoBrown, name: "Field Cargo Trouser", code: "M-15", type: "Bottoms" },
@@ -141,60 +149,51 @@ const militia = [
   { img: hoodieRedZip, name: "Zip Hoodie — Oxblood", code: "M-21", type: "Knitwear" },
   { img: teeNightCamo, name: "Night Camo Logo Tee", code: "M-22", type: "Tee" },
   { img: cargoPlaid, name: "Plaid Cargo Trouser", code: "M-23", type: "Bottoms" },
-  { img: hoodieOliveZip, name: "Zip Hoodie — Olive", code: "M-24", type: "Knitwear" },
-  { img: hoodieOliveBack, name: "Olive Elbow-Patch Hoodie", code: "M-25", type: "Knitwear" },
-  { img: bagUtilityFront, name: "Utility Carryall — Front", code: "M-26", type: "Bag" },
-  { img: bagUtilityBack, name: "Utility Carryall — Back", code: "M-27", type: "Bag" },
+  { img: hoodieOliveZip, back: hoodieOliveBack, name: "Zip Hoodie — Olive", code: "M-24", type: "Knitwear" },
+  { img: bagUtilityFront, back: bagUtilityBack, name: "Utility Carryall", code: "M-26", type: "Bag" },
   { img: jacketCroppedBlack, name: "Pinned Cropped Jacket", code: "M-28", type: "Outerwear" },
   { img: patchC, name: "Chainstitch C Patch", code: "M-29", type: "Patch" },
   { img: patchLabelSet, name: "Militia Label Set", code: "M-30", type: "Patch" },
   { img: cargoShortsBlack, name: "Tactical Cargo Short", code: "M-31", type: "Shorts" },
   { img: teeUsaCamo, name: "No Comply USA Tee — Tiger Camo", code: "M-32", type: "Tee" },
   { img: cargoBrownWide, name: "Wide Cargo Trouser — Espresso", code: "M-33", type: "Trouser" },
-  { img: shirtBlackEpaulet, name: "Sergeant Overshirt", code: "M-34", type: "Shirt" },
+  { img: shirtBlackEpaulet, back: overshirtBlackBack, name: "Sergeant Overshirt — Black", code: "M-34", type: "Shirt" },
   { img: dogTags, name: "Militia Dog Tags", code: "M-35", type: "Accessory" },
   { img: knitHoodieZipBlack, name: "Zip Knit Hoodie — Black", code: "M-36", type: "Knitwear" },
   { img: trousersBrownPatch, name: "Manifesto Trouser — Espresso", code: "M-37", type: "Trouser" },
   { img: jacketNavyBack, name: "Officer Chore Jacket — Navy", code: "M-38", type: "Outerwear" },
-  { img: cargoBlackWide, name: "Wide Cargo Trouser — Black", code: "M-39", type: "Trouser" },
+  { img: cargoBlackWide, back: cargoBlackBack, name: "Wide Cargo Trouser — Black", code: "M-39", type: "Trouser" },
   { img: cargoShortsMulti, name: "Multi-Pocket Cargo Short", code: "M-40", type: "Shorts" },
   { img: jacketLeatherBomberBrown, name: "Leather Bomber — Brown", code: "M-41", type: "Outerwear" },
   { img: teeComplyShowgirlsNavy, name: "Comply Showgirls Tee — Navy", code: "M-42", type: "Tee" },
   { img: zippoAceSilver, name: "Ace Zippo — Silver", code: "M-43", type: "Accessory" },
   { img: cargoPlaidCharcoal, name: "Plaid Cargo Trouser — Charcoal", code: "M-44", type: "Trouser" },
-  { img: jacketLeatherBomberBlackBack, name: "Leather Bomber — Black Back", code: "M-45", type: "Outerwear" },
+  { img: jacketLeatherBomberBlackBack, name: "Leather Bomber — Black", code: "M-45", type: "Outerwear" },
   { img: pinsSetPatriot, name: "Patriot Pin Set", code: "M-46", type: "Accessory" },
-  { img: knitHoodieZipRed, name: "Zip Knit Hoodie — Red", code: "M-47", type: "Knitwear" },
+  { img: knitHoodieZipRed, back: knitHoodieRedBack, name: "Zip Knit Hoodie — Red", code: "M-47", type: "Knitwear" },
   { img: dogTagsGrimReaper, name: "Dog Tags — Grim Reaper", code: "M-48", type: "Accessory" },
-  { img: hoodieWashBlackBack, name: "Washed Hoodie — Back", code: "M-49", type: "Hoodie" },
-  { img: shirtOliveEpaulet, name: "Sergeant Overshirt — Olive", code: "M-50", type: "Shirt" },
+  { img: hoodieWashBlackBack, name: "Washed Hoodie — Black", code: "M-49", type: "Hoodie" },
+  { img: shirtOliveEpaulet, back: overshirtOliveBack, name: "Sergeant Overshirt — Olive", code: "M-50", type: "Shirt" },
   { img: vestLacedBlack, name: "Laced Utility Vest", code: "M-51", type: "Outerwear" },
   { img: patchUsaGothic, name: "USA Gothic Patch", code: "M-52", type: "Accessory" },
   { img: nylonBalloonPants, name: "Nylon Balloon Pant", code: "M-53", type: "Trouser" },
-  { img: bomberShearlingBrownBack, name: "Shearling Bomber — Back", code: "M-54", type: "Outerwear" },
+  { img: bomberShearlingBrownBack, name: "Shearling Bomber — Brown", code: "M-54", type: "Outerwear" },
   { img: overshirtCreamEpaulet, name: "Officer Overshirt — Cream", code: "M-55", type: "Shirt" },
-  { img: jacketDistressedBlackBack, name: "Distressed Rider — Back", code: "M-56", type: "Outerwear" },
-  { img: cargoBlackBack, name: "Wide Cargo — Black Back", code: "M-57", type: "Trouser" },
   { img: knitHoodieOlivePatched, name: "Patched Knit Hoodie — Olive", code: "M-58", type: "Knitwear" },
-  { img: nylonHoodieBuckleBack, name: "Buckle Nylon Hoodie — Back", code: "M-59", type: "Outerwear" },
-  { img: cargoOlivePleated, name: "Pleated Cargo — Olive", code: "M-60", type: "Trouser" },
-  { img: cargoOliveBack, name: "Pleated Cargo — Olive Back", code: "M-61", type: "Trouser" },
+  { img: cargoOlivePleated, back: cargoOliveBack, name: "Pleated Cargo — Olive", code: "M-60", type: "Trouser" },
   { img: overshirtNavyEpaulet, name: "Officer Overshirt — Navy", code: "M-62", type: "Shirt" },
-  { img: nylonHoodieBuckleOliveBack, name: "Buckle Nylon Hoodie — Olive Back", code: "M-63", type: "Outerwear" },
-  { img: nylonHoodieBuckleBlackFront, name: "Buckle Nylon Hoodie — Black", code: "M-64", type: "Outerwear" },
+  { img: nylonHoodieBuckleOliveBack, name: "Buckle Nylon Hoodie — Olive", code: "M-63", type: "Outerwear" },
+  { img: nylonHoodieBuckleBlackFront, back: nylonHoodieBuckleBack, name: "Buckle Nylon Hoodie — Black", code: "M-64", type: "Outerwear" },
   { img: bomberShearlingBlackFront, name: "Shearling Bomber — Black", code: "M-65", type: "Outerwear" },
-  { img: jacketDistressedBlackFront, name: "Distressed Rider — Front", code: "M-66", type: "Outerwear" },
+  { img: jacketDistressedBlackFront, back: jacketDistressedBlackBack, name: "Distressed Rider", code: "M-66", type: "Outerwear" },
   { img: vestLacedOlive, name: "Laced Utility Vest — Olive", code: "M-67", type: "Outerwear" },
-  { img: overshirtOliveBack, name: "Officer Overshirt — Olive Back", code: "M-68", type: "Shirt" },
-  { img: overshirtBlackBack, name: "Officer Overshirt — Black Back", code: "M-69", type: "Shirt" },
   { img: capPatchedBlack, name: "Patched Militia Cap", code: "M-70", type: "Headwear" },
   { img: knitHoodieNavyBack, name: "Elbow-Patch Knit Hoodie — Navy", code: "M-71", type: "Knitwear" },
   { img: patchDealerOfDeath, name: "Dealer of Death Patch", code: "M-72", type: "Patch" },
-  { img: nylonBalloonPantsOliveFront, name: "Nylon Balloon Pant — Olive", code: "M-73", type: "Trouser" },
+  { img: nylonBalloonPantsOliveFront, back: nylonBalloonPantsOliveBack, name: "Nylon Balloon Pant — Olive", code: "M-73", type: "Trouser" },
   { img: anorakOliveBuckle, name: "Buckle Anorak — Olive", code: "M-74", type: "Outerwear" },
-  { img: bomberShearlingBlackFrontV2, name: "Shearling Bomber — Black Front", code: "M-75", type: "Outerwear" },
-  { img: knitHoodieRedBack, name: "Elbow-Patch Knit Hoodie — Oxblood", code: "M-76", type: "Knitwear" },
-  { img: nylonBalloonPantsOliveBack, name: "Nylon Balloon Pant — Olive Back", code: "M-77", type: "Trouser" },
+  { img: bomberShearlingBlackFrontV2, name: "Shearling Bomber — Black (Alt)", code: "M-75", type: "Outerwear" },
+
 ];
 
 const CATEGORIES = [
@@ -206,8 +205,7 @@ const CATEGORIES = [
 ] as const;
 type Category = (typeof CATEGORIES)[number];
 
-type MilitiaItem = (typeof militia)[number];
-type AssetPointer = typeof teeBlack;
+
 
 type LookbookShot = {
   img: AssetPointer;
@@ -562,19 +560,28 @@ for (const p of militia) militiaByCategory[categorize(p.type)].push(p);
   }
 }
 
+function extraViews(p: MilitiaItem): LookbookShot[] {
+  const back: LookbookShot[] = p.back
+    ? [{ img: p.back, alt: `${p.name} — back view` }]
+    : [];
+  return [...back, ...(LOOKBOOK_BY_CODE[p.code] ?? [])];
+}
+
 function productImages(
   p: MilitiaItem,
 ): { url: string; alt: string; label: string }[] {
-  const shots = LOOKBOOK_BY_CODE[p.code] ?? [];
+  const shots = extraViews(p);
+  const backCount = p.back ? 1 : 0;
   return [
-    { url: p.img.url, alt: p.name, label: "Product" },
+    { url: p.img.url, alt: p.name, label: "Front" },
     ...shots.map((s, i) => ({
       url: s.img.url,
       alt: s.alt,
-      label: `Look ${i + 1}`,
+      label: i < backCount ? "Back" : `Look ${i - backCount + 1}`,
     })),
   ];
 }
+
 
 const CATEGORY_SLUGS: Record<Category, string> = {
   Outerwear: "outerwear",
@@ -630,7 +637,7 @@ function ProductCard({
   p: MilitiaItem;
   onOpen: (code: string) => void;
 }) {
-  const lookbook = LOOKBOOK_BY_CODE[p.code] ?? [];
+  const lookbook = extraViews(p);
   const hasLook = lookbook.length > 0;
   const totalCycle = 1 + lookbook.length;
   const [cycleIdx, setCycleIdx] = useState(0);
@@ -640,6 +647,7 @@ function ProductCard({
   const currentUrl = cycleIdx === 0 ? p.img.url : lookbook[cycleIdx - 1].img.url;
   const currentAlt = cycleIdx === 0 ? p.name : lookbook[cycleIdx - 1].alt;
   const hoverShot = hasLook ? lookbook[0] : null;
+
 
   return (
     <figure className="group flex flex-col">
