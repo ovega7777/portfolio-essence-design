@@ -180,7 +180,7 @@ const militia: MilitiaItem[] = [
   { img: cargoOlivePleated, back: cargoOliveBack, name: "Pleated Cargo — Olive", code: "M-60", type: "Trouser" },
   { img: overshirtNavyEpaulet, name: "Officer Overshirt — Navy", code: "M-62", type: "Shirt" },
   { img: nylonHoodieBuckleBlackFront, back: nylonHoodieBuckleBack, name: "Buckle Nylon Hoodie — Black", code: "M-64", type: "Outerwear" },
-  { img: bomberShearlingBlackFront, name: "Shearling Bomber — Black (Patched)", code: "M-65", type: "Outerwear" },
+  
   { img: jacketDistressedBlackFront, back: jacketDistressedBlackBack, name: "Distressed Rider", code: "M-66", type: "Outerwear" },
   { img: vestLacedOlive, name: "Laced Utility Vest — Olive", code: "M-67", type: "Outerwear" },
   { img: patchDealerOfDeath, name: "Dealer of Death Patch", code: "M-72", type: "Patch" },
