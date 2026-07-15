@@ -116,6 +116,13 @@ import modelShowgirlsBlackTeeM from "../assets/militia-models/model-showgirls-bl
 import modelZipKnitHoodieRedM2 from "../assets/militia-models/model-zip-knit-hoodie-red-m2.png.asset.json";
 import modelShowgirlsWhiteTeeW from "../assets/militia-models/model-showgirls-white-tee-w.png.asset.json";
 import modelShowgirlsNavyTeeW from "../assets/militia-models/model-showgirls-navy-tee-w.png.asset.json";
+import modelCamoTeePleatedTrouserW from "../assets/militia-models/model-camo-tee-pleated-trouser-w.png.asset.json";
+import modelOliveZipKnitBrownCargoW from "../assets/militia-models/model-olive-zip-knit-brown-cargo-w.png.asset.json";
+import modelLeatherBomberPatchedW from "../assets/militia-models/model-leather-bomber-patched-w.png.asset.json";
+import modelFlagHoodieCargoW from "../assets/militia-models/model-flag-hoodie-cargo-w.png.asset.json";
+import modelCroppedJacketPatchedM from "../assets/militia-models/model-cropped-jacket-patched-m.png.asset.json";
+import modelLacedVestBlackW from "../assets/militia-models/model-laced-vest-black-w.png.asset.json";
+import modelLacedVestOliveM from "../assets/militia-models/model-laced-vest-olive-m.png.asset.json";
 
 type AssetPointer = typeof teeBlack;
 type MilitiaItem = {
@@ -221,6 +228,10 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       img: modelNavyCamoTeeW,
       alt: "Model wearing the pleated wide trouser with navy camo tee",
     },
+    {
+      img: modelCamoTeePleatedTrouserW,
+      alt: "Model wearing the pleated wide trouser with tiger camo tee",
+    },
   ],
   "M-11": [
     {
@@ -230,6 +241,10 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
     {
       img: modelFlagHoodieM2,
       alt: "Second model wearing the Kill Me I'm American hoodie",
+    },
+    {
+      img: modelFlagHoodieCargoW,
+      alt: "Third model wearing the Kill Me I'm American hoodie with black cargo",
     },
   ],
   "M-13": [
@@ -325,11 +340,19 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       img: modelCroppedJacketUtilityBagW,
       alt: "Fourth model wearing the pinned cropped jacket with carryall",
     },
+    {
+      img: modelCroppedJacketPatchedM,
+      alt: "Male model wearing the patched pinned cropped jacket",
+    },
   ],
   "M-32": [
     {
       img: modelNavyCamoTeeW,
       alt: "Model wearing the No Comply USA tiger camo tee",
+    },
+    {
+      img: modelCamoTeePleatedTrouserW,
+      alt: "Second model wearing the No Comply USA tiger camo tee",
     },
   ],
   "M-34": [
@@ -378,6 +401,26 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
     {
       img: modelShowgirlsNavyTeeW,
       alt: "Eighth model wearing the wide black cargo trouser",
+    },
+    {
+      img: modelLeatherBomberPatchedW,
+      alt: "Ninth model wearing the wide black cargo with patched leather bomber",
+    },
+    {
+      img: modelFlagHoodieCargoW,
+      alt: "Tenth model wearing the wide black cargo with the flag hoodie",
+    },
+    {
+      img: modelCroppedJacketPatchedM,
+      alt: "Eleventh model wearing the wide black cargo with the patched cropped jacket",
+    },
+    {
+      img: modelLacedVestBlackW,
+      alt: "Twelfth model wearing the wide black cargo with the black laced vest",
+    },
+    {
+      img: modelLacedVestOliveM,
+      alt: "Thirteenth model wearing the wide black cargo with the olive laced vest",
     },
   ],
   "M-40": [
@@ -435,6 +478,28 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       img: modelKnitHoodieOliveM2,
       alt: "Third model wearing the patched olive knit hoodie",
     },
+    {
+      img: modelOliveZipKnitBrownCargoW,
+      alt: "Fourth model wearing the patched olive knit hoodie with brown wide cargo",
+    },
+  ],
+  "M-33": [
+    {
+      img: modelOliveZipKnitBrownCargoW,
+      alt: "Model wearing the espresso wide cargo trouser",
+    },
+  ],
+  "M-51": [
+    {
+      img: modelLacedVestBlackW,
+      alt: "Model wearing the black laced utility vest",
+    },
+  ],
+  "M-67": [
+    {
+      img: modelLacedVestOliveM,
+      alt: "Model wearing the olive laced utility vest",
+    },
   ],
   "M-64": [
     {
@@ -480,6 +545,10 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
     {
       img: modelShearlingBomberBlackM2,
       alt: "Third model wearing the black shearling bomber",
+    },
+    {
+      img: modelLeatherBomberPatchedW,
+      alt: "Fourth model wearing the patched black leather bomber",
     },
   ],
 };
