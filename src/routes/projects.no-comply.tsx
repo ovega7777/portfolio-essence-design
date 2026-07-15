@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useCallback, useEffect, useState } from "react";
 import hero from "../assets/no-comply-hero.jpg";
 import teeBlack from "../assets/militia/tee-black.png.asset.json";
 import teeWhite from "../assets/militia/tee-white.png.asset.json";
