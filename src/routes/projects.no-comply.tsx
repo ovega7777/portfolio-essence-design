@@ -356,15 +356,6 @@ function NoComply() {
     p.type.toLowerCase().includes(query) ||
     p.code.toLowerCase().includes(query);
 
-  const displayed = useMemo(() => {
-    const base =
-      activeCategory === "All"
-        ? militiaOrdered
-        : militiaByCategory[activeCategory];
-    return sortItems(base.filter(matchesQuery), sort);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeCategory, sort, query]);
-
   const groupedDisplayed = useMemo(() => {
     if (activeCategory !== "All") return null;
     return CATEGORIES.map((cat) => ({
@@ -376,6 +367,18 @@ function NoComply() {
     }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory, sort, query]);
+
+  const displayed = useMemo(() => {
+    if (activeCategory === "All" && groupedDisplayed) {
+      // Keep lightbox navigation in category order, matching the visible sections.
+      return groupedDisplayed.flatMap((g) => g.items);
+    }
+    return sortItems(
+      militiaByCategory[activeCategory as Category].filter(matchesQuery),
+      sort,
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeCategory, sort, query, groupedDisplayed]);
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const open = lightboxIndex !== null;
