@@ -623,7 +623,7 @@ function NoComply() {
                 </p>
               </div>
               <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
-                {active.code} · {(lightboxIndex ?? 0) + 1}/{militia.length}
+                {active.code} · {(lightboxIndex ?? 0) + 1}/{displayed.length}
               </span>
             </figcaption>
           </figure>
