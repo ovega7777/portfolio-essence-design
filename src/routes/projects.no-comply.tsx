@@ -1,5 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useCallback, useEffect, useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { fallback, zodValidator } from "@tanstack/zod-adapter";
+import { z } from "zod";
 import hero from "../assets/no-comply-hero.png.asset.json";
 import teeBlack from "../assets/militia/tee-black.png.asset.json";
 import teeWhite from "../assets/militia/tee-white.png.asset.json";
@@ -200,7 +202,34 @@ for (const p of militia) militiaByCategory[categorize(p.type)].push(p);
 
 const militiaOrdered = CATEGORIES.flatMap((c) => militiaByCategory[c]);
 
+const CATEGORY_SLUGS: Record<Category, string> = {
+  Outerwear: "outerwear",
+  Tops: "tops",
+  "Pants & Trousers": "pants-trousers",
+  Bags: "bags",
+  Accessories: "accessories",
+};
+const SLUG_TO_CATEGORY: Record<string, Category> = Object.fromEntries(
+  (Object.entries(CATEGORY_SLUGS) as [Category, string][]).map(([c, s]) => [s, c]),
+) as Record<string, Category>;
+
+const SORTS = ["newest", "oldest", "az", "za"] as const;
+type Sort = (typeof SORTS)[number];
+const SORT_LABELS: Record<Sort, string> = {
+  newest: "Newest",
+  oldest: "Oldest",
+  az: "A–Z",
+  za: "Z–A",
+};
+
+const militiaSearchSchema = z.object({
+  cat: fallback(z.string(), "all").default("all"),
+  sort: fallback(z.string(), "oldest").default("oldest"),
+  q: fallback(z.string(), "").default(""),
+});
+
 export const Route = createFileRoute("/projects/no-comply")({
+  validateSearch: zodValidator(militiaSearchSchema),
   head: () => ({
     meta: [
       { title: "NO COMPLY — Nicholas Curzon" },
@@ -231,7 +260,7 @@ function CategoryGrid({
 }) {
   const tilts = ["nc-tilt-l", "", "nc-tilt-r", "", "nc-tilt-l", "nc-tilt-r"];
   return (
-    <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-14 lg:grid-cols-3">
+    <div className="grid grid-cols-2 gap-5 sm:gap-10 md:gap-14 lg:grid-cols-3">
       {items.map((p, i) => {
         const tilt = tilts[i % tilts.length];
         return (
@@ -249,16 +278,16 @@ function CategoryGrid({
                 className="block h-full w-full object-cover"
               />
             </button>
-            <figcaption className="mt-4 flex items-baseline justify-between gap-3">
-              <div>
-                <p className="nc-display text-xl text-nc-ink leading-tight">
+            <figcaption className="mt-3 flex items-baseline justify-between gap-2 sm:mt-4 sm:gap-3">
+              <div className="min-w-0">
+                <p className="nc-display truncate text-base leading-tight text-nc-ink sm:text-xl">
                   {p.name}
                 </p>
-                <p className="nc-display text-xs tracking-[0.25em] text-nc-ink/70">
+                <p className="nc-display text-[10px] tracking-[0.2em] text-nc-ink/70 sm:text-xs sm:tracking-[0.25em]">
                   {p.type}
                 </p>
               </div>
-              <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
+              <span className="nc-display shrink-0 text-xs tracking-[0.2em] text-nc-red sm:text-sm">
                 {p.code}
               </span>
             </figcaption>
@@ -269,10 +298,84 @@ function CategoryGrid({
   );
 }
 
+function sortItems(items: MilitiaItem[], sort: Sort): MilitiaItem[] {
+  const codeNum = (c: string) => parseInt(c.replace(/\D/g, ""), 10) || 0;
+  const copy = items.slice();
+  switch (sort) {
+    case "newest":
+      return copy.sort((a, b) => codeNum(b.code) - codeNum(a.code));
+    case "oldest":
+      return copy.sort((a, b) => codeNum(a.code) - codeNum(b.code));
+    case "az":
+      return copy.sort((a, b) => a.name.localeCompare(b.name));
+    case "za":
+      return copy.sort((a, b) => b.name.localeCompare(a.name));
+  }
+}
+
 function NoComply() {
-  const [activeCategory, setActiveCategory] = useState<Category | "All">("All");
-  const displayed =
-    activeCategory === "All" ? militiaOrdered : militiaByCategory[activeCategory];
+  const search = Route.useSearch();
+  const navigate = useNavigate({ from: Route.fullPath });
+
+  const activeCategory: Category | "All" =
+    search.cat === "all" ? "All" : SLUG_TO_CATEGORY[search.cat] ?? "All";
+  const sort: Sort = (SORTS as readonly string[]).includes(search.sort)
+    ? (search.sort as Sort)
+    : "oldest";
+  const query = search.q.trim().toLowerCase();
+
+  const setCategory = (cat: Category | "All") => {
+    setLightboxIndex(null);
+    navigate({
+      search: (prev: z.infer<typeof militiaSearchSchema>) => ({
+        ...prev,
+        cat: cat === "All" ? "all" : CATEGORY_SLUGS[cat],
+      }),
+      replace: true,
+      resetScroll: false,
+    });
+  };
+  const setSort = (s: Sort) => {
+    navigate({
+      search: (prev: z.infer<typeof militiaSearchSchema>) => ({ ...prev, sort: s }),
+      replace: true,
+      resetScroll: false,
+    });
+  };
+  const setQuery = (q: string) => {
+    navigate({
+      search: (prev: z.infer<typeof militiaSearchSchema>) => ({ ...prev, q }),
+      replace: true,
+      resetScroll: false,
+    });
+  };
+
+  const matchesQuery = (p: MilitiaItem) =>
+    !query ||
+    p.name.toLowerCase().includes(query) ||
+    p.type.toLowerCase().includes(query) ||
+    p.code.toLowerCase().includes(query);
+
+  const displayed = useMemo(() => {
+    const base =
+      activeCategory === "All"
+        ? militiaOrdered
+        : militiaByCategory[activeCategory];
+    return sortItems(base.filter(matchesQuery), sort);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeCategory, sort, query]);
+
+  const groupedDisplayed = useMemo(() => {
+    if (activeCategory !== "All") return null;
+    return CATEGORIES.map((cat) => ({
+      cat,
+      items: sortItems(
+        militiaByCategory[cat].filter(matchesQuery),
+        sort,
+      ),
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeCategory, sort, query]);
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const open = lightboxIndex !== null;
@@ -445,61 +548,135 @@ function NoComply() {
                 No Comply <span className="nc-scribble-underline">Militia</span>
               </h2>
             </div>
-            <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
+            <span className="nc-display text-xs tracking-[0.3em] text-nc-ink sm:text-sm">
               // {militia.length} pieces / Fall 2025
             </span>
           </div>
 
-          {/* Category filter */}
-          <div className="mb-12 flex flex-wrap items-center gap-3 border-y-2 border-nc-ink py-4">
-            <span className="nc-display text-xs tracking-[0.3em] text-nc-ink/70">
-              Shop by
-            </span>
-            {(["All", ...CATEGORIES] as const).map((cat) => {
-              const count =
-                cat === "All" ? militia.length : militiaByCategory[cat].length;
-              const isActive = activeCategory === cat;
-              return (
-                <button
-                  key={cat}
-                  type="button"
-                  onClick={() => {
-                    setActiveCategory(cat);
-                    setLightboxIndex(null);
-                  }}
-                  className={`nc-display border-2 px-3 py-1 text-xs tracking-[0.25em] transition-colors ${
-                    isActive
-                      ? "border-nc-red bg-nc-red text-nc-cream"
-                      : "border-nc-ink bg-nc-cream text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
-                  }`}
-                  aria-pressed={isActive}
-                >
-                  {cat} <span className="opacity-70">({count})</span>
-                </button>
-              );
-            })}
+          {/* Controls: category chips + sort + search */}
+          <div className="mb-10 border-y-2 border-nc-ink">
+            {/* Category chips (horizontal scroll on mobile) */}
+            <div className="-mx-6 overflow-x-auto px-6 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex min-w-max items-center gap-2 sm:flex-wrap sm:gap-3">
+                <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
+                  Shop by
+                </span>
+                {(["All", ...CATEGORIES] as const).map((cat) => {
+                  const count =
+                    cat === "All"
+                      ? militia.length
+                      : militiaByCategory[cat].length;
+                  const isActive = activeCategory === cat;
+                  return (
+                    <button
+                      key={cat}
+                      type="button"
+                      onClick={() => setCategory(cat)}
+                      className={`nc-display shrink-0 whitespace-nowrap border-2 px-3 py-1.5 text-[10px] tracking-[0.2em] transition-colors sm:text-xs sm:tracking-[0.25em] ${
+                        isActive
+                          ? "border-nc-red bg-nc-red text-nc-cream"
+                          : "border-nc-ink bg-nc-cream text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                      }`}
+                      aria-pressed={isActive}
+                    >
+                      {cat} <span className="opacity-70">({count})</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Sort + Search */}
+            <div className="grid gap-3 border-t-2 border-nc-ink px-0 py-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
+              <label className="flex min-w-0 items-center gap-2 border-2 border-nc-ink bg-nc-cream px-3 py-2">
+                <span aria-hidden className="nc-display text-sm text-nc-ink/70">
+                  ⌕
+                </span>
+                <input
+                  type="search"
+                  value={search.q}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search this collection…"
+                  aria-label="Search Militia items"
+                  className="nc-display w-full min-w-0 bg-transparent text-sm tracking-[0.15em] text-nc-ink placeholder:text-nc-ink/50 focus:outline-none"
+                />
+                {search.q && (
+                  <button
+                    type="button"
+                    onClick={() => setQuery("")}
+                    aria-label="Clear search"
+                    className="nc-display shrink-0 text-xs tracking-[0.2em] text-nc-red hover:underline"
+                  >
+                    Clear
+                  </button>
+                )}
+              </label>
+
+              <div className="-mx-6 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:overflow-visible sm:px-0">
+                <div className="flex min-w-max items-center gap-2 sm:min-w-0 sm:flex-wrap">
+                  <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
+                    Sort
+                  </span>
+                  {SORTS.map((s) => {
+                    const isActive = sort === s;
+                    return (
+                      <button
+                        key={s}
+                        type="button"
+                        onClick={() => setSort(s)}
+                        className={`nc-display shrink-0 whitespace-nowrap border-2 px-3 py-1.5 text-[10px] tracking-[0.2em] transition-colors sm:text-xs sm:tracking-[0.25em] ${
+                          isActive
+                            ? "border-nc-ink bg-nc-ink text-nc-cream"
+                            : "border-nc-ink bg-nc-cream text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                        }`}
+                        aria-pressed={isActive}
+                      >
+                        {SORT_LABELS[s]}
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
           </div>
 
-          {activeCategory === "All" ? (
-            CATEGORIES.map((cat) => {
-              const items = militiaByCategory[cat];
+          {/* Results */}
+          {displayed.length === 0 ? (
+            <div className="border-2 border-dashed border-nc-ink/40 p-10 text-center">
+              <p className="nc-display text-xl text-nc-ink">No matches.</p>
+              <p className="nc-display mt-2 text-xs tracking-[0.25em] text-nc-ink/70">
+                Try a different search or category.
+              </p>
+              {(search.q || activeCategory !== "All") && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setQuery("");
+                    setCategory("All");
+                  }}
+                  className="nc-display mt-6 border-2 border-nc-ink bg-nc-cream px-3 py-1.5 text-xs tracking-[0.25em] text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                >
+                  Reset filters
+                </button>
+              )}
+            </div>
+          ) : activeCategory === "All" && groupedDisplayed ? (
+            groupedDisplayed.map(({ cat, items }) => {
               if (items.length === 0) return null;
               return (
-                <div key={cat} className="mb-20 last:mb-0">
-                  <div className="mb-8 flex items-end justify-between border-b-2 border-nc-ink pb-3">
-                    <h3 className="nc-display text-3xl leading-none text-nc-ink md:text-4xl">
+                <div key={cat} className="mb-16 last:mb-0 sm:mb-20">
+                  <div className="mb-6 flex items-end justify-between gap-3 border-b-2 border-nc-ink pb-3 sm:mb-8">
+                    <h3 className="nc-display text-2xl leading-none text-nc-ink sm:text-3xl md:text-4xl">
                       {cat}
                     </h3>
-                    <span className="nc-display text-xs tracking-[0.3em] text-nc-ink/70">
+                    <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
                       {String(items.length).padStart(2, "0")} pieces
                     </span>
                   </div>
                   <CategoryGrid
                     items={items}
                     onOpen={(code) =>
-                      setLightboxIndex(
-                        militiaOrdered.findIndex((m) => m.code === code),
-                      )
+                      setLightboxIndex(displayed.findIndex((m) => m.code === code))
                     }
                   />
                 </div>
