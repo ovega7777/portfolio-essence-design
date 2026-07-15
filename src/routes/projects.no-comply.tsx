@@ -215,8 +215,7 @@ const CATEGORIES = [
 ] as const;
 type Category = (typeof CATEGORIES)[number];
 
-type MilitiaItem = (typeof militia)[number];
-type AssetPointer = typeof teeBlack;
+
 
 type LookbookShot = {
   img: AssetPointer;
