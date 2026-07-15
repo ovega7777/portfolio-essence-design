@@ -1160,9 +1160,7 @@ function NoComply() {
           ) : (
             <CategoryGrid
               items={displayed}
-              onOpen={(code) =>
-                setLightboxIndex(displayed.findIndex((m) => m.code === code))
-              }
+              onOpen={(code) => setLightbox({ code, index: 0 })}
             />
           )}
         </div>
