@@ -258,42 +258,36 @@ function CategoryGrid({
   items: MilitiaItem[];
   onOpen: (code: string) => void;
 }) {
-  const tilts = ["nc-tilt-l", "", "nc-tilt-r", "", "nc-tilt-l", "nc-tilt-r"];
   return (
-    <div className="grid grid-cols-2 gap-5 sm:gap-10 md:gap-14 lg:grid-cols-3">
-      {items.map((p, i) => {
-        const tilt = tilts[i % tilts.length];
-        return (
-          <figure key={p.code} className="group">
-            <button
-              type="button"
-              onClick={() => onOpen(p.code)}
-              aria-label={`View ${p.name} larger`}
-              className={`nc-tile block aspect-[4/5] w-full cursor-zoom-in bg-nc-cream ${tilt} transition-transform focus:outline-none focus-visible:ring-4 focus-visible:ring-nc-red`}
-            >
-              <img
-                src={p.img.url}
-                alt={p.name}
-                loading="lazy"
-                className="block h-full w-full object-cover"
-              />
-            </button>
-            <figcaption className="mt-3 flex items-baseline justify-between gap-2 sm:mt-4 sm:gap-3">
-              <div className="min-w-0">
-                <p className="nc-display truncate text-base leading-tight text-nc-ink sm:text-xl">
-                  {p.name}
-                </p>
-                <p className="nc-display text-[10px] tracking-[0.2em] text-nc-ink/70 sm:text-xs sm:tracking-[0.25em]">
-                  {p.type}
-                </p>
-              </div>
-              <span className="nc-display shrink-0 text-xs tracking-[0.2em] text-nc-red sm:text-sm">
-                {p.code}
-              </span>
-            </figcaption>
-          </figure>
-        );
-      })}
+    <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-14 lg:grid-cols-4">
+      {items.map((p) => (
+        <figure key={p.code} className="group flex flex-col">
+          <button
+            type="button"
+            onClick={() => onOpen(p.code)}
+            aria-label={`View ${p.name} larger`}
+            className="block aspect-[3/4] w-full cursor-zoom-in overflow-hidden bg-nc-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
+          >
+            <img
+              src={p.img.url}
+              alt={p.name}
+              loading="lazy"
+              className="block h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 sm:p-6"
+            />
+          </button>
+          <figcaption className="mt-3 flex flex-col gap-1 sm:mt-4">
+            <span className="nc-display text-[10px] tracking-[0.3em] text-nc-ink/60">
+              No Comply · {p.code}
+            </span>
+            <p className="text-sm leading-snug text-nc-ink sm:text-base">
+              {p.name}
+            </p>
+            <p className="text-xs uppercase tracking-wide text-nc-ink/60">
+              {p.type}
+            </p>
+          </figcaption>
+        </figure>
+      ))}
     </div>
   );
 }
