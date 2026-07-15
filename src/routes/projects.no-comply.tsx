@@ -176,7 +176,7 @@ const militia: MilitiaItem[] = [
   { img: patchUsaGothic, name: "USA Gothic Patch", code: "M-52", type: "Accessory" },
   { img: nylonBalloonPants, name: "Nylon Balloon Pant", code: "M-53", type: "Trouser" },
   { img: overshirtCreamEpaulet, name: "Officer Overshirt — Cream", code: "M-55", type: "Shirt" },
-  { img: knitHoodieOlivePatched, back: hoodieOliveBack, name: "Patched Knit Hoodie — Olive", code: "M-58", type: "Knitwear" },
+  
   { img: cargoOlivePleated, back: cargoOliveBack, name: "Pleated Cargo — Olive", code: "M-60", type: "Trouser" },
   { img: overshirtNavyEpaulet, name: "Officer Overshirt — Navy", code: "M-62", type: "Shirt" },
   { img: nylonHoodieBuckleBlackFront, back: nylonHoodieBuckleBack, name: "Buckle Nylon Hoodie — Black", code: "M-64", type: "Outerwear" },
