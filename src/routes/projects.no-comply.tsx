@@ -531,6 +531,51 @@ const militiaByCategory: Record<Category, typeof militia> = {
 };
 for (const p of militia) militiaByCategory[categorize(p.type)].push(p);
 
+// Build-time / dev-time integrity check: every lookbook mapping refers to a
+// real SKU and every shot has a non-empty img URL + descriptive alt text.
+// Runs at module load so a bad mapping fails fast during dev builds.
+{
+  const validCodes = new Set(militia.map((m) => m.code));
+  const errors: string[] = [];
+  for (const [code, shots] of Object.entries(LOOKBOOK_BY_CODE)) {
+    if (!validCodes.has(code as MilitiaItem["code"])) {
+      errors.push(`Lookbook references unknown SKU "${code}"`);
+      continue;
+    }
+    if (!Array.isArray(shots) || shots.length === 0) {
+      errors.push(`Lookbook for "${code}" is empty`);
+      continue;
+    }
+    shots.forEach((s, i) => {
+      if (!s?.img?.url) errors.push(`Missing img.url at ${code}[${i}]`);
+      if (!s?.alt || s.alt.trim().length < 3) {
+        errors.push(`Missing/short alt at ${code}[${i}]`);
+      }
+    });
+  }
+  if (errors.length > 0) {
+    const msg = `[no-comply] Lookbook validation failed:\n - ${errors.join("\n - ")}`;
+    if (import.meta.env.DEV) throw new Error(msg);
+    // In prod: log but do not crash the page.
+    // eslint-disable-next-line no-console
+    console.error(msg);
+  }
+}
+
+function productImages(
+  p: MilitiaItem,
+): { url: string; alt: string; label: string }[] {
+  const shots = LOOKBOOK_BY_CODE[p.code] ?? [];
+  return [
+    { url: p.img.url, alt: p.name, label: "Product" },
+    ...shots.map((s, i) => ({
+      url: s.img.url,
+      alt: s.alt,
+      label: `Look ${i + 1}`,
+    })),
+  ];
+}
+
 const CATEGORY_SLUGS: Record<Category, string> = {
   Outerwear: "outerwear",
   Tops: "tops",
