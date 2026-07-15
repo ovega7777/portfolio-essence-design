@@ -80,6 +80,14 @@ import anorakOliveBuckle from "../assets/militia/anorak-olive-buckle.png.asset.j
 import bomberShearlingBlackFrontV2 from "../assets/militia/bomber-shearling-black-front-v2.png.asset.json";
 import knitHoodieRedBack from "../assets/militia/knit-hoodie-red-back.png.asset.json";
 import nylonBalloonPantsOliveBack from "../assets/militia/nylon-balloon-pants-olive-back.png.asset.json";
+import modelCroppedJacketBlack from "../assets/militia-models/model-cropped-jacket-black.png.asset.json";
+import modelShearlingBomberBlack from "../assets/militia-models/model-shearling-bomber-black.png.asset.json";
+import modelCargoShortsBagLook from "../assets/militia-models/model-cargo-shorts-bag-look.png.asset.json";
+import modelFlagHoodieBlack from "../assets/militia-models/model-flag-hoodie-black.png.asset.json";
+import modelSergeantShirtBlackW from "../assets/militia-models/model-sergeant-shirt-black-w.png.asset.json";
+import modelSergeantShirtBlackM from "../assets/militia-models/model-sergeant-shirt-black-m.png.asset.json";
+import modelCargoShortsCapLook from "../assets/militia-models/model-cargo-shorts-cap-look.png.asset.json";
+import modelNylonAnorakBlack from "../assets/militia-models/model-nylon-anorak-black.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
@@ -170,6 +178,61 @@ const CATEGORIES = [
 ] as const;
 type Category = (typeof CATEGORIES)[number];
 
+type MilitiaItem = (typeof militia)[number];
+type AssetPointer = typeof teeBlack;
+
+type LookbookShot = {
+  img: AssetPointer;
+  alt: string;
+};
+
+const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot>> = {
+  "M-11": {
+    img: modelFlagHoodieBlack,
+    alt: "Model wearing the Kill Me I'm American hoodie",
+  },
+  "M-26": {
+    img: modelCargoShortsBagLook,
+    alt: "Model wearing the utility carryall crossbody",
+  },
+  "M-28": {
+    img: modelCroppedJacketBlack,
+    alt: "Model wearing the pinned cropped jacket",
+  },
+  "M-34": {
+    img: modelSergeantShirtBlackM,
+    alt: "Model wearing the Sergeant Overshirt",
+  },
+  "M-39": {
+    img: modelSergeantShirtBlackW,
+    alt: "Model wearing the wide black cargo trouser",
+  },
+  "M-40": {
+    img: modelCargoShortsCapLook,
+    alt: "Model wearing the multi-pocket cargo short",
+  },
+  "M-53": {
+    img: modelNylonAnorakBlack,
+    alt: "Model wearing the nylon balloon pant",
+  },
+  "M-64": {
+    img: modelNylonAnorakBlack,
+    alt: "Model wearing the buckle nylon hoodie in black",
+  },
+  "M-65": {
+    img: modelShearlingBomberBlack,
+    alt: "Model wearing the black shearling bomber",
+  },
+  "M-70": {
+    img: modelCargoShortsCapLook,
+    alt: "Model wearing the patched black cap",
+  },
+  "M-75": {
+    img: modelShearlingBomberBlack,
+    alt: "Model wearing the black shearling bomber",
+  },
+};
+
 function categorize(type: string): Category {
   switch (type) {
     case "Outerwear":
@@ -199,8 +262,6 @@ const militiaByCategory: Record<Category, typeof militia> = {
   Accessories: [],
 };
 for (const p of militia) militiaByCategory[categorize(p.type)].push(p);
-
-const militiaOrdered = CATEGORIES.flatMap((c) => militiaByCategory[c]);
 
 const CATEGORY_SLUGS: Record<Category, string> = {
   Outerwear: "outerwear",
@@ -249,8 +310,6 @@ export const Route = createFileRoute("/projects/no-comply")({
   component: NoComply,
 });
 
-type MilitiaItem = (typeof militia)[number];
-
 function CategoryGrid({
   items,
   onOpen,
@@ -260,34 +319,55 @@ function CategoryGrid({
 }) {
   return (
     <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-14 lg:grid-cols-4">
-      {items.map((p) => (
-        <figure key={p.code} className="group flex flex-col">
-          <button
-            type="button"
-            onClick={() => onOpen(p.code)}
-            aria-label={`View ${p.name} larger`}
-            className="block aspect-[3/4] w-full cursor-zoom-in overflow-hidden bg-nc-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
-          >
-            <img
-              src={p.img.url}
-              alt={p.name}
-              loading="lazy"
-              className="block h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 sm:p-6"
-            />
-          </button>
-          <figcaption className="mt-3 flex flex-col gap-1 sm:mt-4">
-            <span className="nc-display text-[10px] tracking-[0.3em] text-nc-ink/60">
-              No Comply · {p.code}
-            </span>
-            <p className="text-sm leading-snug text-nc-ink sm:text-base">
-              {p.name}
-            </p>
-            <p className="text-xs uppercase tracking-wide text-nc-ink/60">
-              {p.type}
-            </p>
-          </figcaption>
-        </figure>
-      ))}
+      {items.map((p) => {
+        const lookbook = LOOKBOOK_BY_CODE[p.code];
+
+        return (
+          <figure key={p.code} className="group flex flex-col">
+            <button
+              type="button"
+              onClick={() => onOpen(p.code)}
+              aria-label={`View ${p.name} larger`}
+              className="relative block aspect-[3/4] w-full cursor-zoom-in overflow-hidden bg-nc-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
+            >
+              {lookbook ? (
+                <>
+                  <img
+                    src={p.img.url}
+                    alt={p.name}
+                    loading="lazy"
+                    className="absolute inset-0 block h-full w-full object-contain p-4 transition-all duration-300 group-hover:scale-[1.03] group-hover:opacity-0 sm:p-6"
+                  />
+                  <img
+                    src={lookbook.img.url}
+                    alt={lookbook.alt}
+                    loading="lazy"
+                    className="absolute inset-0 block h-full w-full object-contain p-3 opacity-0 transition-all duration-300 group-hover:scale-[1.01] group-hover:opacity-100 sm:p-4"
+                  />
+                </>
+              ) : (
+                <img
+                  src={p.img.url}
+                  alt={p.name}
+                  loading="lazy"
+                  className="block h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 sm:p-6"
+                />
+              )}
+            </button>
+            <figcaption className="mt-3 flex flex-col gap-1 sm:mt-4">
+              <span className="nc-display text-[10px] tracking-[0.3em] text-nc-ink/60">
+                No Comply · {p.code}
+              </span>
+              <p className="text-sm leading-snug text-nc-ink sm:text-base">
+                {p.name}
+              </p>
+              <p className="text-xs uppercase tracking-wide text-nc-ink/60">
+                {p.type}
+              </p>
+            </figcaption>
+          </figure>
+        );
+      })}
     </div>
   );
 }
@@ -317,6 +397,9 @@ function NoComply() {
     ? (search.sort as Sort)
     : "oldest";
   const query = search.q.trim().toLowerCase();
+
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const open = lightboxIndex !== null;
 
   const setCategory = (cat: Category | "All") => {
     setLightboxIndex(null);
@@ -364,7 +447,6 @@ function NoComply() {
 
   const displayed = useMemo(() => {
     if (activeCategory === "All" && groupedDisplayed) {
-      // Keep lightbox navigation in category order, matching the visible sections.
       return groupedDisplayed.flatMap((g) => g.items);
     }
     return sortItems(
@@ -373,9 +455,6 @@ function NoComply() {
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory, sort, query, groupedDisplayed]);
-
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const open = lightboxIndex !== null;
 
   const close = useCallback(() => setLightboxIndex(null), []);
   const prev = useCallback(
@@ -411,7 +490,6 @@ function NoComply() {
 
   return (
     <div className="no-comply min-h-screen">
-      {/* Punk nav */}
       <nav className="sticky top-0 z-50 border-b-2 border-nc-ink bg-nc-ink text-nc-cream">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
           <Link
@@ -433,7 +511,6 @@ function NoComply() {
         />
       </nav>
 
-      {/* Hero */}
       <header className="relative overflow-hidden border-b-4 border-nc-ink px-6 py-20 md:py-28">
         <div className="mx-auto max-w-7xl">
           <p className="nc-display mb-6 inline-block bg-nc-red px-3 py-1 text-sm text-nc-cream tracking-[0.3em]">
@@ -450,7 +527,6 @@ function NoComply() {
           </p>
         </div>
 
-        {/* Stickers */}
         <div className="nc-star absolute right-8 top-8 hidden md:block" />
         <div
           className="absolute bottom-6 left-8 hidden rotate-[-8deg] md:block"
@@ -462,7 +538,6 @@ function NoComply() {
         </div>
       </header>
 
-      {/* Big collage */}
       <section className="border-b-4 border-nc-ink px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <div className="nc-tile nc-tape">
@@ -477,7 +552,6 @@ function NoComply() {
         </div>
       </section>
 
-      {/* Moodboard tiles */}
       <section className="border-b-4 border-nc-ink px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex items-center justify-between">
@@ -513,7 +587,6 @@ function NoComply() {
         </div>
       </section>
 
-      {/* Manifesto */}
       <section className="border-b-4 border-nc-ink bg-nc-ink px-6 py-24 text-nc-cream">
         <div className="mx-auto max-w-4xl">
           <p className="nc-display mb-6 text-sm tracking-[0.3em] text-nc-red">
@@ -527,13 +600,12 @@ function NoComply() {
           <p className="mt-8 font-punk-body text-lg uppercase leading-relaxed tracking-wide">
             Every garment starts as a pattern. Every pattern starts as a
             refusal — to smooth the edges, to trend-chase, to make it easy.
-            No Comply is what happens when a designer's hand meets an
-            operator's stubbornness.
+            No Comply is what happens when a designer&apos;s hand meets an
+            operator&apos;s stubbornness.
           </p>
         </div>
       </section>
 
-      {/* MILITIA collection */}
       <section className="border-b-4 border-nc-ink px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex flex-wrap items-end justify-between gap-4">
@@ -550,9 +622,7 @@ function NoComply() {
             </span>
           </div>
 
-          {/* Controls: category chips + sort + search */}
           <div className="mb-10 border-y-2 border-nc-ink">
-            {/* Category chips (horizontal scroll on mobile) */}
             <div className="-mx-6 overflow-x-auto px-6 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               <div className="flex min-w-max items-center gap-2 sm:flex-wrap sm:gap-3">
                 <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
@@ -583,7 +653,6 @@ function NoComply() {
               </div>
             </div>
 
-            {/* Sort + Search */}
             <div className="grid gap-3 border-t-2 border-nc-ink px-0 py-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
               <label className="flex min-w-0 items-center gap-2 border-2 border-nc-ink bg-nc-cream px-3 py-2">
                 <span aria-hidden className="nc-display text-sm text-nc-ink/70">
@@ -637,7 +706,6 @@ function NoComply() {
             </div>
           </div>
 
-          {/* Results */}
           {displayed.length === 0 ? (
             <div className="border-2 border-dashed border-nc-ink/40 p-10 text-center">
               <p className="nc-display text-xl text-nc-ink">No matches.</p>
@@ -690,8 +758,6 @@ function NoComply() {
         </div>
       </section>
 
-
-      {/* Facts */}
       <section className="border-b-4 border-nc-ink px-6 py-16">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
           {[
@@ -712,7 +778,6 @@ function NoComply() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="px-6 py-16">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
           <div>
@@ -735,7 +800,6 @@ function NoComply() {
         </div>
       </footer>
 
-      {/* Lightbox */}
       {open && active && (
         <div
           role="dialog"
