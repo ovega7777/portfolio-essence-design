@@ -149,7 +149,7 @@ const militia: MilitiaItem[] = [
   { img: hoodieRedZip, back: knitHoodieRedBack, name: "Zip Hoodie — Oxblood", code: "M-21", type: "Knitwear" },
   { img: teeNightCamo, name: "Night Camo Logo Tee", code: "M-22", type: "Tee" },
   { img: cargoPlaid, name: "Plaid Cargo Trouser", code: "M-23", type: "Bottoms" },
-  { img: hoodieOliveZip, name: "Zip Hoodie — Olive", code: "M-24", type: "Knitwear" },
+  { img: hoodieOliveZip, back: hoodieOliveBack, name: "Zip Hoodie — Olive", code: "M-24", type: "Knitwear" },
   { img: bagUtilityFront, back: bagUtilityBack, name: "Utility Carryall", code: "M-26", type: "Bag" },
   { img: jacketCroppedBlack, name: "Pinned Cropped Jacket", code: "M-28", type: "Outerwear" },
   { img: patchC, name: "Chainstitch C Patch", code: "M-29", type: "Patch" },
@@ -176,11 +176,11 @@ const militia: MilitiaItem[] = [
   { img: patchUsaGothic, name: "USA Gothic Patch", code: "M-52", type: "Accessory" },
   { img: nylonBalloonPants, name: "Nylon Balloon Pant", code: "M-53", type: "Trouser" },
   { img: overshirtCreamEpaulet, name: "Officer Overshirt — Cream", code: "M-55", type: "Shirt" },
-  { img: knitHoodieOlivePatched, back: hoodieOliveBack, name: "Patched Knit Hoodie — Olive", code: "M-58", type: "Knitwear" },
+  
   { img: cargoOlivePleated, back: cargoOliveBack, name: "Pleated Cargo — Olive", code: "M-60", type: "Trouser" },
   { img: overshirtNavyEpaulet, name: "Officer Overshirt — Navy", code: "M-62", type: "Shirt" },
   { img: nylonHoodieBuckleBlackFront, back: nylonHoodieBuckleBack, name: "Buckle Nylon Hoodie — Black", code: "M-64", type: "Outerwear" },
-  { img: bomberShearlingBlackFront, name: "Shearling Bomber — Black (Patched)", code: "M-65", type: "Outerwear" },
+  
   { img: jacketDistressedBlackFront, back: jacketDistressedBlackBack, name: "Distressed Rider", code: "M-66", type: "Outerwear" },
   { img: vestLacedOlive, name: "Laced Utility Vest — Olive", code: "M-67", type: "Outerwear" },
   { img: patchDealerOfDeath, name: "Dealer of Death Patch", code: "M-72", type: "Patch" },
@@ -418,38 +418,28 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       alt: "Second model wearing the nylon balloon pant in olive",
     },
   ],
-  "M-58": [
+  "M-24": [
+    {
+      img: knitHoodieOlivePatched,
+      alt: "Patched olive knit hoodie — front",
+    },
     {
       img: modelKnitHoodieOliveM,
-      alt: "Model wearing the olive patched knit hoodie",
+      alt: "Model wearing the patched olive knit hoodie",
     },
     {
       img: modelKnitHoodieOliveDuffelW,
-      alt: "Second model wearing the olive patched knit hoodie",
+      alt: "Second model wearing the patched olive knit hoodie",
     },
     {
       img: modelKnitHoodieOliveM2,
-      alt: "Third model wearing the olive patched knit hoodie",
+      alt: "Third model wearing the patched olive knit hoodie",
     },
   ],
   "M-64": [
     {
       img: modelNylonAnorakBlack,
       alt: "Model wearing the buckle nylon hoodie in black",
-    },
-  ],
-  "M-65": [
-    {
-      img: modelShearlingBomberBlack,
-      alt: "Model wearing the black shearling bomber",
-    },
-    {
-      img: modelShearlingBomberBlackW2,
-      alt: "Second model wearing the black shearling bomber",
-    },
-    {
-      img: modelShearlingBomberBlackM2,
-      alt: "Third model wearing the black shearling bomber",
     },
   ],
   "M-09": [
@@ -475,6 +465,10 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
     },
   ],
   "M-75": [
+    {
+      img: bomberShearlingBlackFront,
+      alt: "Patched black leather bomber — front",
+    },
     {
       img: modelShearlingBomberBlack,
       alt: "Model wearing the black shearling bomber",
