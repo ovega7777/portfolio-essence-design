@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
-import noComplyThumb from "../assets/no-comply-hero.jpg";
+import noComplyThumb from "../assets/no-comply-hero.png.asset.json";
 import luckyDayThumb from "../assets/lucky-day-thumb.jpg";
 
 export const Route = createFileRoute("/projects/")({
@@ -55,7 +55,7 @@ function ProjectsIndex() {
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <div className="grid gap-16 md:grid-cols-2">
-          <ProjectCard project={projects[0]} src={noComplyThumb} />
+          <ProjectCard project={projects[0]} src={noComplyThumb.url} />
           <ProjectCard project={projects[1]} src={luckyDayThumb} />
         </div>
       </section>
