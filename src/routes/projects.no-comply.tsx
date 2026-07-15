@@ -159,6 +159,47 @@ const militia = [
   { img: nylonBalloonPantsOliveBack, name: "Nylon Balloon Pant — Olive Back", code: "M-77", type: "Trouser" },
 ];
 
+const CATEGORIES = [
+  "Outerwear",
+  "Tops",
+  "Pants & Trousers",
+  "Bags",
+  "Accessories",
+] as const;
+type Category = (typeof CATEGORIES)[number];
+
+function categorize(type: string): Category {
+  switch (type) {
+    case "Outerwear":
+    case "Shirt":
+      return "Outerwear";
+    case "Knitwear":
+    case "Tee":
+    case "Hoodie":
+    case "Fleece":
+      return "Tops";
+    case "Bottoms":
+    case "Trouser":
+    case "Shorts":
+      return "Pants & Trousers";
+    case "Bag":
+      return "Bags";
+    default:
+      return "Accessories";
+  }
+}
+
+const militiaByCategory: Record<Category, typeof militia> = {
+  Outerwear: [],
+  Tops: [],
+  "Pants & Trousers": [],
+  Bags: [],
+  Accessories: [],
+};
+for (const p of militia) militiaByCategory[categorize(p.type)].push(p);
+
+const militiaOrdered = CATEGORIES.flatMap((c) => militiaByCategory[c]);
+
 export const Route = createFileRoute("/projects/no-comply")({
   head: () => ({
     meta: [
