@@ -222,7 +222,7 @@ function NoComply() {
               </h2>
             </div>
             <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
-              // 20 pieces / Fall 2025
+              // 30 pieces / Fall 2025
             </span>
           </div>
 
