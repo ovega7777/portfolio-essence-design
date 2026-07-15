@@ -50,6 +50,16 @@ import knitHoodieZipRed from "../assets/militia/knit-hoodie-zip-red.png.asset.js
 import dogTagsGrimReaper from "../assets/militia/dog-tags-grim-reaper.png.asset.json";
 import hoodieWashBlackBack from "../assets/militia/hoodie-wash-black-back.png.asset.json";
 import shirtOliveEpaulet from "../assets/militia/shirt-olive-epaulet.png.asset.json";
+import vestLacedBlack from "../assets/militia/vest-laced-black.png.asset.json";
+import patchUsaGothic from "../assets/militia/patch-usa-gothic.png.asset.json";
+import nylonBalloonPants from "../assets/militia/nylon-balloon-pants.png.asset.json";
+import bomberShearlingBrownBack from "../assets/militia/bomber-shearling-brown-back.png.asset.json";
+import overshirtCreamEpaulet from "../assets/militia/overshirt-cream-epaulet.png.asset.json";
+import jacketDistressedBlackBack from "../assets/militia/jacket-distressed-black-back.png.asset.json";
+import cargoBlackBack from "../assets/militia/cargo-black-back.png.asset.json";
+import knitHoodieOlivePatched from "../assets/militia/knit-hoodie-olive-patched.png.asset.json";
+import nylonHoodieBuckleBack from "../assets/militia/nylon-hoodie-buckle-back.png.asset.json";
+import cargoOlivePleated from "../assets/militia/cargo-olive-pleated.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
