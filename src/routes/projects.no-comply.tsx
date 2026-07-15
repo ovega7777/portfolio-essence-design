@@ -466,6 +466,10 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
   ],
   "M-75": [
     {
+      img: bomberShearlingBlackFront,
+      alt: "Patched black leather bomber — front",
+    },
+    {
       img: modelShearlingBomberBlack,
       alt: "Model wearing the black shearling bomber",
     },
