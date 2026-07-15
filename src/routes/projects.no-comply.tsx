@@ -358,14 +358,19 @@ function NoComply() {
               const tilt = tilts[i % tilts.length];
               return (
                 <figure key={p.code} className="group">
-                  <div className={`nc-tile aspect-[4/5] bg-nc-cream ${tilt}`}>
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(i)}
+                    aria-label={`View ${p.name} larger`}
+                    className={`nc-tile block aspect-[4/5] w-full cursor-zoom-in bg-nc-cream ${tilt} transition-transform focus:outline-none focus-visible:ring-4 focus-visible:ring-nc-red`}
+                  >
                     <img
                       src={p.img.url}
                       alt={p.name}
                       loading="lazy"
                       className="block h-full w-full object-cover"
                     />
-                  </div>
+                  </button>
                   <figcaption className="mt-4 flex items-baseline justify-between gap-3">
                     <div>
                       <p className="nc-display text-xl text-nc-ink leading-tight">
