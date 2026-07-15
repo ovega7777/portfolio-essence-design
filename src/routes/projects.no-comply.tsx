@@ -248,11 +248,23 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       img: modelNavyPatchedPlaidM,
       alt: "Second model wearing the patched service overshirt with plaid cargo",
     },
+    {
+      img: modelNavyPatchedPlaidM2,
+      alt: "Third model wearing the patched service overshirt in navy",
+    },
+    {
+      img: modelNavyPatchedPlaidW2,
+      alt: "Fourth model wearing the patched service overshirt in navy",
+    },
   ],
   "M-18": [
     {
       img: modelKnitHoodieOliveDuffelW,
       alt: "Model carrying the olive stencil duffel",
+    },
+    {
+      img: modelShowgirlsOliveDuffelM,
+      alt: "Second model carrying the olive stencil duffel",
     },
   ],
   "M-22": [
@@ -265,6 +277,14 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
     {
       img: modelNavyPatchedPlaidM,
       alt: "Model wearing the plaid cargo trouser",
+    },
+    {
+      img: modelNavyPatchedPlaidM2,
+      alt: "Second model wearing the plaid cargo trouser",
+    },
+    {
+      img: modelNavyPatchedPlaidW2,
+      alt: "Third model wearing the plaid cargo trouser",
     },
   ],
   "M-26": [
@@ -328,6 +348,26 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       img: modelSergeantShirtCargoW2,
       alt: "Third model wearing the wide black cargo trouser",
     },
+    {
+      img: modelShowgirlsOliveTeeM,
+      alt: "Fourth model wearing the wide black cargo trouser",
+    },
+    {
+      img: modelShowgirlsOliveDuffelM,
+      alt: "Fifth model wearing the wide black cargo trouser",
+    },
+    {
+      img: modelShowgirlsBlackTeeM,
+      alt: "Sixth model wearing the wide black cargo trouser",
+    },
+    {
+      img: modelShowgirlsWhiteTeeW,
+      alt: "Seventh model wearing the wide black cargo trouser",
+    },
+    {
+      img: modelShowgirlsNavyTeeW,
+      alt: "Eighth model wearing the wide black cargo trouser",
+    },
   ],
   "M-40": [
     {
@@ -339,10 +379,32 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       alt: "Second model wearing the multi-pocket cargo short",
     },
   ],
+  "M-42": [
+    {
+      img: modelShowgirlsOliveTeeM,
+      alt: "Model wearing the Comply Showgirls tee",
+    },
+    {
+      img: modelShowgirlsBlackTeeM,
+      alt: "Second model wearing the Comply Showgirls tee",
+    },
+    {
+      img: modelShowgirlsWhiteTeeW,
+      alt: "Third model wearing the Comply Showgirls tee",
+    },
+    {
+      img: modelShowgirlsNavyTeeW,
+      alt: "Fourth model wearing the Comply Showgirls tee",
+    },
+  ],
   "M-47": [
     {
       img: modelZipKnitHoodieRedM,
       alt: "Model wearing the red zip knit hoodie",
+    },
+    {
+      img: modelZipKnitHoodieRedM2,
+      alt: "Second model wearing the red zip knit hoodie",
     },
   ],
   "M-53": [
