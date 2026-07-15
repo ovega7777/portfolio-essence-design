@@ -531,6 +531,51 @@ const militiaByCategory: Record<Category, typeof militia> = {
 };
 for (const p of militia) militiaByCategory[categorize(p.type)].push(p);
 
+// Build-time / dev-time integrity check: every lookbook mapping refers to a
+// real SKU and every shot has a non-empty img URL + descriptive alt text.
+// Runs at module load so a bad mapping fails fast during dev builds.
+{
+  const validCodes = new Set(militia.map((m) => m.code));
+  const errors: string[] = [];
+  for (const [code, shots] of Object.entries(LOOKBOOK_BY_CODE)) {
+    if (!validCodes.has(code as MilitiaItem["code"])) {
+      errors.push(`Lookbook references unknown SKU "${code}"`);
+      continue;
+    }
+    if (!Array.isArray(shots) || shots.length === 0) {
+      errors.push(`Lookbook for "${code}" is empty`);
+      continue;
+    }
+    shots.forEach((s, i) => {
+      if (!s?.img?.url) errors.push(`Missing img.url at ${code}[${i}]`);
+      if (!s?.alt || s.alt.trim().length < 3) {
+        errors.push(`Missing/short alt at ${code}[${i}]`);
+      }
+    });
+  }
+  if (errors.length > 0) {
+    const msg = `[no-comply] Lookbook validation failed:\n - ${errors.join("\n - ")}`;
+    if (import.meta.env.DEV) throw new Error(msg);
+    // In prod: log but do not crash the page.
+    // eslint-disable-next-line no-console
+    console.error(msg);
+  }
+}
+
+function productImages(
+  p: MilitiaItem,
+): { url: string; alt: string; label: string }[] {
+  const shots = LOOKBOOK_BY_CODE[p.code] ?? [];
+  return [
+    { url: p.img.url, alt: p.name, label: "Product" },
+    ...shots.map((s, i) => ({
+      url: s.img.url,
+      alt: s.alt,
+      label: `Look ${i + 1}`,
+    })),
+  ];
+}
+
 const CATEGORY_SLUGS: Record<Category, string> = {
   Outerwear: "outerwear",
   Tops: "tops",
@@ -578,6 +623,128 @@ export const Route = createFileRoute("/projects/no-comply")({
   component: NoComply,
 });
 
+function ProductCard({
+  p,
+  onOpen,
+}: {
+  p: MilitiaItem;
+  onOpen: (code: string) => void;
+}) {
+  const lookbook = LOOKBOOK_BY_CODE[p.code] ?? [];
+  const hasLook = lookbook.length > 0;
+  const totalCycle = 1 + lookbook.length;
+  const [cycleIdx, setCycleIdx] = useState(0);
+  const [baseLoaded, setBaseLoaded] = useState(false);
+  const [baseFailed, setBaseFailed] = useState(false);
+
+  const currentUrl = cycleIdx === 0 ? p.img.url : lookbook[cycleIdx - 1].img.url;
+  const currentAlt = cycleIdx === 0 ? p.name : lookbook[cycleIdx - 1].alt;
+  const hoverShot = hasLook ? lookbook[0] : null;
+
+  return (
+    <figure className="group flex flex-col">
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
+        {/* Skeleton until first paint completes; hides SSR flash of stale/missing */}
+        {!baseLoaded && !baseFailed && (
+          <div className="absolute inset-0 animate-pulse bg-nc-ink/5" aria-hidden />
+        )}
+        <button
+          type="button"
+          onClick={() => onOpen(p.code)}
+          aria-label={
+            hasLook ? `Open lookbook for ${p.name}` : `View ${p.name} larger`
+          }
+          className="absolute inset-0 block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
+        >
+          {hasLook ? (
+            <>
+              <img
+                key={`base-${p.code}-${cycleIdx}`}
+                src={currentUrl}
+                alt={currentAlt}
+                loading="lazy"
+                decoding="async"
+                onLoad={() => setBaseLoaded(true)}
+                onError={() => {
+                  setBaseFailed(true);
+                  setBaseLoaded(true);
+                }}
+                className="absolute inset-0 block h-full w-full object-contain p-4 transition-all duration-300 group-hover:scale-[1.03] sm:p-6 md:group-hover:opacity-0"
+              />
+              {hoverShot && (
+                <img
+                  src={hoverShot.img.url}
+                  alt={hoverShot.alt}
+                  loading="lazy"
+                  decoding="async"
+                  onError={(e) =>
+                    (e.currentTarget.style.visibility = "hidden")
+                  }
+                  className="pointer-events-none absolute inset-0 hidden h-full w-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100 sm:p-4 md:block"
+                />
+              )}
+              <span
+                aria-hidden
+                className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-nc-ink bg-white px-2 py-0.5 text-[9px] tracking-[0.25em] text-nc-ink transition-colors group-hover:border-nc-red group-hover:bg-nc-red group-hover:text-nc-cream sm:right-3 sm:top-3 sm:text-[10px]"
+              >
+                Look · {lookbook.length}
+              </span>
+            </>
+          ) : (
+            <img
+              src={p.img.url}
+              alt={p.name}
+              loading="lazy"
+              decoding="async"
+              onLoad={() => setBaseLoaded(true)}
+              onError={() => {
+                setBaseFailed(true);
+                setBaseLoaded(true);
+              }}
+              className="block h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 sm:p-6"
+            />
+          )}
+          {baseFailed && (
+            <div className="absolute inset-0 flex items-center justify-center bg-white p-4 text-center">
+              <span className="nc-display text-[10px] tracking-[0.25em] text-nc-ink/50">
+                Image unavailable
+              </span>
+            </div>
+          )}
+        </button>
+
+        {/* Tap-to-cycle for touch devices (hidden on hover-capable md+ screens) */}
+        {hasLook && totalCycle > 1 && (
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setCycleIdx((i) => (i + 1) % totalCycle);
+              setBaseLoaded(false);
+              setBaseFailed(false);
+            }}
+            aria-label={`Cycle to next image (${cycleIdx + 1} of ${totalCycle})`}
+            className="nc-display absolute bottom-2 right-2 z-10 border-2 border-nc-ink bg-white/95 px-2 py-1 text-[10px] tracking-[0.2em] text-nc-ink hover:bg-nc-red hover:text-nc-cream md:hidden"
+          >
+            {cycleIdx + 1}/{totalCycle} ↻
+          </button>
+        )}
+      </div>
+      <figcaption className="mt-3 flex flex-col gap-1 sm:mt-4">
+        <span className="nc-display text-[10px] tracking-[0.3em] text-nc-ink/60">
+          No Comply · {p.code}
+        </span>
+        <p className="text-sm leading-snug text-nc-ink sm:text-base">
+          {p.name}
+        </p>
+        <p className="text-xs uppercase tracking-wide text-nc-ink/60">
+          {p.type}
+        </p>
+      </figcaption>
+    </figure>
+  );
+}
+
 function CategoryGrid({
   items,
   onOpen,
@@ -587,62 +754,9 @@ function CategoryGrid({
 }) {
   return (
     <div className="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-14 lg:grid-cols-4">
-      {items.map((p) => {
-        const lookbook = LOOKBOOK_BY_CODE[p.code];
-
-        return (
-          <figure key={p.code} className="group flex flex-col">
-            <button
-              type="button"
-              onClick={() => onOpen(p.code)}
-              aria-label={`View ${p.name} larger`}
-              className="relative block aspect-[3/4] w-full cursor-zoom-in overflow-hidden bg-nc-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
-            >
-              {lookbook && lookbook.length > 0 ? (
-                <>
-                  <img
-                    src={p.img.url}
-                    alt={p.name}
-                    loading="lazy"
-                    className="absolute inset-0 block h-full w-full object-contain p-4 transition-all duration-300 group-hover:scale-[1.03] group-hover:opacity-0 sm:p-6"
-                  />
-                  <img
-                    src={lookbook[0].img.url}
-                    alt={lookbook[0].alt}
-                    loading="lazy"
-                    className="absolute inset-0 block h-full w-full object-contain p-3 opacity-0 transition-all duration-300 group-hover:scale-[1.01] group-hover:opacity-100 sm:p-4"
-                  />
-                  <span
-                    aria-hidden
-                    className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-nc-ink bg-nc-cream px-2 py-0.5 text-[9px] tracking-[0.25em] text-nc-ink transition-colors group-hover:border-nc-red group-hover:bg-nc-red group-hover:text-nc-cream sm:right-3 sm:top-3 sm:text-[10px]"
-                  >
-                    {lookbook.length > 1 ? `Look · ${lookbook.length}` : "Look"}
-                  </span>
-                </>
-
-              ) : (
-                <img
-                  src={p.img.url}
-                  alt={p.name}
-                  loading="lazy"
-                  className="block h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105 sm:p-6"
-                />
-              )}
-            </button>
-            <figcaption className="mt-3 flex flex-col gap-1 sm:mt-4">
-              <span className="nc-display text-[10px] tracking-[0.3em] text-nc-ink/60">
-                No Comply · {p.code}
-              </span>
-              <p className="text-sm leading-snug text-nc-ink sm:text-base">
-                {p.name}
-              </p>
-              <p className="text-xs uppercase tracking-wide text-nc-ink/60">
-                {p.type}
-              </p>
-            </figcaption>
-          </figure>
-        );
-      })}
+      {items.map((p) => (
+        <ProductCard key={p.code} p={p} onOpen={onOpen} />
+      ))}
     </div>
   );
 }
@@ -673,11 +787,13 @@ function NoComply() {
     : "oldest";
   const query = search.q.trim().toLowerCase();
 
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const open = lightboxIndex !== null;
+  const [lightbox, setLightbox] = useState<
+    { code: string; index: number } | null
+  >(null);
+  const open = lightbox !== null;
 
   const setCategory = (cat: Category | "All") => {
-    setLightboxIndex(null);
+    setLightbox(null);
     navigate({
       search: (prev: z.infer<typeof militiaSearchSchema>) => ({
         ...prev,
@@ -731,18 +847,38 @@ function NoComply() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory, sort, query, groupedDisplayed]);
 
-  const close = useCallback(() => setLightboxIndex(null), []);
+  const close = useCallback(() => setLightbox(null), []);
+
+  const active = useMemo(
+    () => (lightbox ? militia.find((m) => m.code === lightbox.code) ?? null : null),
+    [lightbox],
+  );
+  const activeImages = useMemo(
+    () => (active ? productImages(active) : []),
+    [active],
+  );
+  const activeImageCount = activeImages.length;
+
   const prev = useCallback(
     () =>
-      setLightboxIndex((i) =>
-        i === null ? i : (i - 1 + displayed.length) % displayed.length,
+      setLightbox((lb) =>
+        lb === null || activeImageCount === 0
+          ? lb
+          : {
+              ...lb,
+              index: (lb.index - 1 + activeImageCount) % activeImageCount,
+            },
       ),
-    [displayed.length],
+    [activeImageCount],
   );
   const next = useCallback(
     () =>
-      setLightboxIndex((i) => (i === null ? i : (i + 1) % displayed.length)),
-    [displayed.length],
+      setLightbox((lb) =>
+        lb === null || activeImageCount === 0
+          ? lb
+          : { ...lb, index: (lb.index + 1) % activeImageCount },
+      ),
+    [activeImageCount],
   );
 
   useEffect(() => {
@@ -761,7 +897,8 @@ function NoComply() {
     };
   }, [open, close, prev, next]);
 
-  const active = lightboxIndex !== null ? displayed[lightboxIndex] : null;
+  const activeImage = lightbox && activeImages[lightbox.index];
+
 
   return (
     <div className="no-comply min-h-screen">
@@ -1015,9 +1152,7 @@ function NoComply() {
                   </div>
                   <CategoryGrid
                     items={items}
-                    onOpen={(code) =>
-                      setLightboxIndex(displayed.findIndex((m) => m.code === code))
-                    }
+                    onOpen={(code) => setLightbox({ code, index: 0 })}
                   />
                 </div>
               );
@@ -1025,9 +1160,7 @@ function NoComply() {
           ) : (
             <CategoryGrid
               items={displayed}
-              onOpen={(code) =>
-                setLightboxIndex(displayed.findIndex((m) => m.code === code))
-              }
+              onOpen={(code) => setLightbox({ code, index: 0 })}
             />
           )}
         </div>
@@ -1075,11 +1208,11 @@ function NoComply() {
         </div>
       </footer>
 
-      {open && active && (
+      {open && active && activeImage && (
         <div
           role="dialog"
           aria-modal="true"
-          aria-label={`${active.name} — enlarged view`}
+          aria-label={`${active.name} — lookbook`}
           className="fixed inset-0 z-[100] flex items-center justify-center bg-nc-ink/95 p-4 md:p-10"
           onClick={close}
         >
@@ -1095,50 +1228,85 @@ function NoComply() {
             Close ✕
           </button>
 
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              prev();
-            }}
-            aria-label="Previous image"
-            className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:left-6"
-          >
-            ←
-          </button>
+          {activeImageCount > 1 && (
+            <>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prev();
+                }}
+                aria-label="Previous image"
+                className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:left-6"
+              >
+                ←
+              </button>
 
-          <button
-            type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              next();
-            }}
-            aria-label="Next image"
-            className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:right-6"
-          >
-            →
-          </button>
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  next();
+                }}
+                aria-label="Next image"
+                className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:right-6"
+              >
+                →
+              </button>
+            </>
+          )}
 
           <figure
             className="relative flex max-h-full max-w-6xl flex-col items-center"
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={active.img.url}
-              alt={active.name}
-              className="max-h-[80vh] w-auto max-w-full object-contain"
+              key={activeImage.url}
+              src={activeImage.url}
+              alt={activeImage.alt}
+              onError={(e) => (e.currentTarget.style.visibility = "hidden")}
+              className="max-h-[75vh] w-auto max-w-full object-contain"
             />
             <figcaption className="mt-4 flex w-full items-baseline justify-between gap-4 border-t-2 border-nc-cream pt-3 text-nc-cream">
               <div>
                 <p className="nc-display text-xl leading-tight">{active.name}</p>
                 <p className="nc-display text-xs tracking-[0.25em] text-nc-cream/70">
-                  {active.type}
+                  {activeImage.label} · {active.type}
                 </p>
               </div>
               <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
-                {active.code} · {(lightboxIndex ?? 0) + 1}/{displayed.length}
+                {active.code} · {lightbox.index + 1}/{activeImageCount}
               </span>
             </figcaption>
+
+            {activeImageCount > 1 && (
+              <div className="mt-4 flex w-full flex-wrap justify-center gap-2">
+                {activeImages.map((img, i) => (
+                  <button
+                    key={img.url}
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setLightbox({ code: active.code, index: i });
+                    }}
+                    aria-label={`Show ${img.label}`}
+                    aria-current={i === lightbox.index}
+                    className={`relative h-16 w-16 overflow-hidden border-2 bg-white transition-colors sm:h-20 sm:w-20 ${
+                      i === lightbox.index
+                        ? "border-nc-red"
+                        : "border-nc-cream/40 hover:border-nc-cream"
+                    }`}
+                  >
+                    <img
+                      src={img.url}
+                      alt=""
+                      loading="lazy"
+                      className="block h-full w-full object-contain p-1"
+                    />
+                  </button>
+                ))}
+              </div>
+            )}
           </figure>
         </div>
       )}
