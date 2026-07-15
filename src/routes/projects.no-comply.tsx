@@ -116,6 +116,13 @@ import modelShowgirlsBlackTeeM from "../assets/militia-models/model-showgirls-bl
 import modelZipKnitHoodieRedM2 from "../assets/militia-models/model-zip-knit-hoodie-red-m2.png.asset.json";
 import modelShowgirlsWhiteTeeW from "../assets/militia-models/model-showgirls-white-tee-w.png.asset.json";
 import modelShowgirlsNavyTeeW from "../assets/militia-models/model-showgirls-navy-tee-w.png.asset.json";
+import modelCamoTeePleatedTrouserW from "../assets/militia-models/model-camo-tee-pleated-trouser-w.png.asset.json";
+import modelOliveZipKnitBrownCargoW from "../assets/militia-models/model-olive-zip-knit-brown-cargo-w.png.asset.json";
+import modelLeatherBomberPatchedW from "../assets/militia-models/model-leather-bomber-patched-w.png.asset.json";
+import modelFlagHoodieCargoW from "../assets/militia-models/model-flag-hoodie-cargo-w.png.asset.json";
+import modelCroppedJacketPatchedM from "../assets/militia-models/model-cropped-jacket-patched-m.png.asset.json";
+import modelLacedVestBlackW from "../assets/militia-models/model-laced-vest-black-w.png.asset.json";
+import modelLacedVestOliveM from "../assets/militia-models/model-laced-vest-olive-m.png.asset.json";
 
 type AssetPointer = typeof teeBlack;
 type MilitiaItem = {
