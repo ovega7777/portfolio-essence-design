@@ -202,7 +202,34 @@ for (const p of militia) militiaByCategory[categorize(p.type)].push(p);
 
 const militiaOrdered = CATEGORIES.flatMap((c) => militiaByCategory[c]);
 
+const CATEGORY_SLUGS: Record<Category, string> = {
+  Outerwear: "outerwear",
+  Tops: "tops",
+  "Pants & Trousers": "pants-trousers",
+  Bags: "bags",
+  Accessories: "accessories",
+};
+const SLUG_TO_CATEGORY: Record<string, Category> = Object.fromEntries(
+  (Object.entries(CATEGORY_SLUGS) as [Category, string][]).map(([c, s]) => [s, c]),
+) as Record<string, Category>;
+
+const SORTS = ["newest", "oldest", "az", "za"] as const;
+type Sort = (typeof SORTS)[number];
+const SORT_LABELS: Record<Sort, string> = {
+  newest: "Newest",
+  oldest: "Oldest",
+  az: "A–Z",
+  za: "Z–A",
+};
+
+const militiaSearchSchema = z.object({
+  cat: fallback(z.string(), "all").default("all"),
+  sort: fallback(z.string(), "oldest").default("oldest"),
+  q: fallback(z.string(), "").default(""),
+});
+
 export const Route = createFileRoute("/projects/no-comply")({
+  validateSearch: zodValidator(militiaSearchSchema),
   head: () => ({
     meta: [
       { title: "NO COMPLY — Nicholas Curzon" },
