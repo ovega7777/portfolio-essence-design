@@ -793,7 +793,7 @@ function NoComply() {
   const open = lightbox !== null;
 
   const setCategory = (cat: Category | "All") => {
-    setLightboxIndex(null);
+    setLightbox(null);
     navigate({
       search: (prev: z.infer<typeof militiaSearchSchema>) => ({
         ...prev,
