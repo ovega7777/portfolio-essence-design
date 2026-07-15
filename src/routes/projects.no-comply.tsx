@@ -30,6 +30,16 @@ import patchC from "../assets/militia/patch-c.png.asset.json";
 import bagUtilityBack from "../assets/militia/bag-utility-back.png.asset.json";
 import jacketCroppedBlack from "../assets/militia/jacket-cropped-black.png.asset.json";
 import patchLabelSet from "../assets/militia/patch-label-set.png.asset.json";
+import cargoShortsBlack from "../assets/militia/cargo-shorts-black.png.asset.json";
+import teeUsaCamo from "../assets/militia/tee-usa-camo.png.asset.json";
+import cargoBrownWide from "../assets/militia/cargo-brown-wide.png.asset.json";
+import shirtBlackEpaulet from "../assets/militia/shirt-black-epaulet.png.asset.json";
+import dogTags from "../assets/militia/dog-tags.png.asset.json";
+import knitHoodieZipBlack from "../assets/militia/knit-hoodie-zip-black.png.asset.json";
+import trousersBrownPatch from "../assets/militia/trousers-brown-patch.png.asset.json";
+import jacketNavyBack from "../assets/militia/jacket-navy-back.png.asset.json";
+import cargoBlackWide from "../assets/militia/cargo-black-wide.png.asset.json";
+import cargoShortsMulti from "../assets/militia/cargo-shorts-multi.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
