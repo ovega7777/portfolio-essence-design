@@ -226,8 +226,6 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
     },
     {
       img: modelNavyCamoTeeW,
-    {
-      img: modelNavyCamoTeeW,
       alt: "Model wearing the pleated wide trouser with navy camo tee",
     },
     {
