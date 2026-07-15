@@ -1,5 +1,28 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import hero from "../assets/no-comply-hero.jpg";
+import teeBlack from "../assets/militia/tee-black.png.asset.json";
+import teeWhite from "../assets/militia/tee-white.png.asset.json";
+import teeOlive from "../assets/militia/tee-olive.png.asset.json";
+import teeCamo from "../assets/militia/tee-camo.png.asset.json";
+import knitHoodie from "../assets/militia/knit-hoodie.png.asset.json";
+import fieldShirt from "../assets/militia/field-shirt.png.asset.json";
+import nylonPants from "../assets/militia/nylon-pants.png.asset.json";
+import trousers from "../assets/militia/trousers.png.asset.json";
+import cap from "../assets/militia/cap.png.asset.json";
+import zippo from "../assets/militia/zippo.png.asset.json";
+
+const militia = [
+  { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
+  { img: knitHoodie, name: "Rib Knit Hoodie", code: "M-02", type: "Knitwear" },
+  { img: nylonPants, name: "Nylon Wide Trouser", code: "M-03", type: "Bottoms" },
+  { img: trousers, name: "Pleated Wide Trouser", code: "M-04", type: "Bottoms" },
+  { img: teeBlack, name: "Comply Baby Tee — Black", code: "M-05", type: "Tee" },
+  { img: teeWhite, name: "Comply Baby Tee — White", code: "M-06", type: "Tee" },
+  { img: teeOlive, name: "Comply Baby Tee — Olive", code: "M-07", type: "Tee" },
+  { img: teeCamo, name: "USA Camo Tee", code: "M-08", type: "Tee" },
+  { img: cap, name: "Distressed Militia Cap", code: "M-09", type: "Headwear" },
+  { img: zippo, name: "Bury Me Face Down Zippo", code: "M-10", type: "Object" },
+];
 
 export const Route = createFileRoute("/projects/no-comply")({
   head: () => ({
@@ -143,6 +166,57 @@ function NoComply() {
             No Comply is what happens when a designer's hand meets an
             operator's stubbornness.
           </p>
+        </div>
+      </section>
+
+      {/* MILITIA collection */}
+      <section className="border-b-4 border-nc-ink px-6 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="nc-display mb-3 inline-block bg-nc-red px-3 py-1 text-sm text-nc-cream tracking-[0.3em]">
+                Drop 01
+              </p>
+              <h2 className="nc-display text-5xl leading-[0.9] text-nc-ink md:text-7xl">
+                No Comply <span className="nc-scribble-underline">Militia</span>
+              </h2>
+            </div>
+            <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
+              // 10 pieces / Fall 2025
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-14 lg:grid-cols-3">
+            {militia.map((p, i) => {
+              const tilts = ["nc-tilt-l", "", "nc-tilt-r", "", "nc-tilt-l", "nc-tilt-r"];
+              const tilt = tilts[i % tilts.length];
+              return (
+                <figure key={p.code} className="group">
+                  <div className={`nc-tile aspect-[4/5] bg-nc-cream ${tilt}`}>
+                    <img
+                      src={p.img.url}
+                      alt={p.name}
+                      loading="lazy"
+                      className="block h-full w-full object-cover"
+                    />
+                  </div>
+                  <figcaption className="mt-4 flex items-baseline justify-between gap-3">
+                    <div>
+                      <p className="nc-display text-xl text-nc-ink leading-tight">
+                        {p.name}
+                      </p>
+                      <p className="nc-display text-xs tracking-[0.25em] text-nc-ink/70">
+                        {p.type}
+                      </p>
+                    </div>
+                    <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
+                      {p.code}
+                    </span>
+                  </figcaption>
+                </figure>
+              );
+            })}
+          </div>
         </div>
       </section>
 
