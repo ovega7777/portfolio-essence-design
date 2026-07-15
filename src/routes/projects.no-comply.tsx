@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useCallback, useEffect, useState } from "react";
 import hero from "../assets/no-comply-hero.jpg";
 import teeBlack from "../assets/militia/tee-black.png.asset.json";
 import teeWhite from "../assets/militia/tee-white.png.asset.json";
@@ -179,6 +180,37 @@ export const Route = createFileRoute("/projects/no-comply")({
 });
 
 function NoComply() {
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const open = lightboxIndex !== null;
+
+  const close = useCallback(() => setLightboxIndex(null), []);
+  const prev = useCallback(
+    () => setLightboxIndex((i) => (i === null ? i : (i - 1 + militia.length) % militia.length)),
+    [],
+  );
+  const next = useCallback(
+    () => setLightboxIndex((i) => (i === null ? i : (i + 1) % militia.length)),
+    [],
+  );
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") prev();
+      else if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", onKey);
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prevOverflow;
+    };
+  }, [open, close, prev, next]);
+
+  const active = lightboxIndex !== null ? militia[lightboxIndex] : null;
+
   return (
     <div className="no-comply min-h-screen">
       {/* Punk nav */}
@@ -326,14 +358,19 @@ function NoComply() {
               const tilt = tilts[i % tilts.length];
               return (
                 <figure key={p.code} className="group">
-                  <div className={`nc-tile aspect-[4/5] bg-nc-cream ${tilt}`}>
+                  <button
+                    type="button"
+                    onClick={() => setLightboxIndex(i)}
+                    aria-label={`View ${p.name} larger`}
+                    className={`nc-tile block aspect-[4/5] w-full cursor-zoom-in bg-nc-cream ${tilt} transition-transform focus:outline-none focus-visible:ring-4 focus-visible:ring-nc-red`}
+                  >
                     <img
                       src={p.img.url}
                       alt={p.name}
                       loading="lazy"
                       className="block h-full w-full object-cover"
                     />
-                  </div>
+                  </button>
                   <figcaption className="mt-4 flex items-baseline justify-between gap-3">
                     <div>
                       <p className="nc-display text-xl text-nc-ink leading-tight">
@@ -397,6 +434,75 @@ function NoComply() {
           </Link>
         </div>
       </footer>
+
+      {/* Lightbox */}
+      {open && active && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${active.name} — enlarged view`}
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-nc-ink/95 p-4 md:p-10"
+          onClick={close}
+        >
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              close();
+            }}
+            aria-label="Close"
+            className="nc-display absolute right-4 top-4 z-10 border-2 border-nc-cream bg-nc-ink px-3 py-1 text-sm tracking-[0.3em] text-nc-cream hover:bg-nc-red hover:border-nc-red md:right-8 md:top-8"
+          >
+            Close ✕
+          </button>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              prev();
+            }}
+            aria-label="Previous image"
+            className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:left-6"
+          >
+            ←
+          </button>
+
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              next();
+            }}
+            aria-label="Next image"
+            className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:right-6"
+          >
+            →
+          </button>
+
+          <figure
+            className="relative flex max-h-full max-w-6xl flex-col items-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img
+              src={active.img.url}
+              alt={active.name}
+              className="max-h-[80vh] w-auto max-w-full object-contain"
+            />
+            <figcaption className="mt-4 flex w-full items-baseline justify-between gap-4 border-t-2 border-nc-cream pt-3 text-nc-cream">
+              <div>
+                <p className="nc-display text-xl leading-tight">{active.name}</p>
+                <p className="nc-display text-xs tracking-[0.25em] text-nc-cream/70">
+                  {active.type}
+                </p>
+              </div>
+              <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
+                {active.code} · {(lightboxIndex ?? 0) + 1}/{militia.length}
+              </span>
+            </figcaption>
+          </figure>
+        </div>
+      )}
     </div>
   );
 }
