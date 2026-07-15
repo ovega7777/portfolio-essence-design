@@ -220,6 +220,55 @@ export const Route = createFileRoute("/projects/no-comply")({
   component: NoComply,
 });
 
+type MilitiaItem = (typeof militia)[number];
+
+function CategoryGrid({
+  items,
+  onOpen,
+}: {
+  items: MilitiaItem[];
+  onOpen: (code: string) => void;
+}) {
+  const tilts = ["nc-tilt-l", "", "nc-tilt-r", "", "nc-tilt-l", "nc-tilt-r"];
+  return (
+    <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-14 lg:grid-cols-3">
+      {items.map((p, i) => {
+        const tilt = tilts[i % tilts.length];
+        return (
+          <figure key={p.code} className="group">
+            <button
+              type="button"
+              onClick={() => onOpen(p.code)}
+              aria-label={`View ${p.name} larger`}
+              className={`nc-tile block aspect-[4/5] w-full cursor-zoom-in bg-nc-cream ${tilt} transition-transform focus:outline-none focus-visible:ring-4 focus-visible:ring-nc-red`}
+            >
+              <img
+                src={p.img.url}
+                alt={p.name}
+                loading="lazy"
+                className="block h-full w-full object-cover"
+              />
+            </button>
+            <figcaption className="mt-4 flex items-baseline justify-between gap-3">
+              <div>
+                <p className="nc-display text-xl text-nc-ink leading-tight">
+                  {p.name}
+                </p>
+                <p className="nc-display text-xs tracking-[0.25em] text-nc-ink/70">
+                  {p.type}
+                </p>
+              </div>
+              <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
+                {p.code}
+              </span>
+            </figcaption>
+          </figure>
+        );
+      })}
+    </div>
+  );
+}
+
 function NoComply() {
   const [activeCategory, setActiveCategory] = useState<Category | "All">("All");
   const displayed =
