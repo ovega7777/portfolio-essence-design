@@ -408,20 +408,6 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       alt: "Fourth model wearing the Comply Showgirls tee",
     },
   ],
-  "M-47": [
-    {
-      img: modelZipKnitHoodieRedM,
-      alt: "Model wearing the red zip knit hoodie",
-    },
-    {
-      img: modelZipKnitHoodieRedM2,
-      alt: "Second model wearing the red zip knit hoodie",
-    },
-    {
-      img: modelKnitHoodieRedW,
-      alt: "Model wearing the oxblood zip knit hoodie",
-    },
-  ],
   "M-53": [
     {
       img: modelNylonAnorakBlack,
