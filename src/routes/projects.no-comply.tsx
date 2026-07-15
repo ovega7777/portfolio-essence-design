@@ -847,37 +847,39 @@ function NoComply() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeCategory, sort, query, groupedDisplayed]);
 
-  const close = useCallback(() => setLightboxIndex(null), []);
+  const close = useCallback(() => setLightbox(null), []);
+
+  const active = useMemo(
+    () => (lightbox ? militia.find((m) => m.code === lightbox.code) ?? null : null),
+    [lightbox],
+  );
+  const activeImages = useMemo(
+    () => (active ? productImages(active) : []),
+    [active],
+  );
+  const activeImageCount = activeImages.length;
+
   const prev = useCallback(
     () =>
-      setLightboxIndex((i) =>
-        i === null ? i : (i - 1 + displayed.length) % displayed.length,
+      setLightbox((lb) =>
+        lb === null || activeImageCount === 0
+          ? lb
+          : {
+              ...lb,
+              index: (lb.index - 1 + activeImageCount) % activeImageCount,
+            },
       ),
-    [displayed.length],
+    [activeImageCount],
   );
   const next = useCallback(
     () =>
-      setLightboxIndex((i) => (i === null ? i : (i + 1) % displayed.length)),
-    [displayed.length],
+      setLightbox((lb) =>
+        lb === null || activeImageCount === 0
+          ? lb
+          : { ...lb, index: (lb.index + 1) % activeImageCount },
+      ),
+    [activeImageCount],
   );
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowLeft") prev();
-      else if (e.key === "ArrowRight") next();
-    };
-    window.addEventListener("keydown", onKey);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prevOverflow;
-    };
-  }, [open, close, prev, next]);
-
-  const active = lightboxIndex !== null ? displayed[lightboxIndex] : null;
 
   return (
     <div className="no-comply min-h-screen">
