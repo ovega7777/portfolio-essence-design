@@ -30,6 +30,16 @@ import patchC from "../assets/militia/patch-c.png.asset.json";
 import bagUtilityBack from "../assets/militia/bag-utility-back.png.asset.json";
 import jacketCroppedBlack from "../assets/militia/jacket-cropped-black.png.asset.json";
 import patchLabelSet from "../assets/militia/patch-label-set.png.asset.json";
+import cargoShortsBlack from "../assets/militia/cargo-shorts-black.png.asset.json";
+import teeUsaCamo from "../assets/militia/tee-usa-camo.png.asset.json";
+import cargoBrownWide from "../assets/militia/cargo-brown-wide.png.asset.json";
+import shirtBlackEpaulet from "../assets/militia/shirt-black-epaulet.png.asset.json";
+import dogTags from "../assets/militia/dog-tags.png.asset.json";
+import knitHoodieZipBlack from "../assets/militia/knit-hoodie-zip-black.png.asset.json";
+import trousersBrownPatch from "../assets/militia/trousers-brown-patch.png.asset.json";
+import jacketNavyBack from "../assets/militia/jacket-navy-back.png.asset.json";
+import cargoBlackWide from "../assets/militia/cargo-black-wide.png.asset.json";
+import cargoShortsMulti from "../assets/militia/cargo-shorts-multi.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
@@ -62,6 +72,16 @@ const militia = [
   { img: jacketCroppedBlack, name: "Pinned Cropped Jacket", code: "M-28", type: "Outerwear" },
   { img: patchC, name: "Chainstitch C Patch", code: "M-29", type: "Patch" },
   { img: patchLabelSet, name: "Militia Label Set", code: "M-30", type: "Patch" },
+  { img: cargoShortsBlack, name: "Tactical Cargo Short", code: "M-31", type: "Shorts" },
+  { img: teeUsaCamo, name: "No Comply USA Tee — Tiger Camo", code: "M-32", type: "Tee" },
+  { img: cargoBrownWide, name: "Wide Cargo Trouser — Espresso", code: "M-33", type: "Trouser" },
+  { img: shirtBlackEpaulet, name: "Sergeant Overshirt", code: "M-34", type: "Shirt" },
+  { img: dogTags, name: "Militia Dog Tags", code: "M-35", type: "Accessory" },
+  { img: knitHoodieZipBlack, name: "Zip Knit Hoodie — Black", code: "M-36", type: "Knitwear" },
+  { img: trousersBrownPatch, name: "Manifesto Trouser — Espresso", code: "M-37", type: "Trouser" },
+  { img: jacketNavyBack, name: "Officer Chore Jacket — Navy", code: "M-38", type: "Outerwear" },
+  { img: cargoBlackWide, name: "Wide Cargo Trouser — Black", code: "M-39", type: "Trouser" },
+  { img: cargoShortsMulti, name: "Multi-Pocket Cargo Short", code: "M-40", type: "Shorts" },
 ];
 
 export const Route = createFileRoute("/projects/no-comply")({
@@ -222,7 +242,7 @@ function NoComply() {
               </h2>
             </div>
             <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
-              // 30 pieces / Fall 2025
+              // 40 pieces / Fall 2025
             </span>
           </div>
 
