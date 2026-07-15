@@ -242,6 +242,10 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       img: modelFlagHoodieM2,
       alt: "Second model wearing the Kill Me I'm American hoodie",
     },
+    {
+      img: modelFlagHoodieCargoW,
+      alt: "Third model wearing the Kill Me I'm American hoodie with black cargo",
+    },
   ],
   "M-13": [
     {
