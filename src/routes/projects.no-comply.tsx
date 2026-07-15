@@ -149,7 +149,7 @@ const militia: MilitiaItem[] = [
   { img: hoodieRedZip, back: knitHoodieRedBack, name: "Zip Hoodie — Oxblood", code: "M-21", type: "Knitwear" },
   { img: teeNightCamo, name: "Night Camo Logo Tee", code: "M-22", type: "Tee" },
   { img: cargoPlaid, name: "Plaid Cargo Trouser", code: "M-23", type: "Bottoms" },
-  { img: hoodieOliveZip, name: "Zip Hoodie — Olive", code: "M-24", type: "Knitwear" },
+  { img: hoodieOliveZip, back: hoodieOliveBack, name: "Zip Hoodie — Olive", code: "M-24", type: "Knitwear" },
   { img: bagUtilityFront, back: bagUtilityBack, name: "Utility Carryall", code: "M-26", type: "Bag" },
   { img: jacketCroppedBlack, name: "Pinned Cropped Jacket", code: "M-28", type: "Outerwear" },
   { img: patchC, name: "Chainstitch C Patch", code: "M-29", type: "Patch" },
