@@ -20,6 +20,16 @@ import trousersManifesto from "../assets/militia/trousers-manifesto.png.asset.js
 import duffelOlive from "../assets/militia/duffel-olive.png.asset.json";
 import patchN from "../assets/militia/patch-n.png.asset.json";
 import patchFlag from "../assets/militia/patch-flag.png.asset.json";
+import hoodieRedZip from "../assets/militia/hoodie-red-zip.png.asset.json";
+import teeNightCamo from "../assets/militia/tee-night-camo.png.asset.json";
+import cargoPlaid from "../assets/militia/cargo-plaid.png.asset.json";
+import hoodieOliveZip from "../assets/militia/hoodie-olive-zip.png.asset.json";
+import hoodieOliveBack from "../assets/militia/hoodie-olive-back.png.asset.json";
+import bagUtilityFront from "../assets/militia/bag-utility-front.png.asset.json";
+import patchC from "../assets/militia/patch-c.png.asset.json";
+import bagUtilityBack from "../assets/militia/bag-utility-back.png.asset.json";
+import jacketCroppedBlack from "../assets/militia/jacket-cropped-black.png.asset.json";
+import patchLabelSet from "../assets/militia/patch-label-set.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
@@ -42,6 +52,16 @@ const militia = [
   { img: duffelOlive, name: "Stencil Duffel — Olive", code: "M-18", type: "Object" },
   { img: patchN, name: "Chainstitch N Patch", code: "M-19", type: "Patch" },
   { img: patchFlag, name: "Subdued Flag Patch", code: "M-20", type: "Patch" },
+  { img: hoodieRedZip, name: "Zip Hoodie — Oxblood", code: "M-21", type: "Knitwear" },
+  { img: teeNightCamo, name: "Night Camo Logo Tee", code: "M-22", type: "Tee" },
+  { img: cargoPlaid, name: "Plaid Cargo Trouser", code: "M-23", type: "Bottoms" },
+  { img: hoodieOliveZip, name: "Zip Hoodie — Olive", code: "M-24", type: "Knitwear" },
+  { img: hoodieOliveBack, name: "Olive Elbow-Patch Hoodie", code: "M-25", type: "Knitwear" },
+  { img: bagUtilityFront, name: "Utility Carryall — Front", code: "M-26", type: "Bag" },
+  { img: bagUtilityBack, name: "Utility Carryall — Back", code: "M-27", type: "Bag" },
+  { img: jacketCroppedBlack, name: "Pinned Cropped Jacket", code: "M-28", type: "Outerwear" },
+  { img: patchC, name: "Chainstitch C Patch", code: "M-29", type: "Patch" },
+  { img: patchLabelSet, name: "Militia Label Set", code: "M-30", type: "Patch" },
 ];
 
 export const Route = createFileRoute("/projects/no-comply")({
@@ -202,7 +222,7 @@ function NoComply() {
               </h2>
             </div>
             <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
-              // 20 pieces / Fall 2025
+              // 30 pieces / Fall 2025
             </span>
           </div>
 
