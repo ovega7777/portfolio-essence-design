@@ -88,6 +88,16 @@ import modelSergeantShirtBlackW from "../assets/militia-models/model-sergeant-sh
 import modelSergeantShirtBlackM from "../assets/militia-models/model-sergeant-shirt-black-m.png.asset.json";
 import modelCargoShortsCapLook from "../assets/militia-models/model-cargo-shorts-cap-look.png.asset.json";
 import modelNylonAnorakBlack from "../assets/militia-models/model-nylon-anorak-black.png.asset.json";
+import modelCroppedJacketBlackM2 from "../assets/militia-models/model-cropped-jacket-black-m2.png.asset.json";
+import modelShearlingBomberBlackW2 from "../assets/militia-models/model-shearling-bomber-black-w2.png.asset.json";
+import modelKnitHoodieOliveM from "../assets/militia-models/model-knit-hoodie-olive-m.png.asset.json";
+import modelKnitHoodieRedW from "../assets/militia-models/model-knit-hoodie-red-w.png.asset.json";
+import modelCargoShortsCapW2 from "../assets/militia-models/model-cargo-shorts-cap-w2.png.asset.json";
+import modelShirtNavyPatchedW from "../assets/militia-models/model-shirt-navy-patched-w.png.asset.json";
+import modelFlagHoodieM2 from "../assets/militia-models/model-flag-hoodie-m2.png.asset.json";
+import modelShearlingBomberBlackM2 from "../assets/militia-models/model-shearling-bomber-black-m2.png.asset.json";
+import modelSergeantShirtBlackM2 from "../assets/militia-models/model-sergeant-shirt-black-m2.png.asset.json";
+import modelKnitHoodieOliveDuffelW from "../assets/militia-models/model-knit-hoodie-olive-duffel-w.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
@@ -186,51 +196,137 @@ type LookbookShot = {
   alt: string;
 };
 
-const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot>> = {
-  "M-11": {
-    img: modelFlagHoodieBlack,
-    alt: "Model wearing the Kill Me I'm American hoodie",
-  },
-  "M-26": {
-    img: modelCargoShortsBagLook,
-    alt: "Model wearing the utility carryall crossbody",
-  },
-  "M-28": {
-    img: modelCroppedJacketBlack,
-    alt: "Model wearing the pinned cropped jacket",
-  },
-  "M-34": {
-    img: modelSergeantShirtBlackM,
-    alt: "Model wearing the Sergeant Overshirt",
-  },
-  "M-39": {
-    img: modelSergeantShirtBlackW,
-    alt: "Model wearing the wide black cargo trouser",
-  },
-  "M-40": {
-    img: modelCargoShortsCapLook,
-    alt: "Model wearing the multi-pocket cargo short",
-  },
-  "M-53": {
-    img: modelNylonAnorakBlack,
-    alt: "Model wearing the nylon balloon pant",
-  },
-  "M-64": {
-    img: modelNylonAnorakBlack,
-    alt: "Model wearing the buckle nylon hoodie in black",
-  },
-  "M-65": {
-    img: modelShearlingBomberBlack,
-    alt: "Model wearing the black shearling bomber",
-  },
-  "M-70": {
-    img: modelCargoShortsCapLook,
-    alt: "Model wearing the patched black cap",
-  },
-  "M-75": {
-    img: modelShearlingBomberBlack,
-    alt: "Model wearing the black shearling bomber",
-  },
+const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
+  "M-11": [
+    {
+      img: modelFlagHoodieBlack,
+      alt: "Model wearing the Kill Me I'm American hoodie",
+    },
+    {
+      img: modelFlagHoodieM2,
+      alt: "Second model wearing the Kill Me I'm American hoodie",
+    },
+  ],
+  "M-13": [
+    {
+      img: modelShirtNavyPatchedW,
+      alt: "Model wearing the patched service overshirt in navy",
+    },
+  ],
+  "M-18": [
+    {
+      img: modelKnitHoodieOliveDuffelW,
+      alt: "Model carrying the olive stencil duffel",
+    },
+  ],
+  "M-26": [
+    {
+      img: modelCargoShortsBagLook,
+      alt: "Model wearing the utility carryall crossbody",
+    },
+  ],
+  "M-28": [
+    {
+      img: modelCroppedJacketBlack,
+      alt: "Model wearing the pinned cropped jacket",
+    },
+    {
+      img: modelCroppedJacketBlackM2,
+      alt: "Second model wearing the pinned cropped jacket",
+    },
+  ],
+  "M-34": [
+    {
+      img: modelSergeantShirtBlackM,
+      alt: "Model wearing the Sergeant Overshirt",
+    },
+    {
+      img: modelSergeantShirtBlackM2,
+      alt: "Second model wearing the Sergeant Overshirt",
+    },
+  ],
+  "M-39": [
+    {
+      img: modelSergeantShirtBlackW,
+      alt: "Model wearing the wide black cargo trouser",
+    },
+  ],
+  "M-40": [
+    {
+      img: modelCargoShortsCapLook,
+      alt: "Model wearing the multi-pocket cargo short",
+    },
+    {
+      img: modelCargoShortsCapW2,
+      alt: "Second model wearing the multi-pocket cargo short",
+    },
+  ],
+  "M-53": [
+    {
+      img: modelNylonAnorakBlack,
+      alt: "Model wearing the nylon balloon pant",
+    },
+  ],
+  "M-58": [
+    {
+      img: modelKnitHoodieOliveM,
+      alt: "Model wearing the olive patched knit hoodie",
+    },
+    {
+      img: modelKnitHoodieOliveDuffelW,
+      alt: "Second model wearing the olive patched knit hoodie",
+    },
+  ],
+  "M-64": [
+    {
+      img: modelNylonAnorakBlack,
+      alt: "Model wearing the buckle nylon hoodie in black",
+    },
+  ],
+  "M-65": [
+    {
+      img: modelShearlingBomberBlack,
+      alt: "Model wearing the black shearling bomber",
+    },
+    {
+      img: modelShearlingBomberBlackW2,
+      alt: "Second model wearing the black shearling bomber",
+    },
+    {
+      img: modelShearlingBomberBlackM2,
+      alt: "Third model wearing the black shearling bomber",
+    },
+  ],
+  "M-70": [
+    {
+      img: modelCargoShortsCapLook,
+      alt: "Model wearing the patched black cap",
+    },
+    {
+      img: modelCargoShortsCapW2,
+      alt: "Second model wearing the patched black cap",
+    },
+  ],
+  "M-75": [
+    {
+      img: modelShearlingBomberBlack,
+      alt: "Model wearing the black shearling bomber",
+    },
+    {
+      img: modelShearlingBomberBlackW2,
+      alt: "Second model wearing the black shearling bomber",
+    },
+    {
+      img: modelShearlingBomberBlackM2,
+      alt: "Third model wearing the black shearling bomber",
+    },
+  ],
+  "M-76": [
+    {
+      img: modelKnitHoodieRedW,
+      alt: "Model wearing the oxblood zip knit hoodie",
+    },
+  ],
 };
 
 function categorize(type: string): Category {
@@ -330,7 +426,7 @@ function CategoryGrid({
               aria-label={`View ${p.name} larger`}
               className="relative block aspect-[3/4] w-full cursor-zoom-in overflow-hidden bg-nc-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
             >
-              {lookbook ? (
+              {lookbook && lookbook.length > 0 ? (
                 <>
                   <img
                     src={p.img.url}
@@ -339,8 +435,8 @@ function CategoryGrid({
                     className="absolute inset-0 block h-full w-full object-contain p-4 transition-all duration-300 group-hover:scale-[1.03] group-hover:opacity-0 sm:p-6"
                   />
                   <img
-                    src={lookbook.img.url}
-                    alt={lookbook.alt}
+                    src={lookbook[0].img.url}
+                    alt={lookbook[0].alt}
                     loading="lazy"
                     className="absolute inset-0 block h-full w-full object-contain p-3 opacity-0 transition-all duration-300 group-hover:scale-[1.01] group-hover:opacity-100 sm:p-4"
                   />
@@ -348,9 +444,10 @@ function CategoryGrid({
                     aria-hidden
                     className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-nc-ink bg-nc-cream px-2 py-0.5 text-[9px] tracking-[0.25em] text-nc-ink transition-colors group-hover:border-nc-red group-hover:bg-nc-red group-hover:text-nc-cream sm:right-3 sm:top-3 sm:text-[10px]"
                   >
-                    Look
+                    {lookbook.length > 1 ? `Look · ${lookbook.length}` : "Look"}
                   </span>
                 </>
+
               ) : (
                 <img
                   src={p.img.url}
