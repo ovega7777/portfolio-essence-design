@@ -70,6 +70,13 @@ import vestLacedOlive from "../assets/militia/vest-laced-olive.png.asset.json";
 import overshirtOliveBack from "../assets/militia/overshirt-olive-back.png.asset.json";
 import overshirtBlackBack from "../assets/militia/overshirt-black-back.png.asset.json";
 import capPatchedBlack from "../assets/militia/cap-patched-black.png.asset.json";
+import knitHoodieNavyBack from "../assets/militia/knit-hoodie-navy-back.png.asset.json";
+import patchDealerOfDeath from "../assets/militia/patch-dealer-of-death.png.asset.json";
+import nylonBalloonPantsOliveFront from "../assets/militia/nylon-balloon-pants-olive-front.png.asset.json";
+import anorakOliveBuckle from "../assets/militia/anorak-olive-buckle.png.asset.json";
+import bomberShearlingBlackFrontV2 from "../assets/militia/bomber-shearling-black-front-v2.png.asset.json";
+import knitHoodieRedBack from "../assets/militia/knit-hoodie-red-back.png.asset.json";
+import nylonBalloonPantsOliveBack from "../assets/militia/nylon-balloon-pants-olive-back.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
