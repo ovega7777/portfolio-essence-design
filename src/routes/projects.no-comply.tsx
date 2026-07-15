@@ -327,7 +327,7 @@ function NoComply() {
   const setCategory = (cat: Category | "All") => {
     setLightboxIndex(null);
     navigate({
-      search: (prev) => ({
+      search: (prev: z.infer<typeof militiaSearchSchema>) => ({
         ...prev,
         cat: cat === "All" ? "all" : CATEGORY_SLUGS[cat],
       }),
@@ -337,14 +337,14 @@ function NoComply() {
   };
   const setSort = (s: Sort) => {
     navigate({
-      search: (prev) => ({ ...prev, sort: s }),
+      search: (prev: z.infer<typeof militiaSearchSchema>) => ({ ...prev, sort: s }),
       replace: true,
       resetScroll: false,
     });
   };
   const setQuery = (q: string) => {
     navigate({
-      search: (prev) => ({ ...prev, q }),
+      search: (prev: z.infer<typeof militiaSearchSchema>) => ({ ...prev, q }),
       replace: true,
       resetScroll: false,
     });
