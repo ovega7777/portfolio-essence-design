@@ -402,6 +402,26 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
       img: modelShowgirlsNavyTeeW,
       alt: "Eighth model wearing the wide black cargo trouser",
     },
+    {
+      img: modelLeatherBomberPatchedW,
+      alt: "Ninth model wearing the wide black cargo with patched leather bomber",
+    },
+    {
+      img: modelFlagHoodieCargoW,
+      alt: "Tenth model wearing the wide black cargo with the flag hoodie",
+    },
+    {
+      img: modelCroppedJacketPatchedM,
+      alt: "Eleventh model wearing the wide black cargo with the patched cropped jacket",
+    },
+    {
+      img: modelLacedVestBlackW,
+      alt: "Twelfth model wearing the wide black cargo with the black laced vest",
+    },
+    {
+      img: modelLacedVestOliveM,
+      alt: "Thirteenth model wearing the wide black cargo with the olive laced vest",
+    },
   ],
   "M-40": [
     {
