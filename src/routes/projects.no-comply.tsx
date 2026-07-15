@@ -787,8 +787,10 @@ function NoComply() {
     : "oldest";
   const query = search.q.trim().toLowerCase();
 
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const open = lightboxIndex !== null;
+  const [lightbox, setLightbox] = useState<
+    { code: string; index: number } | null
+  >(null);
+  const open = lightbox !== null;
 
   const setCategory = (cat: Category | "All") => {
     setLightboxIndex(null);
