@@ -149,6 +149,13 @@ const militia = [
   { img: overshirtOliveBack, name: "Officer Overshirt — Olive Back", code: "M-68", type: "Shirt" },
   { img: overshirtBlackBack, name: "Officer Overshirt — Black Back", code: "M-69", type: "Shirt" },
   { img: capPatchedBlack, name: "Patched Militia Cap", code: "M-70", type: "Headwear" },
+  { img: knitHoodieNavyBack, name: "Elbow-Patch Knit Hoodie — Navy", code: "M-71", type: "Knitwear" },
+  { img: patchDealerOfDeath, name: "Dealer of Death Patch", code: "M-72", type: "Patch" },
+  { img: nylonBalloonPantsOliveFront, name: "Nylon Balloon Pant — Olive", code: "M-73", type: "Trouser" },
+  { img: anorakOliveBuckle, name: "Buckle Anorak — Olive", code: "M-74", type: "Outerwear" },
+  { img: bomberShearlingBlackFrontV2, name: "Shearling Bomber — Black Front", code: "M-75", type: "Outerwear" },
+  { img: knitHoodieRedBack, name: "Elbow-Patch Knit Hoodie — Oxblood", code: "M-76", type: "Knitwear" },
+  { img: nylonBalloonPantsOliveBack, name: "Nylon Balloon Pant — Olive Back", code: "M-77", type: "Trouser" },
 ];
 
 export const Route = createFileRoute("/projects/no-comply")({
