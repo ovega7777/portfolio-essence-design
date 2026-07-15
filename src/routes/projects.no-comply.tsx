@@ -99,7 +99,7 @@ const militia = [
   { img: cargoBrown, name: "Field Cargo Trouser", code: "M-15", type: "Bottoms" },
   { img: trousersPleated, name: "Asymmetric Button Trouser", code: "M-16", type: "Bottoms" },
   { img: trousersManifesto, name: "Manifesto Patch Trouser", code: "M-17", type: "Bottoms" },
-  { img: duffelOlive, name: "Stencil Duffel — Olive", code: "M-18", type: "Object" },
+  { img: duffelOlive, name: "Stencil Duffel — Olive", code: "M-18", type: "Bag" },
   { img: patchN, name: "Chainstitch N Patch", code: "M-19", type: "Patch" },
   { img: patchFlag, name: "Subdued Flag Patch", code: "M-20", type: "Patch" },
   { img: hoodieRedZip, name: "Zip Hoodie — Oxblood", code: "M-21", type: "Knitwear" },
