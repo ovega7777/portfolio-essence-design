@@ -637,7 +637,7 @@ function ProductCard({
   p: MilitiaItem;
   onOpen: (code: string) => void;
 }) {
-  const lookbook = LOOKBOOK_BY_CODE[p.code] ?? [];
+  const lookbook = extraViews(p);
   const hasLook = lookbook.length > 0;
   const totalCycle = 1 + lookbook.length;
   const [cycleIdx, setCycleIdx] = useState(0);
@@ -647,6 +647,7 @@ function ProductCard({
   const currentUrl = cycleIdx === 0 ? p.img.url : lookbook[cycleIdx - 1].img.url;
   const currentAlt = cycleIdx === 0 ? p.name : lookbook[cycleIdx - 1].alt;
   const hoverShot = hasLook ? lookbook[0] : null;
+
 
   return (
     <figure className="group flex flex-col">
