@@ -426,7 +426,7 @@ function CategoryGrid({
               aria-label={`View ${p.name} larger`}
               className="relative block aspect-[3/4] w-full cursor-zoom-in overflow-hidden bg-nc-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
             >
-              {lookbook ? (
+              {lookbook && lookbook.length > 0 ? (
                 <>
                   <img
                     src={p.img.url}
@@ -435,8 +435,8 @@ function CategoryGrid({
                     className="absolute inset-0 block h-full w-full object-contain p-4 transition-all duration-300 group-hover:scale-[1.03] group-hover:opacity-0 sm:p-6"
                   />
                   <img
-                    src={lookbook.img.url}
-                    alt={lookbook.alt}
+                    src={lookbook[0].img.url}
+                    alt={lookbook[0].alt}
                     loading="lazy"
                     className="absolute inset-0 block h-full w-full object-contain p-3 opacity-0 transition-all duration-300 group-hover:scale-[1.01] group-hover:opacity-100 sm:p-4"
                   />
@@ -444,9 +444,10 @@ function CategoryGrid({
                     aria-hidden
                     className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-nc-ink bg-nc-cream px-2 py-0.5 text-[9px] tracking-[0.25em] text-nc-ink transition-colors group-hover:border-nc-red group-hover:bg-nc-red group-hover:text-nc-cream sm:right-3 sm:top-3 sm:text-[10px]"
                   >
-                    Look
+                    {lookbook.length > 1 ? `Look · ${lookbook.length}` : "Look"}
                   </span>
                 </>
+
               ) : (
                 <img
                   src={p.img.url}
