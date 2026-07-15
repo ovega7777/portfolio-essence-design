@@ -117,7 +117,16 @@ import modelZipKnitHoodieRedM2 from "../assets/militia-models/model-zip-knit-hoo
 import modelShowgirlsWhiteTeeW from "../assets/militia-models/model-showgirls-white-tee-w.png.asset.json";
 import modelShowgirlsNavyTeeW from "../assets/militia-models/model-showgirls-navy-tee-w.png.asset.json";
 
-const militia = [
+type AssetPointer = typeof teeBlack;
+type MilitiaItem = {
+  img: AssetPointer;
+  name: string;
+  code: string;
+  type: string;
+  back?: AssetPointer;
+};
+
+const militia: MilitiaItem[] = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
   { img: knitHoodie, name: "Rib Knit Hoodie", code: "M-02", type: "Knitwear" },
   { img: nylonPants, name: "Nylon Wide Trouser", code: "M-03", type: "Bottoms" },
