@@ -560,19 +560,28 @@ for (const p of militia) militiaByCategory[categorize(p.type)].push(p);
   }
 }
 
+function extraViews(p: MilitiaItem): LookbookShot[] {
+  const back: LookbookShot[] = p.back
+    ? [{ img: p.back, alt: `${p.name} — back view` }]
+    : [];
+  return [...back, ...(LOOKBOOK_BY_CODE[p.code] ?? [])];
+}
+
 function productImages(
   p: MilitiaItem,
 ): { url: string; alt: string; label: string }[] {
-  const shots = LOOKBOOK_BY_CODE[p.code] ?? [];
+  const shots = extraViews(p);
+  const backCount = p.back ? 1 : 0;
   return [
-    { url: p.img.url, alt: p.name, label: "Product" },
+    { url: p.img.url, alt: p.name, label: "Front" },
     ...shots.map((s, i) => ({
       url: s.img.url,
       alt: s.alt,
-      label: `Look ${i + 1}`,
+      label: i < backCount ? "Back" : `Look ${i - backCount + 1}`,
     })),
   ];
 }
+
 
 const CATEGORY_SLUGS: Record<Category, string> = {
   Outerwear: "outerwear",
