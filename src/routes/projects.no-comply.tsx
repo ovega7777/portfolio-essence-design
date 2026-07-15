@@ -10,6 +10,16 @@ import nylonPants from "../assets/militia/nylon-pants.png.asset.json";
 import trousers from "../assets/militia/trousers.png.asset.json";
 import cap from "../assets/militia/cap.png.asset.json";
 import zippo from "../assets/militia/zippo.png.asset.json";
+import hoodieFlag from "../assets/militia/hoodie-flag.png.asset.json";
+import shirtNavyPatched from "../assets/militia/shirt-navy-patched.png.asset.json";
+import knitHoodieBack from "../assets/militia/knit-hoodie-back.png.asset.json";
+import jacketCream from "../assets/militia/jacket-cream.png.asset.json";
+import cargoBrown from "../assets/militia/cargo-brown.png.asset.json";
+import trousersPleated from "../assets/militia/trousers-pleated.png.asset.json";
+import trousersManifesto from "../assets/militia/trousers-manifesto.png.asset.json";
+import duffelOlive from "../assets/militia/duffel-olive.png.asset.json";
+import patchN from "../assets/militia/patch-n.png.asset.json";
+import patchFlag from "../assets/militia/patch-flag.png.asset.json";
 
 const militia = [
   { img: fieldShirt, name: "Field Shirt", code: "M-01", type: "Outerwear" },
@@ -22,6 +32,16 @@ const militia = [
   { img: teeCamo, name: "USA Camo Tee", code: "M-08", type: "Tee" },
   { img: cap, name: "Distressed Militia Cap", code: "M-09", type: "Headwear" },
   { img: zippo, name: "Bury Me Face Down Zippo", code: "M-10", type: "Object" },
+  { img: hoodieFlag, name: "Kill Me I'm American Hoodie", code: "M-11", type: "Fleece" },
+  { img: knitHoodieBack, name: "Elbow-Patch Knit Hoodie", code: "M-12", type: "Knitwear" },
+  { img: shirtNavyPatched, name: "Patched Service Overshirt", code: "M-13", type: "Outerwear" },
+  { img: jacketCream, name: "Bone Chore Jacket", code: "M-14", type: "Outerwear" },
+  { img: cargoBrown, name: "Field Cargo Trouser", code: "M-15", type: "Bottoms" },
+  { img: trousersPleated, name: "Asymmetric Button Trouser", code: "M-16", type: "Bottoms" },
+  { img: trousersManifesto, name: "Manifesto Patch Trouser", code: "M-17", type: "Bottoms" },
+  { img: duffelOlive, name: "Stencil Duffel — Olive", code: "M-18", type: "Object" },
+  { img: patchN, name: "Chainstitch N Patch", code: "M-19", type: "Patch" },
+  { img: patchFlag, name: "Subdued Flag Patch", code: "M-20", type: "Patch" },
 ];
 
 export const Route = createFileRoute("/projects/no-comply")({
