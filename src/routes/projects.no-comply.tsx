@@ -298,10 +298,84 @@ function CategoryGrid({
   );
 }
 
+function sortItems(items: MilitiaItem[], sort: Sort): MilitiaItem[] {
+  const codeNum = (c: string) => parseInt(c.replace(/\D/g, ""), 10) || 0;
+  const copy = items.slice();
+  switch (sort) {
+    case "newest":
+      return copy.sort((a, b) => codeNum(b.code) - codeNum(a.code));
+    case "oldest":
+      return copy.sort((a, b) => codeNum(a.code) - codeNum(b.code));
+    case "az":
+      return copy.sort((a, b) => a.name.localeCompare(b.name));
+    case "za":
+      return copy.sort((a, b) => b.name.localeCompare(a.name));
+  }
+}
+
 function NoComply() {
-  const [activeCategory, setActiveCategory] = useState<Category | "All">("All");
-  const displayed =
-    activeCategory === "All" ? militiaOrdered : militiaByCategory[activeCategory];
+  const search = Route.useSearch();
+  const navigate = useNavigate({ from: Route.fullPath });
+
+  const activeCategory: Category | "All" =
+    search.cat === "all" ? "All" : SLUG_TO_CATEGORY[search.cat] ?? "All";
+  const sort: Sort = (SORTS as readonly string[]).includes(search.sort)
+    ? (search.sort as Sort)
+    : "oldest";
+  const query = search.q.trim().toLowerCase();
+
+  const setCategory = (cat: Category | "All") => {
+    setLightboxIndex(null);
+    navigate({
+      search: (prev) => ({
+        ...prev,
+        cat: cat === "All" ? "all" : CATEGORY_SLUGS[cat],
+      }),
+      replace: true,
+      resetScroll: false,
+    });
+  };
+  const setSort = (s: Sort) => {
+    navigate({
+      search: (prev) => ({ ...prev, sort: s }),
+      replace: true,
+      resetScroll: false,
+    });
+  };
+  const setQuery = (q: string) => {
+    navigate({
+      search: (prev) => ({ ...prev, q }),
+      replace: true,
+      resetScroll: false,
+    });
+  };
+
+  const matchesQuery = (p: MilitiaItem) =>
+    !query ||
+    p.name.toLowerCase().includes(query) ||
+    p.type.toLowerCase().includes(query) ||
+    p.code.toLowerCase().includes(query);
+
+  const displayed = useMemo(() => {
+    const base =
+      activeCategory === "All"
+        ? militiaOrdered
+        : militiaByCategory[activeCategory];
+    return sortItems(base.filter(matchesQuery), sort);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeCategory, sort, query]);
+
+  const groupedDisplayed = useMemo(() => {
+    if (activeCategory !== "All") return null;
+    return CATEGORIES.map((cat) => ({
+      cat,
+      items: sortItems(
+        militiaByCategory[cat].filter(matchesQuery),
+        sort,
+      ),
+    }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeCategory, sort, query]);
 
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
   const open = lightboxIndex !== null;
