@@ -260,7 +260,7 @@ function CategoryGrid({
 }) {
   const tilts = ["nc-tilt-l", "", "nc-tilt-r", "", "nc-tilt-l", "nc-tilt-r"];
   return (
-    <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:gap-14 lg:grid-cols-3">
+    <div className="grid grid-cols-2 gap-5 sm:gap-10 md:gap-14 lg:grid-cols-3">
       {items.map((p, i) => {
         const tilt = tilts[i % tilts.length];
         return (
@@ -278,16 +278,16 @@ function CategoryGrid({
                 className="block h-full w-full object-cover"
               />
             </button>
-            <figcaption className="mt-4 flex items-baseline justify-between gap-3">
-              <div>
-                <p className="nc-display text-xl text-nc-ink leading-tight">
+            <figcaption className="mt-3 flex items-baseline justify-between gap-2 sm:mt-4 sm:gap-3">
+              <div className="min-w-0">
+                <p className="nc-display truncate text-base leading-tight text-nc-ink sm:text-xl">
                   {p.name}
                 </p>
-                <p className="nc-display text-xs tracking-[0.25em] text-nc-ink/70">
+                <p className="nc-display text-[10px] tracking-[0.2em] text-nc-ink/70 sm:text-xs sm:tracking-[0.25em]">
                   {p.type}
                 </p>
               </div>
-              <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
+              <span className="nc-display shrink-0 text-xs tracking-[0.2em] text-nc-red sm:text-sm">
                 {p.code}
               </span>
             </figcaption>
