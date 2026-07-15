@@ -146,7 +146,7 @@ const militia: MilitiaItem[] = [
   { img: duffelOlive, name: "Stencil Duffel — Olive", code: "M-18", type: "Bag" },
   { img: patchN, name: "Chainstitch N Patch", code: "M-19", type: "Patch" },
   { img: patchFlag, name: "Subdued Flag Patch", code: "M-20", type: "Patch" },
-  { img: hoodieRedZip, name: "Zip Hoodie — Oxblood", code: "M-21", type: "Knitwear" },
+  { img: hoodieRedZip, back: knitHoodieRedBack, name: "Zip Hoodie — Oxblood", code: "M-21", type: "Knitwear" },
   { img: teeNightCamo, name: "Night Camo Logo Tee", code: "M-22", type: "Tee" },
   { img: cargoPlaid, name: "Plaid Cargo Trouser", code: "M-23", type: "Bottoms" },
   { img: hoodieOliveZip, name: "Zip Hoodie — Olive", code: "M-24", type: "Knitwear" },
@@ -169,7 +169,7 @@ const militia: MilitiaItem[] = [
   { img: zippoAceSilver, name: "Ace Zippo — Silver", code: "M-43", type: "Accessory" },
   { img: cargoPlaidCharcoal, name: "Plaid Cargo Trouser — Charcoal", code: "M-44", type: "Trouser" },
   { img: pinsSetPatriot, name: "Patriot Pin Set", code: "M-46", type: "Accessory" },
-  { img: knitHoodieZipRed, back: knitHoodieRedBack, name: "Zip Knit Hoodie — Red", code: "M-47", type: "Knitwear" },
+  
   { img: dogTagsGrimReaper, name: "Dog Tags — Grim Reaper", code: "M-48", type: "Accessory" },
   { img: shirtOliveEpaulet, back: overshirtOliveBack, name: "Sergeant Overshirt — Olive", code: "M-50", type: "Shirt" },
   { img: vestLacedBlack, name: "Laced Utility Vest", code: "M-51", type: "Outerwear" },
@@ -258,6 +258,24 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
     {
       img: modelShowgirlsOliveDuffelM,
       alt: "Second model carrying the olive stencil duffel",
+    },
+  ],
+  "M-21": [
+    {
+      img: knitHoodieZipRed,
+      alt: "Patched oxblood zip knit hoodie — front",
+    },
+    {
+      img: modelZipKnitHoodieRedM,
+      alt: "Model wearing the patched oxblood zip knit hoodie",
+    },
+    {
+      img: modelZipKnitHoodieRedM2,
+      alt: "Second model wearing the patched oxblood zip knit hoodie",
+    },
+    {
+      img: modelKnitHoodieRedW,
+      alt: "Third model wearing the patched oxblood zip knit hoodie",
     },
   ],
   "M-22": [
@@ -388,20 +406,6 @@ const LOOKBOOK_BY_CODE: Partial<Record<MilitiaItem["code"], LookbookShot[]>> = {
     {
       img: modelShowgirlsNavyTeeW,
       alt: "Fourth model wearing the Comply Showgirls tee",
-    },
-  ],
-  "M-47": [
-    {
-      img: modelZipKnitHoodieRedM,
-      alt: "Model wearing the red zip knit hoodie",
-    },
-    {
-      img: modelZipKnitHoodieRedM2,
-      alt: "Second model wearing the red zip knit hoodie",
-    },
-    {
-      img: modelKnitHoodieRedW,
-      alt: "Model wearing the oxblood zip knit hoodie",
     },
   ],
   "M-53": [
