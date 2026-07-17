@@ -977,7 +977,7 @@ function NoComply() {
             NO COMPLY USA / CASE STUDY
           </span>
         </div>
-        <div className="h-px w-full bg-white" />
+        <div className="h-0.5 w-full bg-white" />
       </nav>
 
       <header className="relative overflow-hidden border-b-4 border-nc-ink bg-white px-4 py-3 md:px-6 md:py-5">
