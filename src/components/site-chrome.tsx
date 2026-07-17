@@ -13,7 +13,7 @@ export function SiteNav() {
           to="/"
           className="font-serif text-2xl font-semibold tracking-tight hover:opacity-70 transition-opacity"
         >
-          N. Curzon
+          Nicholas Curzon
         </Link>
         <div className="flex gap-8">
           <Link
