@@ -769,7 +769,7 @@ function ProductCard({
           )}
           {baseFailed && (
             <div className="absolute inset-0 flex items-center justify-center bg-white p-4 text-center">
-              <span className="nc-display text-[10px] tracking-[0.25em] text-nc-ink/50">
+              <span className="nc-display text-[10px] tracking-[0.25em] text-black/50">
                 Image unavailable
               </span>
             </div>
