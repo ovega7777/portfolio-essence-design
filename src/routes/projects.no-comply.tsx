@@ -965,11 +965,11 @@ function NoComply() {
 
   return (
     <div className="no-comply min-h-screen">
-      <nav className="sticky top-0 z-50 border-b-2 border-nc-ink bg-nc-ink text-nc-cream">
+      <nav className="sticky top-0 z-50 border-b-2 border-black bg-black text-white">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
           <Link
             to="/"
-            className="nc-display text-xl tracking-widest text-nc-cream hover:text-nc-red"
+            className="nc-display text-xl tracking-widest text-white transition-colors duration-200 hover:text-white/60"
           >
             ← Nicholas Curzon
           </Link>
