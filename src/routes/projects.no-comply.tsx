@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
-import hero from "../assets/no-comply-hero.png.asset.json";
+import hero from "../assets/no-comply-usa-logo.png.asset.json";
 import teeBlack from "../assets/militia/tee-black.png.asset.json";
 import teeWhite from "../assets/militia/tee-white.png.asset.json";
 import teeOlive from "../assets/militia/tee-olive.png.asset.json";
@@ -1012,17 +1012,15 @@ function NoComply() {
         </div>
       </header>
 
-      <section className="border-b-4 border-nc-ink px-6 py-16">
-        <div className="mx-auto max-w-7xl">
-          <div className="nc-tile nc-tape">
-            <img
-              src={hero.url}
-              alt="No Comply — brutalist streetwear collage"
-              width={1600}
-              height={900}
-              className="block w-full"
-            />
-          </div>
+      <section className="border-b-4 border-nc-ink bg-nc-ink px-6 py-24 md:py-32">
+        <div className="mx-auto max-w-6xl">
+          <img
+            src={hero.url}
+            alt="No Comply USA"
+            width={1512}
+            height={1008}
+            className="mx-auto block w-full max-w-4xl"
+          />
         </div>
       </section>
 
