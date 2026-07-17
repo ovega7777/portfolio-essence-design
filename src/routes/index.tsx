@@ -27,21 +27,27 @@ function Home() {
             </p>
           </div>
           <div className="flex flex-col justify-end pb-2 lg:col-span-4">
-            <div className="space-y-6 border-l border-border pl-6 text-sm">
+            <div className="space-y-8 border-l border-border pl-6 md:pl-8 text-base md:text-lg">
               <div>
-                <p className="eyebrow mb-1">Education</p>
-                <p className="font-medium">FIT / University of Miami</p>
+                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
+                  Education
+                </p>
+                <p className="font-semibold">FIT / University of Miami</p>
                 <p className="text-muted-foreground">
                   M.S. International Business
                 </p>
               </div>
               <div>
-                <p className="eyebrow mb-1">Focus</p>
-                <p className="font-medium">Sales Strategy & Product Design</p>
+                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
+                  Focus
+                </p>
+                <p className="font-semibold">Sales Strategy & Product Design</p>
               </div>
               <div>
-                <p className="eyebrow mb-1">Based</p>
-                <p className="font-medium">New York / Miami</p>
+                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
+                  Based
+                </p>
+                <p className="font-semibold">New York / Miami</p>
               </div>
             </div>
           </div>
