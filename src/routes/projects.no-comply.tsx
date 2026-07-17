@@ -98,7 +98,7 @@ import modelFlagHoodieM2 from "../assets/militia-models/model-flag-hoodie-m2.png
 import modelShearlingBomberBlackM2 from "../assets/militia-models/model-shearling-bomber-black-m2.png.asset.json";
 import modelSergeantShirtBlackM2 from "../assets/militia-models/model-sergeant-shirt-black-m2.png.asset.json";
 import modelKnitHoodieOliveDuffelW from "../assets/militia-models/model-knit-hoodie-olive-duffel-w.png.asset.json";
-import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black.png.asset.json";
+import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import modelCroppedJacketWideCargoW from "../assets/militia-models/model-cropped-jacket-wide-cargo-w.png.asset.json";
 import modelCroppedJacketUtilityBagW from "../assets/militia-models/model-cropped-jacket-utility-bag-w.png.asset.json";
 import modelZipKnitHoodieRedM from "../assets/militia-models/model-zip-knit-hoodie-red-m.png.asset.json";
