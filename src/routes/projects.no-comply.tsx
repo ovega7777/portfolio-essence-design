@@ -748,7 +748,7 @@ function ProductCard({
               )}
               <span
                 aria-hidden
-                className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-nc-ink bg-white px-2 py-0.5 text-[9px] tracking-[0.25em] text-nc-ink transition-colors group-hover:border-nc-red group-hover:bg-nc-red group-hover:text-nc-cream sm:right-3 sm:top-3 sm:text-[10px]"
+                className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-black bg-white px-2 py-0.5 text-[9px] tracking-[0.25em] text-black transition-colors duration-200 group-hover:bg-black group-hover:text-white sm:right-3 sm:top-3 sm:text-[10px]"
               >
                 Look · {lookbook.length}
               </span>
