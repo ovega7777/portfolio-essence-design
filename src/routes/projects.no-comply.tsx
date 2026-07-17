@@ -980,8 +980,8 @@ function NoComply() {
         <div className="h-0.5 w-full bg-white" />
       </nav>
 
-      <header className="relative overflow-hidden border-b-4 border-nc-ink bg-black px-4 py-3 md:px-6 md:py-5">
-        <div className="flex h-36 w-full items-center justify-center md:h-56">
+      <header className="relative overflow-hidden border-b-4 border-nc-ink bg-black px-4 py-2 md:px-6 md:py-3">
+        <div className="flex h-[72px] w-full items-center justify-center md:h-[112px]">
           <img
             src={noComplyUsaLogoBlack.url}
             alt="NO COMPLY USA"
