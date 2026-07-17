@@ -973,8 +973,8 @@ function NoComply() {
           >
             ← Nicholas Curzon
           </Link>
-          <span className="nc-display text-sm tracking-[0.3em] text-nc-red">
-            NO COMPLY USA / Case Study
+          <span className="nc-display text-base tracking-[0.3em] text-white md:text-lg">
+            NO COMPLY USA / CASE STUDY
           </span>
         </div>
         <div
