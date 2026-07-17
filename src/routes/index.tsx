@@ -16,9 +16,9 @@ function Home() {
           <div className="lg:col-span-8">
             <p className="eyebrow mb-8">Portfolio — 2026</p>
             <h1 className="font-serif text-5xl leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
-              Intersection of
+              Creative
               <br />
-              <span className="italic">Design & Commerce.</span>
+              <span className="italic">Commerce.</span>
             </h1>
             <p className="mt-10 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
               Nicholas Curzon blends the precision of pattern-making with the
