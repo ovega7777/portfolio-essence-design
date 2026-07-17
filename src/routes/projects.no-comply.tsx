@@ -1210,9 +1210,9 @@ function NoComply() {
           ].map((f) => (
             <div
               key={f.k}
-              className="border-4 border-black bg-white p-6"
+              className="border-2 border-black bg-white p-8"
             >
-              <p className="nc-display text-sm tracking-[0.3em] text-nc-red">
+              <p className="nc-display text-sm tracking-[0.3em] text-black">
                 {f.k}
               </p>
               <p className="nc-display mt-2 text-2xl text-black">{f.v}</p>
@@ -1224,19 +1224,19 @@ function NoComply() {
       <footer className="px-6 py-16">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
           <div>
-            <p className="nc-display text-sm tracking-[0.3em] text-nc-red">
+            <p className="nc-display text-sm tracking-[0.3em] text-black">
               Next Up
             </p>
             <Link
               to="/projects/lucky-day-co"
-              className="nc-display text-4xl text-black hover:text-nc-red"
+              className="nc-display text-4xl text-black hover:text-black/60"
             >
               Lucky Day Co →
             </Link>
           </div>
           <Link
             to="/projects"
-            className="nc-display border-b-2 border-black pb-1 text-sm tracking-[0.3em] text-black hover:text-nc-red hover:border-nc-red"
+            className="nc-display border-b-2 border-black pb-1 text-sm tracking-[0.3em] text-black hover:text-black/60 hover:border-black/60"
           >
             ← All Projects
           </Link>
@@ -1258,7 +1258,7 @@ function NoComply() {
               close();
             }}
             aria-label="Close"
-            className="nc-display absolute right-4 top-4 z-10 border-2 border-white bg-black px-3 py-1 text-sm tracking-[0.3em] text-white hover:bg-nc-red hover:border-nc-red md:right-8 md:top-8"
+            className="nc-display absolute right-4 top-4 z-10 border-2 border-white bg-black px-3 py-1 text-sm tracking-[0.3em] text-white hover:bg-white hover:text-black md:right-8 md:top-8"
           >
             Close ✕
           </button>
@@ -1272,7 +1272,7 @@ function NoComply() {
                   prev();
                 }}
                 aria-label="Previous image"
-                className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-white bg-black px-3 py-2 text-lg text-white hover:bg-nc-red hover:border-nc-red md:left-6"
+                className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-white bg-black px-3 py-2 text-lg text-white hover:bg-white hover:text-black md:left-6"
               >
                 ←
               </button>
@@ -1284,7 +1284,7 @@ function NoComply() {
                   next();
                 }}
                 aria-label="Next image"
-                className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-white bg-black px-3 py-2 text-lg text-white hover:bg-nc-red hover:border-nc-red md:right-6"
+                className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-white bg-black px-3 py-2 text-lg text-white hover:bg-white hover:text-black md:right-6"
               >
                 →
               </button>
@@ -1309,7 +1309,7 @@ function NoComply() {
                   {activeImage.label} · {active.type}
                 </p>
               </div>
-              <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
+              <span className="nc-display text-sm tracking-[0.2em] text-white">
                 {active.code} · {lightbox.index + 1}/{activeImageCount}
               </span>
             </figcaption>
@@ -1328,7 +1328,7 @@ function NoComply() {
                     aria-current={i === lightbox.index}
                     className={`relative h-16 w-16 overflow-hidden border-2 bg-white transition-colors sm:h-20 sm:w-20 ${
                       i === lightbox.index
-                        ? "border-nc-red"
+                        ? "border-white"
                         : "border-white/40 hover:border-white"
                     }`}
                   >
