@@ -709,7 +709,7 @@ function ProductCard({
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
         {/* Skeleton until first paint completes; hides SSR flash of stale/missing */}
         {!baseLoaded && !baseFailed && (
-          <div className="absolute inset-0 animate-pulse bg-nc-ink/5" aria-hidden />
+          <div className="absolute inset-0 animate-pulse bg-black/5" aria-hidden />
         )}
         <button
           type="button"
@@ -717,7 +717,7 @@ function ProductCard({
           aria-label={
             hasLook ? `Open lookbook for ${p.name}` : `View ${p.name} larger`
           }
-          className="absolute inset-0 block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
+          className="absolute inset-0 block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
         >
           {hasLook ? (
             <>
@@ -748,7 +748,7 @@ function ProductCard({
               )}
               <span
                 aria-hidden
-                className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-nc-ink bg-white px-2 py-0.5 text-[9px] tracking-[0.25em] text-nc-ink transition-colors group-hover:border-nc-red group-hover:bg-nc-red group-hover:text-nc-cream sm:right-3 sm:top-3 sm:text-[10px]"
+                className="nc-display pointer-events-none absolute right-2 top-2 border-2 border-black bg-white px-2 py-0.5 text-[9px] tracking-[0.25em] text-black transition-colors duration-200 group-hover:bg-black group-hover:text-white sm:right-3 sm:top-3 sm:text-[10px]"
               >
                 Look · {lookbook.length}
               </span>
@@ -769,7 +769,7 @@ function ProductCard({
           )}
           {baseFailed && (
             <div className="absolute inset-0 flex items-center justify-center bg-white p-4 text-center">
-              <span className="nc-display text-[10px] tracking-[0.25em] text-nc-ink/50">
+              <span className="nc-display text-[10px] tracking-[0.25em] text-black/50">
                 Image unavailable
               </span>
             </div>
@@ -787,20 +787,20 @@ function ProductCard({
               setBaseFailed(false);
             }}
             aria-label={`Cycle to next image (${cycleIdx + 1} of ${totalCycle})`}
-            className="nc-display absolute bottom-2 right-2 z-10 border-2 border-nc-ink bg-white/95 px-2 py-1 text-[10px] tracking-[0.2em] text-nc-ink hover:bg-nc-red hover:text-nc-cream md:hidden"
+            className="nc-display absolute bottom-2 right-2 z-10 border-2 border-black bg-white px-2 py-1 text-[10px] tracking-[0.2em] text-black transition-colors duration-200 hover:bg-black hover:text-white md:hidden"
           >
             {cycleIdx + 1}/{totalCycle} ↻
           </button>
         )}
       </div>
       <figcaption className="mt-3 flex flex-col gap-1 sm:mt-4">
-        <span className="nc-display text-[10px] tracking-[0.3em] text-nc-ink/60">
+        <span className="nc-display text-[10px] tracking-[0.3em] text-black/60">
           No Comply · {p.code}
         </span>
-        <p className="text-sm leading-snug text-nc-ink sm:text-base">
+        <p className="nc-display text-sm leading-snug tracking-[0.15em] text-black sm:text-base">
           {p.name}
         </p>
-        <p className="text-xs uppercase tracking-wide text-nc-ink/60">
+        <p className="text-xs uppercase tracking-[0.2em] text-black/60">
           {p.type}
         </p>
       </figcaption>
@@ -965,11 +965,11 @@ function NoComply() {
 
   return (
     <div className="no-comply min-h-screen">
-      <nav className="sticky top-0 z-50 border-b-2 border-nc-ink bg-nc-ink text-nc-cream">
+      <nav className="sticky top-0 z-50 border-b-2 border-black bg-black text-white">
         <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
           <Link
             to="/"
-            className="nc-display text-xl tracking-widest text-nc-cream hover:text-nc-red"
+            className="nc-display text-xl tracking-widest text-white transition-colors duration-200 hover:text-white/60"
           >
             ← Nicholas Curzon
           </Link>
@@ -982,52 +982,54 @@ function NoComply() {
 
       <LogoBannerHUD src={noComplyUsaLogoBlack.url} />
 
-      <section className="border-b-4 border-nc-ink px-6 py-20">
+      <section className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-16 flex items-center justify-between">
-            <h2 className="nc-title text-3xl md:text-5xl">The Moodboard</h2>
-            <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
-              // 06 fragments
+          <div className="mb-16 flex items-end justify-between gap-6 border-b-2 border-black pb-6">
+            <h2 className="nc-display text-5xl leading-none tracking-[0.02em] text-black md:text-7xl">
+              Moodboard
+            </h2>
+            <span className="nc-display text-xs tracking-[0.3em] text-black sm:text-sm">
+              06 Fragments / Reference
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 md:gap-12">
+          <div className="grid grid-cols-2 gap-px bg-black md:grid-cols-3">
             {[
-              { tilt: "nc-tilt-l", label: "Cut" },
-              { tilt: "nc-tilt-r", label: "Paste" },
-              { tilt: "nc-tilt-hl", label: "Xerox" },
-              { tilt: "nc-tilt-r", label: "Tape" },
-              { tilt: "nc-tilt-hr", label: "Riot" },
-              { tilt: "nc-tilt-l", label: "Repeat" },
-            ].map((t, i) => (
+              "Cut",
+              "Paste",
+              "Xerox",
+              "Tape",
+              "Riot",
+              "Repeat",
+            ].map((label, i) => (
               <div
-                key={i}
-                className={`nc-tile aspect-square ${t.tilt} ${
-                  i % 3 === 1 ? "nc-tape" : ""
-                }`}
+                key={label}
+                className="relative flex aspect-square flex-col justify-between bg-black p-6 text-white"
               >
-                <div className="flex h-full items-end justify-start bg-nc-ink p-4">
-                  <span className="nc-display text-2xl text-nc-cream">
-                    {String(i + 1).padStart(2, "0")} / {t.label}
-                  </span>
-                </div>
+                <span className="nc-display text-xs tracking-[0.3em] text-white/60">
+                  Fragment {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="nc-display text-3xl tracking-[0.05em] text-white md:text-5xl">
+                  {label}
+                </span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-b-4 border-nc-ink bg-nc-ink px-6 py-24 text-nc-cream">
+      <section className="border-b-2 border-black bg-black px-6 py-24 text-white md:py-32">
         <div className="mx-auto max-w-4xl">
-          <p className="nc-display mb-6 text-sm tracking-[0.3em] text-nc-red">
-            // Manifesto
+          <p className="nc-display mb-8 text-xs tracking-[0.4em] text-white">
+            Manifesto
           </p>
-          <p className="nc-display text-4xl leading-tight md:text-6xl">
+          <p className="nc-display text-4xl leading-[1.05] tracking-[0.02em] md:text-6xl">
             Compliance is optional.
             <br />
             Craft is not.
           </p>
-          <p className="mt-8 font-punk-body text-lg uppercase leading-relaxed tracking-wide">
+          <div className="mt-10 h-px w-24 bg-white" />
+          <p className="mt-10 font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:text-lg">
             Every garment starts as a pattern. Every pattern starts as a
             refusal — to smooth the edges, to trend-chase, to make it easy.
             No Comply is what happens when a designer&apos;s hand meets an
@@ -1152,9 +1154,9 @@ function NoComply() {
           </div>
 
           {displayed.length === 0 ? (
-            <div className="border-2 border-dashed border-nc-ink/40 p-10 text-center">
-              <p className="nc-display text-xl text-nc-ink">No matches.</p>
-              <p className="nc-display mt-2 text-xs tracking-[0.25em] text-nc-ink/70">
+            <div className="border-2 border-dashed border-black/40 p-10 text-center">
+              <p className="nc-display text-xl text-black">No matches.</p>
+              <p className="nc-display mt-2 text-xs tracking-[0.25em] text-black/70">
                 Try a different search or category.
               </p>
               {(search.q || activeCategory !== "All") && (
@@ -1164,7 +1166,7 @@ function NoComply() {
                     setQuery("");
                     setCategory("All");
                   }}
-                  className="nc-display mt-6 border-2 border-nc-ink bg-nc-cream px-3 py-1.5 text-xs tracking-[0.25em] text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                  className="nc-display mt-6 border-2 border-black bg-white px-3 py-1.5 text-xs tracking-[0.25em] text-black hover:bg-black hover:text-white"
                 >
                   Reset filters
                 </button>
@@ -1175,11 +1177,11 @@ function NoComply() {
               if (items.length === 0) return null;
               return (
                 <div key={cat} className="mb-16 last:mb-0 sm:mb-20">
-                  <div className="mb-6 flex items-end justify-between gap-3 border-b-2 border-nc-ink pb-3 sm:mb-8">
-                    <h3 className="nc-display text-2xl leading-none text-nc-ink sm:text-3xl md:text-4xl">
+                  <div className="mb-6 flex items-end justify-between gap-3 border-b-2 border-black pb-3 sm:mb-8">
+                    <h3 className="nc-display text-2xl leading-none text-black sm:text-3xl md:text-4xl">
                       {cat}
                     </h3>
-                    <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
+                    <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-black/70 sm:text-xs">
                       {String(items.length).padStart(2, "0")} pieces
                     </span>
                   </div>
@@ -1199,7 +1201,7 @@ function NoComply() {
         </div>
       </section>
 
-      <section className="border-b-4 border-nc-ink px-6 py-16">
+      <section className="border-b-2 border-black px-6 py-16">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
           {[
             { k: "Role", v: "Creative Direction, Systems" },
@@ -1208,12 +1210,12 @@ function NoComply() {
           ].map((f) => (
             <div
               key={f.k}
-              className="border-4 border-nc-ink bg-nc-cream p-6"
+              className="border-2 border-black bg-white p-8"
             >
-              <p className="nc-display text-sm tracking-[0.3em] text-nc-red">
+              <p className="nc-display text-sm tracking-[0.3em] text-black">
                 {f.k}
               </p>
-              <p className="nc-display mt-2 text-2xl text-nc-ink">{f.v}</p>
+              <p className="nc-display mt-2 text-2xl text-black">{f.v}</p>
             </div>
           ))}
         </div>
@@ -1222,19 +1224,19 @@ function NoComply() {
       <footer className="px-6 py-16">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
           <div>
-            <p className="nc-display text-sm tracking-[0.3em] text-nc-red">
+            <p className="nc-display text-sm tracking-[0.3em] text-black">
               Next Up
             </p>
             <Link
               to="/projects/lucky-day-co"
-              className="nc-display text-4xl text-nc-ink hover:text-nc-red"
+              className="nc-display text-4xl text-black hover:text-black/60"
             >
               Lucky Day Co →
             </Link>
           </div>
           <Link
             to="/projects"
-            className="nc-display border-b-2 border-nc-ink pb-1 text-sm tracking-[0.3em] text-nc-ink hover:text-nc-red hover:border-nc-red"
+            className="nc-display border-b-2 border-black pb-1 text-sm tracking-[0.3em] text-black hover:text-black/60 hover:border-black/60"
           >
             ← All Projects
           </Link>
@@ -1246,7 +1248,7 @@ function NoComply() {
           role="dialog"
           aria-modal="true"
           aria-label={`${active.name} — lookbook`}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-nc-ink/95 p-4 md:p-10"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-10"
           onClick={close}
         >
           <button
@@ -1256,7 +1258,7 @@ function NoComply() {
               close();
             }}
             aria-label="Close"
-            className="nc-display absolute right-4 top-4 z-10 border-2 border-nc-cream bg-nc-ink px-3 py-1 text-sm tracking-[0.3em] text-nc-cream hover:bg-nc-red hover:border-nc-red md:right-8 md:top-8"
+            className="nc-display absolute right-4 top-4 z-10 border-2 border-white bg-black px-3 py-1 text-sm tracking-[0.3em] text-white hover:bg-white hover:text-black md:right-8 md:top-8"
           >
             Close ✕
           </button>
@@ -1270,7 +1272,7 @@ function NoComply() {
                   prev();
                 }}
                 aria-label="Previous image"
-                className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:left-6"
+                className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-white bg-black px-3 py-2 text-lg text-white hover:bg-white hover:text-black md:left-6"
               >
                 ←
               </button>
@@ -1282,7 +1284,7 @@ function NoComply() {
                   next();
                 }}
                 aria-label="Next image"
-                className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:right-6"
+                className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-white bg-black px-3 py-2 text-lg text-white hover:bg-white hover:text-black md:right-6"
               >
                 →
               </button>
@@ -1300,14 +1302,14 @@ function NoComply() {
               onError={(e) => (e.currentTarget.style.visibility = "hidden")}
               className="max-h-[75vh] w-auto max-w-full object-contain"
             />
-            <figcaption className="mt-4 flex w-full items-baseline justify-between gap-4 border-t-2 border-nc-cream pt-3 text-nc-cream">
+            <figcaption className="mt-4 flex w-full items-baseline justify-between gap-4 border-t-2 border-white pt-3 text-white">
               <div>
                 <p className="nc-display text-xl leading-tight">{active.name}</p>
-                <p className="nc-display text-xs tracking-[0.25em] text-nc-cream/70">
+                <p className="nc-display text-xs tracking-[0.25em] text-white/70">
                   {activeImage.label} · {active.type}
                 </p>
               </div>
-              <span className="nc-display text-sm tracking-[0.2em] text-nc-red">
+              <span className="nc-display text-sm tracking-[0.2em] text-white">
                 {active.code} · {lightbox.index + 1}/{activeImageCount}
               </span>
             </figcaption>
@@ -1326,8 +1328,8 @@ function NoComply() {
                     aria-current={i === lightbox.index}
                     className={`relative h-16 w-16 overflow-hidden border-2 bg-white transition-colors sm:h-20 sm:w-20 ${
                       i === lightbox.index
-                        ? "border-nc-red"
-                        : "border-nc-cream/40 hover:border-nc-cream"
+                        ? "border-white"
+                        : "border-white/40 hover:border-white"
                     }`}
                   >
                     <img
@@ -1404,7 +1406,7 @@ function LogoBannerHUD({ src }: { src: string }) {
   return (
     <>
       <header
-        className="relative overflow-hidden border-b-4 border-nc-ink bg-black"
+        className="relative overflow-hidden border-b-2 border-black bg-black"
         style={{ height: `${settings.height}px` }}
       >
         <div className="flex h-full w-full items-center justify-center">
