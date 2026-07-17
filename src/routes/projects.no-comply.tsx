@@ -717,7 +717,7 @@ function ProductCard({
           aria-label={
             hasLook ? `Open lookbook for ${p.name}` : `View ${p.name} larger`
           }
-          className="absolute inset-0 block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-nc-red"
+          className="absolute inset-0 block h-full w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
         >
           {hasLook ? (
             <>
