@@ -986,30 +986,13 @@ function NoComply() {
         />
       </nav>
 
-      <header className="relative overflow-hidden border-b-4 border-nc-ink px-6 py-20 md:py-28">
-        <div className="mx-auto max-w-7xl">
-          <p className="nc-display mb-6 inline-block bg-nc-red px-3 py-1 text-sm text-nc-cream tracking-[0.3em]">
-            Vol. 01 — Raw Cut
-          </p>
-          <h1 className="nc-display text-[clamp(3.5rem,12vw,10rem)] leading-[0.85] text-nc-ink">
-            NO
-            <br />
-            <span className="nc-scribble-underline">COMPLY</span>
-          </h1>
-          <p className="mt-10 max-w-2xl font-punk-body text-lg uppercase tracking-wide text-nc-ink md:text-xl">
-            A brutalist visual system for a technical apparel concept. Cut,
-            paste, xerox, repeat. No stylist. No safety net.
-          </p>
-        </div>
-
-        <div className="nc-star absolute right-8 top-8 hidden md:block" />
-        <div
-          className="absolute bottom-6 left-8 hidden rotate-[-8deg] md:block"
-          aria-hidden
-        >
-          <span className="nc-display bg-nc-ink px-3 py-1 text-nc-cream tracking-widest">
-            USA / 2025
-          </span>
+      <header className="relative overflow-hidden border-b-4 border-nc-ink bg-white px-6 py-16 md:py-24">
+        <div className="mx-auto flex max-w-7xl items-center justify-center">
+          <img
+            src={noComplyUsaLogo.url}
+            alt="NO COMPLY USA"
+            className="w-full max-w-4xl invert"
+          />
         </div>
       </header>
 
