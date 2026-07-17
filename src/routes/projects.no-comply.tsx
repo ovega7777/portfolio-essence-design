@@ -982,52 +982,54 @@ function NoComply() {
 
       <LogoBannerHUD src={noComplyUsaLogoBlack.url} />
 
-      <section className="border-b-4 border-nc-ink px-6 py-20">
+      <section className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-16 flex items-center justify-between">
-            <h2 className="nc-title text-3xl md:text-5xl">The Moodboard</h2>
-            <span className="nc-display text-sm tracking-[0.3em] text-nc-ink">
-              // 06 fragments
+          <div className="mb-16 flex items-end justify-between gap-6 border-b-2 border-black pb-6">
+            <h2 className="nc-display text-5xl leading-none tracking-[0.02em] text-black md:text-7xl">
+              Moodboard
+            </h2>
+            <span className="nc-display text-xs tracking-[0.3em] text-black sm:text-sm">
+              06 Fragments / Reference
             </span>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-3 md:gap-12">
+          <div className="grid grid-cols-2 gap-px bg-black md:grid-cols-3">
             {[
-              { tilt: "nc-tilt-l", label: "Cut" },
-              { tilt: "nc-tilt-r", label: "Paste" },
-              { tilt: "nc-tilt-hl", label: "Xerox" },
-              { tilt: "nc-tilt-r", label: "Tape" },
-              { tilt: "nc-tilt-hr", label: "Riot" },
-              { tilt: "nc-tilt-l", label: "Repeat" },
-            ].map((t, i) => (
+              "Cut",
+              "Paste",
+              "Xerox",
+              "Tape",
+              "Riot",
+              "Repeat",
+            ].map((label, i) => (
               <div
-                key={i}
-                className={`nc-tile aspect-square ${t.tilt} ${
-                  i % 3 === 1 ? "nc-tape" : ""
-                }`}
+                key={label}
+                className="relative flex aspect-square flex-col justify-between bg-black p-6 text-white"
               >
-                <div className="flex h-full items-end justify-start bg-nc-ink p-4">
-                  <span className="nc-display text-2xl text-nc-cream">
-                    {String(i + 1).padStart(2, "0")} / {t.label}
-                  </span>
-                </div>
+                <span className="nc-display text-xs tracking-[0.3em] text-white/60">
+                  Fragment {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="nc-display text-3xl tracking-[0.05em] text-white md:text-5xl">
+                  {label}
+                </span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-b-4 border-nc-ink bg-nc-ink px-6 py-24 text-nc-cream">
+      <section className="border-b-2 border-black bg-black px-6 py-24 text-white md:py-32">
         <div className="mx-auto max-w-4xl">
-          <p className="nc-display mb-6 text-sm tracking-[0.3em] text-nc-red">
-            // Manifesto
+          <p className="nc-display mb-8 text-xs tracking-[0.4em] text-white">
+            Manifesto
           </p>
-          <p className="nc-display text-4xl leading-tight md:text-6xl">
+          <p className="nc-display text-4xl leading-[1.05] tracking-[0.02em] md:text-6xl">
             Compliance is optional.
             <br />
             Craft is not.
           </p>
-          <p className="mt-8 font-punk-body text-lg uppercase leading-relaxed tracking-wide">
+          <div className="mt-10 h-px w-24 bg-white" />
+          <p className="mt-10 font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:text-lg">
             Every garment starts as a pattern. Every pattern starts as a
             refusal — to smooth the edges, to trend-chase, to make it easy.
             No Comply is what happens when a designer&apos;s hand meets an
