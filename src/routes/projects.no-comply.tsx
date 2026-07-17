@@ -98,7 +98,7 @@ import modelFlagHoodieM2 from "../assets/militia-models/model-flag-hoodie-m2.png
 import modelShearlingBomberBlackM2 from "../assets/militia-models/model-shearling-bomber-black-m2.png.asset.json";
 import modelSergeantShirtBlackM2 from "../assets/militia-models/model-sergeant-shirt-black-m2.png.asset.json";
 import modelKnitHoodieOliveDuffelW from "../assets/militia-models/model-knit-hoodie-olive-duffel-w.png.asset.json";
-import noComplyUsaLogo from "../assets/no-comply-usa-logo-cropped.png.asset.json";
+import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black.png.asset.json";
 import modelCroppedJacketWideCargoW from "../assets/militia-models/model-cropped-jacket-wide-cargo-w.png.asset.json";
 import modelCroppedJacketUtilityBagW from "../assets/militia-models/model-cropped-jacket-utility-bag-w.png.asset.json";
 import modelZipKnitHoodieRedM from "../assets/militia-models/model-zip-knit-hoodie-red-m.png.asset.json";
@@ -980,12 +980,12 @@ function NoComply() {
         <div className="h-0.5 w-full bg-white" />
       </nav>
 
-      <header className="relative overflow-hidden border-b-4 border-nc-ink bg-white px-4 py-3 md:px-6 md:py-5">
+      <header className="relative overflow-hidden border-b-4 border-nc-ink bg-black px-4 py-3 md:px-6 md:py-5">
         <div className="flex h-10 w-full items-center justify-center md:h-14">
           <img
-            src={noComplyUsaLogo.url}
+            src={noComplyUsaLogoBlack.url}
             alt="NO COMPLY USA"
-            className="h-full w-full object-contain object-center invert"
+            className="h-full w-full object-contain object-center"
           />
         </div>
       </header>
