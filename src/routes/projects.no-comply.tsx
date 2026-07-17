@@ -794,13 +794,13 @@ function ProductCard({
         )}
       </div>
       <figcaption className="mt-3 flex flex-col gap-1 sm:mt-4">
-        <span className="nc-display text-[10px] tracking-[0.3em] text-nc-ink/60">
+        <span className="nc-display text-[10px] tracking-[0.3em] text-black/60">
           No Comply · {p.code}
         </span>
-        <p className="text-sm leading-snug text-nc-ink sm:text-base">
+        <p className="nc-display text-sm leading-snug tracking-[0.15em] text-black sm:text-base">
           {p.name}
         </p>
-        <p className="text-xs uppercase tracking-wide text-nc-ink/60">
+        <p className="text-xs uppercase tracking-[0.2em] text-black/60">
           {p.type}
         </p>
       </figcaption>
