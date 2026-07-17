@@ -668,13 +668,13 @@ export const Route = createFileRoute("/projects/no-comply")({
   validateSearch: zodValidator(militiaSearchSchema),
   head: () => ({
     meta: [
-      { title: "NO COMPLY — Nicholas Curzon" },
+      { title: "NO COMPLY USA — Nicholas Curzon" },
       {
         name: "description",
         content:
-          "NO COMPLY: a raw brutalist visual system and moodboard for a technical apparel concept by Nicholas Curzon.",
+          "NO COMPLY USA: a raw brutalist visual system and moodboard for a technical apparel concept by Nicholas Curzon.",
       },
-      { property: "og:title", content: "NO COMPLY — Nicholas Curzon" },
+      { property: "og:title", content: "NO COMPLY USA — Nicholas Curzon" },
       {
         property: "og:description",
         content:
@@ -971,10 +971,10 @@ function NoComply() {
             to="/"
             className="nc-display text-xl tracking-widest text-nc-cream hover:text-nc-red"
           >
-            ← N. Curzon
+            ← Nicholas Curzon
           </Link>
           <span className="nc-display text-sm tracking-[0.3em] text-nc-red">
-            No Comply / Case Study
+            NO COMPLY USA / Case Study
           </span>
         </div>
         <div
