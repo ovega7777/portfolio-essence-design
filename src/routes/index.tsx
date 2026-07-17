@@ -32,9 +32,9 @@ function Home() {
                 <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
                   Education
                 </p>
-                <p className="font-semibold">FIT / University of Miami</p>
+                <p className="font-semibold">Fashion Institute of Technology</p>
                 <p className="text-muted-foreground">
-                  M.S. International Business
+                  Bachelor of Science in Fashion Business Management
                 </p>
               </div>
               <div>
