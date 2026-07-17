@@ -1154,9 +1154,9 @@ function NoComply() {
           </div>
 
           {displayed.length === 0 ? (
-            <div className="border-2 border-dashed border-nc-ink/40 p-10 text-center">
-              <p className="nc-display text-xl text-nc-ink">No matches.</p>
-              <p className="nc-display mt-2 text-xs tracking-[0.25em] text-nc-ink/70">
+            <div className="border-2 border-dashed border-black/40 p-10 text-center">
+              <p className="nc-display text-xl text-black">No matches.</p>
+              <p className="nc-display mt-2 text-xs tracking-[0.25em] text-black/70">
                 Try a different search or category.
               </p>
               {(search.q || activeCategory !== "All") && (
@@ -1166,7 +1166,7 @@ function NoComply() {
                     setQuery("");
                     setCategory("All");
                   }}
-                  className="nc-display mt-6 border-2 border-nc-ink bg-nc-cream px-3 py-1.5 text-xs tracking-[0.25em] text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                  className="nc-display mt-6 border-2 border-black bg-white px-3 py-1.5 text-xs tracking-[0.25em] text-black hover:bg-black hover:text-white"
                 >
                   Reset filters
                 </button>
@@ -1177,11 +1177,11 @@ function NoComply() {
               if (items.length === 0) return null;
               return (
                 <div key={cat} className="mb-16 last:mb-0 sm:mb-20">
-                  <div className="mb-6 flex items-end justify-between gap-3 border-b-2 border-nc-ink pb-3 sm:mb-8">
-                    <h3 className="nc-display text-2xl leading-none text-nc-ink sm:text-3xl md:text-4xl">
+                  <div className="mb-6 flex items-end justify-between gap-3 border-b-2 border-black pb-3 sm:mb-8">
+                    <h3 className="nc-display text-2xl leading-none text-black sm:text-3xl md:text-4xl">
                       {cat}
                     </h3>
-                    <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
+                    <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-black/70 sm:text-xs">
                       {String(items.length).padStart(2, "0")} pieces
                     </span>
                   </div>
@@ -1201,7 +1201,7 @@ function NoComply() {
         </div>
       </section>
 
-      <section className="border-b-4 border-nc-ink px-6 py-16">
+      <section className="border-b-4 border-black px-6 py-16">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
           {[
             { k: "Role", v: "Creative Direction, Systems" },
@@ -1210,12 +1210,12 @@ function NoComply() {
           ].map((f) => (
             <div
               key={f.k}
-              className="border-4 border-nc-ink bg-nc-cream p-6"
+              className="border-4 border-black bg-white p-6"
             >
               <p className="nc-display text-sm tracking-[0.3em] text-nc-red">
                 {f.k}
               </p>
-              <p className="nc-display mt-2 text-2xl text-nc-ink">{f.v}</p>
+              <p className="nc-display mt-2 text-2xl text-black">{f.v}</p>
             </div>
           ))}
         </div>
@@ -1229,14 +1229,14 @@ function NoComply() {
             </p>
             <Link
               to="/projects/lucky-day-co"
-              className="nc-display text-4xl text-nc-ink hover:text-nc-red"
+              className="nc-display text-4xl text-black hover:text-nc-red"
             >
               Lucky Day Co →
             </Link>
           </div>
           <Link
             to="/projects"
-            className="nc-display border-b-2 border-nc-ink pb-1 text-sm tracking-[0.3em] text-nc-ink hover:text-nc-red hover:border-nc-red"
+            className="nc-display border-b-2 border-black pb-1 text-sm tracking-[0.3em] text-black hover:text-nc-red hover:border-nc-red"
           >
             ← All Projects
           </Link>
@@ -1248,7 +1248,7 @@ function NoComply() {
           role="dialog"
           aria-modal="true"
           aria-label={`${active.name} — lookbook`}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-nc-ink/95 p-4 md:p-10"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-10"
           onClick={close}
         >
           <button
@@ -1258,7 +1258,7 @@ function NoComply() {
               close();
             }}
             aria-label="Close"
-            className="nc-display absolute right-4 top-4 z-10 border-2 border-nc-cream bg-nc-ink px-3 py-1 text-sm tracking-[0.3em] text-nc-cream hover:bg-nc-red hover:border-nc-red md:right-8 md:top-8"
+            className="nc-display absolute right-4 top-4 z-10 border-2 border-white bg-black px-3 py-1 text-sm tracking-[0.3em] text-white hover:bg-nc-red hover:border-nc-red md:right-8 md:top-8"
           >
             Close ✕
           </button>
@@ -1272,7 +1272,7 @@ function NoComply() {
                   prev();
                 }}
                 aria-label="Previous image"
-                className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:left-6"
+                className="nc-display absolute left-2 top-1/2 z-10 -translate-y-1/2 border-2 border-white bg-black px-3 py-2 text-lg text-white hover:bg-nc-red hover:border-nc-red md:left-6"
               >
                 ←
               </button>
@@ -1284,7 +1284,7 @@ function NoComply() {
                   next();
                 }}
                 aria-label="Next image"
-                className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-nc-cream bg-nc-ink px-3 py-2 text-lg text-nc-cream hover:bg-nc-red hover:border-nc-red md:right-6"
+                className="nc-display absolute right-2 top-1/2 z-10 -translate-y-1/2 border-2 border-white bg-black px-3 py-2 text-lg text-white hover:bg-nc-red hover:border-nc-red md:right-6"
               >
                 →
               </button>
@@ -1302,10 +1302,10 @@ function NoComply() {
               onError={(e) => (e.currentTarget.style.visibility = "hidden")}
               className="max-h-[75vh] w-auto max-w-full object-contain"
             />
-            <figcaption className="mt-4 flex w-full items-baseline justify-between gap-4 border-t-2 border-nc-cream pt-3 text-nc-cream">
+            <figcaption className="mt-4 flex w-full items-baseline justify-between gap-4 border-t-2 border-white pt-3 text-white">
               <div>
                 <p className="nc-display text-xl leading-tight">{active.name}</p>
-                <p className="nc-display text-xs tracking-[0.25em] text-nc-cream/70">
+                <p className="nc-display text-xs tracking-[0.25em] text-white/70">
                   {activeImage.label} · {active.type}
                 </p>
               </div>
@@ -1329,7 +1329,7 @@ function NoComply() {
                     className={`relative h-16 w-16 overflow-hidden border-2 bg-white transition-colors sm:h-20 sm:w-20 ${
                       i === lightbox.index
                         ? "border-nc-red"
-                        : "border-nc-cream/40 hover:border-nc-cream"
+                        : "border-white/40 hover:border-white"
                     }`}
                   >
                     <img
@@ -1406,7 +1406,7 @@ function LogoBannerHUD({ src }: { src: string }) {
   return (
     <>
       <header
-        className="relative overflow-hidden border-b-4 border-nc-ink bg-black"
+        className="relative overflow-hidden border-b-4 border-black bg-black"
         style={{ height: `${settings.height}px` }}
       >
         <div className="flex h-full w-full items-center justify-center">
