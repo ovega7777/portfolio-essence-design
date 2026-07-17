@@ -1201,7 +1201,7 @@ function NoComply() {
         </div>
       </section>
 
-      <section className="border-b-4 border-black px-6 py-16">
+      <section className="border-b-2 border-black px-6 py-16">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
           {[
             { k: "Role", v: "Creative Direction, Systems" },
@@ -1406,7 +1406,7 @@ function LogoBannerHUD({ src }: { src: string }) {
   return (
     <>
       <header
-        className="relative overflow-hidden border-b-4 border-black bg-black"
+        className="relative overflow-hidden border-b-2 border-black bg-black"
         style={{ height: `${settings.height}px` }}
       >
         <div className="flex h-full w-full items-center justify-center">
