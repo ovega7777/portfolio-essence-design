@@ -11,7 +11,7 @@ function Home() {
   return (
     <SiteFrame>
       {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pt-16 pb-32 md:pt-24 md:pb-40">
+      <section className="mx-auto max-w-6xl px-6 pt-6 pb-32 md:pt-10 md:pb-40">
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <p className="eyebrow mb-8">Portfolio — 2026</p>
