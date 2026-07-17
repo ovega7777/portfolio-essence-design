@@ -977,13 +977,7 @@ function NoComply() {
             NO COMPLY USA / CASE STUDY
           </span>
         </div>
-        <div
-          className="h-2"
-          style={{
-            background:
-              "repeating-linear-gradient(90deg, var(--nc-red) 0 20px, var(--nc-ink) 20px 40px)",
-          }}
-        />
+        <div className="h-px w-full bg-white" />
       </nav>
 
       <header className="relative overflow-hidden border-b-4 border-nc-ink bg-white px-4 py-3 md:px-6 md:py-5">
