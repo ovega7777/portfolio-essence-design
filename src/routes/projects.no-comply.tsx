@@ -787,7 +787,7 @@ function ProductCard({
               setBaseFailed(false);
             }}
             aria-label={`Cycle to next image (${cycleIdx + 1} of ${totalCycle})`}
-            className="nc-display absolute bottom-2 right-2 z-10 border-2 border-nc-ink bg-white/95 px-2 py-1 text-[10px] tracking-[0.2em] text-nc-ink hover:bg-nc-red hover:text-nc-cream md:hidden"
+            className="nc-display absolute bottom-2 right-2 z-10 border-2 border-black bg-white px-2 py-1 text-[10px] tracking-[0.2em] text-black transition-colors duration-200 hover:bg-black hover:text-white md:hidden"
           >
             {cycleIdx + 1}/{totalCycle} ↻
           </button>
