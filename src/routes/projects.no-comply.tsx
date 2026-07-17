@@ -986,12 +986,12 @@ function NoComply() {
         />
       </nav>
 
-      <header className="relative overflow-hidden border-b-4 border-nc-ink bg-white px-6 py-16 md:py-24">
-        <div className="mx-auto flex max-w-7xl items-center justify-center">
+      <header className="relative overflow-hidden border-b-4 border-nc-ink bg-white px-6 py-3 md:py-5">
+        <div className="mx-auto flex h-12 max-w-7xl items-center justify-center overflow-hidden md:h-16">
           <img
             src={noComplyUsaLogo.url}
             alt="NO COMPLY USA"
-            className="w-full max-w-4xl invert"
+            className="h-full w-full object-cover object-center invert"
           />
         </div>
       </header>
