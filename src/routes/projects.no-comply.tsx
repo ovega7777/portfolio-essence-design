@@ -709,7 +709,7 @@ function ProductCard({
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
         {/* Skeleton until first paint completes; hides SSR flash of stale/missing */}
         {!baseLoaded && !baseFailed && (
-          <div className="absolute inset-0 animate-pulse bg-nc-ink/5" aria-hidden />
+          <div className="absolute inset-0 animate-pulse bg-black/5" aria-hidden />
         )}
         <button
           type="button"
