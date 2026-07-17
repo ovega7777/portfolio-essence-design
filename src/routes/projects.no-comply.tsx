@@ -1012,14 +1012,14 @@ function NoComply() {
         </div>
       </header>
 
-      <section className="border-b-4 border-nc-ink bg-nc-ink px-6 py-24 md:py-32">
+      <section className="border-b-4 border-nc-ink bg-white px-6 py-24 md:py-32">
         <div className="mx-auto max-w-6xl">
           <img
             src={hero.url}
             alt="No Comply USA"
             width={1512}
             height={1008}
-            className="mx-auto block w-full max-w-4xl"
+            className="mx-auto block w-full max-w-4xl invert"
           />
         </div>
       </section>
