@@ -36,6 +36,10 @@ function Home() {
                 <p className="text-muted-foreground">
                   Bachelor of Science in Fashion Business Management
                 </p>
+                <p className="mt-3 font-semibold">University of Miami Business School</p>
+                <p className="text-muted-foreground">
+                  Master of Science in International Business
+                </p>
               </div>
               <div>
                 <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
