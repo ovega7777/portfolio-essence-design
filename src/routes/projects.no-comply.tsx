@@ -1036,26 +1036,33 @@ function NoComply() {
         </div>
       </section>
 
-      <section className="border-b-4 border-nc-ink px-6 py-24">
+      <section className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-16 flex flex-wrap items-end justify-between gap-4">
-            <div>
-              <p className="nc-display mb-3 inline-block bg-nc-red px-3 py-1 text-sm text-nc-cream tracking-[0.3em]">
-                Drop 01
+          <div className="mb-20 grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+            <div className="min-w-0">
+              <p className="nc-display mb-6 inline-block bg-black px-3 py-1 text-xs tracking-[0.3em] text-white">
+                Collection #1
               </p>
-              <h2 className="nc-display text-5xl leading-[0.9] text-nc-ink md:text-7xl">
-                No Comply <span className="nc-scribble-underline">Militia</span>
+              <h2 className="nc-display text-5xl leading-[0.9] text-black md:text-8xl">
+                No Comply{" "}
+                <span className="relative inline-block">
+                  Command
+                  <span
+                    aria-hidden
+                    className="absolute -bottom-2 left-0 right-0 h-[3px] bg-black"
+                  />
+                </span>
               </h2>
             </div>
-            <span className="nc-display text-xs tracking-[0.3em] text-nc-ink sm:text-sm">
-              // {militia.length} pieces / Fall 2025
+            <span className="nc-display shrink-0 text-xs tracking-[0.3em] text-black sm:text-sm">
+              // {militia.length} Pieces / Collection 01
             </span>
           </div>
 
-          <div className="mb-10 border-y-2 border-nc-ink">
-            <div className="-mx-6 overflow-x-auto px-6 py-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              <div className="flex min-w-max items-center gap-2 sm:flex-wrap sm:gap-3">
-                <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
+          <div className="mb-10 border-y-2 border-black">
+            <div className="-mx-6 overflow-x-auto px-6 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:-mx-12 md:px-12">
+              <div className="flex min-w-max items-center gap-3 sm:flex-wrap sm:gap-3">
+                <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-black sm:text-xs">
                   Shop by
                 </span>
                 {(["All", ...CATEGORIES] as const).map((cat) => {
@@ -1069,10 +1076,10 @@ function NoComply() {
                       key={cat}
                       type="button"
                       onClick={() => setCategory(cat)}
-                      className={`nc-display shrink-0 whitespace-nowrap border-2 px-3 py-1.5 text-[10px] tracking-[0.2em] transition-colors sm:text-xs sm:tracking-[0.25em] ${
+                      className={`nc-display shrink-0 whitespace-nowrap border-2 border-black px-[22px] py-[14px] text-[11px] tracking-[0.25em] transition-colors duration-200 ${
                         isActive
-                          ? "border-nc-red bg-nc-red text-nc-cream"
-                          : "border-nc-ink bg-nc-cream text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                          ? "bg-black text-white"
+                          : "bg-white text-black hover:bg-black hover:text-white"
                       }`}
                       aria-pressed={isActive}
                     >
@@ -1083,25 +1090,33 @@ function NoComply() {
               </div>
             </div>
 
-            <div className="grid gap-3 border-t-2 border-nc-ink px-0 py-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
-              <label className="flex min-w-0 items-center gap-2 border-2 border-nc-ink bg-nc-cream px-3 py-2">
-                <span aria-hidden className="nc-display text-sm text-nc-ink/70">
-                  ⌕
-                </span>
+            <div className="grid gap-3 border-t-2 border-black px-0 py-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
+              <label className="flex min-w-0 items-center gap-3 border-2 border-black bg-white px-4 py-3">
+                <svg
+                  aria-hidden
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="h-4 w-4 shrink-0 text-black"
+                >
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m20 20-3.5-3.5" strokeLinecap="square" />
+                </svg>
                 <input
                   type="search"
                   value={search.q}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Search this collection…"
-                  aria-label="Search Militia items"
-                  className="nc-display w-full min-w-0 bg-transparent text-sm tracking-[0.15em] text-nc-ink placeholder:text-nc-ink/50 focus:outline-none"
+                  placeholder="SEARCH THIS COLLECTION..."
+                  aria-label="Search collection"
+                  className="nc-display w-full min-w-0 bg-transparent text-sm tracking-[0.2em] text-black placeholder:text-black/60 focus:outline-none"
                 />
                 {search.q && (
                   <button
                     type="button"
                     onClick={() => setQuery("")}
                     aria-label="Clear search"
-                    className="nc-display shrink-0 text-xs tracking-[0.2em] text-nc-red hover:underline"
+                    className="nc-display shrink-0 border-2 border-black bg-white px-2 py-1 text-[10px] tracking-[0.25em] text-black transition-colors duration-200 hover:bg-black hover:text-white"
                   >
                     Clear
                   </button>
@@ -1109,8 +1124,8 @@ function NoComply() {
               </label>
 
               <div className="-mx-6 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:overflow-visible sm:px-0">
-                <div className="flex min-w-max items-center gap-2 sm:min-w-0 sm:flex-wrap">
-                  <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-nc-ink/70 sm:text-xs">
+                <div className="flex min-w-max items-center gap-3 sm:min-w-0 sm:flex-wrap">
+                  <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-black sm:text-xs">
                     Sort
                   </span>
                   {SORTS.map((s) => {
@@ -1120,10 +1135,10 @@ function NoComply() {
                         key={s}
                         type="button"
                         onClick={() => setSort(s)}
-                        className={`nc-display shrink-0 whitespace-nowrap border-2 px-3 py-1.5 text-[10px] tracking-[0.2em] transition-colors sm:text-xs sm:tracking-[0.25em] ${
+                        className={`nc-display shrink-0 whitespace-nowrap border-2 border-black px-[22px] py-[14px] text-[11px] tracking-[0.25em] transition-colors duration-200 ${
                           isActive
-                            ? "border-nc-ink bg-nc-ink text-nc-cream"
-                            : "border-nc-ink bg-nc-cream text-nc-ink hover:bg-nc-ink hover:text-nc-cream"
+                            ? "bg-black text-white"
+                            : "bg-white text-black hover:bg-black hover:text-white"
                         }`}
                         aria-pressed={isActive}
                       >
