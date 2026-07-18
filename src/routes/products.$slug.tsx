@@ -52,9 +52,10 @@ function ProductPage() {
   const stack: ProductImage[] = [];
   stack.push(variant.images.frontProduct);
   if (variant.images.backProduct) stack.push(variant.images.backProduct);
+  if (variant.images.details) stack.push(...variant.images.details);
   if (variant.images.modelFront) stack.push(variant.images.modelFront);
   if (variant.images.modelBack) stack.push(variant.images.modelBack);
-  if (variant.images.details) stack.push(...variant.images.details);
+  if (variant.images.extraShots) stack.push(...variant.images.extraShots);
 
   const ordered = orderedImages(stack);
 
