@@ -1,74 +1,132 @@
-## Goal
+# Product System Rebuild
 
-Redesign the entire `/projects/no-comply` page in a premium monochrome (pure black + white) editorial aesthetic — inspired by Acne Studios, Represent, Fear of God, Aime Leon Dore. Remove every red/cream punk-zine element. Keep the sticky nav + logo banner + collection filter section (already partially redesigned) and extend the same visual language to every other section on the page.
+Rebuild the No Comply product system around a clean data model, dedicated image roles, variants, and manual ordering — keeping the current monochrome design.
 
-## Sections to redesign
+## Scope
 
-**1. Sticky top nav**
-- Keep black background, white text, white hairline stripe (already good).
-- Ensure hover states go to `text-white/60` instead of red.
+- Wipe all current Militia products (data only). Keep the collection page, product routes, and layout intact.
+- Introduce Collections as first-class entities (Collection #1, Collection #2, …).
+- New product shape with dedicated image fields, sizes, color(s), variants, featured flag, and manual `displayOrder`.
+- New collection grid behavior: Front → Model Front on hover, 250ms fade, no carousel/zoom/rotation.
+- New product detail page: vertical editorial stack in fixed image order.
+- New lightbox: white bg, black close, arrow keys, ESC, click-outside; ordered Front → Back → Model Front → Model Back → Details.
+- Variants live inside one product (e.g. COMMAND Hoodie: Black / White / Olive).
 
-**2. Logo banner** — no change (already black + white).
+## Data model
 
-**3. Moodboard section** (currently zine-style with tilted tiles, tape, red shadows)
-- Replace with a clean editorial grid: 3-column asymmetric grid of numbered black-and-white tiles.
-- Remove all `nc-tilt-*`, `nc-tape`, red shadow effects.
-- White background, thin 2px black dividers between rows.
-- Heading "MOODBOARD" as bold condensed uppercase (Bebas Neue) with black underline, not the red slanted `nc-title` chip.
-- Numbered captions in small tracked uppercase black text.
+Storage: local TypeScript data modules (no backend). This keeps "adding a product = edit one file, no code changes to components" true.
 
-**4. Manifesto section** (currently black bg with red eyebrow)
-- Keep black background / white text (high contrast is on-brand).
-- Replace red `// Manifesto` eyebrow with white tracked uppercase eyebrow.
-- Body copy in condensed uppercase; no red anywhere.
+```ts
+// src/data/collections.ts
+export type Collection = {
+  id: string;          // "collection-1"
+  number: number;      // 1
+  title: string;       // "COMMAND"
+  slug: string;        // "command"
+  description?: string;
+};
 
-**5. Collection header + filters + search + sort** — already monochrome; no changes.
+// src/data/products.ts
+export type ProductImage = { url: string; alt: string };
+export type Variant = {
+  id: string;
+  color: string;              // "Black"
+  swatch?: string;            // hex, optional
+  images: {
+    frontProduct: ProductImage;    // required
+    backProduct?: ProductImage;
+    modelFront?: ProductImage;
+    modelBack?: ProductImage;
+    details?: ProductImage[];
+  };
+  sku: string;
+  sizes: string[];            // ["S","M","L","XL"]
+};
+export type Product = {
+  id: string;
+  name: string;
+  collectionId: string;
+  category: string;           // "Outerwear" | "Tops" | ...
+  price: number;              // USD cents or dollars — dollars for simplicity
+  description: string;
+  featured: boolean;
+  displayOrder: number;       // manual sort key, ascending
+  variants: Variant[];        // at least 1
+};
+```
 
-**6. Empty state + category group headers**
-- Swap `nc-ink` / `nc-cream` tokens for pure `black` / `white`.
-- Group headings: bold condensed uppercase, 2px black bottom border, black count text (not 70% opacity red-ish).
+Rules:
+- Sort products by `displayOrder` ascending. Never by date.
+- Featured products can be surfaced separately but still respect `displayOrder`.
+- Default variant = `variants[0]`.
 
-**7. Product card overlays (`CategoryGrid` internals, lines ~700–810)**
-- "Look N" badge: black border, white bg, black text; hover invert to black bg / white text (no red).
-- Focus ring: black instead of `nc-red`.
-- Mobile cycle button: black border, white bg, hover invert.
-- Skeleton loader: `bg-black/5` instead of `bg-nc-ink/5`.
-- SKU / name / price text: pure black, no opacity tints below 60%.
+## Files touched
 
-**8. Meta info tiles** (Role / Year / Format)
-- White background with 2px black border (not 4px `nc-cream` filled boxes).
-- Label in small tracked uppercase black (not red).
-- Value in bold condensed uppercase black.
+- `src/data/collections.ts` — new
+- `src/data/products.ts` — new, exports `products: Product[]` (empty array to start; ready for future entries)
+- `src/data/militia.ts` (or equivalent existing data) — delete/replace usage
+- `src/routes/projects.no-comply.tsx` — rewrite grid + moodboard sections to read from new data
+  - Card: default `frontProduct`, hover `modelFront` with 250ms cross-fade (CSS opacity only)
+  - Category filter reads unique categories from products
+  - Empty state shown when no products exist (current situation after wipe)
+- `src/routes/projects.$productSlug.tsx` (new) OR reuse existing product route — vertical stack layout:
+  1. Front Product
+  2. Back Product
+  3. Model Front
+  4. Model Back
+  5. Details (in order)
+  - Variant selector (color chips) swaps the image set
+  - Size selector, price, description, SKU
+- `src/components/no-comply/product-card.tsx` — extracted card with fade-only hover
+- `src/components/no-comply/lightbox.tsx` — new white lightbox
+  - Props: `images: ProductImage[]`, `startIndex`, `onClose`
+  - White bg, black close (top-right), black arrow buttons L/R, keyboard: ← → ESC, click backdrop to close, focus trap
 
-**9. Footer (Next Up / All Projects)**
-- Remove all red text; use black.
-- Underline hover: black → black bg / white text pill style, or simple black underline stays.
-- "Next Up" eyebrow: black tracked uppercase.
+## Collection grid interaction
 
-**10. Lightbox modal**
-- Background: `bg-black/95` (already close, swap `nc-ink` → `black`).
-- Close / prev / next buttons: white border, black bg, hover invert to white bg / black text (drop red hover).
-- Footer caption: white text, price in white (not red).
-- Thumbnail active state: white border (not red); inactive: `border-white/40`.
+```text
+[ Front Product ] --hover/focus--> [ Model Front ]
+   opacity 1                          opacity 1
+   (250ms ease)                       (crossfade)
+```
 
-## Global rules applied everywhere
+- Both images stacked absolutely; toggle opacity via `group-hover` + `group-focus-within`.
+- No transform, no scale, no auto-cycle, no multi-image carousel.
+- Touch: tap toggles hover state (single tap swaps, second tap opens product page) — simple `useState` on card.
 
-- Replace every `nc-red`, `nc-cream`, `nc-ink` utility on this page with `black` / `white`.
-- No shadows, no gradients, no rounded corners (all `rounded-*` removed if any), no rotation/tilt.
-- All headings use `nc-display` (Bebas Neue) uppercase with generous letter-spacing.
-- Hover on every interactive element: 200ms transition to black bg / white text (or inverse in dark sections).
-- Dividers: 2px solid black.
-- Brand strings confirmed: "COLLECTION #1", "NO COMPLY COMMAND", "NO COMPLY USA".
+## Lightbox behavior
 
-## Out of scope
+- Portal to `document.body`, `role="dialog"`, `aria-modal`.
+- Locks body scroll while open.
+- Image order = product page order.
+- Prev/next wrap around.
+- ESC closes; click on backdrop (not image) closes.
+- Black 1px border on buttons, no rounding, hover invert (already the site style).
 
-- No changes to `src/styles.css` `.no-comply` tokens (leave defined; simply stop referencing red/cream on this page). Other routes are untouched.
-- No data / SKU / lookbook logic changes.
-- No changes to other routes or shared components.
+## Admin ordering (drag-and-drop)
 
-## Technical notes
+Two options; pick one:
 
-- Single file edit: `src/routes/projects.no-comply.tsx`.
-- `CategoryGrid` + card render helpers (~lines 700–810) get color-token swaps only; structure unchanged.
-- Moodboard tile array simplified (drop `tilt` / tape flags).
-- Verify build after edits.
+- **A. In-file ordering only.** `displayOrder` is a number in `products.ts`. Reordering = renumbering in the file. Simplest, no UI.
+- **B. Local drag-and-drop admin panel** at `/projects/no-comply/admin` (dev-only route) using `@dnd-kit/core` + `@dnd-kit/sortable`. Persists new order to `localStorage`, exports a JSON snippet the developer pastes back into `products.ts`.
+
+Recommend **B** so ordering is visual but source of truth stays in the file (matches "no code changes required to add a product" — reordering emits the values to paste). Confirm before I build the admin panel; without confirmation I'll ship **A** and we can add the panel later.
+
+## What gets removed
+
+- Current Militia product array + all references.
+- Existing `CategoryGrid` internals that assume `lookbook[]` (front/back paired via naming). Replaced by per-product image roles.
+- Hover carousel / cycle / "Look N" badge logic.
+- Auto-generated back-view merging code.
+
+## What stays
+
+- Page chrome: sticky nav, black NO COMPLY USA banner, moodboard, manifesto, collection header, filters, search, sort UI (sort becomes "Featured / Name A–Z / Price" — no date).
+- Monochrome design tokens and 2px borders.
+- Lookbook route/product detail route file paths (rewritten inside).
+
+## Open questions
+
+1. Drag-and-drop admin panel now (option B) or file-based ordering only (option A)?
+2. Keep the moodboard section as-is (empty visuals) or hide it until content exists?
+3. Any products you want seeded now, or ship with an empty collection and add later?
