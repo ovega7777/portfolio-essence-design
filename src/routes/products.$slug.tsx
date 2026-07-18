@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState } from "react";
+import type { ProductVariant } from "@/data/products";
 import { getProductBySlug, type ProductImage } from "@/data/products";
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
@@ -45,8 +46,8 @@ function ProductPage() {
   const [size, setSize] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const variant =
-    product.variants.find((v) => v.id === variantId) ?? product.variants[0];
+  const variant: ProductVariant =
+    product.variants.find((v: ProductVariant) => v.id === variantId) ?? product.variants[0];
 
   const stack: ProductImage[] = [];
   stack.push(variant.images.frontProduct);
@@ -116,7 +117,7 @@ function ProductPage() {
                 Color — {variant.color}
               </p>
               <div className="flex flex-wrap gap-2">
-                {product.variants.map((v) => (
+                {product.variants.map((v: ProductVariant) => (
                   <button
                     key={v.id}
                     type="button"
@@ -141,7 +142,7 @@ function ProductPage() {
                 Size
               </p>
               <div className="flex flex-wrap gap-2">
-                {variant.sizes.map((s) => (
+                {variant.sizes.map((s: string) => (
                   <button
                     key={s}
                     type="button"
