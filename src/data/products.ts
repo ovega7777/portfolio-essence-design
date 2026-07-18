@@ -14,6 +14,7 @@ export type ProductVariant = {
     modelFront?: ProductImage;
     modelBack?: ProductImage;
     details?: ProductImage[];
+    extraShots?: ProductImage[];
   };
 };
 
