@@ -40,7 +40,48 @@ export type Product = {
  *
  * Sorting: always by `displayOrder` ascending. Never by date.
  */
-export const products: Product[] = [];
+import frontImg from "@/assets/products/oxblood-hoodie/front.png.asset.json";
+import backImg from "@/assets/products/oxblood-hoodie/back.png.asset.json";
+import detailFrontImg from "@/assets/products/oxblood-hoodie/detail-front.png.asset.json";
+import model1Img from "@/assets/products/oxblood-hoodie/model-1.png.asset.json";
+import model2Img from "@/assets/products/oxblood-hoodie/model-2.png.asset.json";
+import model3Img from "@/assets/products/oxblood-hoodie/model-3.png.asset.json";
+
+export const products: Product[] = [
+  {
+    id: "command-zip-knit-hoodie-oxblood",
+    slug: "command-zip-knit-hoodie-oxblood",
+    name: "COMMAND ZIP KNIT HOODIE",
+    collectionId: "collection-1",
+    category: "Knitwear",
+    price: 480,
+    description:
+      "Heavyweight ribbed knit zip hoodie in oxblood. Cropped silhouette with wide sleeves, drawcord hood, and elbow patches. Finished with 'C' chest patch and 'NO COMPLY / SORRY ABOUT THAT' sleeve patches.",
+    featured: true,
+    displayOrder: 1,
+    variants: [
+      {
+        id: "oxblood",
+        color: "Oxblood",
+        swatch: "#6b1220",
+        sku: "NC-CMD-KNIT-OXB",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: frontImg.url, alt: "Oxblood zip knit hoodie — front" },
+          backProduct: { url: backImg.url, alt: "Oxblood zip knit hoodie — back with elbow patches" },
+          details: [
+            { url: detailFrontImg.url, alt: "Front detail — 'C' chest patch and 'NO COMPLY' sleeve patches" },
+          ],
+          modelFront: { url: model1Img.url, alt: "Model wearing oxblood zip knit hoodie — look 1" },
+          modelBack: { url: model2Img.url, alt: "Model wearing oxblood zip knit hoodie — look 2" },
+          extraShots: [
+            { url: model3Img.url, alt: "Model wearing oxblood zip knit hoodie — look 3" },
+          ],
+        },
+      },
+    ],
+  },
+];
 
 export const getProductBySlug = (slug: string) =>
   products.find((p) => p.slug === slug);
