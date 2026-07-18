@@ -82,12 +82,13 @@ function NoComply() {
   const sort = search.sort;
   const query = search.q.trim().toLowerCase();
 
+  type SearchState = z.infer<typeof searchSchema>;
   const setCategory = (cat: string) =>
-    navigate({ to: ".", search: (p) => ({ ...p, cat }) });
+    navigate({ to: ".", search: (p: SearchState) => ({ ...p, cat }) });
   const setSort = (s: Sort) =>
-    navigate({ to: ".", search: (p) => ({ ...p, sort: s }) });
+    navigate({ to: ".", search: (p: SearchState) => ({ ...p, sort: s }) });
   const setQuery = (q: string) =>
-    navigate({ to: ".", search: (p) => ({ ...p, q }), replace: true });
+    navigate({ to: ".", search: (p: SearchState) => ({ ...p, q }), replace: true });
 
   const displayed = useMemo(() => {
     let list = collectionProducts;
