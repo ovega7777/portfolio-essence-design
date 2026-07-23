@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
+
 import { getGroupedVariants, type Product } from "@/data/products";
 
 type Props = { product: Product };
@@ -24,8 +25,31 @@ export function ProductCard({ product }: Props) {
   const front = displayed.frontImage;
   const modelFront = variant.images.modelFront;
 
+  const [showModel, setShowModel] = useState(false);
+  const modelTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const MODEL_HOVER_DELAY_MS = 900;
+
+  const handleCardEnter = () => {
+    if (previewing || !modelFront) return;
+    if (modelTimerRef.current) clearTimeout(modelTimerRef.current);
+    modelTimerRef.current = setTimeout(() => setShowModel(true), MODEL_HOVER_DELAY_MS);
+  };
+  const handleCardLeave = () => {
+    if (modelTimerRef.current) {
+      clearTimeout(modelTimerRef.current);
+      modelTimerRef.current = null;
+    }
+    setShowModel(false);
+  };
+
   return (
-    <div className="group block bg-white text-black">
+    <div
+      className="group block bg-white text-black"
+      onMouseEnter={handleCardEnter}
+      onMouseLeave={handleCardLeave}
+      onFocus={handleCardEnter}
+      onBlur={handleCardLeave}
+    >
       <Link
         to="/products/$slug"
         params={{ slug: displayed.productSlug }}
@@ -39,9 +63,7 @@ export function ProductCard({ product }: Props) {
             alt={front.alt}
             loading="lazy"
             className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
-              previewing
-                ? "opacity-100"
-                : "group-hover:opacity-0 group-focus-within:opacity-0"
+              !previewing && showModel ? "opacity-0" : "opacity-100"
             }`}
           />
           {modelFront && !previewing && (
@@ -51,7 +73,9 @@ export function ProductCard({ product }: Props) {
               alt={modelFront.alt}
               loading="lazy"
               aria-hidden
-              className="absolute inset-0 h-full w-full object-contain p-4 opacity-0 transition-opacity duration-[250ms] ease-in-out group-hover:opacity-100 group-focus-within:opacity-100"
+              className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
+                showModel ? "opacity-100" : "opacity-0"
+              }`}
             />
           )}
         </div>
