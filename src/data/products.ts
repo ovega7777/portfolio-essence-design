@@ -154,6 +154,7 @@ export const products: Product[] = [
       "Heavyweight ribbed knit zip hoodie in olive. Cropped silhouette with wide sleeves, drawcord hood, and elbow patches. Finished with 'USA' chest patch and 'NO COMPLY / SORRY ABOUT THAT' sleeve patches.",
     featured: false,
     displayOrder: 2,
+    swatchGroup: "zip-knit-hoodie",
     variants: [
       {
         id: "olive",
