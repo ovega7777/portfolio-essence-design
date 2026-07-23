@@ -104,7 +104,7 @@ function ProductPage() {
           <h1 className="nc-display text-4xl leading-none text-black md:text-6xl">
             {product.name}
           </h1>
-          <p className="nc-display mt-3 text-sm tracking-[0.2em] text-black">
+          <p className="nc-display mt-3 text-xl tracking-[0.2em] text-black md:text-2xl">
             ${product.price}
           </p>
 
