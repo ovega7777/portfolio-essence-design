@@ -191,5 +191,29 @@ export const getCategories = (collectionId?: string) => {
   return Array.from(new Set(source.map((p) => p.category))).sort();
 };
 
+/**
+ * Returns swatches to render for a product's color selector. When the product
+ * has a `swatchGroup`, this includes variants from every product sharing the
+ * group (deduped by variant id, first occurrence wins). Otherwise it returns
+ * just the product's own variants.
+ */
+export const getGroupedVariants = (product: Product): GroupedVariant[] => {
+  const source = product.swatchGroup
+    ? products
+        .filter((p) => p.swatchGroup === product.swatchGroup)
+        .sort((a, b) => a.displayOrder - b.displayOrder)
+    : [product];
+  const seen = new Set<string>();
+  const out: GroupedVariant[] = [];
+  for (const p of source) {
+    for (const v of p.variants) {
+      if (seen.has(v.id)) continue;
+      seen.add(v.id);
+      out.push({ productSlug: p.slug, variantId: v.id, color: v.color, swatch: v.swatch });
+    }
+  }
+  return out;
+};
+
 // re-export for convenience
 export { collections };
