@@ -208,15 +208,25 @@ function ProductPage() {
           onClose={() => setLightboxIndex(null)}
           name={product.name}
           price={product.price}
-          variants={product.variants.map((v: ProductVariant) => ({
-            id: v.id,
-            color: v.color,
-            swatch: v.swatch,
+          productSlug={product.slug}
+          variants={grouped.map((g) => ({
+            id: g.variantId,
+            color: g.color,
+            swatch: g.swatch,
+            productSlug: g.productSlug,
           }))}
           activeVariantId={variant.id}
           onVariantChange={(id) => {
             setVariantId(id);
             setLightboxIndex(0);
+          }}
+          onNavigateVariant={(slug, id) => {
+            setLightboxIndex(null);
+            navigate({
+              to: "/products/$slug",
+              params: { slug },
+              search: { variant: id },
+            });
           }}
         />
       )}
