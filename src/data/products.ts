@@ -131,6 +131,22 @@ export const products: Product[] = [
           backProduct: { url: blackBack.url, alt: "Black zip knit hoodie — back with elbow patches" },
         },
       },
+      {
+        id: "olive",
+        color: "Olive",
+        swatch: "#5a5a2b",
+        sku: "NC-CMD-KNIT-OLV",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: oliveFront.url, alt: "Olive zip knit hoodie — front" },
+          backProduct: { url: oliveBack.url, alt: "Olive zip knit hoodie — back with elbow patches" },
+          details: [
+            { url: oliveFrontPatched.url, alt: "Front detail — 'USA' chest patch and sleeve patches on olive knit" },
+          ],
+          modelFront: { url: oliveModel1.url, alt: "Model wearing olive zip knit hoodie — look 1" },
+          modelBack: { url: oliveModel2.url, alt: "Model wearing olive zip knit hoodie — look 2" },
+        },
+      },
     ],
   },
 ];
