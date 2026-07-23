@@ -113,6 +113,19 @@ import pinupNavyModel from "@/assets/products/army-pinup-tee/navy/model.png.asse
 import pinupOliveFront from "@/assets/products/army-pinup-tee/olive/front.png.asset.json";
 import pinupOliveModel from "@/assets/products/army-pinup-tee/olive/model.png.asset.json";
 
+import cargoBlackFront from "@/assets/products/cpt-cargo-pant/black/front.png.asset.json";
+import cargoBlackBack from "@/assets/products/cpt-cargo-pant/black/back.png.asset.json";
+import cargoBlackModel1 from "@/assets/products/cpt-cargo-pant/black/model-1.png.asset.json";
+import cargoBlackModel2 from "@/assets/products/cpt-cargo-pant/black/model-2.png.asset.json";
+import cargoPlaidFront from "@/assets/products/cpt-cargo-pant/plaid/front.png.asset.json";
+import cargoPlaidBack from "@/assets/products/cpt-cargo-pant/plaid/back.png.asset.json";
+import cargoPlaidModel1 from "@/assets/products/cpt-cargo-pant/plaid/model-1.png.asset.json";
+import cargoPlaidModel2 from "@/assets/products/cpt-cargo-pant/plaid/model-2.png.asset.json";
+import cargoOliveFront from "@/assets/products/cpt-cargo-pant/olive/front.png.asset.json";
+import cargoOliveBack from "@/assets/products/cpt-cargo-pant/olive/back.png.asset.json";
+import cargoBrownFront from "@/assets/products/cpt-cargo-pant/brown/front.png.asset.json";
+import cargoBrownBack from "@/assets/products/cpt-cargo-pant/brown/back.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
