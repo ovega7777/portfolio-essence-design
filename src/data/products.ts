@@ -28,7 +28,16 @@ export type Product = {
   description: string;
   featured: boolean;
   displayOrder: number;
+  /** Products sharing the same swatchGroup show a unified color-selector row. */
+  swatchGroup?: string;
   variants: ProductVariant[];
+};
+
+export type GroupedVariant = {
+  productSlug: string;
+  variantId: string;
+  color: string;
+  swatch?: string;
 };
 
 /**
