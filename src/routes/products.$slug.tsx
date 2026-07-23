@@ -191,6 +191,16 @@ function ProductPage() {
           onClose={() => setLightboxIndex(null)}
           name={product.name}
           price={product.price}
+          variants={product.variants.map((v: ProductVariant) => ({
+            id: v.id,
+            color: v.color,
+            swatch: v.swatch,
+          }))}
+          activeVariantId={variant.id}
+          onVariantChange={(id) => {
+            setVariantId(id);
+            setLightboxIndex(0);
+          }}
         />
       )}
     </div>
