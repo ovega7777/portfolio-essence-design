@@ -23,7 +23,7 @@ export function ProductCard({ product }: Props) {
 
   const previewing = previewKey !== null;
   const front = displayed.frontImage;
-  const modelFront = variant.images.modelFront;
+  const modelFront = displayed.modelImage ?? variant.images.modelFront;
 
   return (
     <div className="block bg-white text-black">
