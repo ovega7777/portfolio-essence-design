@@ -39,6 +39,7 @@ export type GroupedVariant = {
   color: string;
   swatch?: string;
   frontImage: { url: string; alt: string };
+  modelImage?: { url: string; alt: string };
 };
 
 /**
