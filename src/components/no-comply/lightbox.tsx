@@ -1,7 +1,14 @@
 import { useCallback, useEffect, useState } from "react";
 import type { ProductImage } from "@/data/products";
+import { LightboxTextHUD, useLightboxTextOverrides } from "./LightboxTextHUD";
 
-type VariantOption = { id: string; color: string; swatch?: string };
+type VariantOption = {
+  id: string;
+  color: string;
+  swatch?: string;
+  /** When set and different from the current product, clicking navigates. */
+  productSlug?: string;
+};
 
 type Props = {
   images: ProductImage[];
@@ -9,9 +16,12 @@ type Props = {
   onClose: () => void;
   name?: string;
   price?: number;
+  /** Current product slug — used to detect cross-product swatches. */
+  productSlug?: string;
   variants?: VariantOption[];
   activeVariantId?: string;
   onVariantChange?: (id: string) => void;
+  onNavigateVariant?: (productSlug: string, variantId: string) => void;
 };
 
 export function Lightbox({
@@ -20,12 +30,25 @@ export function Lightbox({
   onClose,
   name,
   price,
+  productSlug,
   variants,
   activeVariantId,
   onVariantChange,
+  onNavigateVariant,
 }: Props) {
   const [index, setIndex] = useState(startIndex);
   const count = images.length;
+
+  const { overrides } = useLightboxTextOverrides(productSlug);
+  const displayName = overrides.name ?? name;
+  const displayPrice =
+    overrides.price !== undefined && overrides.price !== ""
+      ? overrides.price
+      : typeof price === "number"
+      ? `$${price}`
+      : undefined;
+  const nameSize = overrides.nameSize ?? 20;
+  const priceSize = overrides.priceSize ?? 20;
 
   useEffect(() => {
     setIndex(startIndex);
@@ -112,16 +135,22 @@ export function Lightbox({
           alt={img.alt}
           className="max-h-[70vh] w-auto max-w-full object-contain"
         />
-        {(name || typeof price === "number") && (
+        {(displayName || displayPrice) && (
           <div className="mt-6 flex w-full items-baseline justify-between gap-6 px-2">
-            {name && (
-              <p className="nc-display text-lg tracking-[0.15em] text-black md:text-xl">
-                {name}
+            {displayName && (
+              <p
+                className="nc-display tracking-[0.15em] text-black"
+                style={{ fontSize: `${nameSize}px`, lineHeight: 1.1 }}
+              >
+                {displayName}
               </p>
             )}
-            {typeof price === "number" && (
-              <p className="nc-display text-lg tracking-[0.15em] text-black md:text-xl">
-                ${price}
+            {displayPrice && (
+              <p
+                className="nc-display tracking-[0.15em] text-black"
+                style={{ fontSize: `${priceSize}px`, lineHeight: 1.1 }}
+              >
+                {displayPrice}
               </p>
             )}
           </div>
@@ -129,12 +158,22 @@ export function Lightbox({
         {variants && variants.length > 1 && (
           <div className="mt-4 flex items-center gap-2">
             {variants.map((v) => {
-              const active = v.id === activeVariantId;
+              const isForeign =
+                v.productSlug !== undefined &&
+                productSlug !== undefined &&
+                v.productSlug !== productSlug;
+              const active = !isForeign && v.id === activeVariantId;
               return (
                 <button
-                  key={v.id}
+                  key={`${v.productSlug ?? "self"}-${v.id}`}
                   type="button"
-                  onClick={() => onVariantChange?.(v.id)}
+                  onClick={() => {
+                    if (isForeign && v.productSlug) {
+                      onNavigateVariant?.(v.productSlug, v.id);
+                    } else {
+                      onVariantChange?.(v.id);
+                    }
+                  }}
                   aria-label={`Show ${v.color}`}
                   aria-pressed={active}
                   title={v.color}
@@ -153,6 +192,14 @@ export function Lightbox({
           {index + 1} / {count}
         </figcaption>
       </figure>
+
+      {productSlug && (
+        <LightboxTextHUD
+          productSlug={productSlug}
+          defaultName={name ?? ""}
+          defaultPrice={typeof price === "number" ? `$${price}` : ""}
+        />
+      )}
     </div>
   );
 }
