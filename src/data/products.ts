@@ -58,6 +58,12 @@ import navyBack from "@/assets/products/zip-knit-hoodie/navy/back.png.asset.json
 import blackFront from "@/assets/products/zip-knit-hoodie/black/front.png.asset.json";
 import blackBack from "@/assets/products/zip-knit-hoodie/black/back.png.asset.json";
 
+import oliveFront from "@/assets/products/zip-knit-hoodie/olive/front.png.asset.json";
+import oliveFrontPatched from "@/assets/products/zip-knit-hoodie/olive/front-patched.png.asset.json";
+import oliveBack from "@/assets/products/zip-knit-hoodie/olive/back.png.asset.json";
+import oliveModel1 from "@/assets/products/zip-knit-hoodie/olive/model-1.png.asset.json";
+import oliveModel2 from "@/assets/products/zip-knit-hoodie/olive/model-2.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
