@@ -1,24 +1,33 @@
 ## Plan
 
-Add **Olive** and **White** as two new variants under the existing SERGEANT SHIRT — same pattern as the Navy/Black variants under the Oxblood ZIP KNIT HOODIE. They appear as swatches on the home grid AND on the product detail (specification) page + lightbox, with no new listings on the collection grid.
+Add a new product **NC TIGER TEE** ($99) as a single listing with 3 color variants — **Black**, **Forest**, **Navy** — following the same pattern as the ZIP KNIT HOODIE and SERGEANT SHIRT variants.
 
 ### Steps
 
-1. **Upload 4 assets** via `lovable-assets`:
-   - `src/assets/products/sergeant-shirt/olive/front.png.asset.json`
-   - `src/assets/products/sergeant-shirt/olive/back.png.asset.json`
-   - `src/assets/products/sergeant-shirt/white/front.png.asset.json`
-   - `src/assets/products/sergeant-shirt/white/back.png.asset.json`
+1. **Upload 6 assets** via `lovable-assets` under `src/assets/products/tiger-tee/{black,forest,navy}/`:
+   - `black/front.png` — flat black tiger camo tee
+   - `black/model.png` — male model in black tee + wide black trousers
+   - `forest/front.png` — flat forest/olive tiger camo tee
+   - `forest/model.png` — red-haired female model in forest tee + black wide pants
+   - `navy/front.png` — flat navy tiger camo tee
+   - `navy/model.png` — dark-haired female model in navy tee + black wide pants
 
-2. **Edit `src/data/products.ts`** — append two entries to the `variants` array of `command-sergeant-shirt-black`:
-   - `olive` — color "Olive", swatch `#5a5a2b`, SKU `NC-CMD-SHIRT-OLV`, front + back images, sizes `XS–XL`
-   - `white` — color "White", swatch `#f2ece0`, SKU `NC-CMD-SHIRT-WHT`, front + back images, sizes `XS–XL`
-   - No detail/model shots (none provided yet).
+2. **Edit `src/data/products.ts`** — append one product entry `command-tiger-tee`:
+   - Name: `NC TIGER TEE`, price `$99`, category `Tees`, `displayOrder: 5`
+   - `collectionId: "collection-1"`, no `swatchGroup` (single listing, all 3 variants live inside it)
+   - Variants (in order Black → Forest → Navy):
+     - `black` — swatch `#0a0a0a`, SKU `NC-CMD-TEE-BLK`, sizes `XS–XL`, `frontProduct` + `modelFront`
+     - `forest` — swatch `#3a4a2a`, SKU `NC-CMD-TEE-FOR`, sizes `XS–XL`, `frontProduct` + `modelFront`
+     - `navy` — swatch `#16234a`, SKU `NC-CMD-TEE-NVY`, sizes `XS–XL`, `frontProduct` + `modelFront`
+   - Description: short editorial line about the tonal tiger camo tee with arched "NO COMPLY USA" chest print.
 
-3. **Automatic results** (no component changes needed):
-   - **Home grid** — the SERGEANT SHIRT cards show 4 swatches: Black, Navy, Olive, White. Hover previews the front image of the hovered swatch; click navigates to that colorway's product page.
-   - **Product detail / specification page** — same 4-swatch selector under the product info; selecting Olive/White swaps to that variant's front + back stack and updates the URL to `?variant=olive` / `?variant=white`.
-   - **Lightbox** — same 4-swatch row; selecting a color switches the lightbox image set to that variant.
+### Automatic results (no component changes)
 
-### Note
-White swatch (`#f2ece0`) sits on a white card background. Existing black outline keeps it visible; say the word if you want a stronger border for light swatches.
+- **Home grid** — one card labeled NC TIGER TEE with a 3-swatch selector (Black/Forest/Navy). Hovering a swatch previews that color's front; center-hover swaps to that color's model shot; clicking any swatch opens the focused product page for that variant.
+- **Product detail page** — same 3-swatch selector under the info; selecting a color swaps the image stack (front + model) and updates `?variant=...`.
+- **Lightbox** — same 3-swatch row; switching colors swaps the image set.
+
+### Notes
+
+- No back / detail images were provided, so the stack per variant is just `front → model`. Send back/detail shots later and I'll slot them in.
+- Model→colorway mapping is inferred from the shirts in each photo (red-hair = forest, brunette woman = navy, male = black). Confirm if any should be swapped.
