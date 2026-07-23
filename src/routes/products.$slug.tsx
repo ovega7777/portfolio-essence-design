@@ -49,7 +49,7 @@ function ProductPage() {
   const { variant: variantSearch } = Route.useSearch();
   const collection = getCollection(product.collectionId);
   const initialVariant =
-    (variantSearch && product.variants.find((v) => v.id === variantSearch)?.id) ??
+    (variantSearch && product.variants.find((v: ProductVariant) => v.id === variantSearch)?.id) ??
     product.variants[0].id;
   const [variantId, setVariantId] = useState(initialVariant);
   const [size, setSize] = useState<string | null>(null);
