@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-
 import { getGroupedVariants, type Product } from "@/data/products";
 
 type Props = { product: Product };
@@ -26,21 +25,23 @@ export function ProductCard({ product }: Props) {
   const modelFront = variant.images.modelFront;
 
   return (
-    <div className="block bg-white text-black">
+    <div className="group block bg-white text-black">
       <Link
         to="/products/$slug"
         params={{ slug: displayed.productSlug }}
         search={{ variant: displayed.variantId }}
         className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
       >
-        <div className="group/image relative aspect-[3/4] w-full overflow-hidden bg-white">
+        <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
           <img
             key={`${displayed.productSlug}-${displayed.variantId}-front`}
             src={front.url}
             alt={front.alt}
             loading="lazy"
             className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
-              modelFront && !previewing ? "opacity-100 group-hover/image:opacity-0" : "opacity-100"
+              previewing
+                ? "opacity-100"
+                : "group-hover:opacity-0 group-focus-within:opacity-0"
             }`}
           />
           {modelFront && !previewing && (
@@ -50,7 +51,7 @@ export function ProductCard({ product }: Props) {
               alt={modelFront.alt}
               loading="lazy"
               aria-hidden
-              className="absolute inset-0 h-full w-full object-contain p-4 opacity-0 transition-opacity duration-[250ms] ease-in-out group-hover/image:opacity-100"
+              className="absolute inset-0 h-full w-full object-contain p-4 opacity-0 transition-opacity duration-[250ms] ease-in-out group-hover:opacity-100 group-focus-within:opacity-100"
             />
           )}
         </div>
@@ -85,15 +86,17 @@ export function ProductCard({ product }: Props) {
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  if (isOwn) setVariantId(g.variantId);
-                  setPreviewKey(null);
-                  navigate({
-                    to: "/products/$slug",
-                    params: { slug: g.productSlug },
-                    search: { variant: g.variantId, lightbox: "1" },
-                  });
+                  if (isOwn) {
+                    setVariantId(g.variantId);
+                    setPreviewKey(null);
+                  } else {
+                    navigate({
+                      to: "/products/$slug",
+                      params: { slug: g.productSlug },
+                      search: { variant: g.variantId },
+                    });
+                  }
                 }}
-
                 aria-label={`Show ${g.color}`}
                 aria-pressed={active}
                 title={g.color}
