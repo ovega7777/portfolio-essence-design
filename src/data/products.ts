@@ -95,6 +95,15 @@ import tigerForestModel from "@/assets/products/tiger-tee/forest/model.png.asset
 import tigerNavyFront from "@/assets/products/tiger-tee/navy/front.png.asset.json";
 import tigerNavyModel from "@/assets/products/tiger-tee/navy/model.png.asset.json";
 
+import trousersBlackFront from "@/assets/products/pleated-trousers/black/front.png.asset.json";
+import trousersBlackBack from "@/assets/products/pleated-trousers/black/back.png.asset.json";
+import trousersBlackModel1Front from "@/assets/products/pleated-trousers/black/model-1-front.png.asset.json";
+import trousersBlackModel1Back from "@/assets/products/pleated-trousers/black/model-1-back.png.asset.json";
+import trousersBlackModel2Front from "@/assets/products/pleated-trousers/black/model-2-front.png.asset.json";
+import trousersBlackModel2Back from "@/assets/products/pleated-trousers/black/model-2-back.png.asset.json";
+import trousersBrownFront from "@/assets/products/pleated-trousers/brown/front.png.asset.json";
+import trousersBrownBack from "@/assets/products/pleated-trousers/brown/back.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
