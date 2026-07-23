@@ -92,9 +92,23 @@ export function Lightbox({ images, startIndex = 0, onClose, name, price }: Props
           key={img.url}
           src={img.url}
           alt={img.alt}
-          className="max-h-[80vh] w-auto max-w-full object-contain"
+          className="max-h-[75vh] w-auto max-w-full object-contain"
         />
-        <figcaption className="nc-display mt-4 text-xs tracking-[0.3em] text-black">
+        {(name || typeof price === "number") && (
+          <div className="mt-6 flex w-full items-baseline justify-between gap-6 px-2">
+            {name && (
+              <p className="nc-display text-lg tracking-[0.15em] text-black md:text-xl">
+                {name}
+              </p>
+            )}
+            {typeof price === "number" && (
+              <p className="nc-display text-lg tracking-[0.15em] text-black md:text-xl">
+                ${price}
+              </p>
+            )}
+          </div>
+        )}
+        <figcaption className="nc-display mt-3 text-xs tracking-[0.3em] text-black">
           {index + 1} / {count}
         </figcaption>
       </figure>
