@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useRef, useState } from "react";
+
 import { getGroupedVariants, type Product } from "@/data/products";
 
 type Props = { product: Product };
