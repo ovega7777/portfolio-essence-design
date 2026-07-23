@@ -50,24 +50,37 @@ export type GroupedVariant = {
  *
  * Sorting: always by `displayOrder` ascending. Never by date.
  */
-import frontImg from "@/assets/products/oxblood-hoodie/front.png.asset.json";
-import backImg from "@/assets/products/oxblood-hoodie/back.png.asset.json";
-import detailFrontImg from "@/assets/products/oxblood-hoodie/detail-front.png.asset.json";
-import model1Img from "@/assets/products/oxblood-hoodie/model-1.png.asset.json";
-import model2Img from "@/assets/products/oxblood-hoodie/model-2.png.asset.json";
+import oxbloodFront from "@/assets/products/oxblood-hoodie/front.png.asset.json";
+import oxbloodBack from "@/assets/products/oxblood-hoodie/back.png.asset.json";
+import oxbloodDetailFront from "@/assets/products/oxblood-hoodie/detail-front.png.asset.json";
+import oxbloodModel1 from "@/assets/products/oxblood-hoodie/model-1.png.asset.json";
+import oxbloodModel2 from "@/assets/products/oxblood-hoodie/model-2.png.asset.json";
 
+import hoodieNavyFront from "@/assets/products/zip-knit-hoodie/navy/front.png.asset.json";
+import hoodieNavyBack from "@/assets/products/zip-knit-hoodie/navy/back.png.asset.json";
 
-import navyFront from "@/assets/products/zip-knit-hoodie/navy/front.png.asset.json";
-import navyBack from "@/assets/products/zip-knit-hoodie/navy/back.png.asset.json";
+import hoodieBlackFront from "@/assets/products/zip-knit-hoodie/black/front.png.asset.json";
+import hoodieBlackBack from "@/assets/products/zip-knit-hoodie/black/back.png.asset.json";
 
-import blackFront from "@/assets/products/zip-knit-hoodie/black/front.png.asset.json";
-import blackBack from "@/assets/products/zip-knit-hoodie/black/back.png.asset.json";
+import hoodieOliveFront from "@/assets/products/zip-knit-hoodie/olive/front.png.asset.json";
+import hoodieOliveFrontPatched from "@/assets/products/zip-knit-hoodie/olive/front-patched.png.asset.json";
+import hoodieOliveBack from "@/assets/products/zip-knit-hoodie/olive/back.png.asset.json";
+import hoodieOliveModel1 from "@/assets/products/zip-knit-hoodie/olive/model-1.png.asset.json";
+import hoodieOliveModel2 from "@/assets/products/zip-knit-hoodie/olive/model-2.png.asset.json";
 
-import oliveFront from "@/assets/products/zip-knit-hoodie/olive/front.png.asset.json";
-import oliveFrontPatched from "@/assets/products/zip-knit-hoodie/olive/front-patched.png.asset.json";
-import oliveBack from "@/assets/products/zip-knit-hoodie/olive/back.png.asset.json";
-import oliveModel1 from "@/assets/products/zip-knit-hoodie/olive/model-1.png.asset.json";
-import oliveModel2 from "@/assets/products/zip-knit-hoodie/olive/model-2.png.asset.json";
+import shirtBlackFront from "@/assets/products/sergeant-shirt/black/front.png.asset.json";
+import shirtBlackBack from "@/assets/products/sergeant-shirt/black/back.png.asset.json";
+import shirtBlackDetail from "@/assets/products/sergeant-shirt/black/detail.png.asset.json";
+import shirtBlackModel1 from "@/assets/products/sergeant-shirt/black/model-1.png.asset.json";
+import shirtBlackModel2 from "@/assets/products/sergeant-shirt/black/model-2.png.asset.json";
+import shirtBlackModel3 from "@/assets/products/sergeant-shirt/black/model-3.png.asset.json";
+
+import shirtNavyFront from "@/assets/products/sergeant-shirt/navy/front.png.asset.json";
+import shirtNavyBack from "@/assets/products/sergeant-shirt/navy/back.png.asset.json";
+import shirtNavyDetail from "@/assets/products/sergeant-shirt/navy/detail.png.asset.json";
+import shirtNavyModel1 from "@/assets/products/sergeant-shirt/navy/model-1.png.asset.json";
+import shirtNavyModel2 from "@/assets/products/sergeant-shirt/navy/model-2.png.asset.json";
+import shirtNavyModel3 from "@/assets/products/sergeant-shirt/navy/model-3.png.asset.json";
 
 export const products: Product[] = [
   {
@@ -90,13 +103,16 @@ export const products: Product[] = [
         sku: "NC-CMD-KNIT-OXB",
         sizes: ["XS", "S", "M", "L", "XL"],
         images: {
-          frontProduct: { url: frontImg.url, alt: "Oxblood zip knit hoodie — front" },
-          backProduct: { url: backImg.url, alt: "Oxblood zip knit hoodie — back with elbow patches" },
+          frontProduct: { url: oxbloodFront.url, alt: "Oxblood zip knit hoodie — front" },
+          backProduct: { url: oxbloodBack.url, alt: "Oxblood zip knit hoodie — back with elbow patches" },
           details: [
-            { url: detailFrontImg.url, alt: "Front detail — 'C' chest patch and 'NO COMPLY' sleeve patches" },
+            {
+              url: oxbloodDetailFront.url,
+              alt: "Front detail — 'C' chest patch and 'NO COMPLY' sleeve patches",
+            },
           ],
-          modelFront: { url: model1Img.url, alt: "Model wearing oxblood zip knit hoodie — look 1" },
-          modelBack: { url: model2Img.url, alt: "Model wearing oxblood zip knit hoodie — look 2" },
+          modelFront: { url: oxbloodModel1.url, alt: "Model wearing oxblood zip knit hoodie — look 1" },
+          modelBack: { url: oxbloodModel2.url, alt: "Model wearing oxblood zip knit hoodie — look 2" },
         },
       },
       {
@@ -106,8 +122,8 @@ export const products: Product[] = [
         sku: "NC-CMD-KNIT-NVY",
         sizes: ["XS", "S", "M", "L", "XL"],
         images: {
-          frontProduct: { url: navyFront.url, alt: "Navy zip knit hoodie — front" },
-          backProduct: { url: navyBack.url, alt: "Navy zip knit hoodie — back with elbow patches" },
+          frontProduct: { url: hoodieNavyFront.url, alt: "Navy zip knit hoodie — front" },
+          backProduct: { url: hoodieNavyBack.url, alt: "Navy zip knit hoodie — back with elbow patches" },
         },
       },
       {
@@ -117,8 +133,8 @@ export const products: Product[] = [
         sku: "NC-CMD-KNIT-BLK",
         sizes: ["XS", "S", "M", "L", "XL"],
         images: {
-          frontProduct: { url: blackFront.url, alt: "Black zip knit hoodie — front" },
-          backProduct: { url: blackBack.url, alt: "Black zip knit hoodie — back with elbow patches" },
+          frontProduct: { url: hoodieBlackFront.url, alt: "Black zip knit hoodie — front" },
+          backProduct: { url: hoodieBlackBack.url, alt: "Black zip knit hoodie — back with elbow patches" },
         },
       },
     ],
@@ -143,13 +159,90 @@ export const products: Product[] = [
         sku: "NC-CMD-KNIT-OLV",
         sizes: ["XS", "S", "M", "L", "XL"],
         images: {
-          frontProduct: { url: oliveFront.url, alt: "Olive zip knit hoodie — front" },
-          backProduct: { url: oliveBack.url, alt: "Olive zip knit hoodie — back with elbow patches" },
+          frontProduct: { url: hoodieOliveFront.url, alt: "Olive zip knit hoodie — front" },
+          backProduct: { url: hoodieOliveBack.url, alt: "Olive zip knit hoodie — back with elbow patches" },
           details: [
-            { url: oliveFrontPatched.url, alt: "Front detail — 'USA' chest patch and sleeve patches on olive knit" },
+            {
+              url: hoodieOliveFrontPatched.url,
+              alt: "Front detail — 'USA' chest patch and sleeve patches on olive knit",
+            },
           ],
-          modelFront: { url: oliveModel1.url, alt: "Model wearing olive zip knit hoodie — look 1" },
-          modelBack: { url: oliveModel2.url, alt: "Model wearing olive zip knit hoodie — look 2" },
+          modelFront: { url: hoodieOliveModel1.url, alt: "Model wearing olive zip knit hoodie — look 1" },
+          modelBack: { url: hoodieOliveModel2.url, alt: "Model wearing olive zip knit hoodie — look 2" },
+        },
+      },
+    ],
+  },
+  {
+    id: "command-sergeant-shirt-black",
+    slug: "command-sergeant-shirt-black",
+    name: "SERGEANT SHIRT",
+    collectionId: "collection-1",
+    category: "Shirting",
+    price: 245,
+    description:
+      "Structured button-up sergeant shirt in black with epaulets, flap chest pockets, and silver snap hardware. Finished with tonal patched detailing and three editorial look images.",
+    featured: false,
+    displayOrder: 3,
+    swatchGroup: "sergeant-shirt",
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-SHIRT-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: shirtBlackFront.url, alt: "Black sergeant shirt — front" },
+          backProduct: { url: shirtBlackBack.url, alt: "Black sergeant shirt — back" },
+          details: [
+            {
+              url: shirtBlackDetail.url,
+              alt: "Black sergeant shirt detail — front patched version with chest and sleeve graphics",
+            },
+          ],
+          modelFront: { url: shirtBlackModel1.url, alt: "Model wearing black sergeant shirt — look 1" },
+          modelBack: { url: shirtBlackModel2.url, alt: "Model wearing black sergeant shirt — look 2" },
+          extraShots: [
+            { url: shirtBlackModel3.url, alt: "Model wearing black sergeant shirt — look 3" },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    id: "command-sergeant-shirt-navy",
+    slug: "command-sergeant-shirt-navy",
+    name: "SERGEANT SHIRT",
+    collectionId: "collection-1",
+    category: "Shirting",
+    price: 245,
+    description:
+      "Structured button-up sergeant shirt in navy with epaulets, flap chest pockets, and silver snap hardware. Finished with tonal patched detailing and three editorial look images.",
+    featured: false,
+    displayOrder: 4,
+    swatchGroup: "sergeant-shirt",
+    variants: [
+      {
+        id: "navy",
+        color: "Navy",
+        swatch: "#16234a",
+        sku: "NC-CMD-SHIRT-NVY",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: shirtNavyFront.url, alt: "Navy sergeant shirt — front" },
+          backProduct: { url: shirtNavyBack.url, alt: "Navy sergeant shirt — back" },
+          details: [
+            {
+              url: shirtNavyDetail.url,
+              alt: "Navy sergeant shirt detail — front patched version with chest and sleeve graphics",
+            },
+          ],
+          modelFront: { url: shirtNavyModel1.url, alt: "Model wearing navy sergeant shirt — look 1" },
+          modelBack: { url: shirtNavyModel2.url, alt: "Model wearing navy sergeant shirt — look 2" },
+          extraShots: [
+            { url: shirtNavyModel3.url, alt: "Model wearing navy sergeant shirt — look 3" },
+          ],
         },
       },
     ],
