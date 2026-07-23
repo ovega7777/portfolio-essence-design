@@ -85,17 +85,15 @@ export function ProductCard({ product }: Props) {
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  if (isOwn) {
-                    setVariantId(g.variantId);
-                    setPreviewKey(null);
-                  } else {
-                    navigate({
-                      to: "/products/$slug",
-                      params: { slug: g.productSlug },
-                      search: { variant: g.variantId },
-                    });
-                  }
+                  if (isOwn) setVariantId(g.variantId);
+                  setPreviewKey(null);
+                  navigate({
+                    to: "/products/$slug",
+                    params: { slug: g.productSlug },
+                    search: { variant: g.variantId, lightbox: "1" },
+                  });
                 }}
+
                 aria-label={`Show ${g.color}`}
                 aria-pressed={active}
                 title={g.color}
