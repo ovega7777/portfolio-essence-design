@@ -45,7 +45,6 @@ import backImg from "@/assets/products/oxblood-hoodie/back.png.asset.json";
 import detailFrontImg from "@/assets/products/oxblood-hoodie/detail-front.png.asset.json";
 import model1Img from "@/assets/products/oxblood-hoodie/model-1.png.asset.json";
 import model2Img from "@/assets/products/oxblood-hoodie/model-2.png.asset.json";
-import model3Img from "@/assets/products/oxblood-hoodie/model-3.png.asset.json";
 
 export const products: Product[] = [
   {
