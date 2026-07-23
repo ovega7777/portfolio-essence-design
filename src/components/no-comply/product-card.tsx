@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import { getGroupedVariants, type Product } from "@/data/products";
 
@@ -25,45 +25,22 @@ export function ProductCard({ product }: Props) {
   const front = displayed.frontImage;
   const modelFront = variant.images.modelFront;
 
-  const [showModel, setShowModel] = useState(false);
-  const modelTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const MODEL_HOVER_DELAY_MS = 900;
-
-  const handleCardEnter = () => {
-    if (previewing || !modelFront) return;
-    if (modelTimerRef.current) clearTimeout(modelTimerRef.current);
-    modelTimerRef.current = setTimeout(() => setShowModel(true), MODEL_HOVER_DELAY_MS);
-  };
-  const handleCardLeave = () => {
-    if (modelTimerRef.current) {
-      clearTimeout(modelTimerRef.current);
-      modelTimerRef.current = null;
-    }
-    setShowModel(false);
-  };
-
   return (
-    <div
-      className="group block bg-white text-black"
-      onMouseEnter={handleCardEnter}
-      onMouseLeave={handleCardLeave}
-      onFocus={handleCardEnter}
-      onBlur={handleCardLeave}
-    >
+    <div className="block bg-white text-black">
       <Link
         to="/products/$slug"
         params={{ slug: displayed.productSlug }}
         search={{ variant: displayed.variantId }}
         className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
       >
-        <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
+        <div className="group/image relative aspect-[3/4] w-full overflow-hidden bg-white">
           <img
             key={`${displayed.productSlug}-${displayed.variantId}-front`}
             src={front.url}
             alt={front.alt}
             loading="lazy"
             className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
-              !previewing && showModel ? "opacity-0" : "opacity-100"
+              modelFront && !previewing ? "opacity-100 group-hover/image:opacity-0" : "opacity-100"
             }`}
           />
           {modelFront && !previewing && (
@@ -73,9 +50,7 @@ export function ProductCard({ product }: Props) {
               alt={modelFront.alt}
               loading="lazy"
               aria-hidden
-              className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
-                showModel ? "opacity-100" : "opacity-0"
-              }`}
+              className="absolute inset-0 h-full w-full object-contain p-4 opacity-0 transition-opacity duration-[250ms] ease-in-out group-hover/image:opacity-100"
             />
           )}
         </div>
