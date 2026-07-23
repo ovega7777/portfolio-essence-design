@@ -38,6 +38,7 @@ export type GroupedVariant = {
   variantId: string;
   color: string;
   swatch?: string;
+  frontImage: { url: string; alt: string };
 };
 
 /**
@@ -188,7 +189,13 @@ export const getGroupedVariants = (product: Product): GroupedVariant[] => {
     for (const v of p.variants) {
       if (seen.has(v.id)) continue;
       seen.add(v.id);
-      out.push({ productSlug: p.slug, variantId: v.id, color: v.color, swatch: v.swatch });
+      out.push({
+        productSlug: p.slug,
+        variantId: v.id,
+        color: v.color,
+        swatch: v.swatch,
+        frontImage: v.images.frontProduct,
+      });
     }
   }
   return out;

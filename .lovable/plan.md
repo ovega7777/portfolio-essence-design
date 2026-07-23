@@ -1,24 +1,39 @@
 ## Goal
-Remove the duplicate Olive colorway so the ZIP KNIT HOODIE swatch group shows exactly 4 colors (Oxblood, Navy, Black, Olive) on both the home card selector and the lightbox selector. The standalone Olive listing keeps its full layout and the same 4-swatch selector.
+On the collection card, hovering (or focusing) a color swatch previews the front image of that colorway; clicking selects it. Works for both same-product variants and cross-product swatches in the same `swatchGroup`.
 
-## Current state
-`src/data/products.ts`:
-- Main product `command-zip-knit-hoodie` has 4 variants: **Oxblood, Olive (using `green/*` images), Navy, Black**
-- Standalone product `command-zip-knit-hoodie-olive` has 1 Olive variant (using `olive/*` images)
-- Both share `swatchGroup: "zip-knit-hoodie"` → `getGroupedVariants` currently returns **5** swatches (Olive appears twice).
+## Current behavior
+`src/components/no-comply/product-card.tsx` only reacts to clicks. Hover does nothing, and `getGroupedVariants` returns only `{ productSlug, variantId, color, swatch }` — no image reference — so cross-product previews aren't possible without extra data.
 
 ## Change
-In `src/data/products.ts`:
-1. Delete the `"green"` / Olive variant block (~lines 106–121) from the main `command-zip-knit-hoodie` product.
-2. Remove the now-unused imports: `greenFront`, `greenBack`, `greenFrontPatched`, `greenModel1`, `greenModel2`.
-3. Leave the standalone `command-zip-knit-hoodie-olive` product exactly as-is (same `swatchGroup`, same images, same layout).
 
-No component changes needed — `product-card.tsx`, `lightbox.tsx`, and `products.$slug.tsx` already resolve swatches through `swatchGroup`, so:
-- Oxblood / Navy / Black cards show 4 swatches; clicking Olive routes to `/products/command-zip-knit-hoodie-olive`.
-- Olive standalone card shows the same 4 swatches; clicking Oxblood / Navy / Black routes back to the main product.
-- Lightbox on either product shows the same 4 swatches.
+**1. `src/data/products.ts` — enrich grouped variant data**
+Extend `GroupedVariant` with the variant's front image:
+```ts
+type GroupedVariant = {
+  productSlug: string;
+  variantId: string;
+  color: string;
+  swatch?: string;
+  frontImage: { url: string; alt: string };
+};
+```
+Populate `frontImage` from `v.images.frontProduct` inside `getGroupedVariants`.
+
+**2. `src/components/no-comply/product-card.tsx` — hover preview**
+- Add `previewId: string | null` state (keyed as `${productSlug}:${variantId}`).
+- Compute `displayed` = the previewed grouped entry when `previewId` is set, otherwise the selected variant's own entry.
+- Render the card image from `displayed.frontImage.url` (drops the model hover-swap while a swatch is previewed — hovering a swatch takes priority over hovering the card).
+- Swatch buttons:
+  - `onMouseEnter` / `onFocus` → set `previewId` to that swatch's key
+  - `onMouseLeave` / `onBlur` → clear `previewId`
+  - `onClick` behavior unchanged (setVariantId for own, navigate for foreign)
+- `Link` `to`/`params`/`search` reflect `displayed` so clicking the card while previewing lands on the previewed variant/product.
+- Model cross-fade only runs when no swatch preview is active (guard `group-hover` classes with a conditional or wrap image stack so preview img sits on top with `opacity-100`).
 
 ## Verification
-- Home grid: both hoodie cards show 4 swatches, no duplicate Olive.
-- Lightbox on Oxblood and on standalone Olive: 4 swatches, cross-product navigation works.
+- Hovering the navy swatch on the Oxblood card swaps the shown image to the navy front (same product, own variant).
+- Hovering the Olive swatch on the Oxblood card swaps to the Olive front (foreign product in same `swatchGroup`).
+- Mouse-off restores the currently selected color's front.
+- Clicking a foreign swatch still routes to the standalone Olive product.
+- Card hover-to-model swap still works when no swatch is being hovered.
 - `tsgo --noEmit` passes.

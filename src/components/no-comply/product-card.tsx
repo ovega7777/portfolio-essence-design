@@ -9,28 +9,42 @@ export function ProductCard({ product }: Props) {
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const variant =
     product.variants.find((v) => v.id === variantId) ?? product.variants[0];
-  const front = variant.images.frontProduct;
-  const modelFront = variant.images.modelFront;
 
   const grouped = getGroupedVariants(product);
+  const selectedKey = `${product.slug}:${variant.id}`;
+  const [previewKey, setPreviewKey] = useState<string | null>(null);
+
+  const displayed =
+    (previewKey &&
+      grouped.find((g) => `${g.productSlug}:${g.variantId}` === previewKey)) ||
+    grouped.find((g) => `${g.productSlug}:${g.variantId}` === selectedKey) ||
+    grouped[0];
+
+  const previewing = previewKey !== null;
+  const front = displayed.frontImage;
+  const modelFront = variant.images.modelFront;
 
   return (
     <div className="group block bg-white text-black">
       <Link
         to="/products/$slug"
-        params={{ slug: product.slug }}
-        search={{ variant: variant.id }}
+        params={{ slug: displayed.productSlug }}
+        search={{ variant: displayed.variantId }}
         className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
       >
         <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
           <img
-            key={`${variant.id}-front`}
+            key={`${displayed.productSlug}-${displayed.variantId}-front`}
             src={front.url}
             alt={front.alt}
             loading="lazy"
-            className="absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out group-hover:opacity-0 group-focus-within:opacity-0"
+            className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
+              previewing
+                ? "opacity-100"
+                : "group-hover:opacity-0 group-focus-within:opacity-0"
+            }`}
           />
-          {modelFront && (
+          {modelFront && !previewing && (
             <img
               key={`${variant.id}-model`}
               src={modelFront.url}
@@ -58,17 +72,23 @@ export function ProductCard({ product }: Props) {
       {grouped.length > 1 && (
         <div className="flex items-center gap-2 px-4 pb-3 pt-2">
           {grouped.map((g) => {
+            const key = `${g.productSlug}:${g.variantId}`;
             const isOwn = g.productSlug === product.slug;
-            const active = isOwn && g.variantId === variant.id;
+            const active = key === selectedKey;
             return (
               <button
-                key={`${g.productSlug}-${g.variantId}`}
+                key={key}
                 type="button"
+                onMouseEnter={() => setPreviewKey(key)}
+                onMouseLeave={() => setPreviewKey(null)}
+                onFocus={() => setPreviewKey(key)}
+                onBlur={() => setPreviewKey(null)}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
                   if (isOwn) {
                     setVariantId(g.variantId);
+                    setPreviewKey(null);
                   } else {
                     navigate({
                       to: "/products/$slug",
