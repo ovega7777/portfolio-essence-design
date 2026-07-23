@@ -21,7 +21,6 @@ export function ProductCard({ product }: Props) {
     grouped.find((g) => `${g.productSlug}:${g.variantId}` === selectedKey) ||
     grouped[0];
 
-  const previewing = previewKey !== null;
   const front = displayed.frontImage;
   const modelFront = displayed.modelImage ?? variant.images.modelFront;
 
