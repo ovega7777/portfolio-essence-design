@@ -1,15 +1,18 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import type { Product } from "@/data/products";
+import { getGroupedVariants, type Product } from "@/data/products";
 
 type Props = { product: Product };
 
 export function ProductCard({ product }: Props) {
+  const navigate = useNavigate();
   const [variantId, setVariantId] = useState(product.variants[0].id);
   const variant =
     product.variants.find((v) => v.id === variantId) ?? product.variants[0];
   const front = variant.images.frontProduct;
   const modelFront = variant.images.modelFront;
+
+  const grouped = getGroupedVariants(product);
 
   return (
     <div className="group block bg-white text-black">
@@ -52,26 +55,35 @@ export function ProductCard({ product }: Props) {
           ${product.price}
         </p>
       </div>
-      {product.variants.length > 1 && (
+      {grouped.length > 1 && (
         <div className="flex items-center gap-2 px-4 pb-3 pt-2">
-          {product.variants.map((v) => {
-            const active = v.id === variant.id;
+          {grouped.map((g) => {
+            const isOwn = g.productSlug === product.slug;
+            const active = isOwn && g.variantId === variant.id;
             return (
               <button
-                key={v.id}
+                key={`${g.productSlug}-${g.variantId}`}
                 type="button"
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
-                  setVariantId(v.id);
+                  if (isOwn) {
+                    setVariantId(g.variantId);
+                  } else {
+                    navigate({
+                      to: "/products/$slug",
+                      params: { slug: g.productSlug },
+                      search: { variant: g.variantId },
+                    });
+                  }
                 }}
-                aria-label={`Show ${v.color}`}
+                aria-label={`Show ${g.color}`}
                 aria-pressed={active}
-                title={v.color}
+                title={g.color}
                 className={`h-4 w-4 border-2 transition-transform duration-150 ${
                   active ? "border-black scale-110" : "border-black/40 hover:border-black"
                 }`}
-                style={{ backgroundColor: v.swatch ?? "#000" }}
+                style={{ backgroundColor: g.swatch ?? "#000" }}
               />
             );
           })}
