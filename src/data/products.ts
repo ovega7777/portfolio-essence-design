@@ -126,6 +126,13 @@ import cargoOliveBack from "@/assets/products/cpt-cargo-pant/olive/back.png.asse
 import cargoBrownFront from "@/assets/products/cpt-cargo-pant/brown/front.png.asset.json";
 import cargoBrownBack from "@/assets/products/cpt-cargo-pant/brown/back.png.asset.json";
 
+import captainFront from "@/assets/products/captains-jacket/front.png.asset.json";
+import captainFrontPatched from "@/assets/products/captains-jacket/front-patched.png.asset.json";
+import captainBack from "@/assets/products/captains-jacket/back.png.asset.json";
+import captainModel1 from "@/assets/products/captains-jacket/model-1.png.asset.json";
+import captainModel2 from "@/assets/products/captains-jacket/model-2.png.asset.json";
+import captainModel3 from "@/assets/products/captains-jacket/model-3.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
