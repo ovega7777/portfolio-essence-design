@@ -104,22 +104,6 @@ export const products: Product[] = [
         },
       },
       {
-        id: "green",
-        color: "Olive",
-        swatch: "#4b5320",
-        sku: "NC-CMD-KNIT-GRN",
-        sizes: ["XS", "S", "M", "L", "XL"],
-        images: {
-          frontProduct: { url: greenFront.url, alt: "Olive zip knit hoodie — front" },
-          backProduct: { url: greenBack.url, alt: "Olive zip knit hoodie — back with elbow patches" },
-          details: [
-            { url: greenFrontPatched.url, alt: "Front detail — 'USA' chest patch and sleeve patches on olive knit" },
-          ],
-          modelFront: { url: greenModel1.url, alt: "Model wearing olive zip knit hoodie — look 1" },
-          modelBack: { url: greenModel2.url, alt: "Model wearing olive zip knit hoodie — look 2" },
-        },
-      },
-      {
         id: "navy",
         color: "Navy",
         swatch: "#0f1a3a",
