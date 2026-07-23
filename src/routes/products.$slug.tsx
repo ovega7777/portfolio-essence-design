@@ -5,7 +5,12 @@ import { getProductBySlug, type ProductImage } from "@/data/products";
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
 
+type ProductSearch = { variant?: string };
+
 export const Route = createFileRoute("/products/$slug")({
+  validateSearch: (search: Record<string, unknown>): ProductSearch => ({
+    variant: typeof search.variant === "string" ? search.variant : undefined,
+  }),
   loader: ({ params }) => {
     const product = getProductBySlug(params.slug);
     if (!product) throw notFound();
