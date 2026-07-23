@@ -180,6 +180,8 @@ function ProductPage() {
           images={ordered}
           startIndex={lightboxIndex}
           onClose={() => setLightboxIndex(null)}
+          name={product.name}
+          price={product.price}
         />
       )}
     </div>
