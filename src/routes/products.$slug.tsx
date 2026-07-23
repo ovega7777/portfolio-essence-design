@@ -1,7 +1,7 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import type { ProductVariant } from "@/data/products";
-import { getProductBySlug, type ProductImage } from "@/data/products";
+import { getGroupedVariants, getProductBySlug, type ProductImage } from "@/data/products";
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
 
@@ -47,6 +47,7 @@ function orderedImages(images: ProductImage[]): ProductImage[] {
 function ProductPage() {
   const { product } = Route.useLoaderData();
   const { variant: variantSearch } = Route.useSearch();
+  const navigate = useNavigate();
   const collection = getCollection(product.collectionId);
   const initialVariant =
     (variantSearch && product.variants.find((v: ProductVariant) => v.id === variantSearch)?.id) ??
@@ -57,6 +58,8 @@ function ProductPage() {
 
   const variant: ProductVariant =
     product.variants.find((v: ProductVariant) => v.id === variantId) ?? product.variants[0];
+
+  const grouped = getGroupedVariants(product);
 
   const stack: ProductImage[] = [];
   stack.push(variant.images.frontProduct);
@@ -121,27 +124,41 @@ function ProductPage() {
             {product.description}
           </p>
 
-          {product.variants.length > 1 && (
+          {grouped.length > 1 && (
             <div className="mt-8">
               <p className="nc-display mb-3 text-[10px] tracking-[0.3em] text-black">
                 Color — {variant.color}
               </p>
               <div className="flex flex-wrap gap-2">
-                {product.variants.map((v: ProductVariant) => (
-                  <button
-                    key={v.id}
-                    type="button"
-                    onClick={() => setVariantId(v.id)}
-                    aria-pressed={v.id === variant.id}
-                    className={`nc-display border-2 border-black px-3 py-2 text-[10px] tracking-[0.3em] transition-colors duration-200 ${
-                      v.id === variant.id
-                        ? "bg-black text-white"
-                        : "bg-white text-black hover:bg-black hover:text-white"
-                    }`}
-                  >
-                    {v.color}
-                  </button>
-                ))}
+                {grouped.map((g) => {
+                  const isOwn = g.productSlug === product.slug;
+                  const active = isOwn && g.variantId === variant.id;
+                  return (
+                    <button
+                      key={`${g.productSlug}-${g.variantId}`}
+                      type="button"
+                      onClick={() => {
+                        if (isOwn) {
+                          setVariantId(g.variantId);
+                        } else {
+                          navigate({
+                            to: "/products/$slug",
+                            params: { slug: g.productSlug },
+                            search: { variant: g.variantId },
+                          });
+                        }
+                      }}
+                      aria-pressed={active}
+                      className={`nc-display border-2 border-black px-3 py-2 text-[10px] tracking-[0.3em] transition-colors duration-200 ${
+                        active
+                          ? "bg-black text-white"
+                          : "bg-white text-black hover:bg-black hover:text-white"
+                      }`}
+                    >
+                      {g.color}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
@@ -191,15 +208,25 @@ function ProductPage() {
           onClose={() => setLightboxIndex(null)}
           name={product.name}
           price={product.price}
-          variants={product.variants.map((v: ProductVariant) => ({
-            id: v.id,
-            color: v.color,
-            swatch: v.swatch,
+          productSlug={product.slug}
+          variants={grouped.map((g) => ({
+            id: g.variantId,
+            color: g.color,
+            swatch: g.swatch,
+            productSlug: g.productSlug,
           }))}
           activeVariantId={variant.id}
           onVariantChange={(id) => {
             setVariantId(id);
             setLightboxIndex(0);
+          }}
+          onNavigateVariant={(slug, id) => {
+            setLightboxIndex(null);
+            navigate({
+              to: "/products/$slug",
+              params: { slug },
+              search: { variant: id },
+            });
           }}
         />
       )}

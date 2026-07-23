@@ -1,20 +1,33 @@
 ## Goal
-Show the Olive colorway as its own product card on the collection page, not as a swatch inside the existing ZIP KNIT HOODIE.
+1. Show the same 4-swatch color selector on the Olive listing (card + lightbox); non-Olive swatches route to the multi-color ZIP KNIT HOODIE preselected on that color.
+2. Add an on-page HUD to tune the lightbox product name and price text (content + font size), persisted in localStorage, similar to the existing `LogoBannerHUD`.
 
 ## Changes
 
+### 1. Cross-product swatches on the Olive listing
+
 **`src/data/products.ts`**
-1. Remove the `olive` variant from the `command-zip-knit-hoodie-oxblood` product's `variants` array (Oxblood, Green, Navy, Black remain as swatches on that card).
-2. Add a new standalone product entry using the existing Olive image imports (`oliveFront`, `oliveBack`, `oliveFrontPatched`, `oliveModel1`, `oliveModel2` — keep the imports):
-   - `id` / `slug`: `command-zip-knit-hoodie-olive`
-   - `name`: `ZIP KNIT HOODIE` (same name; the swatch/color distinguishes it, matching how a separate listing typically reads)
-   - `collectionId`: `collection-1`, `category`: `Knitwear`, `price`: `275`
-   - `displayOrder`: `2` (renders directly after the multi-color hoodie)
-   - Single variant: `Olive` / swatch `#5a5a2b` / SKU `NC-CMD-KNIT-OLV` with the full 5-image stack (front, back, patched detail, model 1, model 2).
+- Add an optional `linkedVariants?: { productSlug: string; variantId: string }[]` field on `Product` (or a simpler `swatchGroup?: string` shared across the two hoodie products). Use `swatchGroup: "zip-knit-hoodie"` on both products.
 
-## Result
-- Collection page shows two cards: the original ZIP KNIT HOODIE (4 swatches) and a separate Olive ZIP KNIT HOODIE (single swatch).
-- Product page for the Olive listing behaves like the Oxblood one — hover-swap, full image stack, lightbox.
+**`src/components/no-comply/product-card.tsx` and lightbox**
+- When a product has a `swatchGroup`, collect all variants from every product sharing that group (deduped by color) and render the full swatch row.
+- Clicking a swatch that belongs to the *current* product swaps images in place (existing behavior).
+- Clicking a swatch that belongs to a *different* product navigates to `/products/{otherSlug}?variant={variantId}` (uses the existing `?variant=` handling).
+- Result: Olive card shows Oxblood, Green, Navy, Black, Olive; clicking any non-Olive swatch jumps to the multi-color hoodie preselected on that color, and vice versa.
 
-## Open question
-Should the standalone Olive card use a different display name (e.g. "ZIP KNIT HOODIE — OLIVE") so it's visually distinct in the grid, or keep it identical to the multi-color card? Default: keep identical unless you say otherwise.
+### 2. Lightbox text HUD
+
+**New `src/components/no-comply/LightboxTextHUD.tsx`**
+- Floating panel (bottom-right of the lightbox), matching the existing `LogoBannerHUD` visual style.
+- Controls: Name text input, Name font-size slider (px), Price text input, Price font-size slider (px), Reset, Confirm (hides HUD until re-enabled).
+- Overrides stored in `localStorage` under `nc-lightbox-text:{productSlug}` as `{ name?, price?, nameSize?, priceSize? }`.
+- Toggle button (small "T" pill) in the lightbox chrome to re-open the HUD after confirming.
+
+**`src/components/no-comply/lightbox.tsx`**
+- Read the localStorage override for the current product on mount and on `storage` events.
+- Render name/price using the override text and inline `fontSize`; fall back to product data when no override.
+- Mount `LightboxTextHUD` inside the lightbox.
+
+## Out of scope
+- The HUD only tunes name and price (the two text elements the user pointed at). Other lightbox text (color label, close button) stays fixed.
+- Overrides are local to the browser — this is a tuning tool, not a CMS. To make an override permanent, the values get copied into `src/data/products.ts` manually.
