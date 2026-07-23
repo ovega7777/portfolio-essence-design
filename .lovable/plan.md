@@ -1,39 +1,20 @@
-## Goal
-On the collection card, hovering (or focusing) a color swatch previews the front image of that colorway; clicking selects it. Works for both same-product variants and cross-product swatches in the same `swatchGroup`.
+Goal: Decrease the hover-trigger area for the model-view swap so it only activates inside a centered inset rectangle on the product image, applied to all products via the shared card component.
 
-## Current behavior
-`src/components/no-comply/product-card.tsx` only reacts to clicks. Hover does nothing, and `getGroupedVariants` returns only `{ productSlug, variantId, color, swatch }` — no image reference — so cross-product previews aren't possible without extra data.
+Plan:
 
-## Change
+1. Update `src/components/no-comply/product-card.tsx`
+   - Wrap the product image in a relative container.
+   - Add an absolutely positioned, centered inset hover target (e.g., 60% × 60%) over the image.
+   - Move the hover/focus listeners (`onMouseEnter`, `onMouseLeave`, `onFocus`, `onBlur`) from the swatch buttons to the new target element.
+   - Keep the existing image opacity transitions, but tie the model-view reveal state to hover/focus of the centered target instead of the whole card.
+   - Preserve the outer `<Link>` behavior so clicking anywhere on the image still navigates to the product page.
 
-**1. `src/data/products.ts` — enrich grouped variant data**
-Extend `GroupedVariant` with the variant's front image:
-```ts
-type GroupedVariant = {
-  productSlug: string;
-  variantId: string;
-  color: string;
-  swatch?: string;
-  frontImage: { url: string; alt: string };
-};
-```
-Populate `frontImage` from `v.images.frontProduct` inside `getGroupedVariants`.
+2. Ensure focus/accessibility is preserved
+   - The centered target should be focusable with a visible focus ring.
+   - Screen-reader text should indicate the target reveals the model view.
 
-**2. `src/components/no-comply/product-card.tsx` — hover preview**
-- Add `previewId: string | null` state (keyed as `${productSlug}:${variantId}`).
-- Compute `displayed` = the previewed grouped entry when `previewId` is set, otherwise the selected variant's own entry.
-- Render the card image from `displayed.frontImage.url` (drops the model hover-swap while a swatch is previewed — hovering a swatch takes priority over hovering the card).
-- Swatch buttons:
-  - `onMouseEnter` / `onFocus` → set `previewId` to that swatch's key
-  - `onMouseLeave` / `onBlur` → clear `previewId`
-  - `onClick` behavior unchanged (setVariantId for own, navigate for foreign)
-- `Link` `to`/`params`/`search` reflect `displayed` so clicking the card while previewing lands on the previewed variant/product.
-- Model cross-fade only runs when no swatch preview is active (guard `group-hover` classes with a conditional or wrap image stack so preview img sits on top with `opacity-100`).
+3. Verify across products
+   - Confirm the change applies to every product card on the collection grid because all cards use the same component.
+   - Check that the front image remains visible when hovering the edges/corners of the card.
 
-## Verification
-- Hovering the navy swatch on the Oxblood card swaps the shown image to the navy front (same product, own variant).
-- Hovering the Olive swatch on the Oxblood card swaps to the Olive front (foreign product in same `swatchGroup`).
-- Mouse-off restores the currently selected color's front.
-- Clicking a foreign swatch still routes to the standalone Olive product.
-- Card hover-to-model swap still works when no swatch is being hovered.
-- `tsgo --noEmit` passes.
+No data or route changes are required.
