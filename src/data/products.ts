@@ -82,6 +82,11 @@ import shirtNavyModel1 from "@/assets/products/sergeant-shirt/navy/model-1.png.a
 import shirtNavyModel2 from "@/assets/products/sergeant-shirt/navy/model-2.png.asset.json";
 import shirtNavyModel3 from "@/assets/products/sergeant-shirt/navy/model-3.png.asset.json";
 
+import shirtOliveFront from "@/assets/products/sergeant-shirt/olive/front.png.asset.json";
+import shirtOliveBack from "@/assets/products/sergeant-shirt/olive/back.png.asset.json";
+import shirtWhiteFront from "@/assets/products/sergeant-shirt/white/front.png.asset.json";
+import shirtWhiteBack from "@/assets/products/sergeant-shirt/white/back.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
