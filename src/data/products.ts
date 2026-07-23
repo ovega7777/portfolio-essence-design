@@ -338,7 +338,50 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: "command-pleated-trousers",
+    slug: "command-pleated-trousers",
+    name: "NC PLEATED TROUSERS",
+    collectionId: "collection-1",
+    category: "Trousers",
+    price: 195,
+    description:
+      "Wide-leg pleated trousers with an asymmetric four-button fly, deep front pleats, belt loops, and turned-up cuffed hem. Cut in a heavyweight suiting fabric with a manifesto script patch pocket at the back.",
+    featured: false,
+    displayOrder: 6,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-TROUS-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: trousersBlackFront.url, alt: "Black pleated trousers — front" },
+          backProduct: { url: trousersBlackBack.url, alt: "Black pleated trousers — back with manifesto patch" },
+          modelFront: { url: trousersBlackModel1Front.url, alt: "Model wearing black pleated trousers — look 1 front" },
+          modelBack: { url: trousersBlackModel1Back.url, alt: "Model wearing black pleated trousers — look 1 back" },
+          extraShots: [
+            { url: trousersBlackModel2Front.url, alt: "Model wearing black pleated trousers — look 2 front" },
+            { url: trousersBlackModel2Back.url, alt: "Model wearing black pleated trousers — look 2 back" },
+          ],
+        },
+      },
+      {
+        id: "brown",
+        color: "Brown",
+        swatch: "#3a2a1a",
+        sku: "NC-CMD-TROUS-BRN",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: trousersBrownFront.url, alt: "Brown pleated trousers — front" },
+          backProduct: { url: trousersBrownBack.url, alt: "Brown pleated trousers — back with manifesto patch" },
+        },
+      },
+    ],
+  },
 ];
+
 
 export const getProductBySlug = (slug: string) =>
   products.find((p) => p.slug === slug);
