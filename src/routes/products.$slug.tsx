@@ -5,12 +5,14 @@ import { getGroupedVariants, getProductBySlug, type ProductImage } from "@/data/
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
 
-type ProductSearch = { variant?: string };
+type ProductSearch = { variant?: string; lightbox?: "1" };
 
 export const Route = createFileRoute("/products/$slug")({
   validateSearch: (search: Record<string, unknown>): ProductSearch => ({
     variant: typeof search.variant === "string" ? search.variant : undefined,
+    lightbox: search.lightbox === "1" ? "1" : undefined,
   }),
+
   loader: ({ params }) => {
     const product = getProductBySlug(params.slug);
     if (!product) throw notFound();
@@ -46,7 +48,7 @@ function orderedImages(images: ProductImage[]): ProductImage[] {
 
 function ProductPage() {
   const { product } = Route.useLoaderData();
-  const { variant: variantSearch } = Route.useSearch();
+  const { variant: variantSearch, lightbox: lightboxSearch } = Route.useSearch();
   const navigate = useNavigate();
   const collection = getCollection(product.collectionId);
   const initialVariant =
@@ -54,7 +56,10 @@ function ProductPage() {
     product.variants[0].id;
   const [variantId, setVariantId] = useState(initialVariant);
   const [size, setSize] = useState<string | null>(null);
-  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(
+    lightboxSearch === "1" ? 0 : null,
+  );
+
 
   const variant: ProductVariant =
     product.variants.find((v: ProductVariant) => v.id === variantId) ?? product.variants[0];

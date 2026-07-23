@@ -1,16 +1,13 @@
 ## Change
 
-In `src/components/no-comply/product-card.tsx`:
+Make swatches on the collection page open the product's lightbox for the clicked color.
 
-1. Revert the hover-delay logic:
-   - Remove `showModel` state, `modelTimerRef`, `MODEL_HOVER_DELAY_MS`, `handleCardEnter`, `handleCardLeave`.
-   - Drop the `onMouseEnter/Leave/Focus/Blur` handlers from the outer `<div>` and remove the `group` class (no longer needed to trigger model swap from the outer wrapper).
-   - Restore instant cross-fade driven by hover on the image area.
+1. `src/routes/products.$slug.tsx`
+   - Extend `ProductSearch` with `lightbox?: "1"` and validate it in `validateSearch`.
+   - In `ProductPage`, if `search.lightbox === "1"`, initialize `lightboxIndex` to `0` so the lightbox opens on mount for the selected variant.
 
-2. Shrink the hover hit-area so the model view only appears when the mouse is over the product image itself (not the text/swatches below):
-   - Move the hover trigger onto the image container (`<div className="relative aspect-[3/4] ...">`), giving it its own `group/image` scope.
-   - Front image uses `group-hover/image:opacity-0` when a model image exists and no swatch is being previewed.
-   - Model image uses `group-hover/image:opacity-100`.
-   - Keep the `previewing` check so hovering a swatch still forces the front image and suppresses the model swap.
+2. `src/components/no-comply/product-card.tsx`
+   - Change the swatch `onClick` handler: instead of setting local `variantId` (own product) or navigating to the plain product page (foreign product), always navigate to `/products/$slug` with `params: { slug: g.productSlug }` and `search: { variant: g.variantId, lightbox: "1" }`.
+   - Keep hover preview behavior unchanged.
 
-No other files change. Behavior: hover anywhere over the product image → instant fade to model; leaving the image (including moving onto the name/price/swatches) → instant snap back to front.
+No other files change.
