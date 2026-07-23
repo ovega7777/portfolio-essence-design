@@ -5,7 +5,12 @@ import { getProductBySlug, type ProductImage } from "@/data/products";
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
 
+type ProductSearch = { variant?: string };
+
 export const Route = createFileRoute("/products/$slug")({
+  validateSearch: (search: Record<string, unknown>): ProductSearch => ({
+    variant: typeof search.variant === "string" ? search.variant : undefined,
+  }),
   loader: ({ params }) => {
     const product = getProductBySlug(params.slug);
     if (!product) throw notFound();
@@ -41,8 +46,12 @@ function orderedImages(images: ProductImage[]): ProductImage[] {
 
 function ProductPage() {
   const { product } = Route.useLoaderData();
+  const { variant: variantSearch } = Route.useSearch();
   const collection = getCollection(product.collectionId);
-  const [variantId, setVariantId] = useState(product.variants[0].id);
+  const initialVariant =
+    (variantSearch && product.variants.find((v: ProductVariant) => v.id === variantSearch)?.id) ??
+    product.variants[0].id;
+  const [variantId, setVariantId] = useState(initialVariant);
   const [size, setSize] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
@@ -182,6 +191,16 @@ function ProductPage() {
           onClose={() => setLightboxIndex(null)}
           name={product.name}
           price={product.price}
+          variants={product.variants.map((v: ProductVariant) => ({
+            id: v.id,
+            color: v.color,
+            swatch: v.swatch,
+          }))}
+          activeVariantId={variant.id}
+          onVariantChange={(id) => {
+            setVariantId(id);
+            setLightboxIndex(0);
+          }}
         />
       )}
     </div>
