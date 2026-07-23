@@ -376,7 +376,14 @@ export const products: Product[] = [
         images: {
           frontProduct: { url: trousersBrownFront.url, alt: "Brown pleated trousers — front" },
           backProduct: { url: trousersBrownBack.url, alt: "Brown pleated trousers — back with manifesto patch" },
+          modelFront: { url: trousersBlackModel1Front.url, alt: "Model wearing pleated trousers — look 1 front" },
+          modelBack: { url: trousersBlackModel1Back.url, alt: "Model wearing pleated trousers — look 1 back" },
+          extraShots: [
+            { url: trousersBlackModel2Front.url, alt: "Model wearing pleated trousers — look 2 front" },
+            { url: trousersBlackModel2Back.url, alt: "Model wearing pleated trousers — look 2 back" },
+          ],
         },
+
       },
     ],
   },
