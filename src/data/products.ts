@@ -50,10 +50,10 @@ export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
     slug: "command-zip-knit-hoodie-oxblood",
-    name: "COMMAND ZIP KNIT HOODIE",
+    name: "ZIP KNIT HOODIE",
     collectionId: "collection-1",
     category: "Knitwear",
-    price: 480,
+    price: 275,
     description:
       "Heavyweight ribbed knit zip hoodie in oxblood. Cropped silhouette with wide sleeves, drawcord hood, and elbow patches. Finished with 'C' chest patch and 'NO COMPLY / SORRY ABOUT THAT' sleeve patches.",
     featured: true,

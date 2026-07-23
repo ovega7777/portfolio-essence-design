@@ -82,7 +82,7 @@ function ProductPage() {
               key={img.url}
               type="button"
               onClick={() => setLightboxIndex(i)}
-              className="group block w-full border-2 border-black bg-white"
+              className="group block w-full bg-white"
               aria-label={`Open ${img.alt}`}
             >
               <img
@@ -104,7 +104,7 @@ function ProductPage() {
           <h1 className="nc-display text-4xl leading-none text-black md:text-6xl">
             {product.name}
           </h1>
-          <p className="nc-display mt-3 text-sm tracking-[0.2em] text-black">
+          <p className="nc-display mt-3 text-xl tracking-[0.2em] text-black md:text-2xl">
             ${product.price}
           </p>
 
@@ -180,6 +180,8 @@ function ProductPage() {
           images={ordered}
           startIndex={lightboxIndex}
           onClose={() => setLightboxIndex(null)}
+          name={product.name}
+          price={product.price}
         />
       )}
     </div>
