@@ -104,6 +104,15 @@ import trousersBlackModel2Back from "@/assets/products/pleated-trousers/black/mo
 import trousersBrownFront from "@/assets/products/pleated-trousers/brown/front.png.asset.json";
 import trousersBrownBack from "@/assets/products/pleated-trousers/brown/back.png.asset.json";
 
+import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
+import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
+import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
+import pinupBlackModel from "@/assets/products/army-pinup-tee/black/model.png.asset.json";
+import pinupNavyFront from "@/assets/products/army-pinup-tee/navy/front.png.asset.json";
+import pinupNavyModel from "@/assets/products/army-pinup-tee/navy/model.png.asset.json";
+import pinupOliveFront from "@/assets/products/army-pinup-tee/olive/front.png.asset.json";
+import pinupOliveModel from "@/assets/products/army-pinup-tee/olive/model.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
