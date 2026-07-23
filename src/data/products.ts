@@ -87,6 +87,13 @@ import shirtOliveBack from "@/assets/products/sergeant-shirt/olive/back.png.asse
 import shirtWhiteFront from "@/assets/products/sergeant-shirt/white/front.png.asset.json";
 import shirtWhiteBack from "@/assets/products/sergeant-shirt/white/back.png.asset.json";
 
+import tigerBlackFront from "@/assets/products/tiger-tee/black/front.png.asset.json";
+import tigerBlackModel from "@/assets/products/tiger-tee/black/model.png.asset.json";
+import tigerForestFront from "@/assets/products/tiger-tee/forest/front.png.asset.json";
+import tigerForestModel from "@/assets/products/tiger-tee/forest/model.png.asset.json";
+import tigerNavyFront from "@/assets/products/tiger-tee/navy/front.png.asset.json";
+import tigerNavyModel from "@/assets/products/tiger-tee/navy/model.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
@@ -270,6 +277,53 @@ export const products: Product[] = [
           extraShots: [
             { url: shirtNavyModel3.url, alt: "Model wearing navy sergeant shirt — look 3" },
           ],
+        },
+      },
+    ],
+  },
+  {
+    id: "command-tiger-tee",
+    slug: "command-tiger-tee",
+    name: "NC TIGER TEE",
+    collectionId: "collection-1",
+    category: "Tees",
+    price: 99,
+    description:
+      "Tonal tiger camo tee with arched 'NO COMPLY USA' chest print. Boxy fit, ribbed crew, garment-washed for a lived-in hand.",
+    featured: false,
+    displayOrder: 5,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-TEE-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: tigerBlackFront.url, alt: "Black tiger camo tee — front" },
+          modelFront: { url: tigerBlackModel.url, alt: "Model wearing black tiger camo tee" },
+        },
+      },
+      {
+        id: "forest",
+        color: "Forest",
+        swatch: "#3a4a2a",
+        sku: "NC-CMD-TEE-FOR",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: tigerForestFront.url, alt: "Forest tiger camo tee — front" },
+          modelFront: { url: tigerForestModel.url, alt: "Model wearing forest tiger camo tee" },
+        },
+      },
+      {
+        id: "navy",
+        color: "Navy",
+        swatch: "#16234a",
+        sku: "NC-CMD-TEE-NVY",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: tigerNavyFront.url, alt: "Navy tiger camo tee — front" },
+          modelFront: { url: tigerNavyModel.url, alt: "Model wearing navy tiger camo tee" },
         },
       },
     ],
