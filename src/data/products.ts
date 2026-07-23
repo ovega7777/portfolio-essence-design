@@ -95,6 +95,15 @@ import tigerForestModel from "@/assets/products/tiger-tee/forest/model.png.asset
 import tigerNavyFront from "@/assets/products/tiger-tee/navy/front.png.asset.json";
 import tigerNavyModel from "@/assets/products/tiger-tee/navy/model.png.asset.json";
 
+import trousersBlackFront from "@/assets/products/pleated-trousers/black/front.png.asset.json";
+import trousersBlackBack from "@/assets/products/pleated-trousers/black/back.png.asset.json";
+import trousersBlackModel1Front from "@/assets/products/pleated-trousers/black/model-1-front.png.asset.json";
+import trousersBlackModel1Back from "@/assets/products/pleated-trousers/black/model-1-back.png.asset.json";
+import trousersBlackModel2Front from "@/assets/products/pleated-trousers/black/model-2-front.png.asset.json";
+import trousersBlackModel2Back from "@/assets/products/pleated-trousers/black/model-2-back.png.asset.json";
+import trousersBrownFront from "@/assets/products/pleated-trousers/brown/front.png.asset.json";
+import trousersBrownBack from "@/assets/products/pleated-trousers/brown/back.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
@@ -329,7 +338,50 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: "command-pleated-trousers",
+    slug: "command-pleated-trousers",
+    name: "NC PLEATED TROUSERS",
+    collectionId: "collection-1",
+    category: "Trousers",
+    price: 195,
+    description:
+      "Wide-leg pleated trousers with an asymmetric four-button fly, deep front pleats, belt loops, and turned-up cuffed hem. Cut in a heavyweight suiting fabric with a manifesto script patch pocket at the back.",
+    featured: false,
+    displayOrder: 6,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-TROUS-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: trousersBlackFront.url, alt: "Black pleated trousers — front" },
+          backProduct: { url: trousersBlackBack.url, alt: "Black pleated trousers — back with manifesto patch" },
+          modelFront: { url: trousersBlackModel1Front.url, alt: "Model wearing black pleated trousers — look 1 front" },
+          modelBack: { url: trousersBlackModel1Back.url, alt: "Model wearing black pleated trousers — look 1 back" },
+          extraShots: [
+            { url: trousersBlackModel2Front.url, alt: "Model wearing black pleated trousers — look 2 front" },
+            { url: trousersBlackModel2Back.url, alt: "Model wearing black pleated trousers — look 2 back" },
+          ],
+        },
+      },
+      {
+        id: "brown",
+        color: "Brown",
+        swatch: "#3a2a1a",
+        sku: "NC-CMD-TROUS-BRN",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: trousersBrownFront.url, alt: "Brown pleated trousers — front" },
+          backProduct: { url: trousersBrownBack.url, alt: "Brown pleated trousers — back with manifesto patch" },
+        },
+      },
+    ],
+  },
 ];
+
 
 export const getProductBySlug = (slug: string) =>
   products.find((p) => p.slug === slug);
