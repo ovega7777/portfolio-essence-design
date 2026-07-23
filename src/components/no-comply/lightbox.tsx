@@ -5,9 +5,11 @@ type Props = {
   images: ProductImage[];
   startIndex?: number;
   onClose: () => void;
+  name?: string;
+  price?: number;
 };
 
-export function Lightbox({ images, startIndex = 0, onClose }: Props) {
+export function Lightbox({ images, startIndex = 0, onClose, name, price }: Props) {
   const [index, setIndex] = useState(startIndex);
   const count = images.length;
 
