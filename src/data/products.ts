@@ -237,6 +237,10 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: "command-sergeant-shirt-navy",
+    slug: "command-sergeant-shirt-navy",
+    name: "SERGEANT SHIRT",
     collectionId: "collection-1",
     category: "Shirting",
     price: 245,
