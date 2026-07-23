@@ -39,6 +39,7 @@ export type GroupedVariant = {
   color: string;
   swatch?: string;
   frontImage: { url: string; alt: string };
+  modelImage?: { url: string; alt: string };
 };
 
 /**
@@ -369,6 +370,7 @@ export const getGroupedVariants = (product: Product): GroupedVariant[] => {
         color: v.color,
         swatch: v.swatch,
         frontImage: v.images.frontProduct,
+        modelImage: v.images.modelFront,
       });
     }
   }

@@ -21,9 +21,8 @@ export function ProductCard({ product }: Props) {
     grouped.find((g) => `${g.productSlug}:${g.variantId}` === selectedKey) ||
     grouped[0];
 
-  const previewing = previewKey !== null;
   const front = displayed.frontImage;
-  const modelFront = variant.images.modelFront;
+  const modelFront = displayed.modelImage ?? variant.images.modelFront;
 
   return (
     <div className="block bg-white text-black">
@@ -42,18 +41,18 @@ export function ProductCard({ product }: Props) {
             alt={front.alt}
             loading="lazy"
             className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
-              previewing || !showModel ? "opacity-100" : "opacity-0"
+              !showModel ? "opacity-100" : "opacity-0"
             }`}
           />
           {modelFront && (
             <img
-              key={`${variant.id}-model`}
+              key={`${displayed.productSlug}-${displayed.variantId}-model`}
               src={modelFront.url}
               alt={modelFront.alt}
               loading="lazy"
               aria-hidden
               className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
-                showModel && !previewing ? "opacity-100" : "opacity-0"
+                showModel ? "opacity-100" : "opacity-0"
               }`}
             />
           )}
