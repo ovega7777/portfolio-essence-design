@@ -396,6 +396,64 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: "command-army-pinup-tee",
+    slug: "command-army-pinup-tee",
+    name: "NC ARMY PIN UP TEE",
+    collectionId: "collection-1",
+    category: "Tees",
+    price: 55,
+    description:
+      "Cropped baby tee with pin-up 'NO COMPLY' chorus-line chest graphic. Boxy-slim fit, ribbed crew, garment-washed cotton.",
+    featured: false,
+    displayOrder: 7,
+    variants: [
+      {
+        id: "white",
+        color: "White",
+        swatch: "#f2ece0",
+        sku: "NC-CMD-PINUP-WHT",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: pinupWhiteFront.url, alt: "White NC army pin up tee — front" },
+          modelFront: { url: pinupWhiteModel.url, alt: "Model wearing white NC army pin up tee" },
+        },
+      },
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-PINUP-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: pinupBlackFront.url, alt: "Black NC army pin up tee — front" },
+          modelFront: { url: pinupBlackModel.url, alt: "Model wearing black NC army pin up tee" },
+        },
+      },
+      {
+        id: "navy",
+        color: "Navy",
+        swatch: "#16234a",
+        sku: "NC-CMD-PINUP-NVY",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: pinupNavyFront.url, alt: "Navy NC army pin up tee — front" },
+          modelFront: { url: pinupNavyModel.url, alt: "Model wearing navy NC army pin up tee" },
+        },
+      },
+      {
+        id: "olive",
+        color: "Olive",
+        swatch: "#5a5a2b",
+        sku: "NC-CMD-PINUP-OLV",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: pinupOliveFront.url, alt: "Olive NC army pin up tee — front" },
+          modelFront: { url: pinupOliveModel.url, alt: "Model wearing olive NC army pin up tee" },
+        },
+      },
+    ],
+  },
 ];
 
 
