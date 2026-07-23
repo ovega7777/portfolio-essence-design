@@ -87,6 +87,13 @@ import shirtOliveBack from "@/assets/products/sergeant-shirt/olive/back.png.asse
 import shirtWhiteFront from "@/assets/products/sergeant-shirt/white/front.png.asset.json";
 import shirtWhiteBack from "@/assets/products/sergeant-shirt/white/back.png.asset.json";
 
+import tigerBlackFront from "@/assets/products/tiger-tee/black/front.png.asset.json";
+import tigerBlackModel from "@/assets/products/tiger-tee/black/model.png.asset.json";
+import tigerForestFront from "@/assets/products/tiger-tee/forest/front.png.asset.json";
+import tigerForestModel from "@/assets/products/tiger-tee/forest/model.png.asset.json";
+import tigerNavyFront from "@/assets/products/tiger-tee/navy/front.png.asset.json";
+import tigerNavyModel from "@/assets/products/tiger-tee/navy/model.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
