@@ -281,6 +281,53 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: "command-tiger-tee",
+    slug: "command-tiger-tee",
+    name: "NC TIGER TEE",
+    collectionId: "collection-1",
+    category: "Tees",
+    price: 99,
+    description:
+      "Tonal tiger camo tee with arched 'NO COMPLY USA' chest print. Boxy fit, ribbed crew, garment-washed for a lived-in hand.",
+    featured: false,
+    displayOrder: 5,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-TEE-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: tigerBlackFront.url, alt: "Black tiger camo tee — front" },
+          modelFront: { url: tigerBlackModel.url, alt: "Model wearing black tiger camo tee" },
+        },
+      },
+      {
+        id: "forest",
+        color: "Forest",
+        swatch: "#3a4a2a",
+        sku: "NC-CMD-TEE-FOR",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: tigerForestFront.url, alt: "Forest tiger camo tee — front" },
+          modelFront: { url: tigerForestModel.url, alt: "Model wearing forest tiger camo tee" },
+        },
+      },
+      {
+        id: "navy",
+        color: "Navy",
+        swatch: "#16234a",
+        sku: "NC-CMD-TEE-NVY",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: tigerNavyFront.url, alt: "Navy tiger camo tee — front" },
+          modelFront: { url: tigerNavyModel.url, alt: "Model wearing navy tiger camo tee" },
+        },
+      },
+    ],
+  },
 ];
 
 export const getProductBySlug = (slug: string) =>
