@@ -55,11 +55,6 @@ import detailFrontImg from "@/assets/products/oxblood-hoodie/detail-front.png.as
 import model1Img from "@/assets/products/oxblood-hoodie/model-1.png.asset.json";
 import model2Img from "@/assets/products/oxblood-hoodie/model-2.png.asset.json";
 
-import greenFront from "@/assets/products/zip-knit-hoodie/green/front.png.asset.json";
-import greenFrontPatched from "@/assets/products/zip-knit-hoodie/green/front-patched.png.asset.json";
-import greenBack from "@/assets/products/zip-knit-hoodie/green/back.png.asset.json";
-import greenModel1 from "@/assets/products/zip-knit-hoodie/green/model-1.png.asset.json";
-import greenModel2 from "@/assets/products/zip-knit-hoodie/green/model-2.png.asset.json";
 
 import navyFront from "@/assets/products/zip-knit-hoodie/navy/front.png.asset.json";
 import navyBack from "@/assets/products/zip-knit-hoodie/navy/back.png.asset.json";
