@@ -46,8 +46,12 @@ function orderedImages(images: ProductImage[]): ProductImage[] {
 
 function ProductPage() {
   const { product } = Route.useLoaderData();
+  const { variant: variantSearch } = Route.useSearch();
   const collection = getCollection(product.collectionId);
-  const [variantId, setVariantId] = useState(product.variants[0].id);
+  const initialVariant =
+    (variantSearch && product.variants.find((v) => v.id === variantSearch)?.id) ??
+    product.variants[0].id;
+  const [variantId, setVariantId] = useState(initialVariant);
   const [size, setSize] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
