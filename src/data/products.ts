@@ -131,6 +131,20 @@ export const products: Product[] = [
           backProduct: { url: blackBack.url, alt: "Black zip knit hoodie — back with elbow patches" },
         },
       },
+    ],
+  },
+  {
+    id: "command-zip-knit-hoodie-olive",
+    slug: "command-zip-knit-hoodie-olive",
+    name: "ZIP KNIT HOODIE",
+    collectionId: "collection-1",
+    category: "Knitwear",
+    price: 275,
+    description:
+      "Heavyweight ribbed knit zip hoodie in olive. Cropped silhouette with wide sleeves, drawcord hood, and elbow patches. Finished with 'USA' chest patch and 'NO COMPLY / SORRY ABOUT THAT' sleeve patches.",
+    featured: false,
+    displayOrder: 2,
+    variants: [
       {
         id: "olive",
         color: "Olive",
