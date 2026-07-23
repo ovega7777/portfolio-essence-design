@@ -59,13 +59,10 @@ export function ProductCard({ product }: Props) {
           )}
           {modelFront && (
             <div
-              className="absolute left-1/2 top-1/2 h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-black/50"
+              className="absolute left-1/2 top-1/2 h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 cursor-pointer"
               onMouseEnter={() => setShowModel(true)}
               onMouseLeave={() => setShowModel(false)}
-              onFocus={() => setShowModel(true)}
-              onBlur={() => setShowModel(false)}
-              tabIndex={0}
-              aria-label="Reveal model view"
+              aria-hidden
             />
           )}
         </div>
