@@ -55,11 +55,6 @@ import detailFrontImg from "@/assets/products/oxblood-hoodie/detail-front.png.as
 import model1Img from "@/assets/products/oxblood-hoodie/model-1.png.asset.json";
 import model2Img from "@/assets/products/oxblood-hoodie/model-2.png.asset.json";
 
-import greenFront from "@/assets/products/zip-knit-hoodie/green/front.png.asset.json";
-import greenFrontPatched from "@/assets/products/zip-knit-hoodie/green/front-patched.png.asset.json";
-import greenBack from "@/assets/products/zip-knit-hoodie/green/back.png.asset.json";
-import greenModel1 from "@/assets/products/zip-knit-hoodie/green/model-1.png.asset.json";
-import greenModel2 from "@/assets/products/zip-knit-hoodie/green/model-2.png.asset.json";
 
 import navyFront from "@/assets/products/zip-knit-hoodie/navy/front.png.asset.json";
 import navyBack from "@/assets/products/zip-knit-hoodie/navy/back.png.asset.json";
@@ -101,22 +96,6 @@ export const products: Product[] = [
           ],
           modelFront: { url: model1Img.url, alt: "Model wearing oxblood zip knit hoodie — look 1" },
           modelBack: { url: model2Img.url, alt: "Model wearing oxblood zip knit hoodie — look 2" },
-        },
-      },
-      {
-        id: "green",
-        color: "Olive",
-        swatch: "#4b5320",
-        sku: "NC-CMD-KNIT-GRN",
-        sizes: ["XS", "S", "M", "L", "XL"],
-        images: {
-          frontProduct: { url: greenFront.url, alt: "Olive zip knit hoodie — front" },
-          backProduct: { url: greenBack.url, alt: "Olive zip knit hoodie — back with elbow patches" },
-          details: [
-            { url: greenFrontPatched.url, alt: "Front detail — 'USA' chest patch and sleeve patches on olive knit" },
-          ],
-          modelFront: { url: greenModel1.url, alt: "Model wearing olive zip knit hoodie — look 1" },
-          modelBack: { url: greenModel2.url, alt: "Model wearing olive zip knit hoodie — look 2" },
         },
       },
       {
