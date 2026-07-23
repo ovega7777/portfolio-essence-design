@@ -85,6 +85,7 @@ export const products: Product[] = [
       "Heavyweight ribbed knit zip hoodie. Cropped silhouette with wide sleeves, drawcord hood, and elbow patches. Finished with 'C' chest patch and 'NO COMPLY / SORRY ABOUT THAT' sleeve patches.",
     featured: true,
     displayOrder: 1,
+    swatchGroup: "zip-knit-hoodie",
     variants: [
       {
         id: "oxblood",
