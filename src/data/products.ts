@@ -58,6 +58,12 @@ import navyBack from "@/assets/products/zip-knit-hoodie/navy/back.png.asset.json
 import blackFront from "@/assets/products/zip-knit-hoodie/black/front.png.asset.json";
 import blackBack from "@/assets/products/zip-knit-hoodie/black/back.png.asset.json";
 
+import oliveFront from "@/assets/products/zip-knit-hoodie/olive/front.png.asset.json";
+import oliveFrontPatched from "@/assets/products/zip-knit-hoodie/olive/front-patched.png.asset.json";
+import oliveBack from "@/assets/products/zip-knit-hoodie/olive/back.png.asset.json";
+import oliveModel1 from "@/assets/products/zip-knit-hoodie/olive/model-1.png.asset.json";
+import oliveModel2 from "@/assets/products/zip-knit-hoodie/olive/model-2.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
@@ -123,6 +129,22 @@ export const products: Product[] = [
         images: {
           frontProduct: { url: blackFront.url, alt: "Black zip knit hoodie — front" },
           backProduct: { url: blackBack.url, alt: "Black zip knit hoodie — back with elbow patches" },
+        },
+      },
+      {
+        id: "olive",
+        color: "Olive",
+        swatch: "#5a5a2b",
+        sku: "NC-CMD-KNIT-OLV",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: oliveFront.url, alt: "Olive zip knit hoodie — front" },
+          backProduct: { url: oliveBack.url, alt: "Olive zip knit hoodie — back with elbow patches" },
+          details: [
+            { url: oliveFrontPatched.url, alt: "Front detail — 'USA' chest patch and sleeve patches on olive knit" },
+          ],
+          modelFront: { url: oliveModel1.url, alt: "Model wearing olive zip knit hoodie — look 1" },
+          modelBack: { url: oliveModel2.url, alt: "Model wearing olive zip knit hoodie — look 2" },
         },
       },
     ],
