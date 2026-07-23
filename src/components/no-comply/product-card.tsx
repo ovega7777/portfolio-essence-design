@@ -42,18 +42,18 @@ export function ProductCard({ product }: Props) {
             alt={front.alt}
             loading="lazy"
             className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
-              previewing || !showModel ? "opacity-100" : "opacity-0"
+              !showModel ? "opacity-100" : "opacity-0"
             }`}
           />
           {modelFront && (
             <img
-              key={`${variant.id}-model`}
+              key={`${displayed.productSlug}-${displayed.variantId}-model`}
               src={modelFront.url}
               alt={modelFront.alt}
               loading="lazy"
               aria-hidden
               className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
-                showModel && !previewing ? "opacity-100" : "opacity-0"
+                showModel ? "opacity-100" : "opacity-0"
               }`}
             />
           )}
