@@ -13,6 +13,7 @@ export function ProductCard({ product }: Props) {
   const grouped = getGroupedVariants(product);
   const selectedKey = `${product.slug}:${variant.id}`;
   const [previewKey, setPreviewKey] = useState<string | null>(null);
+  const [showModel, setShowModel] = useState(false);
 
   const displayed =
     (previewKey &&
@@ -25,12 +26,14 @@ export function ProductCard({ product }: Props) {
   const modelFront = variant.images.modelFront;
 
   return (
-    <div className="group block bg-white text-black">
+    <div className="block bg-white text-black">
       <Link
         to="/products/$slug"
         params={{ slug: displayed.productSlug }}
         search={{ variant: displayed.variantId }}
         className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
+        onFocus={() => setShowModel(true)}
+        onBlur={() => setShowModel(false)}
       >
         <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
           <img
@@ -39,19 +42,30 @@ export function ProductCard({ product }: Props) {
             alt={front.alt}
             loading="lazy"
             className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
-              previewing
-                ? "opacity-100"
-                : "group-hover:opacity-0 group-focus-within:opacity-0"
+              previewing || !showModel ? "opacity-100" : "opacity-0"
             }`}
           />
-          {modelFront && !previewing && (
+          {modelFront && (
             <img
               key={`${variant.id}-model`}
               src={modelFront.url}
               alt={modelFront.alt}
               loading="lazy"
               aria-hidden
-              className="absolute inset-0 h-full w-full object-contain p-4 opacity-0 transition-opacity duration-[250ms] ease-in-out group-hover:opacity-100 group-focus-within:opacity-100"
+              className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
+                showModel && !previewing ? "opacity-100" : "opacity-0"
+              }`}
+            />
+          )}
+          {modelFront && (
+            <div
+              className="absolute left-1/2 top-1/2 h-[60%] w-[60%] -translate-x-1/2 -translate-y-1/2 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-black/50"
+              onMouseEnter={() => setShowModel(true)}
+              onMouseLeave={() => setShowModel(false)}
+              onFocus={() => setShowModel(true)}
+              onBlur={() => setShowModel(false)}
+              tabIndex={0}
+              aria-label="Reveal model view"
             />
           )}
         </div>
