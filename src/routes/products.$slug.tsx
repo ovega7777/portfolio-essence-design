@@ -82,7 +82,7 @@ function ProductPage() {
               key={img.url}
               type="button"
               onClick={() => setLightboxIndex(i)}
-              className="group block w-full border-2 border-black bg-white"
+              className="group block w-full bg-white"
               aria-label={`Open ${img.alt}`}
             >
               <img
