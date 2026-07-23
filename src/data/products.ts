@@ -82,6 +82,11 @@ import shirtNavyModel1 from "@/assets/products/sergeant-shirt/navy/model-1.png.a
 import shirtNavyModel2 from "@/assets/products/sergeant-shirt/navy/model-2.png.asset.json";
 import shirtNavyModel3 from "@/assets/products/sergeant-shirt/navy/model-3.png.asset.json";
 
+import shirtOliveFront from "@/assets/products/sergeant-shirt/olive/front.png.asset.json";
+import shirtOliveBack from "@/assets/products/sergeant-shirt/olive/back.png.asset.json";
+import shirtWhiteFront from "@/assets/products/sergeant-shirt/white/front.png.asset.json";
+import shirtWhiteBack from "@/assets/products/sergeant-shirt/white/back.png.asset.json";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
@@ -206,6 +211,28 @@ export const products: Product[] = [
           extraShots: [
             { url: shirtBlackModel3.url, alt: "Model wearing black sergeant shirt — look 3" },
           ],
+        },
+      },
+      {
+        id: "olive",
+        color: "Olive",
+        swatch: "#5a5a2b",
+        sku: "NC-CMD-SHIRT-OLV",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: shirtOliveFront.url, alt: "Olive sergeant shirt — front" },
+          backProduct: { url: shirtOliveBack.url, alt: "Olive sergeant shirt — back" },
+        },
+      },
+      {
+        id: "white",
+        color: "White",
+        swatch: "#f2ece0",
+        sku: "NC-CMD-SHIRT-WHT",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: shirtWhiteFront.url, alt: "White sergeant shirt — front" },
+          backProduct: { url: shirtWhiteBack.url, alt: "White sergeant shirt — back" },
         },
       },
     ],
