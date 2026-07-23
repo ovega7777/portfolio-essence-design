@@ -577,7 +577,7 @@ export const products: Product[] = [
             { url: captainFront.url, alt: "Captain's jacket — front, unpatched base" },
           ],
           modelFront: { url: captainModel1.url, alt: "Model wearing captain's jacket — look 1" },
-          modelBack: { url: captainModel2.url, alt: "Model wearing captain's jacket — look 2" },
+          modelBack: { url: captainModel2.url, alt: "Model wearing captain's jacket — full body look 2" },
           extraShots: [
             { url: captainModel3.url, alt: "Model wearing captain's jacket — look 3" },
           ],
