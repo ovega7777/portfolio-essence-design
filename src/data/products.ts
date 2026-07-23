@@ -38,6 +38,7 @@ export type GroupedVariant = {
   variantId: string;
   color: string;
   swatch?: string;
+  frontImage: { url: string; alt: string };
 };
 
 /**
