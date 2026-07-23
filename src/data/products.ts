@@ -73,9 +73,6 @@ export const products: Product[] = [
           ],
           modelFront: { url: model1Img.url, alt: "Model wearing oxblood zip knit hoodie — look 1" },
           modelBack: { url: model2Img.url, alt: "Model wearing oxblood zip knit hoodie — look 2" },
-          extraShots: [
-            { url: model3Img.url, alt: "Model wearing oxblood zip knit hoodie — look 3" },
-          ],
         },
       },
     ],
