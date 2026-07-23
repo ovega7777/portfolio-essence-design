@@ -552,6 +552,39 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: "command-captains-jacket",
+    slug: "command-captains-jacket",
+    name: "CAPTAIN'S JACKET",
+    collectionId: "collection-1",
+    category: "Outerwear",
+    price: 450,
+    description:
+      "Cropped tumbled-leather bomber with sherpa collar, silver double-slider zip, welt hand pockets, and ribbed cuffs and hem. Ships with the full patch set — 'DEALER OF DEATH' spade chest patch, arched 'NO COMPLY' shoulder tab, and 'SORRY ABOUT THAT / OOPS MY BAD / YOU'LL GET OVER IT' sleeve stack — included with purchase.",
+    featured: true,
+    displayOrder: 10,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-CAPT-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: captainFrontPatched.url, alt: "Captain's jacket — front with full patch set" },
+          backProduct: { url: captainBack.url, alt: "Captain's jacket — back" },
+          details: [
+            { url: captainFront.url, alt: "Captain's jacket — front, unpatched base" },
+          ],
+          modelFront: { url: captainModel1.url, alt: "Model wearing captain's jacket — look 1" },
+          modelBack: { url: captainModel2.url, alt: "Model wearing captain's jacket — look 2" },
+          extraShots: [
+            { url: captainModel3.url, alt: "Model wearing captain's jacket — look 3" },
+          ],
+        },
+      },
+    ],
+  },
 ];
 
 
