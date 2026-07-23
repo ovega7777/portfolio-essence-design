@@ -5,12 +5,14 @@ import { getGroupedVariants, getProductBySlug, type ProductImage } from "@/data/
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
 
-type ProductSearch = { variant?: string };
+type ProductSearch = { variant?: string; lightbox?: "1" };
 
 export const Route = createFileRoute("/products/$slug")({
   validateSearch: (search: Record<string, unknown>): ProductSearch => ({
     variant: typeof search.variant === "string" ? search.variant : undefined,
+    lightbox: search.lightbox === "1" ? "1" : undefined,
   }),
+
   loader: ({ params }) => {
     const product = getProductBySlug(params.slug);
     if (!product) throw notFound();
