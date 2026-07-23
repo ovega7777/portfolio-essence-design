@@ -47,6 +47,7 @@ function orderedImages(images: ProductImage[]): ProductImage[] {
 function ProductPage() {
   const { product } = Route.useLoaderData();
   const { variant: variantSearch } = Route.useSearch();
+  const navigate = useNavigate();
   const collection = getCollection(product.collectionId);
   const initialVariant =
     (variantSearch && product.variants.find((v: ProductVariant) => v.id === variantSearch)?.id) ??
@@ -57,6 +58,8 @@ function ProductPage() {
 
   const variant: ProductVariant =
     product.variants.find((v: ProductVariant) => v.id === variantId) ?? product.variants[0];
+
+  const grouped = getGroupedVariants(product);
 
   const stack: ProductImage[] = [];
   stack.push(variant.images.frontProduct);
