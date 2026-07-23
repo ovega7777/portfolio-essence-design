@@ -86,14 +86,19 @@ export function ProductCard({ product }: Props) {
             const key = `${g.productSlug}:${g.variantId}`;
             const isOwn = g.productSlug === product.slug;
             const active = key === selectedKey;
+            const stickyHover = product.slug === "nc-tiger-tee";
             return (
               <button
                 key={key}
                 type="button"
                 onMouseEnter={() => setPreviewKey(key)}
-                onMouseLeave={() => setPreviewKey(null)}
+                onMouseLeave={() => {
+                  if (!stickyHover) setPreviewKey(null);
+                }}
                 onFocus={() => setPreviewKey(key)}
-                onBlur={() => setPreviewKey(null)}
+                onBlur={() => {
+                  if (!stickyHover) setPreviewKey(null);
+                }}
                 onClick={(e) => {
                   e.preventDefault();
                   e.stopPropagation();
