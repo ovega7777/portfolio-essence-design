@@ -124,27 +124,41 @@ function ProductPage() {
             {product.description}
           </p>
 
-          {product.variants.length > 1 && (
+          {grouped.length > 1 && (
             <div className="mt-8">
               <p className="nc-display mb-3 text-[10px] tracking-[0.3em] text-black">
                 Color — {variant.color}
               </p>
               <div className="flex flex-wrap gap-2">
-                {product.variants.map((v: ProductVariant) => (
-                  <button
-                    key={v.id}
-                    type="button"
-                    onClick={() => setVariantId(v.id)}
-                    aria-pressed={v.id === variant.id}
-                    className={`nc-display border-2 border-black px-3 py-2 text-[10px] tracking-[0.3em] transition-colors duration-200 ${
-                      v.id === variant.id
-                        ? "bg-black text-white"
-                        : "bg-white text-black hover:bg-black hover:text-white"
-                    }`}
-                  >
-                    {v.color}
-                  </button>
-                ))}
+                {grouped.map((g) => {
+                  const isOwn = g.productSlug === product.slug;
+                  const active = isOwn && g.variantId === variant.id;
+                  return (
+                    <button
+                      key={`${g.productSlug}-${g.variantId}`}
+                      type="button"
+                      onClick={() => {
+                        if (isOwn) {
+                          setVariantId(g.variantId);
+                        } else {
+                          navigate({
+                            to: "/products/$slug",
+                            params: { slug: g.productSlug },
+                            search: { variant: g.variantId },
+                          });
+                        }
+                      }}
+                      aria-pressed={active}
+                      className={`nc-display border-2 border-black px-3 py-2 text-[10px] tracking-[0.3em] transition-colors duration-200 ${
+                        active
+                          ? "bg-black text-white"
+                          : "bg-white text-black hover:bg-black hover:text-white"
+                      }`}
+                    >
+                      {g.color}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           )}
