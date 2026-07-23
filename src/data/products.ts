@@ -467,6 +467,84 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: "command-cpt-cargo-pant-black",
+    slug: "command-cpt-cargo-pant-black",
+    name: "CPT. CARGO PANT",
+    collectionId: "collection-1",
+    category: "Trousers",
+    price: 185,
+    description:
+      "Wide-leg cargo pant with pressed center creases, flap side pockets, welt back pockets, and buttoned hem tabs. Cut in a heavyweight garment-washed twill.",
+    featured: false,
+    displayOrder: 8,
+    swatchGroup: "cpt-cargo-pant",
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-CARGO-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: cargoBlackFront.url, alt: "Black CPT. cargo pant — front" },
+          backProduct: { url: cargoBlackBack.url, alt: "Black CPT. cargo pant — back" },
+          modelFront: { url: cargoBlackModel1.url, alt: "Model wearing black CPT. cargo pant — look 1" },
+          modelBack: { url: cargoBlackModel2.url, alt: "Model wearing black CPT. cargo pant — look 2" },
+        },
+      },
+      {
+        id: "olive",
+        color: "Olive",
+        swatch: "#5a5a2b",
+        sku: "NC-CMD-CARGO-OLV",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: cargoOliveFront.url, alt: "Olive CPT. cargo pant — front" },
+          backProduct: { url: cargoOliveBack.url, alt: "Olive CPT. cargo pant — back" },
+        },
+      },
+      {
+        id: "brown",
+        color: "Brown",
+        swatch: "#3a2a1a",
+        sku: "NC-CMD-CARGO-BRN",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: cargoBrownFront.url, alt: "Brown CPT. cargo pant — front" },
+          backProduct: { url: cargoBrownBack.url, alt: "Brown CPT. cargo pant — back" },
+        },
+      },
+    ],
+  },
+  {
+    id: "command-cpt-cargo-pant-plaid",
+    slug: "command-cpt-cargo-pant-plaid",
+    name: "CPT. CARGO PANT",
+    collectionId: "collection-1",
+    category: "Trousers",
+    price: 185,
+    description:
+      "Wide-leg cargo pant in charcoal plaid with pressed center creases, flap side pockets, welt back pockets, and buttoned hem tabs. Cut in a heavyweight garment-washed twill.",
+    featured: false,
+    displayOrder: 9,
+    swatchGroup: "cpt-cargo-pant",
+    variants: [
+      {
+        id: "plaid",
+        color: "Plaid",
+        swatch: "#2a2a2a",
+        sku: "NC-CMD-CARGO-PLD",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: { url: cargoPlaidFront.url, alt: "Plaid CPT. cargo pant — front" },
+          backProduct: { url: cargoPlaidBack.url, alt: "Plaid CPT. cargo pant — back" },
+          modelFront: { url: cargoPlaidModel1.url, alt: "Model wearing plaid CPT. cargo pant — look 1" },
+          modelBack: { url: cargoPlaidModel2.url, alt: "Model wearing plaid CPT. cargo pant — look 2" },
+        },
+      },
+    ],
+  },
 ];
 
 
