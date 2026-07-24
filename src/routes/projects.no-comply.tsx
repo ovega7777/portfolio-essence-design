@@ -7,6 +7,8 @@ import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png
 import { products, getCategories, type Product } from "@/data/products";
 import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
+import { ProductOrderHUD } from "@/components/no-comply/product-order-hud";
+import { useProductOrder, applyOrder } from "@/hooks/use-product-order";
 
 const COLLECTION = collections[0];
 const collectionProducts = products
