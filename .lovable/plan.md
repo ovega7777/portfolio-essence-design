@@ -1,29 +1,18 @@
-## Product Order HUD
+## Simplify Product Order HUD
 
-Add an on-canvas tool (matching the existing `LogoBannerHUD` / `LightboxTextHUD` pattern) that lets you reorder the product grid visually and persist the new order in the browser.
+Strip the HUD down to a single purpose: reorder product listings by swapping positions. Remove all extra controls and states.
 
-### Behavior
-- Small toggle button pinned to the corner of `/projects/no-comply` (same style as other HUDs). Click to open the panel.
-- Panel lists every product in current order, each row with:
-  - Small front-image thumbnail + name + colorway
-  - Drag handle for reordering
-  - Up/Down arrow buttons as a touch/precision fallback
-- Live preview: as you drag, the actual product grid on the page reflows to match.
-- Panel buttons:
-  - **Confirm** — saves the current order to `localStorage` and closes the HUD panel.
-  - **Close HUD** — hides the entire HUD (toggle + panel) for the session; discards unsaved changes and reverts the grid to the last saved order.
-  - **Reset to default** — clears the saved order (falls back to file `displayOrder`).
-- Persistence: order stored under `nc:product-order:v1` as an array of product IDs. Unknown/new products fall back to file `displayOrder` and append at the end. Hidden-HUD state stored under `nc:product-order-hud:hidden` so "Close HUD" survives reloads until re-enabled (a tiny "Show order tool" affordance re-opens it, consistent with other HUDs).
+### Changes to `src/components/no-comply/product-order-hud.tsx`
+- Keep only the draggable list of product thumbnails (drag handle + name).
+- Remove: up/down arrow buttons, Confirm button, Close button, Reset button, draft/dirty state, and any "unsaved changes" indication.
+- Keep a single "Close HUD" (X) in the header to hide the panel.
+- Every drag drop immediately commits the new order to `localStorage` — no draft/confirm step.
 
-### Scope
-- Only affects the NO COMPLY listing grid. Product detail pages, swatch groups, categories, and data files are untouched.
-- No edits to `src/data/products.ts`; saved order is an override layer on top of it.
+### Changes to `src/hooks/use-product-order.ts`
+- Simplify to expose just `order`, `setOrder(nextIds)`, and the applied ordering. Remove draft/commit/reset APIs no longer used.
 
-### Technical notes
-- New component `src/components/no-comply/product-order-hud.tsx` using `@dnd-kit/core` + `@dnd-kit/sortable` (install via `bun add`).
-- New hook `src/hooks/use-product-order.ts` exposing `orderedProducts(products)`, `setOrder`, `resetOrder`. Hydrates via `useEffect` to avoid SSR mismatch.
-- Update `src/routes/projects.no-comply.tsx` to apply the override in the sort pipeline (both "featured" and "order" sorts) and mount `<ProductOrderHUD />` next to the other HUDs.
+### Changes to `src/routes/projects.no-comply.tsx`
+- Remove the "live preview of unsaved draft" branch — the grid always renders the committed order from the hook.
+- Keep the HUD mount + toggle to show/hide it.
 
-### Out of scope
-- Server-side persistence / multi-user sync (local-only, matching existing HUDs).
-- Reordering within a category filter (order is global; filters just hide items).
+No visual/style changes to product cards, lightbox, or data. Behavior: drag a product in the HUD → grid updates and persists instantly.
