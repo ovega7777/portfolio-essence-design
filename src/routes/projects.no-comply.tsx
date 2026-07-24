@@ -87,6 +87,17 @@ function NoComply() {
   const sort = search.sort;
   const query = search.q.trim().toLowerCase();
 
+  const {
+    order: savedOrder,
+    hudHidden,
+    setOrder,
+    resetOrder,
+    hideHud,
+    showHud,
+  } = useProductOrder();
+  const [previewOrder, setPreviewOrder] = useState<string[] | null>(null);
+  const effectiveOrder = previewOrder ?? savedOrder;
+
   type SearchState = z.infer<typeof searchSchema>;
   const setCategory = (cat: string) =>
     navigate({ to: ".", search: (p: SearchState) => ({ ...p, cat }) });
@@ -105,8 +116,13 @@ function NoComply() {
           p.description.toLowerCase().includes(query) ||
           p.variants.some((v) => v.sku.toLowerCase().includes(query))
       );
-    return sortProducts(list, sort);
-  }, [activeCategory, query, sort]);
+    return sortProducts(list, sort, effectiveOrder);
+  }, [activeCategory, query, sort, effectiveOrder]);
+
+  const hudProducts = useMemo(
+    () => applyOrder(collectionProducts, savedOrder),
+    [savedOrder]
+  );
 
   return (
     <div className="no-comply min-h-screen">
