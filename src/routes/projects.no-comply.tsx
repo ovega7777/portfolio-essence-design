@@ -143,6 +143,34 @@ function NoComply() {
 
       <LogoBannerHUD src={noComplyUsaLogoBlack.url} />
 
+      {!hudHidden ? (
+        <ProductOrderHUD
+          products={hudProducts}
+          savedOrder={savedOrder}
+          onPreview={(ids) => setPreviewOrder(ids)}
+          onConfirm={(ids) => {
+            setOrder(ids);
+            setPreviewOrder(null);
+          }}
+          onReset={() => {
+            resetOrder();
+            setPreviewOrder(null);
+          }}
+          onCloseHud={() => {
+            setPreviewOrder(null);
+            hideHud();
+          }}
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={showHud}
+          className="fixed bottom-4 left-4 z-[100] rounded-lg border border-white/20 bg-black/80 px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-white shadow-2xl backdrop-blur hover:bg-black"
+        >
+          Show Order Tool
+        </button>
+      )}
+
       <section className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex items-end justify-between gap-6 border-b-2 border-black pb-6">
