@@ -7,6 +7,8 @@ import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png
 import { products, getCategories, type Product } from "@/data/products";
 import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
+import { ProductOrderHUD } from "@/components/no-comply/product-order-hud";
+import { useProductOrder, applyOrder } from "@/hooks/use-product-order";
 
 const COLLECTION = collections[0];
 const collectionProducts = products
@@ -52,7 +54,7 @@ export const Route = createFileRoute("/projects/no-comply")({
   component: NoComply,
 });
 
-function sortProducts(items: Product[], sort: Sort): Product[] {
+function sortProducts(items: Product[], sort: Sort, order: string[] | null): Product[] {
   const arr = [...items];
   switch (sort) {
     case "az":
@@ -63,14 +65,17 @@ function sortProducts(items: Product[], sort: Sort): Product[] {
       return arr.sort((a, b) => a.price - b.price);
     case "price-desc":
       return arr.sort((a, b) => b.price - a.price);
-    case "featured":
-      return arr.sort(
+    case "featured": {
+      const base = applyOrder(arr, order);
+      return base.sort(
         (a, b) =>
-          Number(b.featured) - Number(a.featured) || a.displayOrder - b.displayOrder
+          Number(b.featured) - Number(a.featured) ||
+          base.indexOf(a) - base.indexOf(b)
       );
+    }
     case "order":
     default:
-      return arr.sort((a, b) => a.displayOrder - b.displayOrder);
+      return applyOrder(arr, order);
   }
 }
 
@@ -81,6 +86,17 @@ function NoComply() {
   const activeCategory = search.cat;
   const sort = search.sort;
   const query = search.q.trim().toLowerCase();
+
+  const {
+    order: savedOrder,
+    hudHidden,
+    setOrder,
+    resetOrder,
+    hideHud,
+    showHud,
+  } = useProductOrder();
+  const [previewOrder, setPreviewOrder] = useState<string[] | null>(null);
+  const effectiveOrder = previewOrder ?? savedOrder;
 
   type SearchState = z.infer<typeof searchSchema>;
   const setCategory = (cat: string) =>
@@ -100,8 +116,13 @@ function NoComply() {
           p.description.toLowerCase().includes(query) ||
           p.variants.some((v) => v.sku.toLowerCase().includes(query))
       );
-    return sortProducts(list, sort);
-  }, [activeCategory, query, sort]);
+    return sortProducts(list, sort, effectiveOrder);
+  }, [activeCategory, query, sort, effectiveOrder]);
+
+  const hudProducts = useMemo(
+    () => applyOrder(collectionProducts, savedOrder),
+    [savedOrder]
+  );
 
   return (
     <div className="no-comply min-h-screen">
@@ -121,6 +142,34 @@ function NoComply() {
       </nav>
 
       <LogoBannerHUD src={noComplyUsaLogoBlack.url} />
+
+      {!hudHidden ? (
+        <ProductOrderHUD
+          products={hudProducts}
+          savedOrder={savedOrder}
+          onPreview={(ids) => setPreviewOrder(ids)}
+          onConfirm={(ids) => {
+            setOrder(ids);
+            setPreviewOrder(null);
+          }}
+          onReset={() => {
+            resetOrder();
+            setPreviewOrder(null);
+          }}
+          onCloseHud={() => {
+            setPreviewOrder(null);
+            hideHud();
+          }}
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={showHud}
+          className="fixed bottom-4 left-4 z-[100] rounded-lg border border-white/20 bg-black/80 px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-white shadow-2xl backdrop-blur hover:bg-black"
+        >
+          Show Order Tool
+        </button>
+      )}
 
       <section className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
         <div className="mx-auto max-w-7xl">
