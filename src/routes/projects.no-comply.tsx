@@ -54,7 +54,7 @@ export const Route = createFileRoute("/projects/no-comply")({
   component: NoComply,
 });
 
-function sortProducts(items: Product[], sort: Sort): Product[] {
+function sortProducts(items: Product[], sort: Sort, order: string[] | null): Product[] {
   const arr = [...items];
   switch (sort) {
     case "az":
@@ -65,14 +65,17 @@ function sortProducts(items: Product[], sort: Sort): Product[] {
       return arr.sort((a, b) => a.price - b.price);
     case "price-desc":
       return arr.sort((a, b) => b.price - a.price);
-    case "featured":
-      return arr.sort(
+    case "featured": {
+      const base = applyOrder(arr, order);
+      return base.sort(
         (a, b) =>
-          Number(b.featured) - Number(a.featured) || a.displayOrder - b.displayOrder
+          Number(b.featured) - Number(a.featured) ||
+          base.indexOf(a) - base.indexOf(b)
       );
+    }
     case "order":
     default:
-      return arr.sort((a, b) => a.displayOrder - b.displayOrder);
+      return applyOrder(arr, order);
   }
 }
 
