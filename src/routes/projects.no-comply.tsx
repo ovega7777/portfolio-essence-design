@@ -91,12 +91,9 @@ function NoComply() {
     order: savedOrder,
     hudHidden,
     setOrder,
-    resetOrder,
     hideHud,
     showHud,
   } = useProductOrder();
-  const [previewOrder, setPreviewOrder] = useState<string[] | null>(null);
-  const effectiveOrder = previewOrder ?? savedOrder;
 
   type SearchState = z.infer<typeof searchSchema>;
   const setCategory = (cat: string) =>
@@ -116,13 +113,14 @@ function NoComply() {
           p.description.toLowerCase().includes(query) ||
           p.variants.some((v) => v.sku.toLowerCase().includes(query))
       );
-    return sortProducts(list, sort, effectiveOrder);
-  }, [activeCategory, query, sort, effectiveOrder]);
+    return sortProducts(list, sort, savedOrder);
+  }, [activeCategory, query, sort, savedOrder]);
 
   const hudProducts = useMemo(
     () => applyOrder(collectionProducts, savedOrder),
     [savedOrder]
   );
+
 
   return (
     <div className="no-comply min-h-screen">
@@ -146,20 +144,8 @@ function NoComply() {
       {!hudHidden ? (
         <ProductOrderHUD
           products={hudProducts}
-          savedOrder={savedOrder}
-          onPreview={(ids) => setPreviewOrder(ids)}
-          onConfirm={(ids) => {
-            setOrder(ids);
-            setPreviewOrder(null);
-          }}
-          onReset={() => {
-            resetOrder();
-            setPreviewOrder(null);
-          }}
-          onCloseHud={() => {
-            setPreviewOrder(null);
-            hideHud();
-          }}
+          onReorder={(ids) => setOrder(ids)}
+          onCloseHud={hideHud}
         />
       ) : (
         <button
@@ -170,6 +156,7 @@ function NoComply() {
           Show Order Tool
         </button>
       )}
+
 
       <section className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
         <div className="mx-auto max-w-7xl">
