@@ -377,7 +377,7 @@ export const products: Product[] = [
     description:
       "Wide-leg pleated trousers with an asymmetric four-button fly, deep front pleats, belt loops, and turned-up cuffed hem. Cut in a heavyweight suiting fabric with a manifesto script patch pocket at the back.",
     featured: false,
-    displayOrder: 6,
+    displayOrder: 11,
     variants: [
       {
         id: "black",
