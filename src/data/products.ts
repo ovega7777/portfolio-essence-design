@@ -133,6 +133,15 @@ import captainModel1 from "@/assets/products/captains-jacket/model-1.png.asset.j
 import captainModel2 from "@/assets/products/captains-jacket/model-2.png.asset.json";
 import captainModel3 from "@/assets/products/captains-jacket/model-3.png.asset.json";
 
+import eisenhowerFront from "@/assets/products/distressed-eisenhower-jacket/black/front.png";
+import eisenhowerBack from "@/assets/products/distressed-eisenhower-jacket/black/back.png";
+import eisenhowerDetailOpen from "@/assets/products/distressed-eisenhower-jacket/black/detail-open.png";
+import eisenhowerDetailPins from "@/assets/products/distressed-eisenhower-jacket/black/detail-pins.png";
+import eisenhowerModel1 from "@/assets/products/distressed-eisenhower-jacket/black/model-1.png";
+import eisenhowerModel2 from "@/assets/products/distressed-eisenhower-jacket/black/model-2.png";
+import eisenhowerModel3 from "@/assets/products/distressed-eisenhower-jacket/black/model-3.png";
+import eisenhowerModel4 from "@/assets/products/distressed-eisenhower-jacket/black/model-4.png";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
@@ -377,7 +386,7 @@ export const products: Product[] = [
     description:
       "Wide-leg pleated trousers with an asymmetric four-button fly, deep front pleats, belt loops, and turned-up cuffed hem. Cut in a heavyweight suiting fabric with a manifesto script patch pocket at the back.",
     featured: false,
-    displayOrder: 11,
+    displayOrder: 12,
     variants: [
       {
         id: "black",
@@ -580,6 +589,65 @@ export const products: Product[] = [
           modelBack: { url: captainModel2.url, alt: "Model wearing captain's jacket — full body look 2" },
           extraShots: [
             { url: captainModel3.url, alt: "Model wearing captain's jacket — look 3" },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    id: "command-distressed-eisenhower-jacket",
+    slug: "command-distressed-eisenhower-jacket",
+    name: "DISTRESSED EISENHOWER JACKET",
+    collectionId: "collection-1",
+    category: "Outerwear",
+    price: 300,
+    description:
+      "Cropped black Eisenhower jacket cut in heavyweight cotton with hand-distressed abrasion, exposed repair work, a belted hem, and silver hardware. Finished with a removable trio of No Comply campaign pins.",
+    featured: false,
+    displayOrder: 11,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-EIS-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: eisenhowerFront,
+            alt: "Black distressed Eisenhower jacket — front",
+          },
+          backProduct: {
+            url: eisenhowerBack,
+            alt: "Black distressed Eisenhower jacket — back",
+          },
+          details: [
+            {
+              url: eisenhowerDetailOpen,
+              alt: "Black distressed Eisenhower jacket — open construction detail",
+            },
+            {
+              url: eisenhowerDetailPins,
+              alt: "Distressed Eisenhower jacket — campaign pin detail",
+            },
+          ],
+          modelFront: {
+            url: eisenhowerModel1,
+            alt: "Model wearing black distressed Eisenhower jacket — look 1",
+          },
+          modelBack: {
+            url: eisenhowerModel2,
+            alt: "Model wearing black distressed Eisenhower jacket — look 2",
+          },
+          extraShots: [
+            {
+              url: eisenhowerModel3,
+              alt: "Model wearing black distressed Eisenhower jacket — look 3",
+            },
+            {
+              url: eisenhowerModel4,
+              alt: "Model wearing black distressed Eisenhower jacket — look 4",
+            },
           ],
         },
       },
