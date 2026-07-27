@@ -142,6 +142,13 @@ import eisenhowerModel2 from "@/assets/products/distressed-eisenhower-jacket/bla
 import eisenhowerModel3 from "@/assets/products/distressed-eisenhower-jacket/black/model-3.png";
 import eisenhowerModel4 from "@/assets/products/distressed-eisenhower-jacket/black/model-4.png";
 
+import americanHoodieFront from "@/assets/products/american-distress-hoodie-jacket/black/front.png";
+import americanHoodieBack from "@/assets/products/american-distress-hoodie-jacket/black/back.png";
+import americanHoodieModel1 from "@/assets/products/american-distress-hoodie-jacket/black/model-1.png";
+import americanHoodieModel2 from "@/assets/products/american-distress-hoodie-jacket/black/model-2.png";
+import americanHoodieModel3 from "@/assets/products/american-distress-hoodie-jacket/black/model-3.png";
+import americanHoodieModel4 from "@/assets/products/american-distress-hoodie-jacket/black/model-4.png";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
@@ -386,7 +393,7 @@ export const products: Product[] = [
     description:
       "Wide-leg pleated trousers with an asymmetric four-button fly, deep front pleats, belt loops, and turned-up cuffed hem. Cut in a heavyweight suiting fabric with a manifesto script patch pocket at the back.",
     featured: false,
-    displayOrder: 12,
+    displayOrder: 13,
     variants: [
       {
         id: "black",
@@ -647,6 +654,55 @@ export const products: Product[] = [
             {
               url: eisenhowerModel4,
               alt: "Model wearing black distressed Eisenhower jacket — look 4",
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    id: "command-american-distress-hoodie-jacket",
+    slug: "command-american-distress-hoodie-jacket",
+    name: "AMERICAN DISTRESS HOODIE JACKET",
+    collectionId: "collection-1",
+    category: "Outerwear",
+    price: 195,
+    description:
+      "Oversized black hoodie jacket with raw distressed seams, a fractured American flag chest graphic, and removable campaign pins. Cut in heavyweight washed cotton with a double-layer hood, dropped shoulders, and a deep kangaroo pocket.",
+    featured: false,
+    displayOrder: 12,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-AMER-HOOD-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: americanHoodieFront,
+            alt: "Black American Distress Hoodie Jacket — front",
+          },
+          backProduct: {
+            url: americanHoodieBack,
+            alt: "Black American Distress Hoodie Jacket — back",
+          },
+          modelFront: {
+            url: americanHoodieModel1,
+            alt: "Model wearing black American Distress Hoodie Jacket — look 1",
+          },
+          modelBack: {
+            url: americanHoodieModel2,
+            alt: "Model wearing black American Distress Hoodie Jacket — look 2",
+          },
+          extraShots: [
+            {
+              url: americanHoodieModel3,
+              alt: "Model wearing black American Distress Hoodie Jacket — look 3",
+            },
+            {
+              url: americanHoodieModel4,
+              alt: "Model wearing black American Distress Hoodie Jacket — look 4",
             },
           ],
         },
