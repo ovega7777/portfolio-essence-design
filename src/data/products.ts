@@ -178,6 +178,10 @@ import cargoMessengerBagBlackModel2 from "@/assets/products/cargo-messenger-bag/
 import commandDuffleOliveFront from "@/assets/products/command-duffle/olive/front.png";
 import commandDuffleOliveModel1 from "@/assets/products/command-duffle/olive/model-1.png";
 import commandDuffleOliveModel2 from "@/assets/products/command-duffle/olive/model-2.png";
+import customDogTagsSilverFront from "@/assets/products/custom-dog-tags/silver/front.png";
+import customDogTagsSilverBack from "@/assets/products/custom-dog-tags/silver/back.png";
+import customDogTagsSilverModel1 from "@/assets/products/custom-dog-tags/silver/model-1.png";
+import customDogTagsSilverModel2 from "@/assets/products/custom-dog-tags/silver/model-2.png";
 
 export const products: Product[] = [
   {
@@ -1015,6 +1019,45 @@ export const products: Product[] = [
           modelBack: {
             url: commandDuffleOliveModel2,
             alt: "Model carrying the olive Command Duffle — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "custom-dog-tags",
+    slug: "custom-dog-tags",
+    name: "CUSTOM DOG TAGS",
+    collectionId: "collection-1",
+    category: "Accessories",
+    price: 195,
+    description:
+      "Custom silver-tone dog tag necklace with a polished ball chain, paired engraved pendants, and signature No Comply artwork. Personalize the reverse with a name and date.",
+    featured: false,
+    displayOrder: 20,
+    variants: [
+      {
+        id: "silver",
+        color: "Silver",
+        swatch: "#c3c3c3",
+        sku: "NC-CMD-DOGTAG-SLV",
+        sizes: ["ONE SIZE"],
+        images: {
+          frontProduct: {
+            url: customDogTagsSilverFront,
+            alt: "Silver Custom Dog Tags — front",
+          },
+          backProduct: {
+            url: customDogTagsSilverBack,
+            alt: "Silver Custom Dog Tags — reverse engraving",
+          },
+          modelFront: {
+            url: customDogTagsSilverModel1,
+            alt: "Model wearing the Silver Custom Dog Tags — look 1",
+          },
+          modelBack: {
+            url: customDogTagsSilverModel2,
+            alt: "Model wearing the Silver Custom Dog Tags — look 2",
           },
         },
       },
