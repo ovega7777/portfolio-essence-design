@@ -1,22 +1,23 @@
-# Design QA — Custom Dog Tags
+# Design QA — Vet Lighter
 
 ## Evidence
 
-- Source assets: front and reverse Custom Dog Tags product images and two model images supplied by the user.
+- Source assets: three Vet Lighter product views supplied by the user.
 - Implementation target: the existing No Comply Command product-card and product-detail system.
 
 ## Requested Change
 
-Add `CUSTOM DOG TAGS` to the product assortment for `$195`.
+Add `VET LIGHTER` to the product assortment for `$75`, without size or colorway controls.
 
 ## Verification
 
-- `CUSTOM DOG TAGS` is curated position 20, after all 19 existing products.
-- The assortment card uses the supplied front product image normally and the first supplied model image with the existing hover behavior.
-- The detail page contains the front, reverse, and both model views.
-- The product uses one-size sizing, a Silver swatch, SKU `NC-CMD-DOGTAG-SLV`, and the Accessories category.
+- `VET LIGHTER` uses display order 21 and appears after all 19 existing products.
+- The assortment card uses the supplied engraved-front product image.
+- The detail page contains the engraved front, Ace of Spades face, and open-mechanism detail views.
+- The product uses SKU `NC-CMD-LGHTR-SLV` and the Accessories category.
+- Size and colorway selectors are absent.
 - Product description and lightbox behavior follow the existing product system.
-- All four local images load at their native dimensions.
+- All three local images load at their native dimensions.
 - Existing assortment order, products, and image proxy configuration are unchanged.
 - Production build passes.
 - TypeScript check passes.

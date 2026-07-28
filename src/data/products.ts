@@ -182,6 +182,9 @@ import customDogTagsSilverFront from "@/assets/products/custom-dog-tags/silver/f
 import customDogTagsSilverBack from "@/assets/products/custom-dog-tags/silver/back.png";
 import customDogTagsSilverModel1 from "@/assets/products/custom-dog-tags/silver/model-1.png";
 import customDogTagsSilverModel2 from "@/assets/products/custom-dog-tags/silver/model-2.png";
+import vetLighterSilverFront from "@/assets/products/vet-lighter/silver/front.png";
+import vetLighterSilverBack from "@/assets/products/vet-lighter/silver/back.png";
+import vetLighterSilverDetailOpen from "@/assets/products/vet-lighter/silver/detail-open.png";
 
 export const products: Product[] = [
   {
@@ -1059,6 +1062,42 @@ export const products: Product[] = [
             url: customDogTagsSilverModel2,
             alt: "Model wearing the Silver Custom Dog Tags — look 2",
           },
+        },
+      },
+    ],
+  },
+  {
+    id: "vet-lighter",
+    slug: "vet-lighter",
+    name: "VET LIGHTER",
+    collectionId: "collection-1",
+    category: "Accessories",
+    price: 75,
+    description:
+      "Weathered silver-tone flip-top lighter engraved with signature No Comply graphics, an Ace of Spades skull emblem, and a defiant veteran-style inscription.",
+    featured: false,
+    displayOrder: 21,
+    variants: [
+      {
+        id: "standard",
+        color: "Silver",
+        sku: "NC-CMD-LGHTR-SLV",
+        sizes: [],
+        images: {
+          frontProduct: {
+            url: vetLighterSilverFront,
+            alt: "Silver Vet Lighter — engraved front",
+          },
+          backProduct: {
+            url: vetLighterSilverBack,
+            alt: "Silver Vet Lighter — Ace of Spades face",
+          },
+          details: [
+            {
+              url: vetLighterSilverDetailOpen,
+              alt: "Silver Vet Lighter — open mechanism detail",
+            },
+          ],
         },
       },
     ],
