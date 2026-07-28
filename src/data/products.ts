@@ -604,7 +604,7 @@ export const products: Product[] = [
   {
     id: "command-distressed-eisenhower-jacket",
     slug: "command-distressed-eisenhower-jacket",
-    name: "DISTRESSED EISENHOWER JACKET",
+    name: "EISENHOWER DISTRESS JACKET",
     collectionId: "collection-1",
     category: "Outerwear",
     price: 300,
@@ -622,11 +622,11 @@ export const products: Product[] = [
         images: {
           frontProduct: {
             url: eisenhowerFront,
-            alt: "Black distressed Eisenhower jacket — front",
+            alt: "Black Eisenhower distress jacket — front",
           },
           backProduct: {
             url: eisenhowerBack,
-            alt: "Black distressed Eisenhower jacket — back",
+            alt: "Black Eisenhower distress jacket — back",
           },
           details: [
             {
