@@ -23,7 +23,7 @@ export function ProductCard({ product }: Props) {
 
   const front = displayed.frontImage;
   const modelFront = displayed.modelImage ?? variant.images.modelFront;
-  const imagePadding = product.category === "Trousers" ? "p-7" : "p-4";
+  const frontImagePadding = product.category === "Trousers" ? "p-7" : "p-4";
 
   return (
     <div className="block bg-white text-black">
@@ -41,7 +41,7 @@ export function ProductCard({ product }: Props) {
             src={front.url}
             alt={front.alt}
             loading="lazy"
-            className={`absolute inset-0 h-full w-full object-contain ${imagePadding} transition-opacity duration-[250ms] ease-in-out ${
+            className={`absolute inset-0 h-full w-full object-contain ${frontImagePadding} transition-opacity duration-[250ms] ease-in-out ${
               !showModel ? "opacity-100" : "opacity-0"
             }`}
           />
@@ -52,7 +52,7 @@ export function ProductCard({ product }: Props) {
               alt={modelFront.alt}
               loading="lazy"
               aria-hidden
-              className={`absolute inset-0 h-full w-full object-contain ${imagePadding} transition-opacity duration-[250ms] ease-in-out ${
+              className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
                 showModel ? "opacity-100" : "opacity-0"
               }`}
             />
