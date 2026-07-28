@@ -175,6 +175,9 @@ import cargoMessengerBagBlackFront from "@/assets/products/cargo-messenger-bag/b
 import cargoMessengerBagBlackBack from "@/assets/products/cargo-messenger-bag/black/back.png";
 import cargoMessengerBagBlackModel1 from "@/assets/products/cargo-messenger-bag/black/model-1.png";
 import cargoMessengerBagBlackModel2 from "@/assets/products/cargo-messenger-bag/black/model-2.png";
+import commandDuffleOliveFront from "@/assets/products/command-duffle/olive/front.png";
+import commandDuffleOliveModel1 from "@/assets/products/command-duffle/olive/model-1.png";
+import commandDuffleOliveModel2 from "@/assets/products/command-duffle/olive/model-2.png";
 
 export const products: Product[] = [
   {
@@ -977,6 +980,41 @@ export const products: Product[] = [
           modelBack: {
             url: cargoMessengerBagBlackModel2,
             alt: "Model wearing the black Cargo Messenger Bag — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "command-duffle",
+    slug: "command-duffle",
+    name: "COMMAND DUFFLE",
+    collectionId: "collection-1",
+    category: "Accessories",
+    price: 215,
+    description:
+      "Soft-structured olive duffle bag with tonal No Comply artwork, contrast brown carry handles, a padded handle wrap, double-zip closure, and aged brass hardware.",
+    featured: false,
+    displayOrder: 19,
+    variants: [
+      {
+        id: "olive",
+        color: "Olive",
+        swatch: "#6b673f",
+        sku: "NC-CMD-DUFFLE-OLV",
+        sizes: ["ONE SIZE"],
+        images: {
+          frontProduct: {
+            url: commandDuffleOliveFront,
+            alt: "Olive Command Duffle — front",
+          },
+          modelFront: {
+            url: commandDuffleOliveModel1,
+            alt: "Model carrying the olive Command Duffle — look 1",
+          },
+          modelBack: {
+            url: commandDuffleOliveModel2,
+            alt: "Model carrying the olive Command Duffle — look 2",
           },
         },
       },
