@@ -161,6 +161,12 @@ import chutePantsOliveModel from "@/assets/products/nc-chute-pants/olive/model.p
 import chutePantsBlackFront from "@/assets/products/nc-chute-pants/black/front.png";
 import chutePantsBlackBack from "@/assets/products/nc-chute-pants/black/back.png";
 import chutePantsBlackModel from "@/assets/products/nc-chute-pants/black/model.png";
+import flakVestBlackFront from "@/assets/products/nc-flak-vest/black/front.png";
+import flakVestBlackBack from "@/assets/products/nc-flak-vest/black/back.png";
+import flakVestBlackModel from "@/assets/products/nc-flak-vest/black/model.png";
+import flakVestOliveFront from "@/assets/products/nc-flak-vest/olive/front.png";
+import flakVestOliveBack from "@/assets/products/nc-flak-vest/olive/back.png";
+import flakVestOliveModel from "@/assets/products/nc-flak-vest/olive/model.png";
 
 export const products: Product[] = [
   {
@@ -829,6 +835,62 @@ export const products: Product[] = [
           modelFront: {
             url: chutePantsBlackModel,
             alt: "Model wearing black NC Chute Pants",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "command-nc-flak-vest",
+    slug: "command-nc-flak-vest",
+    name: "NC FLAK VEST",
+    collectionId: "collection-1",
+    category: "Outerwear",
+    price: 225,
+    description:
+      "Structured utility vest cut in tonal patterned shell fabric with a padded funnel collar, two-way front zip, snap placket, oversized cargo pockets, and adjustable lace-up side panels.",
+    featured: false,
+    displayOrder: 16,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-FLAK-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: flakVestBlackFront,
+            alt: "Black NC Flak Vest — front",
+          },
+          backProduct: {
+            url: flakVestBlackBack,
+            alt: "Black NC Flak Vest — back",
+          },
+          modelFront: {
+            url: flakVestBlackModel,
+            alt: "Model wearing black NC Flak Vest",
+          },
+        },
+      },
+      {
+        id: "olive",
+        color: "Olive",
+        swatch: "#4b4c28",
+        sku: "NC-CMD-FLAK-OLV",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: flakVestOliveFront,
+            alt: "Olive NC Flak Vest — front",
+          },
+          backProduct: {
+            url: flakVestOliveBack,
+            alt: "Olive NC Flak Vest — back",
+          },
+          modelFront: {
+            url: flakVestOliveModel,
+            alt: "Model wearing olive NC Flak Vest",
           },
         },
       },

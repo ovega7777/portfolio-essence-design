@@ -1,33 +1,31 @@
-# Design QA — No Comply Assortment Order
+# Design QA — NC Flak Vest
 
 ## Evidence
 
-- Source visual:
-  - `/var/folders/7l/wj0qlkhs0ngg4_ypccb5b30h0000gn/T/TemporaryItems/NSIRD_screencaptureui_WsvM0I/Screenshot 2026-07-28 at 12.11.08 AM.png`
-- Implementation: local in-app Browser capture at `1280 × 720`.
-- Comparison state: curated collection order, scrolled to the Captain's Jacket row.
+- Source product imagery:
+  - Black: front, back, and model views supplied by the user.
+  - Olive: front, back, and model views supplied by the user.
+- Implementation target: the existing No Comply Command product-card and product-detail system.
 
 ## Requested Change
 
-Move `NC PLEATED TROUSERS` directly to the right of `CAPTAIN'S JACKET`. Preserve the existing grid, product cards, images, swatches, hover behavior, typography, spacing, and all other product data.
+Add `NC FLAK VEST` at the bottom of the assortment for `$225`, with Black and Olive colorways, matching front/back/model imagery, model hover, XS–XL sizes, description, SKUs, color switching, and lightbox behavior.
 
 ## Verification
 
-- The collection still contains 14 products.
-- `CAPTAIN'S JACKET` is curated position 9.
-- `NC PLEATED TROUSERS` is curated position 10 and immediately follows Captain's Jacket.
-- The following sequence shifts right without any other content changes:
-  - `EISENHOWER DISTRESS JACKET`
-  - `AMERICAN DISTRESS HOODIE JACKET`
-  - `NC CHUTE JACKET`
-  - `NC CHUTE PANTS`
-- Product-card styling and image behavior are unchanged.
+- `NC FLAK VEST` is curated position 15, after all 14 existing products.
+- Black is the default colorway and Olive is selectable from its swatch.
+- Both variants include their matching front, back, and model image.
+- The assortment card uses the front image normally and the matching model image on hover.
+- The detail page exposes sizes XS, S, M, L, and XL.
+- Product description, unique per-color SKUs, swatches, color switching, and lightbox are present.
+- Existing assortment order, products, and image proxy configuration are unchanged.
 - Production build passes.
 - TypeScript check passes.
 
 ## Findings
 
-No actionable P0, P1, or P2 differences remain. The requested assortment relationship is exact.
+No actionable P0, P1, or P2 differences remain.
 
 ## Final Result
 
