@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
+import { Menu, Search, X } from "lucide-react";
 import { z } from "zod";
 
 import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
@@ -77,6 +78,7 @@ function sortProducts(items: Product[], sort: Sort): Product[] {
 function NoComply() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const activeCategory = search.cat;
   const sort = search.sort;
@@ -89,6 +91,33 @@ function NoComply() {
     navigate({ to: ".", search: (p: SearchState) => ({ ...p, sort: s }) });
   const setQuery = (q: string) =>
     navigate({ to: ".", search: (p: SearchState) => ({ ...p, q }), replace: true });
+  const showProducts = () =>
+    requestAnimationFrame(() =>
+      document.getElementById("products")?.scrollIntoView({ behavior: "smooth" }),
+    );
+  const chooseCategory = (cat: string) => {
+    setCategory(cat);
+    setMenuOpen(false);
+    showProducts();
+  };
+  const chooseCollection = () => {
+    setCategory("all");
+    setMenuOpen(false);
+    showProducts();
+  };
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
   const displayed = useMemo(() => {
     let list = collectionProducts;
@@ -106,19 +135,125 @@ function NoComply() {
   return (
     <div className="no-comply min-h-screen">
       <nav className="sticky top-0 z-50 border-b-2 border-black bg-black text-white">
-        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
+        <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
           <Link
             to="/"
-            className="nc-display text-xl tracking-widest text-white transition-colors duration-200 hover:text-white/60"
+            className="nc-display shrink-0 text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl"
           >
-            ← Nicholas Curzon
+            <span className="sm:hidden">← NC</span>
+            <span className="hidden sm:inline">← Nicholas Curzon</span>
           </Link>
-          <span className="nc-display text-base tracking-[0.3em] text-white md:text-lg">
+          <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-white lg:block lg:text-lg">
             NO COMPLY USA / CASE STUDY
           </span>
+          <label className="ml-auto flex h-9 min-w-0 max-w-52 flex-1 items-center gap-2 border-b border-white/70 px-1 lg:ml-6 lg:w-52 lg:flex-none">
+            <Search aria-hidden className="h-4 w-4 shrink-0" strokeWidth={1.8} />
+            <input
+              type="search"
+              value={search.q}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="PRODUCT SEARCH"
+              aria-label="Search products"
+              className="nc-display min-w-0 flex-1 bg-transparent text-xs tracking-[0.2em] text-white placeholder:text-white/60 focus:outline-none"
+            />
+          </label>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Open product menu"
+            aria-expanded={menuOpen}
+            className="flex h-10 w-10 shrink-0 items-center justify-center border border-white/60 text-white transition-colors hover:bg-white hover:text-black"
+          >
+            <Menu aria-hidden className="h-5 w-5" strokeWidth={1.8} />
+          </button>
         </div>
         <div className="h-0.5 w-full bg-white" />
       </nav>
+
+      {menuOpen && (
+        <div className="fixed inset-0 z-[120]">
+          <button
+            type="button"
+            aria-label="Close product menu"
+            onClick={() => setMenuOpen(false)}
+            className="absolute inset-0 cursor-default bg-black/45"
+          />
+          <aside
+            aria-label="Product navigation"
+            className="absolute right-0 top-0 flex h-full w-full max-w-[430px] flex-col overflow-y-auto border-l-2 border-black bg-[#d2d2d2] px-6 py-6 text-black shadow-2xl sm:px-8"
+          >
+            <div className="flex items-start justify-between gap-6 border-b border-black/20 pb-5">
+              <div>
+                <p className="nc-display text-5xl leading-none tracking-[0.04em] sm:text-6xl">
+                  NO COMPLY
+                </p>
+                <p className="nc-display mt-1 text-xs tracking-[0.3em] text-black/60">
+                  Product Index
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setMenuOpen(false)}
+                className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] hover:opacity-50"
+              >
+                Close
+                <X aria-hidden className="h-5 w-5" strokeWidth={1.8} />
+              </button>
+            </div>
+
+            <label className="mt-5 flex h-16 items-center gap-4 border border-black/60 bg-transparent px-5">
+              <input
+                type="search"
+                value={search.q}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Search products"
+                aria-label="Search products in menu"
+                className="min-w-0 flex-1 bg-transparent font-punk-body text-xl tracking-[0.08em] text-black placeholder:text-black/60 focus:outline-none"
+              />
+              <Search aria-hidden className="h-7 w-7 shrink-0" strokeWidth={1.5} />
+            </label>
+
+            <div className="mt-5 border-t border-black/15 pt-5">
+              <p className="text-sm font-bold uppercase tracking-[0.12em]">Product Types</p>
+              <div className="mt-4 flex flex-col items-start gap-3">
+                <button
+                  type="button"
+                  onClick={() => chooseCategory("all")}
+                  className="font-punk-body text-2xl uppercase tracking-[0.04em] hover:opacity-50"
+                >
+                  Shop All
+                </button>
+                {CATEGORIES.map((category) => (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => chooseCategory(category)}
+                    className="font-punk-body text-2xl uppercase tracking-[0.04em] hover:opacity-50"
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-7 border-t border-black/15 pt-5">
+              <p className="text-sm font-bold uppercase tracking-[0.12em]">Collections</p>
+              <div className="mt-4 flex flex-col items-start gap-3">
+                {collections.map((collection) => (
+                  <button
+                    key={collection.id}
+                    type="button"
+                    onClick={chooseCollection}
+                    className="text-left font-punk-body text-2xl uppercase tracking-[0.04em] hover:opacity-50"
+                  >
+                    Collection #{collection.number} — {collection.title}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </aside>
+        </div>
+      )}
 
       <LogoBannerHUD src={noComplyUsaLogoBlack.url} />
 
@@ -173,7 +308,10 @@ function NoComply() {
         </div>
       </section>
 
-      <section className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
+      <section
+        id="products"
+        className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32"
+      >
         <div className="mx-auto max-w-7xl">
           <div className="mb-20 grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
             <div className="min-w-0">
