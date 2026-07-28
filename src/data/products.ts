@@ -185,6 +185,8 @@ import customDogTagsSilverModel2 from "@/assets/products/custom-dog-tags/silver/
 import vetLighterSilverFront from "@/assets/products/vet-lighter/silver/front.png";
 import vetLighterSilverBack from "@/assets/products/vet-lighter/silver/back.png";
 import vetLighterSilverDetailOpen from "@/assets/products/vet-lighter/silver/detail-open.png";
+import patchKitSpecialtyPatches from "@/assets/products/nc-patch-kit/black/specialty-patches.png";
+import patchKitScriptPatches from "@/assets/products/nc-patch-kit/black/script-patches.png";
 
 export const products: Product[] = [
   {
@@ -1102,6 +1104,36 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: "nc-patch-kit",
+    slug: "nc-patch-kit",
+    name: "NC PATCH KIT",
+    collectionId: "collection-1",
+    category: "Accessories",
+    price: 150,
+    description:
+      "Complete No Comply patch set featuring 20 black-and-white script patches in four silhouettes, plus four specialty patches: a monochrome flag, USA wordmark, and gothic N and C initials.",
+    featured: false,
+    displayOrder: 22,
+    variants: [
+      {
+        id: "standard",
+        color: "Black / White",
+        sku: "NC-CMD-PATCH-KIT",
+        sizes: [],
+        images: {
+          frontProduct: {
+            url: patchKitSpecialtyPatches,
+            alt: "NC Patch Kit — four specialty patches",
+          },
+          backProduct: {
+            url: patchKitScriptPatches,
+            alt: "NC Patch Kit — 20 script patches",
+          },
+        },
+      },
+    ],
+  },
 ];
 
 
@@ -1146,7 +1178,9 @@ export const getGroupedVariants = (product: Product): GroupedVariant[] => {
         frontImage: v.images.frontProduct,
         modelImage:
           v.images.modelFront ??
-          (p.slug === "vet-lighter" ? v.images.backProduct : undefined),
+          (p.slug === "vet-lighter" || p.slug === "nc-patch-kit"
+            ? v.images.backProduct
+            : undefined),
       });
     }
   }
