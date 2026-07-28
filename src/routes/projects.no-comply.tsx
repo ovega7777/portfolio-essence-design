@@ -14,6 +14,21 @@ const collectionProducts = products
   .filter((p) => p.collectionId === COLLECTION.id)
   .sort((a, b) => a.displayOrder - b.displayOrder);
 
+const FEATURED_PRODUCT_SLUGS = [
+  "command-zip-knit-hoodie-oxblood",
+  "command-sergeant-shirt-black",
+  "command-distressed-eisenhower-jacket",
+  "command-captains-jacket",
+  "command-cargo-messenger-bag",
+  "command-american-distress-hoodie-jacket",
+  "custom-dog-tags",
+  "command-army-pinup-tee",
+] as const;
+
+const featuredProducts = FEATURED_PRODUCT_SLUGS.map((slug) =>
+  collectionProducts.find((product) => product.slug === slug),
+).filter((product): product is Product => product !== undefined);
+
 const CATEGORIES = getCategories(COLLECTION.id);
 
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
@@ -256,6 +271,36 @@ function NoComply() {
       )}
 
       <LogoBannerHUD src={noComplyUsaLogoBlack.url} />
+
+      <section
+        aria-labelledby="featured-products-heading"
+        className="border-b-2 border-black bg-white px-6 py-12 md:px-12 md:py-16"
+      >
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-black pb-4">
+            <div>
+              <p className="nc-display mb-2 text-[10px] tracking-[0.3em] text-black/60">
+                Selected from Collection #1
+              </p>
+              <h2
+                id="featured-products-heading"
+                className="nc-display text-3xl leading-none tracking-[0.03em] text-black md:text-5xl"
+              >
+                Featured Products
+              </h2>
+            </div>
+            <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-black sm:text-xs">
+              08 Selected
+            </span>
+          </div>
+
+          <div className="grid grid-cols-2 gap-x-2 gap-y-8 md:grid-cols-4 xl:grid-cols-8">
+            {featuredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* prettier-ignore */}
       <div className="flex flex-col">
