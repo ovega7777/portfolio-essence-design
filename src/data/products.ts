@@ -406,7 +406,7 @@ export const products: Product[] = [
     description:
       "Wide-leg pleated trousers with an asymmetric four-button fly, deep front pleats, belt loops, and turned-up cuffed hem. Cut in a heavyweight suiting fabric with a manifesto script patch pocket at the back.",
     featured: false,
-    displayOrder: 15,
+    displayOrder: 11,
     variants: [
       {
         id: "black",
@@ -624,7 +624,7 @@ export const products: Product[] = [
     description:
       "Cropped black Eisenhower jacket cut in heavyweight cotton with hand-distressed abrasion, exposed repair work, a belted hem, and silver hardware. Finished with a removable trio of No Comply campaign pins.",
     featured: false,
-    displayOrder: 11,
+    displayOrder: 12,
     variants: [
       {
         id: "black",
@@ -683,7 +683,7 @@ export const products: Product[] = [
     description:
       "Oversized black hoodie jacket with raw distressed seams, a fractured American flag chest graphic, and removable campaign pins. Cut in heavyweight washed cotton with a double-layer hood, dropped shoulders, and a deep kangaroo pocket.",
     featured: false,
-    displayOrder: 12,
+    displayOrder: 13,
     variants: [
       {
         id: "black",
@@ -732,7 +732,7 @@ export const products: Product[] = [
     description:
       "Technical pullover chute jacket cut in tonal patterned shell fabric with a high funnel hood, adjustable shoulder straps, sculpted utility pockets, and buckle tabs at the cuffs and hem.",
     featured: false,
-    displayOrder: 13,
+    displayOrder: 14,
     variants: [
       {
         id: "black",
@@ -788,7 +788,7 @@ export const products: Product[] = [
     description:
       "Technical wide-leg chute pants cut in tonal patterned shell fabric with an elasticated waist, sculpted seam lines, oversized curved pockets, a removable rear utility pouch, and adjustable buckle tabs at the waist and cuffs.",
     featured: false,
-    displayOrder: 14,
+    displayOrder: 15,
     variants: [
       {
         id: "olive",
