@@ -187,6 +187,9 @@ import vetLighterSilverBack from "@/assets/products/vet-lighter/silver/back.png"
 import vetLighterSilverDetailOpen from "@/assets/products/vet-lighter/silver/detail-open.png";
 import patchKitSpecialtyPatches from "@/assets/products/nc-patch-kit/black/specialty-patches.png";
 import patchKitScriptPatches from "@/assets/products/nc-patch-kit/black/script-patches.png";
+import pinKitSet from "@/assets/products/nc-pin-kit/standard/pin-set.png";
+import pinKitHoodieStyling from "@/assets/products/nc-pin-kit/standard/hoodie-styling.png";
+import pinKitJacketStyling from "@/assets/products/nc-pin-kit/standard/jacket-styling.png";
 
 export const products: Product[] = [
   {
@@ -1130,6 +1133,42 @@ export const products: Product[] = [
             url: patchKitScriptPatches,
             alt: "NC Patch Kit — 20 script patches",
           },
+        },
+      },
+    ],
+  },
+  {
+    id: "nc-pin-kit",
+    slug: "nc-pin-kit",
+    name: "NC PIN KIT",
+    collectionId: "collection-1",
+    category: "Accessories",
+    price: 75,
+    description:
+      "Set of three No Comply campaign pins featuring the Kill Me I'm American slogan, an Ace of Spades skull emblem, and the signature No Comply U.S.A. mark.",
+    featured: false,
+    displayOrder: 23,
+    variants: [
+      {
+        id: "standard",
+        color: "Multicolor",
+        sku: "NC-CMD-PIN-KIT",
+        sizes: [],
+        images: {
+          frontProduct: {
+            url: pinKitSet,
+            alt: "NC Pin Kit — set of three campaign pins",
+          },
+          modelFront: {
+            url: pinKitHoodieStyling,
+            alt: "NC Pin Kit — styled on the American Distress Hoodie Jacket",
+          },
+          extraShots: [
+            {
+              url: pinKitJacketStyling,
+              alt: "NC Pin Kit — styled on the Eisenhower Distress Jacket",
+            },
+          ],
         },
       },
     ],
