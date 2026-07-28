@@ -1144,7 +1144,9 @@ export const getGroupedVariants = (product: Product): GroupedVariant[] => {
         color: v.color,
         swatch: v.swatch,
         frontImage: v.images.frontProduct,
-        modelImage: v.images.modelFront,
+        modelImage:
+          v.images.modelFront ??
+          (p.slug === "vet-lighter" ? v.images.backProduct : undefined),
       });
     }
   }
