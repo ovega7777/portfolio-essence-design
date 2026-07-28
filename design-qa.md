@@ -1,25 +1,25 @@
-# Design QA — NC Flak Vest
+# Design QA — NC Flak Vest Product Photo Update
 
 ## Evidence
 
-- Source product imagery:
-  - Black: front, back, and model views supplied by the user.
-  - Olive: front, back, and model views supplied by the user.
-- Implementation target: the existing No Comply Command product-card and product-detail system.
+- Source assets: four updated images supplied by the user.
+- Black: updated front and back product views.
+- Olive: updated front and back product views.
+- Implementation target: existing NC Flak Vest card, detail page, and lightbox.
 
 ## Requested Change
 
-Add `NC FLAK VEST` at the bottom of the assortment for `$225`, with Black and Olive colorways, matching front/back/model imagery, model hover, XS–XL sizes, description, SKUs, color switching, and lightbox behavior.
+Replace only the Black and Olive NC Flak Vest product photos while preserving the existing model photos, product data, assortment order, swatches, sizing, hover behavior, and lightbox interactions.
 
 ## Verification
 
-- `NC FLAK VEST` is curated position 15, after all 14 existing products.
-- Black is the default colorway and Olive is selectable from its swatch.
-- Both variants include their matching front, back, and model image.
-- The assortment card uses the front image normally and the matching model image on hover.
-- The detail page exposes sizes XS, S, M, L, and XL.
-- Product description, unique per-color SKUs, swatches, color switching, and lightbox are present.
-- Existing assortment order, products, and image proxy configuration are unchanged.
+- Black front and back views use the updated matching images.
+- Olive front and back views use the updated matching images.
+- Both existing model images remain unchanged.
+- The Black front remains the default assortment image.
+- Both color selectors still switch to the correct image sets.
+- Both lightbox galleries still contain the matching front, back, and model images.
+- No other product data or site files were changed.
 - Production build passes.
 - TypeScript check passes.
 
