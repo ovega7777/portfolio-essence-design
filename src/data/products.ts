@@ -171,6 +171,10 @@ import cargoCapriBlackFront from "@/assets/products/nc-cargo-capri/black/front.p
 import cargoCapriBlackBack from "@/assets/products/nc-cargo-capri/black/back.png";
 import cargoCapriBlackModel1 from "@/assets/products/nc-cargo-capri/black/model-1.png";
 import cargoCapriBlackModel2 from "@/assets/products/nc-cargo-capri/black/model-2.png";
+import cargoMessengerBagBlackFront from "@/assets/products/cargo-messenger-bag/black/front.png";
+import cargoMessengerBagBlackBack from "@/assets/products/cargo-messenger-bag/black/back.png";
+import cargoMessengerBagBlackModel1 from "@/assets/products/cargo-messenger-bag/black/model-1.png";
+import cargoMessengerBagBlackModel2 from "@/assets/products/cargo-messenger-bag/black/model-2.png";
 
 export const products: Product[] = [
   {
@@ -934,6 +938,45 @@ export const products: Product[] = [
           modelBack: {
             url: cargoCapriBlackModel2,
             alt: "Model wearing black NC Cargo Capri — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "command-cargo-messenger-bag",
+    slug: "command-cargo-messenger-bag",
+    name: "CARGO MESSENGER BAG",
+    collectionId: "collection-1",
+    category: "Accessories",
+    price: 275,
+    description:
+      "Oversized black cargo messenger bag with a softly structured body, dual buckle pockets, reinforced top handles, an adjustable shoulder strap, and antiqued silver hardware.",
+    featured: false,
+    displayOrder: 18,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-MSGR-BLK",
+        sizes: ["ONE SIZE"],
+        images: {
+          frontProduct: {
+            url: cargoMessengerBagBlackFront,
+            alt: "Black Cargo Messenger Bag — front",
+          },
+          backProduct: {
+            url: cargoMessengerBagBlackBack,
+            alt: "Black Cargo Messenger Bag — back",
+          },
+          modelFront: {
+            url: cargoMessengerBagBlackModel1,
+            alt: "Model wearing the black Cargo Messenger Bag — look 1",
+          },
+          modelBack: {
+            url: cargoMessengerBagBlackModel2,
+            alt: "Model wearing the black Cargo Messenger Bag — look 2",
           },
         },
       },
