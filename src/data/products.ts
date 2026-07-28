@@ -167,6 +167,10 @@ import flakVestBlackModel from "@/assets/products/nc-flak-vest/black/model.png";
 import flakVestOliveFront from "@/assets/products/nc-flak-vest/olive/front.png";
 import flakVestOliveBack from "@/assets/products/nc-flak-vest/olive/back.png";
 import flakVestOliveModel from "@/assets/products/nc-flak-vest/olive/model.png";
+import cargoCapriBlackFront from "@/assets/products/nc-cargo-capri/black/front.png";
+import cargoCapriBlackBack from "@/assets/products/nc-cargo-capri/black/back.png";
+import cargoCapriBlackModel1 from "@/assets/products/nc-cargo-capri/black/model-1.png";
+import cargoCapriBlackModel2 from "@/assets/products/nc-cargo-capri/black/model-2.png";
 
 export const products: Product[] = [
   {
@@ -891,6 +895,45 @@ export const products: Product[] = [
           modelFront: {
             url: flakVestOliveModel,
             alt: "Model wearing olive NC Flak Vest",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "command-nc-cargo-capri",
+    slug: "command-nc-cargo-capri",
+    name: "NC CARGO CAPRI",
+    collectionId: "collection-1",
+    category: "Trousers",
+    price: 200,
+    description:
+      "Wide-leg cargo capri pants cut in washed black cotton with articulated utility pockets, metal hardware, adjustable waist tabs, and a cropped mid-calf length.",
+    featured: false,
+    displayOrder: 17,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-CAPRI-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: cargoCapriBlackFront,
+            alt: "Black NC Cargo Capri — front",
+          },
+          backProduct: {
+            url: cargoCapriBlackBack,
+            alt: "Black NC Cargo Capri — back",
+          },
+          modelFront: {
+            url: cargoCapriBlackModel1,
+            alt: "Model wearing black NC Cargo Capri — look 1",
+          },
+          modelBack: {
+            url: cargoCapriBlackModel2,
+            alt: "Model wearing black NC Cargo Capri — look 2",
           },
         },
       },

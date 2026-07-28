@@ -1,25 +1,24 @@
-# Design QA — NC Flak Vest Product Photo Update
+# Design QA — NC Cargo Capri
 
 ## Evidence
 
-- Source assets: four updated images supplied by the user.
-- Black: updated front and back product views.
-- Olive: updated front and back product views.
-- Implementation target: existing NC Flak Vest card, detail page, and lightbox.
+- Source assets: four Black NC Cargo Capri images supplied by the user.
+- Product views: front and back.
+- Model views: two full-length looks.
+- Implementation target: the existing No Comply Command product-card and product-detail system.
 
 ## Requested Change
 
-Replace only the Black and Olive NC Flak Vest product photos while preserving the existing model photos, product data, assortment order, swatches, sizing, hover behavior, and lightbox interactions.
+Add `NC CARGO CAPRI` to the bottom of the product assortment for `$200`.
 
 ## Verification
 
-- Black front and back views use the updated matching images.
-- Olive front and back views use the updated matching images.
-- Both existing model images remain unchanged.
-- The Black front remains the default assortment image.
-- Both color selectors still switch to the correct image sets.
-- Both lightbox galleries still contain the matching front, back, and model images.
-- No other product data or site files were changed.
+- `NC CARGO CAPRI` is curated position 17, after all 16 existing products.
+- The assortment card uses the supplied front image normally and the first supplied model image on hover.
+- The detail page contains front, back, and both model views.
+- Sizes XS, S, M, L, and XL are available.
+- Product description, Black swatch, SKU, and lightbox behavior follow the existing product system.
+- Existing assortment order, products, and image proxy configuration are unchanged.
 - Production build passes.
 - TypeScript check passes.
 
