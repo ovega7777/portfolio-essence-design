@@ -155,6 +155,12 @@ import chuteBlackModel from "@/assets/products/nc-chute-jacket/black/model.png";
 import chuteOliveFront from "@/assets/products/nc-chute-jacket/olive/front.png";
 import chuteOliveBack from "@/assets/products/nc-chute-jacket/olive/back.png";
 import chuteOliveModel from "@/assets/products/nc-chute-jacket/olive/model.png";
+import chutePantsOliveFront from "@/assets/products/nc-chute-pants/olive/front.png";
+import chutePantsOliveBack from "@/assets/products/nc-chute-pants/olive/back.png";
+import chutePantsOliveModel from "@/assets/products/nc-chute-pants/olive/model.png";
+import chutePantsBlackFront from "@/assets/products/nc-chute-pants/black/front.png";
+import chutePantsBlackBack from "@/assets/products/nc-chute-pants/black/back.png";
+import chutePantsBlackModel from "@/assets/products/nc-chute-pants/black/model.png";
 
 export const products: Product[] = [
   {
@@ -400,7 +406,7 @@ export const products: Product[] = [
     description:
       "Wide-leg pleated trousers with an asymmetric four-button fly, deep front pleats, belt loops, and turned-up cuffed hem. Cut in a heavyweight suiting fabric with a manifesto script patch pocket at the back.",
     featured: false,
-    displayOrder: 14,
+    displayOrder: 15,
     variants: [
       {
         id: "black",
@@ -767,6 +773,62 @@ export const products: Product[] = [
           modelFront: {
             url: chuteOliveModel,
             alt: "Model wearing olive NC Chute Jacket",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "command-nc-chute-pants",
+    slug: "command-nc-chute-pants",
+    name: "NC CHUTE PANTS",
+    collectionId: "collection-1",
+    category: "Trousers",
+    price: 250,
+    description:
+      "Technical wide-leg chute pants cut in tonal patterned shell fabric with an elasticated waist, sculpted seam lines, oversized curved pockets, a removable rear utility pouch, and adjustable buckle tabs at the waist and cuffs.",
+    featured: false,
+    displayOrder: 14,
+    variants: [
+      {
+        id: "olive",
+        color: "Olive",
+        swatch: "#5a5a45",
+        sku: "NC-CMD-CHUTE-PANT-OLV",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: chutePantsOliveFront,
+            alt: "Olive NC Chute Pants — front",
+          },
+          backProduct: {
+            url: chutePantsOliveBack,
+            alt: "Olive NC Chute Pants — back",
+          },
+          modelFront: {
+            url: chutePantsOliveModel,
+            alt: "Model wearing olive NC Chute Pants",
+          },
+        },
+      },
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-CHUTE-PANT-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: chutePantsBlackFront,
+            alt: "Black NC Chute Pants — front",
+          },
+          backProduct: {
+            url: chutePantsBlackBack,
+            alt: "Black NC Chute Pants — back",
+          },
+          modelFront: {
+            url: chutePantsBlackModel,
+            alt: "Model wearing black NC Chute Pants",
           },
         },
       },
