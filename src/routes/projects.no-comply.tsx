@@ -257,7 +257,9 @@ function NoComply() {
 
       <LogoBannerHUD src={noComplyUsaLogoBlack.url} />
 
-      <section className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
+      {/* prettier-ignore */}
+      <div className="flex flex-col">
+      <section className="order-2 border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex items-end justify-between gap-6 border-b-2 border-black pb-6">
             <h2 className="nc-display text-5xl leading-none tracking-[0.02em] text-black md:text-7xl">
@@ -288,7 +290,7 @@ function NoComply() {
         </div>
       </section>
 
-      <section className="border-b-2 border-black bg-black px-6 py-24 text-white md:py-32">
+      <section className="order-3 border-b-2 border-black bg-black px-6 py-24 text-white md:py-32">
         <div className="mx-auto max-w-4xl">
           <p className="nc-display mb-8 text-xs tracking-[0.4em] text-white">
             Manifesto
@@ -310,7 +312,7 @@ function NoComply() {
 
       <section
         id="products"
-        className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32"
+        className="order-1 border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32"
       >
         <div className="mx-auto max-w-7xl">
           <div className="mb-20 grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
@@ -462,6 +464,7 @@ function NoComply() {
           )}
         </div>
       </section>
+      </div>
 
       <section className="border-b-2 border-black px-6 py-16">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">

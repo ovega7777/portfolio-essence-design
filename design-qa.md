@@ -1,59 +1,50 @@
-# Design QA — No Comply Product Navigation
+# Design QA — No Comply Section Order
 
 ## Evidence
 
-- Source visual truth:
-  - `/var/folders/7l/wj0qlkhs0ngg4_ypccb5b30h0000gn/T/TemporaryItems/NSIRD_screencaptureui_SAHRbr/Screenshot 2026-07-27 at 10.33.30 PM.png`
-  - `/var/folders/7l/wj0qlkhs0ngg4_ypccb5b30h0000gn/T/TemporaryItems/NSIRD_screencaptureui_h6znvH/Screenshot 2026-07-27 at 10.28.49 PM.png`
-- Implementation screenshots:
-  - `/private/tmp/no-comply-menu-implementation.png`
-  - `/private/tmp/no-comply-header-implementation.png`
-- Side-by-side comparisons:
-  - `/private/tmp/no-comply-menu-comparison.png`
-  - `/private/tmp/no-comply-header-comparison.png`
-- Menu viewport: `704 × 1092` CSS pixels at device density 1.
-- Header viewport: `1778 × 503` CSS pixels at device density 1.
-- Mobile responsive check: `390 × 844` CSS pixels at device density 1.
-- State: No Comply case-study page at the top; menu closed for header comparison and open for drawer comparison.
+- Source visual truth: production page before the section reorder.
+- Source screenshot: `/private/tmp/no-comply-source-order.png`
+- Implementation screenshot: `/private/tmp/no-comply-reordered-implementation.png`
+- Side-by-side comparison: `/private/tmp/no-comply-section-order-comparison.png`
+- Source and implementation pixels: `1440 × 900`
+- CSS viewport: `1440 × 900`
+- Device density: `1`
+- State: No Comply case-study page at the top with the product menu closed and assortment filters reset.
 
 ## Full-View Comparison
 
-The implementation preserves the source page’s black-and-white header composition while placing the requested product search and menu trigger in the top-right control group. The open menu follows the reference’s tall gray panel, bordered search field, strong display heading, vertically stacked navigation, and restrained divider system. The right-side drawer treatment is intentional because the requested trigger sits in the top-right corner.
+The normalized side-by-side comparison confirms that the existing production page opens with Moodboard after the logo banner, while the revised page opens with the full No Comply Command collection. The header, logo banner, section styling, filters, typography, and product content remain unchanged.
 
 ## Focused Region Comparison
 
-The menu and header were both compared at matching source dimensions. No additional crop was needed: all important details—heading, close control, search field, section labels, menu items, dividers, header search, and hamburger icon—are legible in the full comparison captures.
+The top content region is large and legible in the full-view comparison, so an additional crop was unnecessary. The collection title, item count, category filters, search, and sort controls are all visible in the revised above-the-fold region.
 
 ## Required Fidelity Surfaces
 
-- Fonts and typography: Existing Bebas Neue/Oswald No Comply type tokens preserve the condensed display character of both references. Heading, labels, and menu links retain clear hierarchy.
-- Spacing and layout rhythm: The drawer uses a consistent inset, full-height composition, large search control, stacked links, and section dividers. It becomes full width at the tested mobile breakpoint without horizontal overflow.
-- Colors and visual tokens: Gray drawer, black typography, black border details, monochrome overlay, and white-on-black header match the reference palette and the existing site.
-- Image quality and asset fidelity: No replacement imagery or generated assets were required. Lucide provides the search, menu, and close icons; existing product and logo assets remain unchanged.
-- Copy and content: Reference shop labels were adapted to the project’s real product types—Knitwear, Outerwear, Shirting, Tees, and Trousers—and the available Collection #1 — COMMAND.
+- Fonts and typography: Existing No Comply display and body font tokens are unchanged.
+- Spacing and layout rhythm: Existing section padding, borders, grids, and vertical spacing are unchanged; only section order changed.
+- Colors and visual tokens: Existing black-and-white palette and border treatments are unchanged.
+- Image quality and asset fidelity: Product sources and image behavior are unchanged. Local Lovable-proxied assets remain unavailable outside production by design and were not replaced.
+- Copy and content: No copy was added, removed, or rewritten. No Comply Command is first; Moodboard follows the assortment; Manifesto follows Moodboard.
 
 ## Interaction Verification
 
-- Header search updates the existing product query and filtered assortment.
-- Drawer search updates the same product query.
-- Product-type buttons select the matching assortment category, close the menu, and move to the product section.
-- Collection selection resets to the full available collection.
-- Overlay and close controls dismiss the drawer.
-- Escape-key dismissal and body scroll locking are implemented.
-- Desktop and mobile drawer widths were checked.
+- Product search, category filters, sort controls, product links, header search, and menu code were not changed.
+- Section positions were measured in the rendered page and appear in the requested visual order.
+- No horizontal overflow was introduced at the verified viewport.
 - Browser console: no warnings or errors during the tested flow.
 
 ## Findings
 
-No actionable P0, P1, or P2 differences remain. The implementation intentionally uses the site’s No Comply branding and actual catalog taxonomy rather than copying the reference brand or unavailable categories.
+No actionable P0, P1, or P2 differences remain. The change is limited to the requested section order.
 
 ## Comparison History
 
-No P0/P1/P2 fixes were required after the first normalized side-by-side comparison.
+No P0/P1/P2 fixes were required after the normalized side-by-side comparison.
 
 ## Follow-up Polish
 
-- P3: Additional collection destinations can be wired into the data-driven list when their collection routes are added.
+None.
 
 ## Final Result
 
