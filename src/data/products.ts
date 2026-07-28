@@ -149,6 +149,13 @@ import americanHoodieModel2 from "@/assets/products/american-distress-hoodie-jac
 import americanHoodieModel3 from "@/assets/products/american-distress-hoodie-jacket/black/model-3.png";
 import americanHoodieModel4 from "@/assets/products/american-distress-hoodie-jacket/black/model-4.png";
 
+import chuteBlackFront from "@/assets/products/nc-chute-jacket/black/front.png";
+import chuteBlackBack from "@/assets/products/nc-chute-jacket/black/back.png";
+import chuteBlackModel from "@/assets/products/nc-chute-jacket/black/model.png";
+import chuteOliveFront from "@/assets/products/nc-chute-jacket/olive/front.png";
+import chuteOliveBack from "@/assets/products/nc-chute-jacket/olive/back.png";
+import chuteOliveModel from "@/assets/products/nc-chute-jacket/olive/model.png";
+
 export const products: Product[] = [
   {
     id: "command-zip-knit-hoodie-oxblood",
@@ -393,7 +400,7 @@ export const products: Product[] = [
     description:
       "Wide-leg pleated trousers with an asymmetric four-button fly, deep front pleats, belt loops, and turned-up cuffed hem. Cut in a heavyweight suiting fabric with a manifesto script patch pocket at the back.",
     featured: false,
-    displayOrder: 13,
+    displayOrder: 14,
     variants: [
       {
         id: "black",
@@ -705,6 +712,62 @@ export const products: Product[] = [
               alt: "Model wearing black American Distress Hoodie Jacket — look 4",
             },
           ],
+        },
+      },
+    ],
+  },
+  {
+    id: "command-nc-chute-jacket",
+    slug: "command-nc-chute-jacket",
+    name: "NC CHUTE JACKET",
+    collectionId: "collection-1",
+    category: "Outerwear",
+    price: 275,
+    description:
+      "Technical pullover chute jacket cut in tonal patterned shell fabric with a high funnel hood, adjustable shoulder straps, sculpted utility pockets, and buckle tabs at the cuffs and hem.",
+    featured: false,
+    displayOrder: 13,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-CHUTE-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: chuteBlackFront,
+            alt: "Black NC Chute Jacket — front",
+          },
+          backProduct: {
+            url: chuteBlackBack,
+            alt: "Black NC Chute Jacket — back",
+          },
+          modelFront: {
+            url: chuteBlackModel,
+            alt: "Model wearing black NC Chute Jacket",
+          },
+        },
+      },
+      {
+        id: "olive",
+        color: "Olive",
+        swatch: "#5a5a45",
+        sku: "NC-CMD-CHUTE-OLV",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: chuteOliveFront,
+            alt: "Olive NC Chute Jacket — front",
+          },
+          backProduct: {
+            url: chuteOliveBack,
+            alt: "Olive NC Chute Jacket — back",
+          },
+          modelFront: {
+            url: chuteOliveModel,
+            alt: "Model wearing olive NC Chute Jacket",
+          },
         },
       },
     ],

@@ -1,46 +1,55 @@
-# Design QA — No Comply Section Order
+# Design QA — NC Chute Jacket
 
 ## Evidence
 
-- Source visual truth: production page before the section reorder.
-- Source screenshot: `/private/tmp/no-comply-source-order.png`
-- Implementation screenshot: `/private/tmp/no-comply-reordered-implementation.png`
-- Side-by-side comparison: `/private/tmp/no-comply-section-order-comparison.png`
-- Source and implementation pixels: `1440 × 900`
-- CSS viewport: `1440 × 900`
-- Device density: `1`
-- State: No Comply case-study page at the top with the product menu closed and assortment filters reset.
+- Source visual truth:
+  - `/Users/nickcurzon/Desktop/PORTFOLIO/NO COMPLY MILITIA/WEB READY CONTENT/call_CgGNDOvwjWHimCkHuDNOKLTa.png`
+  - `/Users/nickcurzon/Desktop/PORTFOLIO/NO COMPLY MILITIA/WEB READY CONTENT/call_KCTB4OpXFW7Bo0TIPFu0b6KJ.png`
+  - `/Users/nickcurzon/Desktop/PORTFOLIO/NO COMPLY MILITIA/WEB READY CONTENT/call_T9NdCDhXq1ZNAUbxhGYCqtsK.png`
+  - `/Users/nickcurzon/Desktop/PORTFOLIO/NO COMPLY MILITIA/WEB READY CONTENT/call_EZfeQSb9Q0FluFDoRwcmsA1r.png`
+  - `/Users/nickcurzon/Desktop/PORTFOLIO/NO COMPLY MILITIA/WEB READY CONTENT/exec-da37f158-55d6-42ce-90f6-4f5aacb4b5b5.png`
+  - `/Users/nickcurzon/Desktop/PORTFOLIO/NO COMPLY MILITIA/WEB READY CONTENT/exec-410ca732-b06a-410f-bd59-e43aa6484a52.png`
+- Collection implementation screenshot: `/private/tmp/nc-chute-jacket-listing.png`
+- Detail implementation screenshot: `/private/tmp/nc-chute-jacket-detail.png`
+- Side-by-side comparison: `/private/tmp/nc-chute-jacket-comparison.png`
+- Reference product images: `1254 × 1254`; model images: `1023 × 1537`.
+- Implementation viewport: `1280 × 720` CSS pixels at device density 1.
+- State: Black variant selected on the detail page; collection listing showing both Black and Olive swatches.
 
 ## Full-View Comparison
 
-The normalized side-by-side comparison confirms that the existing production page opens with Moodboard after the logo banner, while the revised page opens with the full No Comply Command collection. The header, logo banner, section styling, filters, typography, and product content remain unchanged.
+The jacket appears in the existing collection grid at the same product scale and card rhythm as the adjacent outerwear. The detail page uses the supplied Black front image at full fidelity beside the established No Comply product information panel.
 
 ## Focused Region Comparison
 
-The top content region is large and legible in the full-view comparison, so an additional crop was unnecessary. The collection title, item count, category filters, search, and sort controls are all visible in the revised above-the-fold region.
+The normalized side-by-side comparison places the supplied Black product image beside the rendered detail page. The hood, shoulder straps, pocket geometry, buckle tabs, tonal pattern, crop, and overall proportions are preserved without image substitution or distortion.
 
 ## Required Fidelity Surfaces
 
-- Fonts and typography: Existing No Comply display and body font tokens are unchanged.
-- Spacing and layout rhythm: Existing section padding, borders, grids, and vertical spacing are unchanged; only section order changed.
-- Colors and visual tokens: Existing black-and-white palette and border treatments are unchanged.
-- Image quality and asset fidelity: Product sources and image behavior are unchanged. Local Lovable-proxied assets remain unavailable outside production by design and were not replaced.
-- Copy and content: No copy was added, removed, or rewritten. No Comply Command is first; Moodboard follows the assortment; Manifesto follows Moodboard.
+- Fonts and typography: Existing No Comply product-display and body typography are unchanged.
+- Spacing and layout rhythm: The listing uses the existing product-card dimensions; the detail page uses the existing gallery/information split.
+- Colors and visual tokens: Black and Olive swatches use the site’s existing bordered swatch and selector treatment.
+- Image quality and asset fidelity: All six supplied source images are included directly. No placeholders, generated replacements, or modified crops were used.
+- Copy and content: Name is `NC CHUTE JACKET`, price is `$275`, category is `Outerwear`, and available colors are Black and Olive.
 
 ## Interaction Verification
 
-- Product search, category filters, sort controls, product links, header search, and menu code were not changed.
-- Section positions were measured in the rendered page and appear in the requested visual order.
-- No horizontal overflow was introduced at the verified viewport.
+- Collection count increased from 12 to 13 pieces.
+- The listing displays two color swatches.
+- The default Black listing has both front and model-hover images.
+- Selecting Olive opens the Olive product variant.
+- Black and Olive detail selectors replace the gallery with the matching front, back, and model images.
+- XS through XL size selectors render for both variants.
+- The product lightbox opens from the gallery.
 - Browser console: no warnings or errors during the tested flow.
 
 ## Findings
 
-No actionable P0, P1, or P2 differences remain. The change is limited to the requested section order.
+No actionable P0, P1, or P2 differences remain.
 
 ## Comparison History
 
-No P0/P1/P2 fixes were required after the normalized side-by-side comparison.
+No P0/P1/P2 fixes were required after the normalized comparison.
 
 ## Follow-up Polish
 
