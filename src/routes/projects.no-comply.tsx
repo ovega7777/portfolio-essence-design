@@ -403,7 +403,7 @@ function NoComply() {
 
           <div
             aria-label="No Comply Command assortment editorial gallery"
-            className="mt-20 grid grid-cols-1 gap-1 bg-black sm:grid-cols-2 md:mt-28"
+            className="mt-20 grid grid-cols-1 gap-1 bg-black sm:grid-cols-2 md:mt-28 lg:grid-cols-4"
           >
             {[
               {

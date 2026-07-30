@@ -43,18 +43,21 @@ Passed — no P0, P1, or P2 visual issues found.
 
 ---
 
-# Design QA — No Comply Command Assortment Gallery
+# Design QA — No Comply Command Assortment Gallery (1 × 4)
 
 ## Sources
 
 - Four supplied 1086 × 1448 editorial images from the No Comply Militia media folder.
+- Layout reference: `Screenshot 2026-07-30 at 5.21.41 PM.png`
+- Local verification capture: `/private/tmp/no-comply-gallery-1x4.png`
 
 ## Checks
 
 - The gallery appears after the complete product assortment and before the remaining case-study content.
-- Desktop and tablet layouts use a balanced 2 × 2 grid with consistent one-pixel gutters.
-- Small screens collapse to one column so each editorial image remains legible.
+- Desktop layouts present all four images in one horizontal row with consistent one-pixel gutters.
+- Tablet layouts retain a balanced two-column arrangement, and small screens collapse to one column so each editorial image remains legible.
 - All four images retain their original 3:4 aspect ratio and supplied order.
+- Browser verification at 1440 px confirmed all four images share the same vertical position and load at their full 1086 × 1448 natural dimensions.
 - Alternative text describes the featured garments and accessories.
 
 ## Final result
