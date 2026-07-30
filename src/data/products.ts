@@ -190,6 +190,10 @@ import patchKitScriptPatches from "@/assets/products/nc-patch-kit/black/script-p
 import pinKitSet from "@/assets/products/nc-pin-kit/standard/pin-set.png";
 import pinKitHoodieStyling from "@/assets/products/nc-pin-kit/standard/hoodie-styling.png";
 import pinKitJacketStyling from "@/assets/products/nc-pin-kit/standard/jacket-styling.png";
+import americanDistressHatBlackFront from "@/assets/products/american-distress-hat/black/front.png";
+import americanDistressHatBlackBack from "@/assets/products/american-distress-hat/black/back.png";
+import americanDistressHatBlackModel1 from "@/assets/products/american-distress-hat/black/model-1.png";
+import americanDistressHatBlackModel2 from "@/assets/products/american-distress-hat/black/model-2.png";
 
 export const products: Product[] = [
   {
@@ -1169,6 +1173,45 @@ export const products: Product[] = [
               alt: "NC Pin Kit — styled on the Eisenhower Distress Jacket",
             },
           ],
+        },
+      },
+    ],
+  },
+  {
+    id: "american-distress-hat",
+    slug: "american-distress-hat",
+    name: "AMERICAN DISTRESS HAT",
+    collectionId: "collection-1",
+    category: "Accessories",
+    price: 150,
+    description:
+      "Distressed black six-panel cap with a monochrome American flag patch, removable No Comply campaign pins, hand-worked abrasion, and an adjustable back strap.",
+    featured: false,
+    displayOrder: 24,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-CMD-HAT-BLK",
+        sizes: ["ONE SIZE"],
+        images: {
+          frontProduct: {
+            url: americanDistressHatBlackFront,
+            alt: "Black American Distress Hat — front",
+          },
+          backProduct: {
+            url: americanDistressHatBlackBack,
+            alt: "Black American Distress Hat — back",
+          },
+          modelFront: {
+            url: americanDistressHatBlackModel1,
+            alt: "Model wearing the black American Distress Hat — look 1",
+          },
+          modelBack: {
+            url: americanDistressHatBlackModel2,
+            alt: "Model wearing the black American Distress Hat — look 2",
+          },
         },
       },
     ],
