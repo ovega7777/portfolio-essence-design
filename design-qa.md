@@ -1,32 +1,34 @@
-# Design QA — Vet Lighter
+# Design QA — No Comply Command editorial introduction
 
-## Evidence
+## Sources
 
-- Source assets: three Vet Lighter product views supplied by the user.
-- Implementation target: the existing No Comply Command product-card and product-detail system.
+- Layout reference: `/var/folders/7l/wj0qlkhs0ngg4_ypccb5b30h0000gn/T/TemporaryItems/NSIRD_screencaptureui_BPeoHR/Screenshot 2026-07-29 at 9.32.09 PM.png`
+- Editorial image 1: `/Users/nickcurzon/Desktop/PORTFOLIO/NO COMPLY MILITIA/MEDIA/call_LptMyQab8WFbvcSBly7IYtn7.png`
+- Editorial image 2: `/Users/nickcurzon/Desktop/PORTFOLIO/NO COMPLY MILITIA/MEDIA/call_htRuf8bu6JHNNMhDrNnwXojZ.png`
+- Desktop implementation capture: `/private/tmp/no-comply-editorial-desktop-clean.png`
+- Mobile implementation capture: `/private/tmp/no-comply-editorial-mobile.png`
 
-## Requested Change
+## Viewports checked
 
-Add `VET LIGHTER` to the product assortment for `$75`, without size or colorway controls.
+- Desktop: 1440 × 1000
+- Mobile: 390 × 844
 
-## Verification
+## Comparison
 
-- `VET LIGHTER` uses display order 21 and appears after all 19 existing products.
-- The assortment card uses the supplied engraved-front product image.
-- The detail page contains the engraved front, Ace of Spades face, and open-mechanism detail views.
-- The product uses SKU `NC-CMD-LGHTR-SLV` and the Accessories category.
-- Size and colorway selectors are absent.
-- Product description and lightbox behavior follow the existing product system.
-- All three local images load at their native dimensions.
-- Existing assortment order, products, and image proxy configuration are unchanged.
-- Production build passes.
-- TypeScript check passes.
-- Browser console contains no warnings or errors on the verified product and assortment views.
+- The existing collection label, title, underline, and piece count remain intact.
+- The featured-products block is absent.
+- The collection category, search, and sort controls are absent.
+- Both supplied editorial images appear immediately below the collection header and before the product assortment.
+- Desktop uses a proportional two-column editorial spread; mobile stacks both images without horizontal overflow.
+- Both editorial files load at their expected intrinsic dimensions.
 
-## Findings
+## Verification history
 
-No actionable P0, P1, or P2 differences remain.
+1. Confirmed the requested sections were removed from the rendered page.
+2. Confirmed two editorial images render with descriptive alternative text.
+3. Checked desktop composition and image proportions.
+4. Checked the mobile stack and verified there is no horizontal overflow.
 
-## Final Result
+## Final result
 
-final result: passed
+Passed — no P0, P1, or P2 visual issues found.

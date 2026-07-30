@@ -5,6 +5,8 @@ import { Menu, Search, X } from "lucide-react";
 import { z } from "zod";
 
 import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
+import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
+import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
 import { products, getCategories, type Product } from "@/data/products";
 import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
@@ -14,34 +16,10 @@ const collectionProducts = products
   .filter((p) => p.collectionId === COLLECTION.id)
   .sort((a, b) => a.displayOrder - b.displayOrder);
 
-const FEATURED_PRODUCT_SLUGS = [
-  "command-zip-knit-hoodie-oxblood",
-  "command-sergeant-shirt-black",
-  "command-distressed-eisenhower-jacket",
-  "command-captains-jacket",
-  "command-cargo-messenger-bag",
-  "command-american-distress-hoodie-jacket",
-  "custom-dog-tags",
-  "command-army-pinup-tee",
-] as const;
-
-const featuredProducts = FEATURED_PRODUCT_SLUGS.map((slug) =>
-  collectionProducts.find((product) => product.slug === slug),
-).filter((product): product is Product => product !== undefined);
-
 const CATEGORIES = getCategories(COLLECTION.id);
 
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
 type Sort = (typeof SORTS)[number];
-const SORT_LABELS: Record<Sort, string> = {
-  order: "Curated",
-  featured: "Featured",
-  az: "Name A–Z",
-  za: "Name Z–A",
-  "price-asc": "Price ↑",
-  "price-desc": "Price ↓",
-};
-
 const searchSchema = z.object({
   cat: fallback(z.string(), "all").default("all"),
   sort: fallback(z.enum(SORTS), "order").default("order"),
@@ -102,8 +80,6 @@ function NoComply() {
   type SearchState = z.infer<typeof searchSchema>;
   const setCategory = (cat: string) =>
     navigate({ to: ".", search: (p: SearchState) => ({ ...p, cat }) });
-  const setSort = (s: Sort) =>
-    navigate({ to: ".", search: (p: SearchState) => ({ ...p, sort: s }) });
   const setQuery = (q: string) =>
     navigate({ to: ".", search: (p: SearchState) => ({ ...p, q }), replace: true });
   const showProducts = () =>
@@ -272,36 +248,6 @@ function NoComply() {
 
       <LogoBannerHUD src={noComplyUsaLogoBlack.url} />
 
-      <section
-        aria-labelledby="featured-products-heading"
-        className="border-b-2 border-black bg-white px-6 py-12 md:px-12 md:py-16"
-      >
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-8 flex items-end justify-between gap-6 border-b-2 border-black pb-4">
-            <div>
-              <p className="nc-display mb-2 text-[10px] tracking-[0.3em] text-black/60">
-                Selected from Collection #1
-              </p>
-              <h2
-                id="featured-products-heading"
-                className="nc-display text-3xl leading-none tracking-[0.03em] text-black md:text-5xl"
-              >
-                Featured Products
-              </h2>
-            </div>
-            <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-black sm:text-xs">
-              08 Selected
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-x-2 gap-y-8 md:grid-cols-4 xl:grid-cols-8">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* prettier-ignore */}
       <div className="flex flex-col">
       <section className="order-2 border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
@@ -360,7 +306,7 @@ function NoComply() {
         className="order-1 border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32"
       >
         <div className="mx-auto max-w-7xl">
-          <div className="mb-20 grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
+          <div className="mb-12 grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end md:mb-16">
             <div className="min-w-0">
               <p className="nc-display mb-6 inline-block bg-black px-3 py-1 text-xs tracking-[0.3em] text-white">
                 Collection #{COLLECTION.number}
@@ -382,97 +328,20 @@ function NoComply() {
             </span>
           </div>
 
-          <div className="mb-10 border-y-2 border-black">
-            <div className="-mx-6 overflow-x-auto px-6 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:-mx-12 md:px-12">
-              <div className="flex min-w-max items-center gap-3 sm:flex-wrap sm:gap-3">
-                <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-black sm:text-xs">
-                  Shop by
-                </span>
-                {(["all", ...CATEGORIES] as const).map((cat) => {
-                  const count =
-                    cat === "all"
-                      ? collectionProducts.length
-                      : collectionProducts.filter((p) => p.category === cat).length;
-                  const isActive = activeCategory === cat;
-                  return (
-                    <button
-                      key={cat}
-                      type="button"
-                      onClick={() => setCategory(cat)}
-                      className={`nc-display shrink-0 whitespace-nowrap border-2 border-black px-[22px] py-[14px] text-[11px] tracking-[0.25em] transition-colors duration-200 ${
-                        isActive
-                          ? "bg-black text-white"
-                          : "bg-white text-black hover:bg-black hover:text-white"
-                      }`}
-                      aria-pressed={isActive}
-                    >
-                      {cat === "all" ? "All" : cat}{" "}
-                      <span className="opacity-70">({count})</span>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div className="grid gap-3 border-t-2 border-black px-0 py-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-6">
-              <label className="flex min-w-0 items-center gap-3 border-2 border-black bg-white px-4 py-3">
-                <svg
-                  aria-hidden
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="h-4 w-4 shrink-0 text-black"
-                >
-                  <circle cx="11" cy="11" r="7" />
-                  <path d="m20 20-3.5-3.5" strokeLinecap="square" />
-                </svg>
-                <input
-                  type="search"
-                  value={search.q}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="SEARCH THIS COLLECTION..."
-                  aria-label="Search collection"
-                  className="nc-display w-full min-w-0 bg-transparent text-sm tracking-[0.2em] text-black placeholder:text-black/60 focus:outline-none"
-                />
-                {search.q && (
-                  <button
-                    type="button"
-                    onClick={() => setQuery("")}
-                    aria-label="Clear search"
-                    className="nc-display shrink-0 border-2 border-black bg-white px-2 py-1 text-[10px] tracking-[0.25em] text-black transition-colors duration-200 hover:bg-black hover:text-white"
-                  >
-                    Clear
-                  </button>
-                )}
-              </label>
-
-              <div className="-mx-6 overflow-x-auto px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:overflow-visible sm:px-0">
-                <div className="flex min-w-max items-center gap-3 sm:min-w-0 sm:flex-wrap">
-                  <span className="nc-display shrink-0 text-[10px] tracking-[0.3em] text-black sm:text-xs">
-                    Sort
-                  </span>
-                  {SORTS.map((s) => {
-                    const isActive = sort === s;
-                    return (
-                      <button
-                        key={s}
-                        type="button"
-                        onClick={() => setSort(s)}
-                        className={`nc-display shrink-0 whitespace-nowrap border-2 border-black px-[22px] py-[14px] text-[11px] tracking-[0.25em] transition-colors duration-200 ${
-                          isActive
-                            ? "bg-black text-white"
-                            : "bg-white text-black hover:bg-black hover:text-white"
-                        }`}
-                        aria-pressed={isActive}
-                      >
-                        {SORT_LABELS[s]}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
+          <div
+            aria-label="No Comply Command editorial"
+            className="mb-20 grid items-start gap-1 bg-black md:grid-cols-[5fr_7fr]"
+          >
+            <img
+              src={commandEditorialLook01}
+              alt="No Comply Command editorial look with Captain's Jacket and Cargo Messenger Bag"
+              className="aspect-[1086/1448] h-auto w-full bg-white object-cover"
+            />
+            <img
+              src={commandEditorialLook02}
+              alt="No Comply Command editorial look with black and navy Sergeant Shirts"
+              className="aspect-square h-auto w-full bg-white object-cover"
+            />
           </div>
 
           {displayed.length === 0 ? (
