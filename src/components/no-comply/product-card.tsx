@@ -23,7 +23,7 @@ export function ProductCard({ product }: Props) {
 
   const front = displayed.frontImage;
   const modelFront = displayed.modelImage ?? variant.images.modelFront;
-  const frontImagePadding = product.category === "Trousers" ? "p-7" : "p-4";
+  const frontImagePadding = product.category === "Bottoms" ? "p-7" : "p-4";
 
   return (
     <div className="block bg-white text-black">

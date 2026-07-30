@@ -197,7 +197,7 @@ export const products: Product[] = [
     slug: "command-zip-knit-hoodie-oxblood",
     name: "ZIP KNIT HOODIE",
     collectionId: "collection-1",
-    category: "Knitwear",
+    category: "Tops",
     price: 275,
     description:
       "Heavyweight ribbed knit zip hoodie. Cropped silhouette with wide sleeves, drawcord hood, and elbow patches. Finished with 'C' chest patch and 'NO COMPLY / SORRY ABOUT THAT' sleeve patches.",
@@ -253,7 +253,7 @@ export const products: Product[] = [
     slug: "command-zip-knit-hoodie-olive",
     name: "ZIP KNIT HOODIE",
     collectionId: "collection-1",
-    category: "Knitwear",
+    category: "Tops",
     price: 275,
     description:
       "Heavyweight ribbed knit zip hoodie in olive. Cropped silhouette with wide sleeves, drawcord hood, and elbow patches. Finished with 'USA' chest patch and 'NO COMPLY / SORRY ABOUT THAT' sleeve patches.",
@@ -287,7 +287,7 @@ export const products: Product[] = [
     slug: "command-sergeant-shirt-black",
     name: "SERGEANT SHIRT",
     collectionId: "collection-1",
-    category: "Shirting",
+    category: "Tops",
     price: 245,
     description:
       "Structured button-up sergeant shirt in black with epaulets, flap chest pockets, and silver snap hardware. Finished with tonal patched detailing and three editorial look images.",
@@ -346,7 +346,7 @@ export const products: Product[] = [
     slug: "command-sergeant-shirt-navy",
     name: "SERGEANT SHIRT",
     collectionId: "collection-1",
-    category: "Shirting",
+    category: "Tops",
     price: 245,
     description:
       "Structured button-up sergeant shirt in navy with epaulets, flap chest pockets, and silver snap hardware. Finished with tonal patched detailing and three editorial look images.",
@@ -383,7 +383,7 @@ export const products: Product[] = [
     slug: "command-tiger-tee",
     name: "NC TIGER TEE",
     collectionId: "collection-1",
-    category: "Tees",
+    category: "Tops",
     price: 99,
     description:
       "Tonal tiger camo tee with arched 'NO COMPLY USA' chest print. Boxy fit, ribbed crew, garment-washed for a lived-in hand.",
@@ -430,7 +430,7 @@ export const products: Product[] = [
     slug: "command-pleated-trousers",
     name: "NC PLEATED TROUSERS",
     collectionId: "collection-1",
-    category: "Trousers",
+    category: "Bottoms",
     price: 195,
     description:
       "Wide-leg pleated trousers with an asymmetric four-button fly, deep front pleats, belt loops, and turned-up cuffed hem. Cut in a heavyweight suiting fabric with a manifesto script patch pocket at the back.",
@@ -479,7 +479,7 @@ export const products: Product[] = [
     slug: "command-army-pinup-tee",
     name: "NC ARMY PIN UP TEE",
     collectionId: "collection-1",
-    category: "Tees",
+    category: "Tops",
     price: 55,
     description:
       "Cropped baby tee with pin-up 'NO COMPLY' chorus-line chest graphic. Boxy-slim fit, ribbed crew, garment-washed cotton.",
@@ -537,7 +537,7 @@ export const products: Product[] = [
     slug: "command-cpt-cargo-pant-black",
     name: "CPT. CARGO PANT",
     collectionId: "collection-1",
-    category: "Trousers",
+    category: "Bottoms",
     price: 185,
     description:
       "Wide-leg cargo pant with pressed center creases, flap side pockets, welt back pockets, and buttoned hem tabs. Cut in a heavyweight garment-washed twill.",
@@ -587,7 +587,7 @@ export const products: Product[] = [
     slug: "command-cpt-cargo-pant-plaid",
     name: "CPT. CARGO PANT",
     collectionId: "collection-1",
-    category: "Trousers",
+    category: "Bottoms",
     price: 185,
     description:
       "Wide-leg cargo pant in charcoal plaid with pressed center creases, flap side pockets, welt back pockets, and buttoned hem tabs. Cut in a heavyweight garment-washed twill.",
@@ -812,7 +812,7 @@ export const products: Product[] = [
     slug: "command-nc-chute-pants",
     name: "NC CHUTE PANTS",
     collectionId: "collection-1",
-    category: "Trousers",
+    category: "Bottoms",
     price: 250,
     description:
       "Technical wide-leg chute pants cut in tonal patterned shell fabric with an elasticated waist, sculpted seam lines, oversized curved pockets, a removable rear utility pouch, and adjustable buckle tabs at the waist and cuffs.",
@@ -924,7 +924,7 @@ export const products: Product[] = [
     slug: "command-nc-cargo-capri",
     name: "NC CARGO CAPRI",
     collectionId: "collection-1",
-    category: "Trousers",
+    category: "Bottoms",
     price: 200,
     description:
       "Wide-leg cargo capri pants cut in washed black cotton with articulated utility pockets, metal hardware, adjustable waist tabs, and a cropped mid-calf length.",
