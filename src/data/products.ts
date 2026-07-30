@@ -288,7 +288,7 @@ export const products: Product[] = [
     name: "SERGEANT SHIRT",
     collectionId: "collection-1",
     category: "Tops",
-    price: 245,
+    price: 185,
     description:
       "Structured button-up sergeant shirt in black with epaulets, flap chest pockets, and silver snap hardware. Finished with tonal patched detailing and three editorial look images.",
     featured: false,
@@ -347,7 +347,7 @@ export const products: Product[] = [
     name: "SERGEANT SHIRT",
     collectionId: "collection-1",
     category: "Tops",
-    price: 245,
+    price: 185,
     description:
       "Structured button-up sergeant shirt in navy with epaulets, flap chest pockets, and silver snap hardware. Finished with tonal patched detailing and three editorial look images.",
     featured: false,
@@ -705,7 +705,7 @@ export const products: Product[] = [
   {
     id: "command-american-distress-hoodie-jacket",
     slug: "command-american-distress-hoodie-jacket",
-    name: "AMERICAN DISTRESS HOODIE JACKET",
+    name: "AMERICAN DISTRESS HOODIE",
     collectionId: "collection-1",
     category: "Outerwear",
     price: 195,
