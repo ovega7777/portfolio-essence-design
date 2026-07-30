@@ -303,23 +303,12 @@ function NoComply() {
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end md:mb-16">
             <div className="min-w-0">
-              <p className="nc-display mb-6 inline-block bg-black px-3 py-1 text-xs tracking-[0.3em] text-white">
-                Collection #{COLLECTION.number}
-              </p>
               <h2 className="nc-display text-5xl leading-[0.9] text-black md:text-8xl">
-                No Comply{" "}
-                <span className="relative inline-block">
-                  {COLLECTION.title}
-                  <span
-                    aria-hidden
-                    className="absolute -bottom-2 left-0 right-0 h-[3px] bg-black"
-                  />
-                </span>
+                No Comply {COLLECTION.title}
               </h2>
             </div>
             <span className="nc-display shrink-0 text-xs tracking-[0.3em] text-black sm:text-sm">
-              // {collectionProducts.length} Pieces / Collection{" "}
-              {String(COLLECTION.number).padStart(2, "0")}
+              Collection #{COLLECTION.number} / 50 Pieces
             </span>
           </div>
 
@@ -338,6 +327,33 @@ function NoComply() {
               className="aspect-square h-auto w-full bg-white object-cover"
             />
           </div>
+
+          <nav
+            aria-label="Filter products by category"
+            className="mb-12 flex flex-wrap items-center border-y border-black md:mb-16"
+          >
+            <span className="nc-display mr-2 py-3 pr-3 text-[10px] tracking-[0.25em] text-black/60 sm:mr-4 sm:pr-4 sm:text-xs">
+              Filter by
+            </span>
+            {["all", ...CATEGORIES].map((category) => {
+              const selected = activeCategory === category;
+              return (
+                <button
+                  key={category}
+                  type="button"
+                  onClick={() => setCategory(category)}
+                  aria-pressed={selected}
+                  className={`nc-display border-l border-black px-3 py-3 text-[10px] tracking-[0.2em] transition-colors sm:px-5 sm:text-xs ${
+                    selected
+                      ? "bg-black text-white"
+                      : "bg-white text-black hover:bg-black hover:text-white"
+                  }`}
+                >
+                  {category === "all" ? "All" : category}
+                </button>
+              );
+            })}
+          </nav>
 
           {displayed.length === 0 ? (
             <div className="border-2 border-dashed border-black/40 p-16 text-center">
