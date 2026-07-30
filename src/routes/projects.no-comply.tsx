@@ -72,6 +72,7 @@ function NoComply() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [focusMenuSearch, setFocusMenuSearch] = useState(false);
 
   const activeCategory = search.cat;
   const sort = search.sort;
@@ -95,6 +96,14 @@ function NoComply() {
     setCategory("all");
     setMenuOpen(false);
     showProducts();
+  };
+  const openProductSearch = () => {
+    setFocusMenuSearch(true);
+    setMenuOpen(true);
+  };
+  const openProductMenu = () => {
+    setFocusMenuSearch(false);
+    setMenuOpen(true);
   };
 
   useEffect(() => {
@@ -137,26 +146,6 @@ function NoComply() {
           <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-white lg:block lg:text-lg">
             NO COMPLY USA / CASE STUDY
           </span>
-          <label className="ml-auto flex h-9 min-w-0 max-w-52 flex-1 items-center gap-2 border-b border-white/70 px-1 lg:ml-6 lg:w-52 lg:flex-none">
-            <Search aria-hidden className="h-4 w-4 shrink-0" strokeWidth={1.8} />
-            <input
-              type="search"
-              value={search.q}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder="PRODUCT SEARCH"
-              aria-label="Search products"
-              className="nc-display min-w-0 flex-1 bg-transparent text-xs tracking-[0.2em] text-white placeholder:text-white/60 focus:outline-none"
-            />
-          </label>
-          <button
-            type="button"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Open product menu"
-            aria-expanded={menuOpen}
-            className="flex h-10 w-10 shrink-0 items-center justify-center border border-white/60 text-white transition-colors hover:bg-white hover:text-black"
-          >
-            <Menu aria-hidden className="h-5 w-5" strokeWidth={1.8} />
-          </button>
         </div>
         <div className="h-0.5 w-full bg-white" />
       </nav>
@@ -197,6 +186,7 @@ function NoComply() {
                 type="search"
                 value={search.q}
                 onChange={(event) => setQuery(event.target.value)}
+                autoFocus={focusMenuSearch}
                 placeholder="Search products"
                 aria-label="Search products in menu"
                 className="min-w-0 flex-1 bg-transparent font-punk-body text-xl tracking-[0.08em] text-black placeholder:text-black/60 focus:outline-none"
@@ -246,7 +236,12 @@ function NoComply() {
         </div>
       )}
 
-      <LogoBannerHUD src={noComplyUsaLogoBlack.url} />
+      <LogoBannerHUD
+        src={noComplyUsaLogoBlack.url}
+        menuOpen={menuOpen}
+        onSearch={openProductSearch}
+        onMenu={openProductMenu}
+      />
 
       {/* prettier-ignore */}
       <div className="flex flex-col">
@@ -437,7 +432,17 @@ const DEFAULT_BANNER: BannerSettings = {
 const BANNER_STORAGE_KEY = "no-comply-banner-settings-v1";
 const BANNER_CONFIRMED_KEY = "no-comply-banner-confirmed-v1";
 
-function LogoBannerHUD({ src }: { src: string }) {
+function LogoBannerHUD({
+  src,
+  menuOpen,
+  onSearch,
+  onMenu,
+}: {
+  src: string;
+  menuOpen: boolean;
+  onSearch: () => void;
+  onMenu: () => void;
+}) {
   const [settings, setSettings] = useState<BannerSettings>(DEFAULT_BANNER);
   const [hudVisible, setHudVisible] = useState(true);
 
@@ -496,6 +501,25 @@ function LogoBannerHUD({ src }: { src: string }) {
               transformOrigin: "center center",
             }}
           />
+        </div>
+        <div className="absolute right-4 top-1/2 flex -translate-y-1/2 items-center gap-1 sm:right-6 sm:gap-2">
+          <button
+            type="button"
+            onClick={onSearch}
+            aria-label="Search products"
+            className="flex h-11 w-11 items-center justify-center text-white transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            <Search aria-hidden className="h-6 w-6" strokeWidth={1.8} />
+          </button>
+          <button
+            type="button"
+            onClick={onMenu}
+            aria-label="Open product menu"
+            aria-expanded={menuOpen}
+            className="flex h-11 w-11 items-center justify-center text-white transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          >
+            <Menu aria-hidden className="h-6 w-6" strokeWidth={1.8} />
+          </button>
         </div>
       </header>
 
