@@ -160,28 +160,28 @@ function NoComply() {
           />
           <aside
             aria-label="Product navigation"
-            className="absolute right-0 top-0 flex h-full w-full max-w-[430px] flex-col overflow-y-auto border-l-2 border-black bg-[#d2d2d2] px-6 py-6 text-black shadow-2xl sm:px-8"
+            className="absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col overflow-y-auto border-l border-black/10 bg-white px-6 py-6 text-black shadow-2xl sm:px-9 sm:py-8"
           >
-            <div className="flex items-start justify-between gap-6 border-b border-black/20 pb-5">
+            <div className="flex items-start justify-between gap-6 border-b border-black/15 pb-6">
               <div>
-                <p className="nc-display text-5xl leading-none tracking-[0.04em] sm:text-6xl">
+                <p className="nc-display text-4xl leading-none tracking-[0.04em] sm:text-5xl">
                   NO COMPLY
                 </p>
-                <p className="nc-display mt-1 text-xs tracking-[0.3em] text-black/60">
+                <p className="nc-display mt-2 text-[10px] tracking-[0.28em] text-black/45">
                   Product Index
                 </p>
               </div>
               <button
                 type="button"
                 onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.12em] hover:opacity-50"
+                className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] transition-opacity hover:opacity-45"
               >
                 Close
-                <X aria-hidden className="h-5 w-5" strokeWidth={1.8} />
+                <X aria-hidden className="h-5 w-5" strokeWidth={1.5} />
               </button>
             </div>
 
-            <label className="mt-5 flex h-16 items-center gap-4 border border-black/60 bg-transparent px-5">
+            <label className="mt-6 flex h-14 items-center gap-4 border border-black/25 bg-white px-4 transition-colors focus-within:border-black">
               <input
                 type="search"
                 value={search.q}
@@ -189,27 +189,29 @@ function NoComply() {
                 autoFocus={focusMenuSearch}
                 placeholder="Search products"
                 aria-label="Search products in menu"
-                className="min-w-0 flex-1 bg-transparent font-punk-body text-xl tracking-[0.08em] text-black placeholder:text-black/60 focus:outline-none"
+                className="min-w-0 flex-1 bg-transparent font-punk-body text-lg tracking-[0.06em] text-black placeholder:text-black/40 focus:outline-none"
               />
-              <Search aria-hidden className="h-7 w-7 shrink-0" strokeWidth={1.5} />
+              <Search aria-hidden className="h-5 w-5 shrink-0" strokeWidth={1.5} />
             </label>
 
-            <div className="mt-5 border-t border-black/15 pt-5">
-              <p className="text-sm font-bold uppercase tracking-[0.12em]">Product Types</p>
-              <div className="mt-4 flex flex-col items-start gap-3">
+            <div className="mt-7 border-t border-black/10 pt-6">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
+                Designs
+              </p>
+              <div className="mt-5 flex flex-col items-start gap-3.5">
                 <button
                   type="button"
                   onClick={() => chooseCategory("all")}
-                  className="font-punk-body text-2xl uppercase tracking-[0.04em] hover:opacity-50"
+                  className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
                 >
-                  Shop All
+                  All Designs
                 </button>
                 {CATEGORIES.map((category) => (
                   <button
                     key={category}
                     type="button"
                     onClick={() => chooseCategory(category)}
-                    className="font-punk-body text-2xl uppercase tracking-[0.04em] hover:opacity-50"
+                    className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
                   >
                     {category}
                   </button>
@@ -217,17 +219,16 @@ function NoComply() {
               </div>
             </div>
 
-            <div className="mt-7 border-t border-black/15 pt-5">
-              <p className="text-sm font-bold uppercase tracking-[0.12em]">Collections</p>
-              <div className="mt-4 flex flex-col items-start gap-3">
+            <div className="mt-7 border-t border-black/10 pt-6">
+              <div className="flex flex-col items-start gap-3">
                 {collections.map((collection) => (
                   <button
                     key={collection.id}
                     type="button"
                     onClick={chooseCollection}
-                    className="text-left font-punk-body text-2xl uppercase tracking-[0.04em] hover:opacity-50"
+                    className="whitespace-nowrap text-left font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
                   >
-                    Collection #{collection.number} — {collection.title}
+                    #{collection.number} No Comply {collection.title}
                   </button>
                 ))}
               </div>

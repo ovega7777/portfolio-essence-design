@@ -1,33 +1,32 @@
-# Design QA — No Comply collection filter
+# Design QA — No Comply navigation menu
 
 ## Sources
 
-- Layout reference: `/var/folders/7l/wj0qlkhs0ngg4_ypccb5b30h0000gn/T/TemporaryItems/NSIRD_screencaptureui_QcEZMx/Screenshot 2026-07-29 at 11.21.45 PM.png`
-- Desktop filter capture: `/private/tmp/no-comply-filter-desktop-bar.png`
-- Mobile header capture: `/private/tmp/no-comply-filter-mobile.png`
-- Mobile filter capture: `/private/tmp/no-comply-filter-mobile-bar.png`
+- Visual reference: `/var/folders/7l/wj0qlkhs0ngg4_ypccb5b30h0000gn/T/TemporaryItems/NSIRD_screencaptureui_64Ywep/Screenshot 2026-07-29 at 11.58.52 PM.png`
+- Desktop capture: `/private/tmp/no-comply-menu-desktop.png`
+- Mobile capture: `/private/tmp/no-comply-menu-mobile.png`
 
 ## Viewports checked
 
-- Desktop: 1440 × 900
+- Desktop: 1440 × 1000
 - Mobile: 390 × 844
 
 ## Comparison
 
-- The Collection #1 tab above the title is removed.
-- The underline beneath COMMAND is removed.
-- The collection count now reads `COLLECTION #1 / 50 PIECES`.
-- A compact category-only filter bar sits between the editorial imagery and product assortment.
-- The bar exposes All, Accessories, Bottoms, Outerwear, and Tops while preserving the existing product-card layout.
+- The drawer uses a clean white surface, black typography, a subtle divider system, and a restrained 420-pixel desktop width.
+- `PRODUCT TYPES` is replaced by `DESIGNS`.
+- `SHOP ALL` is replaced by `ALL DESIGNS`.
+- The collection heading is removed and the single collection link reads `#1 NO COMPLY COMMAND` on one line.
+- Search, category navigation, and the close control remain functional.
 - Desktop and mobile layouts have no horizontal overflow.
 
 ## Verification history
 
-1. Confirmed the removed collection tab and underline do not render.
-2. Confirmed the new count copy renders at desktop and mobile sizes.
-3. Confirmed the filter bar follows both editorial images and precedes the product grid.
-4. Selected Bottoms and verified the URL updates to `cat=Bottoms`, the selected state changes, and non-bottom categories are removed.
-5. Checked the compact wrapping behavior and absence of horizontal overflow at 390 pixels.
+1. Confirmed the drawer computes to a white background with black text.
+2. Confirmed the desktop drawer is 420 pixels wide with no internal horizontal overflow.
+3. Confirmed the drawer fits a 390-pixel mobile viewport without horizontal overflow.
+4. Confirmed menu search updates the query and returns the expected product.
+5. Confirmed the old `PRODUCT TYPES`, `SHOP ALL`, and `COLLECTIONS` labels no longer render.
 
 ## Final result
 
