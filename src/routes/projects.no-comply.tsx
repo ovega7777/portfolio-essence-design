@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { Menu, Search, X } from "lucide-react";
@@ -38,8 +38,7 @@ export const Route = createFileRoute("/projects/no-comply")({
       { title: "NO COMPLY USA — Collection #1 · Nicholas Curzon" },
       {
         name: "description",
-        content:
-          "NO COMPLY USA Collection #1 — a monochrome study in refusal, uniform, and craft.",
+        content: "NO COMPLY USA Collection #1 — a monochrome study in refusal, uniform, and craft.",
       },
       { property: "og:title", content: "NO COMPLY USA — Collection #1" },
       {
@@ -64,8 +63,7 @@ function sortProducts(items: Product[], sort: Sort): Product[] {
       return arr.sort((a, b) => b.price - a.price);
     case "featured":
       return arr.sort(
-        (a, b) =>
-          Number(b.featured) - Number(a.featured) || a.displayOrder - b.displayOrder
+        (a, b) => Number(b.featured) - Number(a.featured) || a.displayOrder - b.displayOrder,
       );
     case "order":
     default:
@@ -74,6 +72,16 @@ function sortProducts(items: Product[], sort: Sort): Product[] {
 }
 
 function NoComply() {
+  const pathname = useRouterState({ select: (state) => state.location.pathname });
+
+  if (pathname !== "/projects/no-comply") {
+    return <Outlet />;
+  }
+
+  return <NoComplyCollection />;
+}
+
+function NoComplyCollection() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
@@ -132,7 +140,7 @@ function NoComply() {
         (p) =>
           p.name.toLowerCase().includes(query) ||
           p.description.toLowerCase().includes(query) ||
-          p.variants.some((v) => v.sku.toLowerCase().includes(query))
+          p.variants.some((v) => v.sku.toLowerCase().includes(query)),
       );
     return sortProducts(list, sort);
   }, [activeCategory, query, sort]);
@@ -168,14 +176,9 @@ function NoComply() {
             className="absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col overflow-y-auto border-l border-black/10 bg-white px-6 py-6 text-black shadow-2xl sm:px-9 sm:py-8"
           >
             <div className="flex items-start justify-between gap-6 border-b border-black/15 pb-6">
-              <div>
-                <p className="nc-display text-4xl leading-none tracking-[0.04em] sm:text-5xl">
-                  NO COMPLY
-                </p>
-                <p className="nc-display mt-2 text-[10px] tracking-[0.28em] text-black/45">
-                  Product Index
-                </p>
-              </div>
+              <p className="nc-display text-4xl leading-none tracking-[0.04em] sm:text-5xl">
+                NO COMPLY
+              </p>
               <button
                 type="button"
                 onClick={() => setMenuOpen(false)}
@@ -225,7 +228,10 @@ function NoComply() {
             </div>
 
             <div className="mt-7 border-t border-black/10 pt-6">
-              <div className="flex flex-col items-start gap-3">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
+                Collections
+              </p>
+              <div className="mt-5 flex flex-col items-start gap-3">
                 {collections.map((collection) => (
                   <button
                     key={collection.id}
@@ -238,6 +244,26 @@ function NoComply() {
                 ))}
               </div>
             </div>
+
+            <nav
+              aria-label="No Comply editorial pages"
+              className="mt-7 flex flex-col items-start border-t border-black/10"
+            >
+              <Link
+                to="/projects/no-comply/about"
+                onClick={() => setMenuOpen(false)}
+                className="w-full border-b border-black/10 py-6 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+              >
+                About
+              </Link>
+              <Link
+                to="/projects/no-comply/media"
+                onClick={() => setMenuOpen(false)}
+                className="w-full border-b border-black/10 py-6 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+              >
+                Media
+              </Link>
+            </nav>
           </aside>
         </div>
       )}
@@ -444,9 +470,7 @@ function NoComply() {
             { k: "Format", v: "Collection / Lookbook" },
           ].map((f) => (
             <div key={f.k} className="border-2 border-black bg-white p-8">
-              <p className="nc-display text-sm tracking-[0.3em] text-black">
-                {f.k}
-              </p>
+              <p className="nc-display text-sm tracking-[0.3em] text-black">{f.k}</p>
               <p className="nc-display mt-2 text-2xl text-black">{f.v}</p>
             </div>
           ))}
@@ -456,9 +480,7 @@ function NoComply() {
       <footer className="px-6 py-16">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
           <div>
-            <p className="nc-display text-sm tracking-[0.3em] text-black">
-              Next Up
-            </p>
+            <p className="nc-display text-sm tracking-[0.3em] text-black">Next Up</p>
             <Link
               to="/projects/lucky-day-co"
               className="nc-display text-4xl text-black hover:text-black/60"
@@ -512,7 +534,9 @@ function LogoBannerHUD({
       const saved = localStorage.getItem(BANNER_STORAGE_KEY);
       if (saved) setSettings({ ...DEFAULT_BANNER, ...JSON.parse(saved) });
       if (localStorage.getItem(BANNER_CONFIRMED_KEY) === "1") setHudVisible(false);
-    } catch {}
+    } catch {
+      // Keep the banner usable when storage is unavailable.
+    }
   }, []);
 
   const update = (patch: Partial<BannerSettings>) => {
@@ -520,7 +544,9 @@ function LogoBannerHUD({
       const next = { ...prev, ...patch };
       try {
         localStorage.setItem(BANNER_STORAGE_KEY, JSON.stringify(next));
-      } catch {}
+      } catch {
+        // Keep the controls responsive when storage is unavailable.
+      }
       return next;
     });
   };
@@ -528,14 +554,18 @@ function LogoBannerHUD({
   const confirm = () => {
     try {
       localStorage.setItem(BANNER_CONFIRMED_KEY, "1");
-    } catch {}
+    } catch {
+      // The in-memory visibility state is still updated below.
+    }
     setHudVisible(false);
   };
 
   const reopen = () => {
     try {
       localStorage.removeItem(BANNER_CONFIRMED_KEY);
-    } catch {}
+    } catch {
+      // The in-memory visibility state is still updated below.
+    }
     setHudVisible(true);
   };
 
@@ -543,7 +573,9 @@ function LogoBannerHUD({
     setSettings(DEFAULT_BANNER);
     try {
       localStorage.setItem(BANNER_STORAGE_KEY, JSON.stringify(DEFAULT_BANNER));
-    } catch {}
+    } catch {
+      // The default settings still apply for the current session.
+    }
   };
 
   return (
@@ -587,9 +619,7 @@ function LogoBannerHUD({
       {hudVisible ? (
         <div className="fixed bottom-4 right-4 z-[100] w-72 rounded-lg border border-white/20 bg-black/90 p-4 text-white shadow-2xl backdrop-blur">
           <div className="mb-3 flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-widest">
-              Logo HUD
-            </span>
+            <span className="text-xs font-bold uppercase tracking-widest">Logo HUD</span>
             <button
               type="button"
               onClick={reset}
@@ -598,10 +628,38 @@ function LogoBannerHUD({
               Reset
             </button>
           </div>
-          <HudSlider label="Height" value={settings.height} min={40} max={400} unit="px" onChange={(v) => update({ height: v })} />
-          <HudSlider label="Scale" value={settings.scale} min={20} max={300} unit="%" onChange={(v) => update({ scale: v })} />
-          <HudSlider label="Offset X" value={settings.offsetX} min={-400} max={400} unit="px" onChange={(v) => update({ offsetX: v })} />
-          <HudSlider label="Offset Y" value={settings.offsetY} min={-200} max={200} unit="px" onChange={(v) => update({ offsetY: v })} />
+          <HudSlider
+            label="Height"
+            value={settings.height}
+            min={40}
+            max={400}
+            unit="px"
+            onChange={(v) => update({ height: v })}
+          />
+          <HudSlider
+            label="Scale"
+            value={settings.scale}
+            min={20}
+            max={300}
+            unit="%"
+            onChange={(v) => update({ scale: v })}
+          />
+          <HudSlider
+            label="Offset X"
+            value={settings.offsetX}
+            min={-400}
+            max={400}
+            unit="px"
+            onChange={(v) => update({ offsetX: v })}
+          />
+          <HudSlider
+            label="Offset Y"
+            value={settings.offsetY}
+            min={-200}
+            max={200}
+            unit="px"
+            onChange={(v) => update({ offsetY: v })}
+          />
           <button
             type="button"
             onClick={confirm}

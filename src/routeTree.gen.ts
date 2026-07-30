@@ -9,17 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
-import { Route as ProjectsNoComplyRouteImport } from './routes/projects.no-comply'
-import { Route as ProjectsLuckyDayCoRouteImport } from './routes/projects.lucky-day-co'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as ProjectsLuckyDayCoRouteImport } from './routes/projects.lucky-day-co'
+import { Route as ProjectsNoComplyRouteImport } from './routes/projects.no-comply'
+import { Route as ProjectsNoComplyAboutRouteImport } from './routes/projects.no-comply.about'
+import { Route as ProjectsNoComplyMediaRouteImport } from './routes/projects.no-comply.media'
 
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -27,9 +29,14 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProductsSlugRoute = ProductsSlugRouteImport.update({
+  id: '/products/$slug',
+  path: '/products/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
@@ -37,20 +44,25 @@ const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   path: '/projects/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsNoComplyRoute = ProjectsNoComplyRouteImport.update({
-  id: '/projects/no-comply',
-  path: '/projects/no-comply',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ProjectsLuckyDayCoRoute = ProjectsLuckyDayCoRouteImport.update({
   id: '/projects/lucky-day-co',
   path: '/projects/lucky-day-co',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProductsSlugRoute = ProductsSlugRouteImport.update({
-  id: '/products/$slug',
-  path: '/products/$slug',
+const ProjectsNoComplyRoute = ProjectsNoComplyRouteImport.update({
+  id: '/projects/no-comply',
+  path: '/projects/no-comply',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsNoComplyAboutRoute = ProjectsNoComplyAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => ProjectsNoComplyRoute,
+} as any)
+const ProjectsNoComplyMediaRoute = ProjectsNoComplyMediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => ProjectsNoComplyRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -59,8 +71,10 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/projects/lucky-day-co': typeof ProjectsLuckyDayCoRoute
-  '/projects/no-comply': typeof ProjectsNoComplyRoute
+  '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
   '/projects/': typeof ProjectsIndexRoute
+  '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
+  '/projects/no-comply/media': typeof ProjectsNoComplyMediaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,8 +82,10 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/projects/lucky-day-co': typeof ProjectsLuckyDayCoRoute
-  '/projects/no-comply': typeof ProjectsNoComplyRoute
+  '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
   '/projects': typeof ProjectsIndexRoute
+  '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
+  '/projects/no-comply/media': typeof ProjectsNoComplyMediaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -78,8 +94,10 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/projects/lucky-day-co': typeof ProjectsLuckyDayCoRoute
-  '/projects/no-comply': typeof ProjectsNoComplyRoute
+  '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
   '/projects/': typeof ProjectsIndexRoute
+  '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
+  '/projects/no-comply/media': typeof ProjectsNoComplyMediaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +109,8 @@ export interface FileRouteTypes {
     | '/projects/lucky-day-co'
     | '/projects/no-comply'
     | '/projects/'
+    | '/projects/no-comply/about'
+    | '/projects/no-comply/media'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +120,8 @@ export interface FileRouteTypes {
     | '/projects/lucky-day-co'
     | '/projects/no-comply'
     | '/projects'
+    | '/projects/no-comply/about'
+    | '/projects/no-comply/media'
   id:
     | '__root__'
     | '/'
@@ -109,6 +131,8 @@ export interface FileRouteTypes {
     | '/projects/lucky-day-co'
     | '/projects/no-comply'
     | '/projects/'
+    | '/projects/no-comply/about'
+    | '/projects/no-comply/media'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,17 +141,17 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ProjectsLuckyDayCoRoute: typeof ProjectsLuckyDayCoRoute
-  ProjectsNoComplyRoute: typeof ProjectsNoComplyRoute
+  ProjectsNoComplyRoute: typeof ProjectsNoComplyRouteWithChildren
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -137,32 +161,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects/': {
-      id: '/projects/'
-      path: '/projects'
-      fullPath: '/projects/'
-      preLoaderRoute: typeof ProjectsIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects/no-comply': {
-      id: '/projects/no-comply'
-      path: '/projects/no-comply'
-      fullPath: '/projects/no-comply'
-      preLoaderRoute: typeof ProjectsNoComplyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/projects/lucky-day-co': {
-      id: '/projects/lucky-day-co'
-      path: '/projects/lucky-day-co'
-      fullPath: '/projects/lucky-day-co'
-      preLoaderRoute: typeof ProjectsLuckyDayCoRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/products/$slug': {
@@ -172,8 +175,56 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProductsSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/lucky-day-co': {
+      id: '/projects/lucky-day-co'
+      path: '/projects/lucky-day-co'
+      fullPath: '/projects/lucky-day-co'
+      preLoaderRoute: typeof ProjectsLuckyDayCoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/no-comply': {
+      id: '/projects/no-comply'
+      path: '/projects/no-comply'
+      fullPath: '/projects/no-comply'
+      preLoaderRoute: typeof ProjectsNoComplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/no-comply/about': {
+      id: '/projects/no-comply/about'
+      path: '/about'
+      fullPath: '/projects/no-comply/about'
+      preLoaderRoute: typeof ProjectsNoComplyAboutRouteImport
+      parentRoute: typeof ProjectsNoComplyRoute
+    }
+    '/projects/no-comply/media': {
+      id: '/projects/no-comply/media'
+      path: '/media'
+      fullPath: '/projects/no-comply/media'
+      preLoaderRoute: typeof ProjectsNoComplyMediaRouteImport
+      parentRoute: typeof ProjectsNoComplyRoute
+    }
   }
 }
+
+interface ProjectsNoComplyRouteChildren {
+  ProjectsNoComplyAboutRoute: typeof ProjectsNoComplyAboutRoute
+  ProjectsNoComplyMediaRoute: typeof ProjectsNoComplyMediaRoute
+}
+
+const ProjectsNoComplyRouteChildren: ProjectsNoComplyRouteChildren = {
+  ProjectsNoComplyAboutRoute: ProjectsNoComplyAboutRoute,
+  ProjectsNoComplyMediaRoute: ProjectsNoComplyMediaRoute,
+}
+
+const ProjectsNoComplyRouteWithChildren =
+  ProjectsNoComplyRoute._addFileChildren(ProjectsNoComplyRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -181,7 +232,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ProjectsLuckyDayCoRoute: ProjectsLuckyDayCoRoute,
-  ProjectsNoComplyRoute: ProjectsNoComplyRoute,
+  ProjectsNoComplyRoute: ProjectsNoComplyRouteWithChildren,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport

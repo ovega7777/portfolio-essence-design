@@ -63,3 +63,51 @@ Passed — no P0, P1, or P2 visual issues found.
 ## Final result
 
 Passed — no P0, P1, or P2 visual issues found.
+
+---
+
+# Design QA — No Comply Navigation Pages
+
+## Visual truth
+
+- Source reference: `/var/folders/7l/wj0qlkhs0ngg4_ypccb5b30h0000gn/T/TemporaryItems/NSIRD_screencaptureui_RTrwck/Screenshot 2026-07-30 at 6.09.11 PM.png`
+- Source dimensions: 790 × 1184 px
+- Implementation screenshot: `/private/tmp/no-comply-menu-local.png`
+- Implementation dimensions: 790 × 1007 px
+- Browser viewport: 790 × 1184 CSS px
+- Device scale factor: 1
+- Density normalization: 1 source pixel = 1 CSS pixel
+- State compared: No Comply collection page with the navigation drawer open
+
+## Full-view comparison
+
+The browser-rendered drawer preserves the supplied narrow mobile composition, black-on-white palette, tall condensed typography, restrained dividers, and generous vertical spacing. The obsolete `PRODUCT INDEX` subtitle is absent. `COLLECTIONS` appears immediately above `#1 NO COMPLY COMMAND`, followed by distinct `ABOUT` and `MEDIA` destinations.
+
+No focused-region comparison was required because the requested changes are all visible together in the full-height drawer capture.
+
+## Findings
+
+- P0: none
+- P1: none
+- P2: none
+- P3: the raw local Vite server cannot resolve the production-only `/__l5e/` proxy banner. The proxy configuration was not changed and must be checked on the deployed Vercel site.
+
+## Comparison history
+
+1. Initial browser pass exposed that nested About and Media routes were still rendering the collection parent.
+2. The parent route was changed to render its collection only at the exact collection pathname and delegate child paths through an outlet.
+3. About and Media were rechecked as independent pages; both rendered correctly and all six Media gallery images reported non-zero natural dimensions.
+4. The drawer was reopened and compared with the reference at 790 px wide; labels, hierarchy, dividers, and destination links matched the requested structure.
+
+## Functional checks
+
+- Opened and closed the navigation drawer.
+- Confirmed `#1 NO COMPLY COMMAND` closes the drawer and links to the collection.
+- Confirmed `ABOUT` routes to `/projects/no-comply/about`.
+- Confirmed `MEDIA` routes to `/projects/no-comply/media`.
+- Confirmed the About editorial image loads locally.
+- Confirmed all six Media editorial images load locally.
+- Checked the browser-rendered routes for application exceptions; none were observed.
+- Confirmed the production build includes both new route chunks.
+
+final result: passed
