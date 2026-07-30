@@ -7,6 +7,10 @@ import { z } from "zod";
 import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
 import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
+import commandAssortmentLook01 from "../assets/no-comply/editorial/command-assortment-gallery/look-01.png";
+import commandAssortmentLook02 from "../assets/no-comply/editorial/command-assortment-gallery/look-02.png";
+import commandAssortmentLook03 from "../assets/no-comply/editorial/command-assortment-gallery/look-03.png";
+import commandAssortmentLook04 from "../assets/no-comply/editorial/command-assortment-gallery/look-04.png";
 import { products, getCategories, type Product } from "@/data/products";
 import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
@@ -388,6 +392,38 @@ function NoComply() {
               ))}
             </div>
           )}
+
+          <div
+            aria-label="No Comply Command assortment editorial gallery"
+            className="mt-20 grid grid-cols-1 gap-1 bg-black sm:grid-cols-2 md:mt-28"
+          >
+            {[
+              {
+                src: commandAssortmentLook01,
+                alt: "No Comply Command editorial look featuring the Eisenhower Distress Jacket and Cargo Messenger Bag",
+              },
+              {
+                src: commandAssortmentLook02,
+                alt: "No Comply Command editorial look featuring the NC Tiger Tee and Cargo Messenger Bag",
+              },
+              {
+                src: commandAssortmentLook03,
+                alt: "No Comply Command editorial look featuring the American Distress Hoodie",
+              },
+              {
+                src: commandAssortmentLook04,
+                alt: "No Comply Command editorial look featuring the Sergeant Shirt",
+              },
+            ].map((image) => (
+              <img
+                key={image.src}
+                src={image.src}
+                alt={image.alt}
+                className="aspect-[3/4] h-auto w-full bg-white object-cover"
+                loading="lazy"
+              />
+            ))}
+          </div>
         </div>
       </section>
       </div>

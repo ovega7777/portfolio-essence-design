@@ -18,3 +18,23 @@
 ## Final result
 
 Passed — no P0, P1, or P2 visual issues found.
+
+---
+
+# Design QA — No Comply Command Assortment Gallery
+
+## Sources
+
+- Four supplied 1086 × 1448 editorial images from the No Comply Militia media folder.
+
+## Checks
+
+- The gallery appears after the complete product assortment and before the remaining case-study content.
+- Desktop and tablet layouts use a balanced 2 × 2 grid with consistent one-pixel gutters.
+- Small screens collapse to one column so each editorial image remains legible.
+- All four images retain their original 3:4 aspect ratio and supplied order.
+- Alternative text describes the featured garments and accessories.
+
+## Final result
+
+Passed — no P0, P1, or P2 visual issues found.
