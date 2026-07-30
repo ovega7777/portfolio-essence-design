@@ -1,3 +1,25 @@
+# Design QA — Command Header Flag and Assortment Filter
+
+## Sources
+
+- Header layout reference: `Screenshot 2026-07-30 at 4.12.44 PM.png`
+- Supplied flag artwork: `IMG_0521.jpg`
+- Filter references: `Screenshot 2026-07-30 at 4.14.54 PM.png` and `Screenshot 2026-07-30 at 4.16.00 PM.png`
+
+## Checks
+
+- The supplied black-and-white upside-down flag appears directly after the No Comply Command collection title.
+- The flag remains compact and vertically aligned with the title at desktop, tablet, and mobile breakpoints.
+- A small bold No Comply Command heading now introduces the product assortment.
+- Category filtering retains its existing behavior while using plain black text, open spacing, subtle rules, and a restrained active underline.
+- No product ordering, imagery, metadata, or `/__l5e/` asset routing was changed.
+
+## Final result
+
+Passed — no P0, P1, or P2 visual issues found.
+
+---
+
 # Design QA — American Distress Hat
 
 ## Sources
