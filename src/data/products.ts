@@ -192,8 +192,8 @@ import pinKitHoodieStyling from "@/assets/products/nc-pin-kit/standard/hoodie-st
 import pinKitJacketStyling from "@/assets/products/nc-pin-kit/standard/jacket-styling.png";
 import americanDistressHatBlackFront from "@/assets/products/american-distress-hat/black/front.png";
 import americanDistressHatBlackBack from "@/assets/products/american-distress-hat/black/back.png";
-import americanDistressHatBlackModel1 from "@/assets/products/american-distress-hat/black/model-1.png";
-import americanDistressHatBlackModel2 from "@/assets/products/american-distress-hat/black/model-2.png";
+import americanDistressHatBlackModelWoman from "@/assets/products/american-distress-hat/black/hat-model-woman.png";
+import americanDistressHatBlackModelMan from "@/assets/products/american-distress-hat/black/hat-model-man.png";
 
 export const products: Product[] = [
   {
@@ -1205,12 +1205,12 @@ export const products: Product[] = [
             alt: "Black American Distress Hat — back",
           },
           modelFront: {
-            url: americanDistressHatBlackModel1,
-            alt: "Model wearing the black American Distress Hat — look 1",
+            url: americanDistressHatBlackModelWoman,
+            alt: "Woman wearing the black American Distress Hat",
           },
           modelBack: {
-            url: americanDistressHatBlackModel2,
-            alt: "Model wearing the black American Distress Hat — look 2",
+            url: americanDistressHatBlackModelMan,
+            alt: "Man wearing the black American Distress Hat",
           },
         },
       },
