@@ -325,7 +325,7 @@ function NoComplyHome() {
           </div>
         </section>
 
-        <section className="border-b-2 border-black bg-white px-6 py-20 text-black md:px-12 md:py-28">
+        <section className="border-b-2 border-black bg-white px-6 pb-20 pt-10 text-black md:px-12 md:pb-28 md:pt-14">
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
               <div>
