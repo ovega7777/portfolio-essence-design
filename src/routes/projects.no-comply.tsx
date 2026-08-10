@@ -112,21 +112,30 @@ function NoComplyHome() {
 
   return (
     <div className="no-comply min-h-screen bg-white text-black">
-      <nav className="sticky top-0 z-50 border-b-2 border-black bg-white text-black">
-        <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
-          <Link
-            to="/"
-            className="nc-display shrink-0 text-lg tracking-widest text-black transition-colors duration-200 hover:text-black/60 sm:text-xl"
-          >
-            <span className="sm:hidden">← NC</span>
-            <span className="hidden sm:inline">← Nicholas Curzon</span>
-          </Link>
-          <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-black lg:block lg:text-lg">
-            NO COMPLY USA / CASE STUDY
-          </span>
-        </div>
-        <div className="h-0.5 w-full bg-black" />
-      </nav>
+      <div className="sticky top-0 z-[100] w-full">
+        <nav className="w-full border-b border-white/20 bg-black text-white">
+          <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
+            <Link
+              to="/"
+              className="nc-display shrink-0 text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl"
+            >
+              <span className="sm:hidden">← NC</span>
+              <span className="hidden sm:inline">← Nicholas Curzon</span>
+            </Link>
+            <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-white lg:block lg:text-lg">
+              NO COMPLY USA / CASE STUDY
+            </span>
+          </div>
+        </nav>
+        <LogoBannerHUD
+          src={noComplyUsaLogoBlack.url}
+          menuOpen={menuOpen}
+          onSearch={openProductSearch}
+          onMenu={openProductMenu}
+          theme="dark"
+        />
+      </div>
+
 
       {menuOpen && (
         <div className="fixed inset-0 z-[120]">
@@ -247,16 +256,9 @@ function NoComplyHome() {
         </div>
       )}
 
-      <LogoBannerHUD
-        src={noComplyUsaLogoBlack.url}
-        menuOpen={menuOpen}
-        onSearch={openProductSearch}
-        onMenu={openProductMenu}
-        theme="light"
-      />
-
       <main>
-        <section className="border-b-2 border-black bg-white px-6 py-20 text-black md:px-12 md:py-28">
+        <section className="bg-white px-6 pb-10 pt-20 text-black md:px-12 md:pb-14 md:pt-28">
+
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
               <div>
@@ -323,7 +325,7 @@ function NoComplyHome() {
           </div>
         </section>
 
-        <section className="border-b-2 border-black bg-white px-6 py-20 text-black md:px-12 md:py-28">
+        <section className="border-b-2 border-black bg-white px-6 pb-20 pt-10 text-black md:px-12 md:pb-28 md:pt-14">
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
               <div>
@@ -363,18 +365,31 @@ function NoComplyHome() {
 
         <section className="border-b-2 border-black px-6 py-16">
           <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
-            {[
-              { k: "Role", v: "Creative Direction, Systems" },
-              { k: "Year", v: "2025" },
-              { k: "Format", v: "Collection / Lookbook" },
-            ].map((f) => (
-              <div key={f.k} className="border-2 border-black bg-white p-8">
-                <p className="nc-display text-sm tracking-[0.3em] text-black">{f.k}</p>
-                <p className="nc-display mt-2 text-2xl text-black">{f.v}</p>
-              </div>
-            ))}
+            <Link
+              to="/projects/no-comply/media"
+              className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
+            >
+              <p className="nc-display text-sm tracking-[0.3em] text-black">Media</p>
+              <p className="nc-display mt-2 text-2xl text-black">Press &amp; Film →</p>
+            </Link>
+            <Link
+              to="/projects/no-comply/about"
+              className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
+            >
+              <p className="nc-display text-sm tracking-[0.3em] text-black">About</p>
+              <p className="nc-display mt-2 text-2xl text-black">The Manifesto →</p>
+            </Link>
+            <Link
+              to="/projects/no-comply/command"
+              search={{ cat: "all", sort: "order", q: "" }}
+              className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
+            >
+              <p className="nc-display text-sm tracking-[0.3em] text-black">Collection #1</p>
+              <p className="nc-display mt-2 text-2xl text-black">No Comply Command →</p>
+            </Link>
           </div>
         </section>
+
       </main>
 
       <footer className="px-6 py-16">
