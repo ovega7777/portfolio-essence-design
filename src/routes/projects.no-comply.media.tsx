@@ -18,6 +18,12 @@ import media08 from "../assets/no-comply/media/media-08-oxblood-knit-pleated.png
 import media09 from "../assets/no-comply/media/media-09-olive-anorak-back.png.asset.json";
 import media10 from "../assets/no-comply/media/media-10-black-anorak-hood.png.asset.json";
 import portfolioVideo from "../assets/no-comply/media/no-comply-portfolio.mp4.asset.json";
+import cof01 from "../assets/no-comply/caught-on-film/cof-01.png.asset.json";
+import cof02 from "../assets/no-comply/caught-on-film/cof-02.png.asset.json";
+import cof03 from "../assets/no-comply/caught-on-film/cof-03.png.asset.json";
+import cof04 from "../assets/no-comply/caught-on-film/cof-04.png.asset.json";
+import cof05 from "../assets/no-comply/caught-on-film/cof-05.png.asset.json";
+import cof06 from "../assets/no-comply/caught-on-film/cof-06.png.asset.json";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
 type MediaCollection = "command" | "caught-on-film";
@@ -65,6 +71,38 @@ const media: {
     src: media07.url,
     alt: "Upside-down black-and-white American flag",
     collection: "command",
+    fullWidth: true,
+  },
+  {
+    src: cof01.url,
+    alt: "NO COMPLY film-strip logotype artwork",
+    collection: "caught-on-film",
+    fullWidth: true,
+  },
+  {
+    src: cof02.url,
+    alt: "Model in film-strip headscarf and NC-17 rated white tee",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof03.url,
+    alt: "Model in red film-strip mesh long-sleeve top with black wide-leg denim",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof04.url,
+    alt: "Model with film-strip headscarf carrying the film-strip tote bag",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof05.url,
+    alt: "Portrait in film-strip printed beanie pulled over the eyes",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof06.url,
+    alt: "Caught on Film contact sheet of eight campaign frames",
+    collection: "caught-on-film",
     fullWidth: true,
   },
 ];
