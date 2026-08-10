@@ -17,6 +17,7 @@ import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsLuckyDayCoRouteImport } from './routes/projects.lucky-day-co'
 import { Route as ProjectsNoComplyRouteImport } from './routes/projects.no-comply'
 import { Route as ProjectsNoComplyAboutRouteImport } from './routes/projects.no-comply.about'
+import { Route as ProjectsNoComplyCaughtOnFilmRouteImport } from './routes/projects.no-comply.caught-on-film'
 import { Route as ProjectsNoComplyMediaRouteImport } from './routes/projects.no-comply.media'
 
 const IndexRoute = IndexRouteImport.update({
@@ -59,6 +60,12 @@ const ProjectsNoComplyAboutRoute = ProjectsNoComplyAboutRouteImport.update({
   path: '/about',
   getParentRoute: () => ProjectsNoComplyRoute,
 } as any)
+const ProjectsNoComplyCaughtOnFilmRoute =
+  ProjectsNoComplyCaughtOnFilmRouteImport.update({
+    id: '/caught-on-film',
+    path: '/caught-on-film',
+    getParentRoute: () => ProjectsNoComplyRoute,
+  } as any)
 const ProjectsNoComplyMediaRoute = ProjectsNoComplyMediaRouteImport.update({
   id: '/media',
   path: '/media',
@@ -74,6 +81,7 @@ export interface FileRoutesByFullPath {
   '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
   '/projects/': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
+  '/projects/no-comply/caught-on-film': typeof ProjectsNoComplyCaughtOnFilmRoute
   '/projects/no-comply/media': typeof ProjectsNoComplyMediaRoute
 }
 export interface FileRoutesByTo {
@@ -85,6 +93,7 @@ export interface FileRoutesByTo {
   '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
   '/projects': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
+  '/projects/no-comply/caught-on-film': typeof ProjectsNoComplyCaughtOnFilmRoute
   '/projects/no-comply/media': typeof ProjectsNoComplyMediaRoute
 }
 export interface FileRoutesById {
@@ -97,6 +106,7 @@ export interface FileRoutesById {
   '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
   '/projects/': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
+  '/projects/no-comply/caught-on-film': typeof ProjectsNoComplyCaughtOnFilmRoute
   '/projects/no-comply/media': typeof ProjectsNoComplyMediaRoute
 }
 export interface FileRouteTypes {
@@ -110,6 +120,7 @@ export interface FileRouteTypes {
     | '/projects/no-comply'
     | '/projects/'
     | '/projects/no-comply/about'
+    | '/projects/no-comply/caught-on-film'
     | '/projects/no-comply/media'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/projects/no-comply'
     | '/projects'
     | '/projects/no-comply/about'
+    | '/projects/no-comply/caught-on-film'
     | '/projects/no-comply/media'
   id:
     | '__root__'
@@ -132,6 +144,7 @@ export interface FileRouteTypes {
     | '/projects/no-comply'
     | '/projects/'
     | '/projects/no-comply/about'
+    | '/projects/no-comply/caught-on-film'
     | '/projects/no-comply/media'
   fileRoutesById: FileRoutesById
 }
@@ -203,6 +216,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsNoComplyAboutRouteImport
       parentRoute: typeof ProjectsNoComplyRoute
     }
+    '/projects/no-comply/caught-on-film': {
+      id: '/projects/no-comply/caught-on-film'
+      path: '/caught-on-film'
+      fullPath: '/projects/no-comply/caught-on-film'
+      preLoaderRoute: typeof ProjectsNoComplyCaughtOnFilmRouteImport
+      parentRoute: typeof ProjectsNoComplyRoute
+    }
     '/projects/no-comply/media': {
       id: '/projects/no-comply/media'
       path: '/media'
@@ -215,11 +235,13 @@ declare module '@tanstack/react-router' {
 
 interface ProjectsNoComplyRouteChildren {
   ProjectsNoComplyAboutRoute: typeof ProjectsNoComplyAboutRoute
+  ProjectsNoComplyCaughtOnFilmRoute: typeof ProjectsNoComplyCaughtOnFilmRoute
   ProjectsNoComplyMediaRoute: typeof ProjectsNoComplyMediaRoute
 }
 
 const ProjectsNoComplyRouteChildren: ProjectsNoComplyRouteChildren = {
   ProjectsNoComplyAboutRoute: ProjectsNoComplyAboutRoute,
+  ProjectsNoComplyCaughtOnFilmRoute: ProjectsNoComplyCaughtOnFilmRoute,
   ProjectsNoComplyMediaRoute: ProjectsNoComplyMediaRoute,
 }
 

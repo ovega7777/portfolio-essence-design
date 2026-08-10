@@ -12,6 +12,7 @@ import commandAssortmentLook01 from "../assets/no-comply/editorial/command-assor
 import commandAssortmentLook02 from "../assets/no-comply/editorial/command-assortment-gallery/look-02.png";
 import commandAssortmentLook03 from "../assets/no-comply/editorial/command-assortment-gallery/look-03.png";
 import commandAssortmentLook04 from "../assets/no-comply/editorial/command-assortment-gallery/look-04.png";
+import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
 import { products, getCategories, type Product } from "@/data/products";
 import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
@@ -105,10 +106,14 @@ function NoComplyCollection() {
     setMenuOpen(false);
     showProducts();
   };
-  const chooseCollection = () => {
-    setCategory("all");
+  const chooseCollection = (collectionId: string) => {
     setMenuOpen(false);
-    showProducts();
+    if (collectionId === COLLECTION.id) {
+      setCategory("all");
+      showProducts();
+      return;
+    }
+    navigate({ to: "/projects/no-comply/caught-on-film" });
   };
   const openProductSearch = () => {
     setFocusMenuSearch(true);
@@ -236,10 +241,11 @@ function NoComplyCollection() {
                   <button
                     key={collection.id}
                     type="button"
-                    onClick={chooseCollection}
+                    onClick={() => chooseCollection(collection.id)}
                     className="whitespace-nowrap text-left font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
                   >
-                    #{collection.number} No Comply {collection.title}
+                    #{collection.number}{" "}
+                    {collection.title === "COMMAND" ? "No Comply Command" : collection.title}
                   </button>
                 ))}
               </div>
@@ -277,7 +283,7 @@ function NoComplyCollection() {
 
       {/* prettier-ignore */}
       <div className="flex flex-col">
-      <section className="order-2 border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
+      <section className="order-3 border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16 flex items-end justify-between gap-6 border-b-2 border-black pb-6">
             <h2 className="nc-display text-5xl leading-none tracking-[0.02em] text-black md:text-7xl">
@@ -308,7 +314,7 @@ function NoComplyCollection() {
         </div>
       </section>
 
-      <section className="order-3 border-b-2 border-black bg-black px-6 py-24 text-white md:py-32">
+      <section className="order-4 border-b-2 border-black bg-black px-6 py-24 text-white md:py-32">
         <div className="mx-auto max-w-4xl">
           <p className="nc-display mb-8 text-xs tracking-[0.4em] text-white">
             Manifesto
@@ -458,6 +464,39 @@ function NoComplyCollection() {
               />
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="order-2 border-b-2 border-black bg-black px-6 py-20 text-white md:px-12 md:py-28">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p className="nc-display text-xs tracking-[0.35em] text-white/65">
+                Collection #2
+              </p>
+              <h2 className="nc-display mt-3 text-5xl leading-none tracking-[0.03em] text-white md:text-8xl">
+                Caught on Film
+              </h2>
+            </div>
+            <Link
+              to="/projects/no-comply/caught-on-film"
+              className="nc-display border-b border-white pb-1 text-sm tracking-[0.25em] text-white transition-opacity hover:opacity-55"
+            >
+              Enter Collection →
+            </Link>
+          </div>
+          <Link
+            to="/projects/no-comply/caught-on-film"
+            aria-label="Open Caught on Film, Collection #2"
+            className="block overflow-hidden border border-white/20"
+          >
+            <img
+              src={caughtOnFilmHeader}
+              alt="Caught on Film collection contact sheet"
+              className="aspect-[1672/940] h-auto w-full object-cover transition-transform duration-700 hover:scale-[1.01]"
+              loading="lazy"
+            />
+          </Link>
         </div>
       </section>
       </div>

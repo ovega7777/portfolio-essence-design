@@ -111,3 +111,41 @@ No focused-region comparison was required because the requested changes are all 
 - Confirmed the production build includes both new route chunks.
 
 final result: passed
+
+---
+
+# Design QA — Caught on Film Collection
+
+## Visual truth
+
+- Source image: `/Users/nickcurzon/Desktop/PORTFOLIO/CAUGHT ON FILM/MODELS/exec-01963ae5-008c-4ddc-95c3-75d9f6f86d5a.png`
+- Source dimensions: 1672 × 940 px
+- Home preview: `design-qa/caught-on-film-home-desktop-viewport.png`
+- Collection landing: `design-qa/caught-on-film-collection-desktop.png`
+- Combined source/implementation comparison: `design-qa/caught-on-film-comparison.png`
+- Desktop viewport: 1440 × 1000 CSS px
+- Mobile viewport: 390 × 844 CSS px
+- States checked: Collection #2 home preview, dedicated collection landing, empty-assortment state, and responsive navigation.
+
+## Comparison
+
+The supplied film-strip artwork is retained exactly and remains the dominant visual. The dedicated page derives its black and burnt-orange palette from that source while reusing the established No Comply header, condensed typography, category controls, product-grid conventions, and navigation drawer. The home preview clearly introduces Collection #2 without competing with Collection #1.
+
+## Findings
+
+- P0: none
+- P1: none
+- P2: none
+- P3: the raw local Vite server cannot resolve the production-only `/__l5e/` banner proxy. The proxy configuration is unchanged and will be verified after Vercel deploys.
+
+## Functional checks
+
+- Confirmed the Collection #2 home preview links to `/projects/no-comply/caught-on-film`.
+- Confirmed the navigation drawer contains both `#1 NO COMPLY COMMAND` and `#2 CAUGHT ON FILM`.
+- Confirmed the dedicated route renders independently with its supplied header image.
+- Confirmed the new image reports non-zero natural dimensions.
+- Confirmed the empty state is ready for the future Collection #2 assortment without placeholders.
+- Checked desktop and mobile layouts for horizontal overflow; none was found.
+- Confirmed the production build and lint pass from a clean temporary path.
+
+final result: passed
