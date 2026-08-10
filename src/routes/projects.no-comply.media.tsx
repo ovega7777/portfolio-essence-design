@@ -73,6 +73,38 @@ const media: {
     collection: "command",
     fullWidth: true,
   },
+  {
+    src: cof01.url,
+    alt: "NO COMPLY film-strip logotype artwork",
+    collection: "caught-on-film",
+    fullWidth: true,
+  },
+  {
+    src: cof02.url,
+    alt: "Model in film-strip headscarf and NC-17 rated white tee",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof03.url,
+    alt: "Model in red film-strip mesh long-sleeve top with black wide-leg denim",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof04.url,
+    alt: "Model with film-strip headscarf carrying the film-strip tote bag",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof05.url,
+    alt: "Portrait in film-strip printed beanie pulled over the eyes",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof06.url,
+    alt: "Caught on Film contact sheet of eight campaign frames",
+    collection: "caught-on-film",
+    fullWidth: true,
+  },
 ];
 
 export const Route = createFileRoute("/projects/no-comply/media")({
