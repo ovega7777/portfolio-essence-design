@@ -11,12 +11,33 @@ import commandAssortmentLook02 from "../assets/no-comply/editorial/command-assor
 import commandAssortmentLook03 from "../assets/no-comply/editorial/command-assortment-gallery/look-03.png";
 import commandAssortmentLook04 from "../assets/no-comply/editorial/command-assortment-gallery/look-04.png";
 import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
-import { getCategories } from "@/data/products";
+import { getCategories, products } from "@/data/products";
+import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
 import { collections } from "@/data/collections";
 import { LogoBannerHUD } from "@/components/no-comply/logo-banner-hud";
 
 const COMMAND = collections[0];
 const CATEGORIES = getCategories(COMMAND.id);
+const CAUGHT_ON_FILM = collections[1];
+
+const toCarouselItems = (collectionId: string): CarouselItem[] =>
+  products
+    .filter((product) => product.collectionId === collectionId)
+    .sort((a, b) => a.displayOrder - b.displayOrder)
+    .map((product) => {
+      const variant = product.variants[0];
+      return {
+        key: product.id,
+        productSlug: product.slug,
+        variantId: variant.id,
+        name: product.name,
+        price: product.price,
+        image: variant.images.frontProduct,
+      };
+    });
+
+const COMMAND_CAROUSEL = toCarouselItems(COMMAND.id);
+const CAUGHT_ON_FILM_CAROUSEL = toCarouselItems(CAUGHT_ON_FILM.id);
 
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
 const searchSchema = z.object({
@@ -90,21 +111,21 @@ function NoComplyHome() {
   }, [menuOpen]);
 
   return (
-    <div className="no-comply min-h-screen">
-      <nav className="sticky top-0 z-50 border-b-2 border-black bg-black text-white">
+    <div className="no-comply min-h-screen bg-white text-black">
+      <nav className="sticky top-0 z-50 border-b-2 border-black bg-white text-black">
         <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
           <Link
             to="/"
-            className="nc-display shrink-0 text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl"
+            className="nc-display shrink-0 text-lg tracking-widest text-black transition-colors duration-200 hover:text-black/60 sm:text-xl"
           >
             <span className="sm:hidden">← NC</span>
             <span className="hidden sm:inline">← Nicholas Curzon</span>
           </Link>
-          <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-white lg:block lg:text-lg">
+          <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-black lg:block lg:text-lg">
             NO COMPLY USA / CASE STUDY
           </span>
         </div>
-        <div className="h-0.5 w-full bg-white" />
+        <div className="h-0.5 w-full bg-black" />
       </nav>
 
       {menuOpen && (
@@ -231,18 +252,23 @@ function NoComplyHome() {
         menuOpen={menuOpen}
         onSearch={openProductSearch}
         onMenu={openProductMenu}
+        theme="light"
       />
 
       <main>
-        <section className="border-b-2 border-black bg-black px-6 py-20 text-white md:px-12 md:py-28">
+        <section className="border-b-2 border-black bg-white px-6 py-20 text-black md:px-12 md:py-28">
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
               <div>
-                <p className="nc-display text-xs tracking-[0.35em] text-white/65">Collection #1</p>
+                <p className="nc-display text-xs tracking-[0.35em] text-black/60">Collection #1</p>
                 <div className="mt-3 flex flex-wrap items-center gap-4 md:gap-6">
-                  <h2 className="nc-display text-5xl leading-none tracking-[0.03em] text-white md:text-8xl">
+                  <Link
+                    to="/projects/no-comply/command"
+                    search={{ cat: "all", sort: "order", q: "" }}
+                    className="nc-display text-5xl leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55 md:text-8xl"
+                  >
                     No Comply Command
-                  </h2>
+                  </Link>
                   <img
                     src={upsideDownAmericanFlag}
                     alt="Upside-down black-and-white American flag"
@@ -253,7 +279,7 @@ function NoComplyHome() {
               <Link
                 to="/projects/no-comply/command"
                 search={{ cat: "all", sort: "order", q: "" }}
-                className="nc-display border-b border-white pb-1 text-sm tracking-[0.25em] text-white transition-opacity hover:opacity-55"
+                className="nc-display border-b border-black pb-1 text-sm tracking-[0.25em] text-black transition-opacity hover:opacity-55"
               >
                 Enter Collection →
               </Link>
@@ -262,9 +288,9 @@ function NoComplyHome() {
               to="/projects/no-comply/command"
               search={{ cat: "all", sort: "order", q: "" }}
               aria-label="Open No Comply Command, Collection #1"
-              className="group block overflow-hidden border border-white/20"
+              className="group block overflow-hidden border border-black/20"
             >
-              <div className="grid grid-cols-2 gap-px bg-white/20 transition-transform duration-700 group-hover:scale-[1.01] lg:grid-cols-4">
+              <div className="grid grid-cols-2 gap-px bg-black/20 transition-transform duration-700 group-hover:scale-[1.01] lg:grid-cols-4">
                 {[
                   {
                     src: commandAssortmentLook01,
@@ -287,28 +313,33 @@ function NoComplyHome() {
                     key={image.src}
                     src={image.src}
                     alt={image.alt}
-                    className="aspect-[3/4] h-auto w-full bg-black object-cover"
+                    className="aspect-[3/4] h-auto w-full bg-white object-cover"
                     loading="lazy"
                   />
                 ))}
               </div>
             </Link>
+            <CollectionCarousel items={COMMAND_CAROUSEL} label="No Comply Command" />
           </div>
         </section>
 
-        <section className="border-b-2 border-black bg-black px-6 py-20 text-white md:px-12 md:py-28">
+        <section className="border-b-2 border-black bg-white px-6 py-20 text-black md:px-12 md:py-28">
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
               <div>
-                <p className="nc-display text-xs tracking-[0.35em] text-white/65">Collection #2</p>
-                <h2 className="nc-display mt-3 text-5xl leading-none tracking-[0.03em] text-white md:text-8xl">
+                <p className="nc-display text-xs tracking-[0.35em] text-black/60">Collection #2</p>
+                <Link
+                  to="/projects/no-comply/caught-on-film"
+                  search={{ cat: "all", q: "" }}
+                  className="nc-display mt-3 block text-5xl leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55 md:text-8xl"
+                >
                   Caught on Film
-                </h2>
+                </Link>
               </div>
               <Link
                 to="/projects/no-comply/caught-on-film"
                 search={{ cat: "all", q: "" }}
-                className="nc-display border-b border-white pb-1 text-sm tracking-[0.25em] text-white transition-opacity hover:opacity-55"
+                className="nc-display border-b border-black pb-1 text-sm tracking-[0.25em] text-black transition-opacity hover:opacity-55"
               >
                 Enter Collection →
               </Link>
@@ -317,7 +348,7 @@ function NoComplyHome() {
               to="/projects/no-comply/caught-on-film"
               search={{ cat: "all", q: "" }}
               aria-label="Open Caught on Film, Collection #2"
-              className="block overflow-hidden border border-white/20"
+              className="block overflow-hidden border border-black/20"
             >
               <img
                 src={caughtOnFilmHeader}
@@ -326,6 +357,7 @@ function NoComplyHome() {
                 loading="lazy"
               />
             </Link>
+            <CollectionCarousel items={CAUGHT_ON_FILM_CAROUSEL} label="Caught on Film" />
           </div>
         </section>
 

@@ -22,12 +22,15 @@ export function LogoBannerHUD({
   menuOpen,
   onSearch,
   onMenu,
+  theme = "dark",
 }: {
   src: string;
   menuOpen: boolean;
   onSearch: () => void;
   onMenu: () => void;
+  theme?: "dark" | "light";
 }) {
+  const light = theme === "light";
   const [settings, setSettings] = useState<BannerSettings>(DEFAULT_BANNER);
   const [hudVisible, setHudVisible] = useState(true);
 
@@ -83,7 +86,7 @@ export function LogoBannerHUD({
   return (
     <>
       <header
-        className="relative overflow-hidden border-b-2 border-black bg-black"
+        className={`relative overflow-hidden border-b-2 border-black ${light ? "bg-white" : "bg-black"}`}
         style={{ height: `${settings.height}px` }}
       >
         <div className="flex h-full w-full items-center justify-center">
@@ -92,6 +95,7 @@ export function LogoBannerHUD({
             alt="NO COMPLY USA"
             className="h-full w-full object-contain object-center"
             style={{
+              filter: light ? "invert(1)" : undefined,
               transform: `translate(${settings.offsetX}px, ${settings.offsetY}px) scale(${settings.scale / 100})`,
               transformOrigin: "center center",
             }}
@@ -102,7 +106,7 @@ export function LogoBannerHUD({
             type="button"
             onClick={onSearch}
             aria-label="Search products"
-            className="flex h-11 w-11 items-center justify-center text-white transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className={`flex h-11 w-11 items-center justify-center transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${light ? "text-black focus-visible:outline-black" : "text-white focus-visible:outline-white"}`}
           >
             <Search aria-hidden className="h-6 w-6" strokeWidth={1.8} />
           </button>
@@ -111,7 +115,7 @@ export function LogoBannerHUD({
             onClick={onMenu}
             aria-label="Open product menu"
             aria-expanded={menuOpen}
-            className="flex h-11 w-11 items-center justify-center text-white transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            className={`flex h-11 w-11 items-center justify-center transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 ${light ? "text-black focus-visible:outline-black" : "text-white focus-visible:outline-white"}`}
           >
             <Menu aria-hidden className="h-6 w-6" strokeWidth={1.8} />
           </button>
