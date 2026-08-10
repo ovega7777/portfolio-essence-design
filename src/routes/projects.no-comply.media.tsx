@@ -14,6 +14,7 @@ import media04 from "../assets/no-comply/media/media-04-olive-tee-duffel.png.ass
 import media05 from "../assets/no-comply/media/media-05-multipocket-cargo.png.asset.json";
 import media06 from "../assets/no-comply/media/media-06-olive-zip-knit.png.asset.json";
 import media07 from "../assets/no-comply/media/media-07-flag.jpg.asset.json";
+import portfolioVideo from "../assets/no-comply/media/no-comply-portfolio.mp4.asset.json";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
 type MediaCollection = "command" | "caught-on-film";
@@ -28,7 +29,15 @@ const media: {
   alt: string;
   collection: MediaCollection;
   fullWidth?: boolean;
+  type?: "video";
 }[] = [
+  {
+    src: portfolioVideo.url,
+    alt: "No Comply Command portfolio film",
+    collection: "command",
+    fullWidth: true,
+    type: "video",
+  },
   { src: commandEditorialLook01, alt: "No Comply Command campaign look", collection: "command" },
   { src: commandEditorialLook02, alt: "No Comply Command campaign portrait", collection: "command" },
   { src: commandAssortmentLook01, alt: "No Comply Command Eisenhower look", collection: "command" },
@@ -118,15 +127,28 @@ function NoComplyMedia() {
             {visible.map((item) => (
               <figure
                 key={item.src}
-                className={`bg-white ${item.fullWidth ? "sm:col-span-full" : ""}`}
+                className={`${item.type === "video" ? "bg-black" : "bg-white"} ${
+                  item.fullWidth ? "sm:col-span-full" : ""
+                }`}
               >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="block h-auto w-full object-contain"
-                />
+                {item.type === "video" ? (
+                  <video
+                    src={item.src}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    aria-label={item.alt}
+                    className="block h-auto w-full bg-black object-contain"
+                  />
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="block h-auto w-full object-contain"
+                  />
+                )}
               </figure>
             ))}
           </div>
