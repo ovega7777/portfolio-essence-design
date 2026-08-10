@@ -256,16 +256,9 @@ function NoComplyHome() {
         </div>
       )}
 
-      <LogoBannerHUD
-        src={noComplyUsaLogoBlack.url}
-        menuOpen={menuOpen}
-        onSearch={openProductSearch}
-        onMenu={openProductMenu}
-        theme="light"
-      />
-
       <main>
-        <section className="border-b-2 border-black bg-white px-6 py-20 text-black md:px-12 md:py-28">
+        <section className="bg-white px-6 pb-10 pt-20 text-black md:px-12 md:pb-14 md:pt-28">
+
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
               <div>
