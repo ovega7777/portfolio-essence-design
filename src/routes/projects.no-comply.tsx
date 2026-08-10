@@ -267,14 +267,14 @@ function NoComplyHome() {
                   <Link
                     to="/projects/no-comply/command"
                     search={{ cat: "all", sort: "order", q: "" }}
-                    className="nc-display text-5xl leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55 md:text-8xl"
+                    className="nc-display inline-flex items-center text-5xl leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55 md:text-8xl"
                   >
                     No Comply Command
                   </Link>
                   <img
                     src={upsideDownAmericanFlag}
                     alt="Upside-down black-and-white American flag"
-                    className="h-auto w-14 shrink-0 sm:w-16 md:w-20"
+                    className="inline-block h-[3rem] w-auto shrink-0 self-center object-contain md:h-[6rem]"
                   />
                 </div>
               </div>
@@ -290,37 +290,24 @@ function NoComplyHome() {
               to="/projects/no-comply/command"
               search={{ cat: "all", sort: "order", q: "" }}
               aria-label="Open No Comply Command, Collection #1"
-              className="group block overflow-hidden border border-black/20"
+              className="group block w-full max-w-7xl overflow-hidden border border-black/20"
             >
-              <div className="grid grid-cols-2 gap-px bg-black/20 transition-transform duration-700 group-hover:scale-[1.01] lg:grid-cols-4">
-                {[
-                  {
-                    src: commandAssortmentLook01,
-                    alt: "No Comply Command look featuring the Eisenhower Distress Jacket and Cargo Messenger Bag",
-                  },
-                  {
-                    src: commandAssortmentLook02,
-                    alt: "No Comply Command look featuring the NC Tiger Tee and Cargo Messenger Bag",
-                  },
-                  {
-                    src: commandAssortmentLook03,
-                    alt: "No Comply Command look featuring the American Distress Hoodie",
-                  },
-                  {
-                    src: commandAssortmentLook04,
-                    alt: "No Comply Command look featuring the Sergeant Shirt",
-                  },
-                ].map((image) => (
-                  <img
-                    key={image.src}
-                    src={image.src}
-                    alt={image.alt}
-                    className="aspect-[3/4] h-auto w-full bg-white object-cover"
-                    loading="lazy"
-                  />
-                ))}
+              <div className="grid aspect-[1672/940] w-full grid-cols-2 gap-px bg-black/20 transition-transform duration-700 group-hover:scale-[1.01]">
+                <img
+                  src={commandEditorialLook01}
+                  alt="No Comply Command editorial look with Captain's Jacket and Cargo Messenger Bag"
+                  className="h-full w-full bg-white object-cover object-top"
+                  loading="lazy"
+                />
+                <img
+                  src={commandEditorialLook02}
+                  alt="No Comply Command editorial look with black and navy Sergeant Shirts"
+                  className="h-full w-full bg-white object-cover object-top"
+                  loading="lazy"
+                />
               </div>
             </Link>
+
             <CollectionCarousel items={COMMAND_CAROUSEL} label="No Comply Command" />
           </div>
         </section>
