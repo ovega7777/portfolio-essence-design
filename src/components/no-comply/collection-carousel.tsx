@@ -45,36 +45,36 @@ export function CollectionCarousel({ items, label }: Props) {
   if (items.length === 0) return null;
 
   return (
-    <div className="mt-10" aria-label={label} role="group">
+    <div className="relative mt-10" aria-label={label} role="group">
       <div className="mb-4 flex items-center justify-between gap-4">
         <p className="nc-display text-xs tracking-[0.3em] text-black/60">Featured Pieces</p>
-        <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={() => scrollByCard(-1)}
-            disabled={atStart}
-            aria-label={`${label}: previous products`}
-            className="flex h-10 w-10 items-center justify-center border border-black text-black transition-opacity hover:opacity-55 disabled:opacity-25"
-          >
-            <ChevronLeft aria-hidden className="h-5 w-5" strokeWidth={1.8} />
-          </button>
-          <button
-            type="button"
-            onClick={() => scrollByCard(1)}
-            disabled={atEnd}
-            aria-label={`${label}: next products`}
-            className="flex h-10 w-10 items-center justify-center border border-black text-black transition-opacity hover:opacity-55 disabled:opacity-25"
-          >
-            <ChevronRight aria-hidden className="h-5 w-5" strokeWidth={1.8} />
-          </button>
-        </div>
       </div>
+
+      <button
+        type="button"
+        onClick={() => scrollByCard(-1)}
+        disabled={atStart}
+        aria-label={`${label}: previous products`}
+        className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-black bg-white text-black transition-opacity hover:opacity-55 disabled:opacity-25 sm:-left-5"
+      >
+        <ChevronLeft aria-hidden className="h-5 w-5" strokeWidth={1.8} />
+      </button>
+      <button
+        type="button"
+        onClick={() => scrollByCard(1)}
+        disabled={atEnd}
+        aria-label={`${label}: next products`}
+        className="absolute right-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-black bg-white text-black transition-opacity hover:opacity-55 disabled:opacity-25 sm:-right-5"
+      >
+        <ChevronRight aria-hidden className="h-5 w-5" strokeWidth={1.8} />
+      </button>
 
       <div
         ref={trackRef}
         onScroll={sync}
         className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
+
         {items.map((item) => (
           <Link
             key={item.key}
