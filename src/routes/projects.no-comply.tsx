@@ -112,21 +112,30 @@ function NoComplyHome() {
 
   return (
     <div className="no-comply min-h-screen bg-white text-black">
-      <nav className="sticky top-0 z-50 border-b-2 border-black bg-white text-black">
-        <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
-          <Link
-            to="/"
-            className="nc-display shrink-0 text-lg tracking-widest text-black transition-colors duration-200 hover:text-black/60 sm:text-xl"
-          >
-            <span className="sm:hidden">← NC</span>
-            <span className="hidden sm:inline">← Nicholas Curzon</span>
-          </Link>
-          <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-black lg:block lg:text-lg">
-            NO COMPLY USA / CASE STUDY
-          </span>
-        </div>
-        <div className="h-0.5 w-full bg-black" />
-      </nav>
+      <div className="sticky top-0 z-[100] w-full">
+        <nav className="w-full border-b border-white/20 bg-black text-white">
+          <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
+            <Link
+              to="/"
+              className="nc-display shrink-0 text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl"
+            >
+              <span className="sm:hidden">← NC</span>
+              <span className="hidden sm:inline">← Nicholas Curzon</span>
+            </Link>
+            <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-white lg:block lg:text-lg">
+              NO COMPLY USA / CASE STUDY
+            </span>
+          </div>
+        </nav>
+        <LogoBannerHUD
+          src={noComplyUsaLogoBlack.url}
+          menuOpen={menuOpen}
+          onSearch={openProductSearch}
+          onMenu={openProductMenu}
+          theme="dark"
+        />
+      </div>
+
 
       {menuOpen && (
         <div className="fixed inset-0 z-[120]">
