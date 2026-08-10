@@ -365,18 +365,31 @@ function NoComplyHome() {
 
         <section className="border-b-2 border-black px-6 py-16">
           <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
-            {[
-              { k: "Role", v: "Creative Direction, Systems" },
-              { k: "Year", v: "2025" },
-              { k: "Format", v: "Collection / Lookbook" },
-            ].map((f) => (
-              <div key={f.k} className="border-2 border-black bg-white p-8">
-                <p className="nc-display text-sm tracking-[0.3em] text-black">{f.k}</p>
-                <p className="nc-display mt-2 text-2xl text-black">{f.v}</p>
-              </div>
-            ))}
+            <Link
+              to="/projects/no-comply/media"
+              className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
+            >
+              <p className="nc-display text-sm tracking-[0.3em] text-black">Media</p>
+              <p className="nc-display mt-2 text-2xl text-black">Press &amp; Film →</p>
+            </Link>
+            <Link
+              to="/projects/no-comply/about"
+              className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
+            >
+              <p className="nc-display text-sm tracking-[0.3em] text-black">About</p>
+              <p className="nc-display mt-2 text-2xl text-black">The Manifesto →</p>
+            </Link>
+            <Link
+              to="/projects/no-comply/command"
+              search={{ cat: "all", sort: "order", q: "" }}
+              className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
+            >
+              <p className="nc-display text-sm tracking-[0.3em] text-black">Collection #1</p>
+              <p className="nc-display mt-2 text-2xl text-black">No Comply Command →</p>
+            </Link>
           </div>
         </section>
+
       </main>
 
       <footer className="px-6 py-16">
