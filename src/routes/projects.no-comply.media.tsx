@@ -18,6 +18,12 @@ import media08 from "../assets/no-comply/media/media-08-oxblood-knit-pleated.png
 import media09 from "../assets/no-comply/media/media-09-olive-anorak-back.png.asset.json";
 import media10 from "../assets/no-comply/media/media-10-black-anorak-hood.png.asset.json";
 import portfolioVideo from "../assets/no-comply/media/no-comply-portfolio.mp4.asset.json";
+import cof01 from "../assets/no-comply/caught-on-film/cof-01.png.asset.json";
+import cof02 from "../assets/no-comply/caught-on-film/cof-02.png.asset.json";
+import cof03 from "../assets/no-comply/caught-on-film/cof-03.png.asset.json";
+import cof04 from "../assets/no-comply/caught-on-film/cof-04.png.asset.json";
+import cof05 from "../assets/no-comply/caught-on-film/cof-05.png.asset.json";
+import cof06 from "../assets/no-comply/caught-on-film/cof-06.png.asset.json";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
 type MediaCollection = "command" | "caught-on-film";
