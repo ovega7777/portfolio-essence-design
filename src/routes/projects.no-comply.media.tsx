@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 
 import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
 import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
@@ -62,36 +63,74 @@ export const Route = createFileRoute("/projects/no-comply/media")({
 });
 
 function NoComplyMedia() {
+  const [active, setActive] = useState<MediaCollection>("command");
+  const visible = media.filter((item) => item.collection === active);
+
   return (
     <EditorialPageShell>
       <main className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-        <header className="mb-12 flex items-end justify-between gap-8 border-b border-black pb-8">
+        <header className="mb-8 flex items-end justify-between gap-8">
           <div>
             <p className="nc-display text-xs uppercase tracking-[0.32em] text-black/55">
-              No Comply Command
+              No Comply USA
             </p>
             <h1 className="nc-display mt-4 text-6xl leading-none tracking-[0.02em] md:text-8xl">
               Media
             </h1>
           </div>
           <p className="nc-display hidden text-sm uppercase tracking-[0.24em] sm:block">
-            {String(media.length).padStart(2, "0")} Campaign Images
+            {String(visible.length).padStart(2, "0")} Campaign Images
           </p>
         </header>
 
-        <div className="grid grid-cols-1 gap-px bg-black sm:grid-cols-2">
-          {media.map((item) => (
-            <figure key={item.src} className="bg-white">
-              <img
-                src={item.src}
-                alt={item.alt}
-                loading="lazy"
-                decoding="async"
-                className="block h-auto w-full object-contain"
-              />
-            </figure>
-          ))}
+        <div
+          role="tablist"
+          aria-label="Filter media by collection"
+          className="mb-12 flex flex-wrap items-center gap-6 border-b border-black pb-4"
+        >
+          {filters.map((filter) => {
+            const isActive = filter.id === active;
+            return (
+              <button
+                key={filter.id}
+                type="button"
+                role="tab"
+                aria-selected={isActive}
+                onClick={() => setActive(filter.id)}
+                className={`nc-display text-xs uppercase tracking-[0.24em] transition-colors sm:text-sm ${
+                  isActive
+                    ? "bg-black px-3 py-1.5 text-white"
+                    : "px-3 py-1.5 text-black/55 hover:text-black"
+                }`}
+              >
+                {filter.label}
+              </button>
+            );
+          })}
         </div>
+
+        {visible.length === 0 ? (
+          <p className="nc-display py-24 text-center text-sm uppercase tracking-[0.24em] text-black/55">
+            No campaign imagery yet
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 gap-px bg-black sm:grid-cols-2">
+            {visible.map((item) => (
+              <figure
+                key={item.src}
+                className={`bg-white ${item.fullWidth ? "sm:col-span-full" : ""}`}
+              >
+                <img
+                  src={item.src}
+                  alt={item.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="block h-auto w-full object-contain"
+                />
+              </figure>
+            ))}
+          </div>
+        )}
       </main>
     </EditorialPageShell>
   );
