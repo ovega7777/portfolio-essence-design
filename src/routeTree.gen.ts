@@ -17,6 +17,7 @@ import { Route as ProjectsNoComplyRouteImport } from './routes/projects.no-compl
 import { Route as ProjectsLuckyDayCoRouteImport } from './routes/projects.lucky-day-co'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ProjectsNoComplyMediaRouteImport } from './routes/projects.no-comply.media'
+import { Route as ProjectsNoComplyCommandRouteImport } from './routes/projects.no-comply.command'
 import { Route as ProjectsNoComplyCaughtOnFilmRouteImport } from './routes/projects.no-comply.caught-on-film'
 import { Route as ProjectsNoComplyAboutRouteImport } from './routes/projects.no-comply.about'
 
@@ -60,6 +61,11 @@ const ProjectsNoComplyMediaRoute = ProjectsNoComplyMediaRouteImport.update({
   path: '/media',
   getParentRoute: () => ProjectsNoComplyRoute,
 } as any)
+const ProjectsNoComplyCommandRoute = ProjectsNoComplyCommandRouteImport.update({
+  id: '/command',
+  path: '/command',
+  getParentRoute: () => ProjectsNoComplyRoute,
+} as any)
 const ProjectsNoComplyCaughtOnFilmRoute =
   ProjectsNoComplyCaughtOnFilmRouteImport.update({
     id: '/caught-on-film',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/projects/': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
   '/projects/no-comply/caught-on-film': typeof ProjectsNoComplyCaughtOnFilmRoute
+  '/projects/no-comply/command': typeof ProjectsNoComplyCommandRoute
   '/projects/no-comply/media': typeof ProjectsNoComplyMediaRoute
 }
 export interface FileRoutesByTo {
@@ -94,6 +101,7 @@ export interface FileRoutesByTo {
   '/projects': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
   '/projects/no-comply/caught-on-film': typeof ProjectsNoComplyCaughtOnFilmRoute
+  '/projects/no-comply/command': typeof ProjectsNoComplyCommandRoute
   '/projects/no-comply/media': typeof ProjectsNoComplyMediaRoute
 }
 export interface FileRoutesById {
@@ -107,6 +115,7 @@ export interface FileRoutesById {
   '/projects/': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
   '/projects/no-comply/caught-on-film': typeof ProjectsNoComplyCaughtOnFilmRoute
+  '/projects/no-comply/command': typeof ProjectsNoComplyCommandRoute
   '/projects/no-comply/media': typeof ProjectsNoComplyMediaRoute
 }
 export interface FileRouteTypes {
@@ -121,6 +130,7 @@ export interface FileRouteTypes {
     | '/projects/'
     | '/projects/no-comply/about'
     | '/projects/no-comply/caught-on-film'
+    | '/projects/no-comply/command'
     | '/projects/no-comply/media'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -133,6 +143,7 @@ export interface FileRouteTypes {
     | '/projects'
     | '/projects/no-comply/about'
     | '/projects/no-comply/caught-on-film'
+    | '/projects/no-comply/command'
     | '/projects/no-comply/media'
   id:
     | '__root__'
@@ -145,6 +156,7 @@ export interface FileRouteTypes {
     | '/projects/'
     | '/projects/no-comply/about'
     | '/projects/no-comply/caught-on-film'
+    | '/projects/no-comply/command'
     | '/projects/no-comply/media'
   fileRoutesById: FileRoutesById
 }
@@ -216,6 +228,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsNoComplyMediaRouteImport
       parentRoute: typeof ProjectsNoComplyRoute
     }
+    '/projects/no-comply/command': {
+      id: '/projects/no-comply/command'
+      path: '/command'
+      fullPath: '/projects/no-comply/command'
+      preLoaderRoute: typeof ProjectsNoComplyCommandRouteImport
+      parentRoute: typeof ProjectsNoComplyRoute
+    }
     '/projects/no-comply/caught-on-film': {
       id: '/projects/no-comply/caught-on-film'
       path: '/caught-on-film'
@@ -236,12 +255,14 @@ declare module '@tanstack/react-router' {
 interface ProjectsNoComplyRouteChildren {
   ProjectsNoComplyAboutRoute: typeof ProjectsNoComplyAboutRoute
   ProjectsNoComplyCaughtOnFilmRoute: typeof ProjectsNoComplyCaughtOnFilmRoute
+  ProjectsNoComplyCommandRoute: typeof ProjectsNoComplyCommandRoute
   ProjectsNoComplyMediaRoute: typeof ProjectsNoComplyMediaRoute
 }
 
 const ProjectsNoComplyRouteChildren: ProjectsNoComplyRouteChildren = {
   ProjectsNoComplyAboutRoute: ProjectsNoComplyAboutRoute,
   ProjectsNoComplyCaughtOnFilmRoute: ProjectsNoComplyCaughtOnFilmRoute,
+  ProjectsNoComplyCommandRoute: ProjectsNoComplyCommandRoute,
   ProjectsNoComplyMediaRoute: ProjectsNoComplyMediaRoute,
 }
 
@@ -260,13 +281,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
