@@ -6,10 +6,9 @@ import { z } from "zod";
 
 import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import upsideDownAmericanFlag from "../assets/no-comply/editorial/upside-down-american-flag.jpg";
-import commandAssortmentLook01 from "../assets/no-comply/editorial/command-assortment-gallery/look-01.png";
-import commandAssortmentLook02 from "../assets/no-comply/editorial/command-assortment-gallery/look-02.png";
-import commandAssortmentLook03 from "../assets/no-comply/editorial/command-assortment-gallery/look-03.png";
-import commandAssortmentLook04 from "../assets/no-comply/editorial/command-assortment-gallery/look-04.png";
+import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
+import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
+
 import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
 import { getCategories, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
