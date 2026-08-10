@@ -127,15 +127,28 @@ function NoComplyMedia() {
             {visible.map((item) => (
               <figure
                 key={item.src}
-                className={`bg-white ${item.fullWidth ? "sm:col-span-full" : ""}`}
+                className={`${item.type === "video" ? "bg-black" : "bg-white"} ${
+                  item.fullWidth ? "sm:col-span-full" : ""
+                }`}
               >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  loading="lazy"
-                  decoding="async"
-                  className="block h-auto w-full object-contain"
-                />
+                {item.type === "video" ? (
+                  <video
+                    src={item.src}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    aria-label={item.alt}
+                    className="block h-auto w-full bg-black object-contain"
+                  />
+                ) : (
+                  <img
+                    src={item.src}
+                    alt={item.alt}
+                    loading="lazy"
+                    decoding="async"
+                    className="block h-auto w-full object-contain"
+                  />
+                )}
               </figure>
             ))}
           </div>
