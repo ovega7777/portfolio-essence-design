@@ -336,14 +336,16 @@ function NoComplyHome() {
               to="/projects/no-comply/caught-on-film"
               search={{ cat: "all", q: "" }}
               aria-label="Open Caught on Film, Collection #2"
-              className="block overflow-hidden border border-black/20"
+              className="block w-full max-w-7xl overflow-hidden border border-black/20"
             >
-              <img
-                src={caughtOnFilmHeader}
-                alt="Caught on Film collection contact sheet"
-                className="aspect-[1672/940] h-auto w-full object-cover transition-transform duration-700 hover:scale-[1.01]"
-                loading="lazy"
-              />
+              <div className="aspect-[1672/940] w-full overflow-hidden">
+                <img
+                  src={caughtOnFilmHeader}
+                  alt="Caught on Film collection contact sheet"
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.01]"
+                  loading="lazy"
+                />
+              </div>
             </Link>
             <CollectionCarousel items={CAUGHT_ON_FILM_CAROUSEL} label="Caught on Film" />
           </div>
@@ -355,24 +357,22 @@ function NoComplyHome() {
               to="/projects/no-comply/media"
               className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
             >
-              <p className="nc-display text-sm tracking-[0.3em] text-black">Media</p>
-              <p className="nc-display mt-2 text-2xl text-black">Press &amp; Film →</p>
+              <p className="nc-display text-2xl text-black">Media</p>
             </Link>
             <Link
               to="/projects/no-comply/about"
               className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
             >
-              <p className="nc-display text-sm tracking-[0.3em] text-black">About</p>
-              <p className="nc-display mt-2 text-2xl text-black">The Manifesto →</p>
+              <p className="nc-display text-2xl text-black">About</p>
             </Link>
             <Link
               to="/projects/no-comply/command"
               search={{ cat: "all", sort: "order", q: "" }}
               className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
             >
-              <p className="nc-display text-sm tracking-[0.3em] text-black">Collection #1</p>
-              <p className="nc-display mt-2 text-2xl text-black">No Comply Command →</p>
+              <p className="nc-display text-2xl text-black">No Comply Command</p>
             </Link>
+
           </div>
         </section>
 
