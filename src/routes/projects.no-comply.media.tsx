@@ -14,6 +14,9 @@ import media04 from "../assets/no-comply/media/media-04-olive-tee-duffel.png.ass
 import media05 from "../assets/no-comply/media/media-05-multipocket-cargo.png.asset.json";
 import media06 from "../assets/no-comply/media/media-06-olive-zip-knit.png.asset.json";
 import media07 from "../assets/no-comply/media/media-07-flag.jpg.asset.json";
+import media08 from "../assets/no-comply/media/media-08-oxblood-knit-pleated.png.asset.json";
+import media09 from "../assets/no-comply/media/media-09-olive-anorak-back.png.asset.json";
+import media10 from "../assets/no-comply/media/media-10-black-anorak-hood.png.asset.json";
 import portfolioVideo from "../assets/no-comply/media/no-comply-portfolio.mp4.asset.json";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
@@ -38,18 +41,26 @@ const media: {
     fullWidth: true,
     type: "video",
   },
+  { src: media01.url, alt: "I Want You! No Comply USA showgirls poster artwork", collection: "command" },
+  { src: media02.url, alt: "Portrait in patched flag cap and shearling-collar leather bomber", collection: "command" },
   { src: commandEditorialLook01, alt: "No Comply Command campaign look", collection: "command" },
-  { src: commandEditorialLook02, alt: "No Comply Command campaign portrait", collection: "command" },
   { src: commandAssortmentLook01, alt: "No Comply Command Eisenhower look", collection: "command" },
   { src: commandAssortmentLook02, alt: "No Comply Command Tiger Tee look", collection: "command" },
   { src: commandAssortmentLook03, alt: "No Comply Command hoodie look", collection: "command" },
-  { src: commandAssortmentLook04, alt: "No Comply Command Sergeant Shirt look", collection: "command" },
-  { src: media01.url, alt: "I Want You! No Comply USA showgirls poster artwork", collection: "command" },
-  { src: media02.url, alt: "Portrait in patched flag cap and shearling-collar leather bomber", collection: "command" },
-  { src: media03.url, alt: "Laced utility vest with black wide-leg cargo trousers", collection: "command" },
+  {
+    src: commandEditorialLook02,
+    alt: "No Comply Command campaign portrait",
+    collection: "command",
+    fullWidth: true,
+  },
   { src: media04.url, alt: "Olive Comply showgirls tee with waxed canvas duffel bag", collection: "command" },
-  { src: media05.url, alt: "Black multi-pocket cargo trousers with ribbed tank", collection: "command" },
+  { src: media03.url, alt: "Laced utility vest with black wide-leg cargo trousers", collection: "command" },
+  { src: media08.url, alt: "Oxblood ribbed zip knit hoodie with black wide-leg pleated trousers", collection: "command" },
+  { src: commandAssortmentLook04, alt: "No Comply Command Sergeant Shirt look", collection: "command" },
   { src: media06.url, alt: "Olive corduroy zip knit hoodie with brown pleated trousers", collection: "command" },
+  { src: media05.url, alt: "Black multi-pocket cargo trousers with ribbed tank", collection: "command" },
+  { src: media09.url, alt: "Olive printed nylon anorak and balloon pants, back view with waist bag", collection: "command" },
+  { src: media10.url, alt: "Black printed nylon buckle anorak worn with hood and mask", collection: "command" },
   {
     src: media07.url,
     alt: "Upside-down black-and-white American flag",
