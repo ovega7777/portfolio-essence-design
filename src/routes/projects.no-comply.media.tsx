@@ -15,20 +15,37 @@ import media06 from "../assets/no-comply/media/media-06-olive-zip-knit.png.asset
 import media07 from "../assets/no-comply/media/media-07-flag.jpg.asset.json";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
-const media = [
-  { src: commandEditorialLook01, alt: "No Comply Command campaign look" },
-  { src: commandEditorialLook02, alt: "No Comply Command campaign portrait" },
-  { src: commandAssortmentLook01, alt: "No Comply Command Eisenhower look" },
-  { src: commandAssortmentLook02, alt: "No Comply Command Tiger Tee look" },
-  { src: commandAssortmentLook03, alt: "No Comply Command hoodie look" },
-  { src: commandAssortmentLook04, alt: "No Comply Command Sergeant Shirt look" },
-  { src: media01.url, alt: "I Want You! No Comply USA showgirls poster artwork" },
-  { src: media02.url, alt: "Portrait in patched flag cap and shearling-collar leather bomber" },
-  { src: media03.url, alt: "Laced utility vest with black wide-leg cargo trousers" },
-  { src: media04.url, alt: "Olive Comply showgirls tee with waxed canvas duffel bag" },
-  { src: media05.url, alt: "Black multi-pocket cargo trousers with ribbed tank" },
-  { src: media06.url, alt: "Olive corduroy zip knit hoodie with brown pleated trousers" },
-  { src: media07.url, alt: "Upside-down black-and-white American flag" },
+type MediaCollection = "command" | "caught-on-film";
+
+const filters: { id: MediaCollection; label: string }[] = [
+  { id: "command", label: "No Comply Command" },
+  { id: "caught-on-film", label: "Caught on Film" },
+];
+
+const media: {
+  src: string;
+  alt: string;
+  collection: MediaCollection;
+  fullWidth?: boolean;
+}[] = [
+  { src: commandEditorialLook01, alt: "No Comply Command campaign look", collection: "command" },
+  { src: commandEditorialLook02, alt: "No Comply Command campaign portrait", collection: "command" },
+  { src: commandAssortmentLook01, alt: "No Comply Command Eisenhower look", collection: "command" },
+  { src: commandAssortmentLook02, alt: "No Comply Command Tiger Tee look", collection: "command" },
+  { src: commandAssortmentLook03, alt: "No Comply Command hoodie look", collection: "command" },
+  { src: commandAssortmentLook04, alt: "No Comply Command Sergeant Shirt look", collection: "command" },
+  { src: media01.url, alt: "I Want You! No Comply USA showgirls poster artwork", collection: "command" },
+  { src: media02.url, alt: "Portrait in patched flag cap and shearling-collar leather bomber", collection: "command" },
+  { src: media03.url, alt: "Laced utility vest with black wide-leg cargo trousers", collection: "command" },
+  { src: media04.url, alt: "Olive Comply showgirls tee with waxed canvas duffel bag", collection: "command" },
+  { src: media05.url, alt: "Black multi-pocket cargo trousers with ribbed tank", collection: "command" },
+  { src: media06.url, alt: "Olive corduroy zip knit hoodie with brown pleated trousers", collection: "command" },
+  {
+    src: media07.url,
+    alt: "Upside-down black-and-white American flag",
+    collection: "command",
+    fullWidth: true,
+  },
 ];
 
 export const Route = createFileRoute("/projects/no-comply/media")({
