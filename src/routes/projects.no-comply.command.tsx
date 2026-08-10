@@ -403,53 +403,6 @@ function CommandCollection() {
 
         </div>
       </section>
-
-      <section className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-16 flex items-end justify-between gap-6 border-b-2 border-black pb-6">
-            <h2 className="nc-display text-5xl leading-none tracking-[0.02em] text-black md:text-7xl">
-              Moodboard
-            </h2>
-            <span className="nc-display text-xs tracking-[0.3em] text-black sm:text-sm">
-              06 Fragments / Reference
-            </span>
-          </div>
-
-          <div className="grid grid-cols-2 gap-px bg-black md:grid-cols-3">
-            {["Cut", "Paste", "Xerox", "Tape", "Riot", "Repeat"].map((label, i) => (
-              <div
-                key={label}
-                className="relative flex aspect-square flex-col justify-between bg-black p-6 text-white"
-              >
-                <span className="nc-display text-xs tracking-[0.3em] text-white/60">
-                  Fragment {String(i + 1).padStart(2, "0")}
-                </span>
-                <span className="nc-display text-3xl tracking-[0.05em] text-white md:text-5xl">
-                  {label}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b-2 border-black bg-black px-6 py-24 text-white md:py-32">
-        <div className="mx-auto max-w-4xl">
-          <p className="nc-display mb-8 text-xs tracking-[0.4em] text-white">Manifesto</p>
-          <p className="nc-display text-4xl leading-[1.05] tracking-[0.02em] md:text-6xl">
-            Compliance is optional.
-            <br />
-            Craft is not.
-          </p>
-          <div className="mt-10 h-px w-24 bg-white" />
-          <p className="mt-10 font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:text-lg">
-            Every garment starts as a pattern. Every pattern starts as a refusal — to smooth the
-            edges, to trend-chase, to make it easy. No Comply is what happens when a designer&apos;s
-            hand meets an operator&apos;s stubbornness.
-          </p>
-        </div>
-      </section>
-
       <footer className="px-6 py-16">
         <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
           <div>
