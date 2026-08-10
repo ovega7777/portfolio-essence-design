@@ -351,6 +351,23 @@ function NoComplyHome() {
           </div>
         </section>
 
+        <section className="border-b-2 border-black bg-black px-6 py-24 text-white md:py-32">
+          <div className="mx-auto max-w-4xl">
+            <p className="nc-display mb-8 text-xs tracking-[0.4em] text-white">Manifesto</p>
+            <p className="nc-display text-4xl leading-[1.05] tracking-[0.02em] md:text-6xl">
+              Compliance is optional.
+              <br />
+              Craft is not.
+            </p>
+            <div className="mt-10 h-px w-24 bg-white" />
+            <p className="mt-10 font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:text-lg">
+              Every garment starts as a pattern. Every pattern starts as a refusal — to smooth the
+              edges, to trend-chase, to make it easy. No Comply is what happens when a designer&apos;s
+              hand meets an operator&apos;s stubbornness.
+            </p>
+          </div>
+        </section>
+
         <section className="border-b-2 border-black px-6 py-16">
           <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
             <Link
