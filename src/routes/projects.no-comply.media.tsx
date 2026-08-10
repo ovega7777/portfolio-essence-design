@@ -6,6 +6,13 @@ import commandAssortmentLook01 from "../assets/no-comply/editorial/command-assor
 import commandAssortmentLook02 from "../assets/no-comply/editorial/command-assortment-gallery/look-02.png";
 import commandAssortmentLook03 from "../assets/no-comply/editorial/command-assortment-gallery/look-03.png";
 import commandAssortmentLook04 from "../assets/no-comply/editorial/command-assortment-gallery/look-04.png";
+import media01 from "../assets/no-comply/media/media-01-comply-poster.png.asset.json";
+import media02 from "../assets/no-comply/media/media-02-cap-portrait.png.asset.json";
+import media03 from "../assets/no-comply/media/media-03-laced-vest-wide-cargo.png.asset.json";
+import media04 from "../assets/no-comply/media/media-04-olive-tee-duffel.png.asset.json";
+import media05 from "../assets/no-comply/media/media-05-multipocket-cargo.png.asset.json";
+import media06 from "../assets/no-comply/media/media-06-olive-zip-knit.png.asset.json";
+import media07 from "../assets/no-comply/media/media-07-flag.jpg.asset.json";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
 const media = [
@@ -15,6 +22,13 @@ const media = [
   { src: commandAssortmentLook02, alt: "No Comply Command Tiger Tee look" },
   { src: commandAssortmentLook03, alt: "No Comply Command hoodie look" },
   { src: commandAssortmentLook04, alt: "No Comply Command Sergeant Shirt look" },
+  { src: media01.url, alt: "I Want You! No Comply USA showgirls poster artwork" },
+  { src: media02.url, alt: "Portrait in patched flag cap and shearling-collar leather bomber" },
+  { src: media03.url, alt: "Laced utility vest with black wide-leg cargo trousers" },
+  { src: media04.url, alt: "Olive Comply showgirls tee with waxed canvas duffel bag" },
+  { src: media05.url, alt: "Black multi-pocket cargo trousers with ribbed tank" },
+  { src: media06.url, alt: "Olive corduroy zip knit hoodie with brown pleated trousers" },
+  { src: media07.url, alt: "Upside-down black-and-white American flag" },
 ];
 
 export const Route = createFileRoute("/projects/no-comply/media")({
@@ -44,7 +58,7 @@ function NoComplyMedia() {
             </h1>
           </div>
           <p className="nc-display hidden text-sm uppercase tracking-[0.24em] sm:block">
-            06 Campaign Images
+            {String(media.length).padStart(2, "0")} Campaign Images
           </p>
         </header>
 
@@ -54,7 +68,9 @@ function NoComplyMedia() {
               <img
                 src={item.src}
                 alt={item.alt}
-                className="block h-full min-h-[420px] w-full object-cover object-top"
+                loading="lazy"
+                decoding="async"
+                className="block h-auto w-full object-contain"
               />
             </figure>
           ))}
@@ -63,3 +79,4 @@ function NoComplyMedia() {
     </EditorialPageShell>
   );
 }
+
