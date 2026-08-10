@@ -295,19 +295,35 @@ function CommandCollection() {
 
           <div
             aria-label="No Comply Command editorial"
-            className="mb-20 grid items-start gap-1 bg-black md:grid-cols-[5fr_7fr]"
+            className="mb-20 grid grid-cols-2 gap-1 bg-black lg:grid-cols-4"
           >
-            <img
-              src={commandEditorialLook01}
-              alt="No Comply Command editorial look with Captain's Jacket and Cargo Messenger Bag"
-              className="aspect-[1086/1448] h-auto w-full bg-white object-cover"
-            />
-            <img
-              src={commandEditorialLook02}
-              alt="No Comply Command editorial look with black and navy Sergeant Shirts"
-              className="aspect-square h-auto w-full bg-white object-cover"
-            />
+            {[
+              {
+                src: commandAssortmentLook01,
+                alt: "No Comply Command look featuring the Eisenhower Distress Jacket and Cargo Messenger Bag",
+              },
+              {
+                src: commandAssortmentLook02,
+                alt: "No Comply Command look featuring the NC Tiger Tee and Cargo Messenger Bag",
+              },
+              {
+                src: commandAssortmentLook03,
+                alt: "No Comply Command look featuring the American Distress Hoodie",
+              },
+              {
+                src: commandAssortmentLook04,
+                alt: "No Comply Command look featuring the Sergeant Shirt",
+              },
+            ].map((image) => (
+              <img
+                key={image.src}
+                src={image.src}
+                alt={image.alt}
+                className="aspect-[3/4] h-auto w-full bg-white object-cover"
+              />
+            ))}
           </div>
+
 
           <div className="mb-12 md:mb-16">
             <h3 className="font-punk-body text-base font-bold uppercase tracking-[0.06em] text-black">
@@ -369,35 +385,22 @@ function CommandCollection() {
 
           <div
             aria-label="No Comply Command assortment editorial gallery"
-            className="mt-20 grid grid-cols-1 gap-1 bg-black sm:grid-cols-2 md:mt-28 lg:grid-cols-4"
+            className="mt-20 grid items-start gap-1 bg-black md:mt-28 md:grid-cols-[5fr_7fr]"
           >
-            {[
-              {
-                src: commandAssortmentLook01,
-                alt: "No Comply Command editorial look featuring the Eisenhower Distress Jacket and Cargo Messenger Bag",
-              },
-              {
-                src: commandAssortmentLook02,
-                alt: "No Comply Command editorial look featuring the NC Tiger Tee and Cargo Messenger Bag",
-              },
-              {
-                src: commandAssortmentLook03,
-                alt: "No Comply Command editorial look featuring the American Distress Hoodie",
-              },
-              {
-                src: commandAssortmentLook04,
-                alt: "No Comply Command editorial look featuring the Sergeant Shirt",
-              },
-            ].map((image) => (
-              <img
-                key={image.src}
-                src={image.src}
-                alt={image.alt}
-                className="aspect-[3/4] h-auto w-full bg-white object-cover"
-                loading="lazy"
-              />
-            ))}
+            <img
+              src={commandEditorialLook01}
+              alt="No Comply Command editorial look with Captain's Jacket and Cargo Messenger Bag"
+              className="aspect-[1086/1448] h-auto w-full bg-white object-cover"
+              loading="lazy"
+            />
+            <img
+              src={commandEditorialLook02}
+              alt="No Comply Command editorial look with black and navy Sergeant Shirts"
+              className="aspect-square h-auto w-full bg-white object-cover"
+              loading="lazy"
+            />
           </div>
+
         </div>
       </section>
 

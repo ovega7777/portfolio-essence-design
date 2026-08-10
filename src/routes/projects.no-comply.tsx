@@ -6,10 +6,9 @@ import { z } from "zod";
 
 import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import upsideDownAmericanFlag from "../assets/no-comply/editorial/upside-down-american-flag.jpg";
-import commandAssortmentLook01 from "../assets/no-comply/editorial/command-assortment-gallery/look-01.png";
-import commandAssortmentLook02 from "../assets/no-comply/editorial/command-assortment-gallery/look-02.png";
-import commandAssortmentLook03 from "../assets/no-comply/editorial/command-assortment-gallery/look-03.png";
-import commandAssortmentLook04 from "../assets/no-comply/editorial/command-assortment-gallery/look-04.png";
+import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
+import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
+
 import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
 import { getCategories, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
@@ -267,14 +266,14 @@ function NoComplyHome() {
                   <Link
                     to="/projects/no-comply/command"
                     search={{ cat: "all", sort: "order", q: "" }}
-                    className="nc-display text-5xl leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55 md:text-8xl"
+                    className="nc-display inline-flex items-center text-5xl leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55 md:text-8xl"
                   >
                     No Comply Command
                   </Link>
                   <img
                     src={upsideDownAmericanFlag}
                     alt="Upside-down black-and-white American flag"
-                    className="h-auto w-14 shrink-0 sm:w-16 md:w-20"
+                    className="inline-block h-[3rem] w-auto shrink-0 self-center object-contain md:h-[6rem]"
                   />
                 </div>
               </div>
@@ -290,37 +289,24 @@ function NoComplyHome() {
               to="/projects/no-comply/command"
               search={{ cat: "all", sort: "order", q: "" }}
               aria-label="Open No Comply Command, Collection #1"
-              className="group block overflow-hidden border border-black/20"
+              className="group block w-full max-w-7xl overflow-hidden border border-black/20"
             >
-              <div className="grid grid-cols-2 gap-px bg-black/20 transition-transform duration-700 group-hover:scale-[1.01] lg:grid-cols-4">
-                {[
-                  {
-                    src: commandAssortmentLook01,
-                    alt: "No Comply Command look featuring the Eisenhower Distress Jacket and Cargo Messenger Bag",
-                  },
-                  {
-                    src: commandAssortmentLook02,
-                    alt: "No Comply Command look featuring the NC Tiger Tee and Cargo Messenger Bag",
-                  },
-                  {
-                    src: commandAssortmentLook03,
-                    alt: "No Comply Command look featuring the American Distress Hoodie",
-                  },
-                  {
-                    src: commandAssortmentLook04,
-                    alt: "No Comply Command look featuring the Sergeant Shirt",
-                  },
-                ].map((image) => (
-                  <img
-                    key={image.src}
-                    src={image.src}
-                    alt={image.alt}
-                    className="aspect-[3/4] h-auto w-full bg-white object-cover"
-                    loading="lazy"
-                  />
-                ))}
+              <div className="grid aspect-[1672/940] w-full grid-cols-2 gap-px bg-black/20 transition-transform duration-700 group-hover:scale-[1.01]">
+                <img
+                  src={commandEditorialLook01}
+                  alt="No Comply Command editorial look with Captain's Jacket and Cargo Messenger Bag"
+                  className="h-full w-full bg-white object-cover object-top"
+                  loading="lazy"
+                />
+                <img
+                  src={commandEditorialLook02}
+                  alt="No Comply Command editorial look with black and navy Sergeant Shirts"
+                  className="h-full w-full bg-white object-cover object-top"
+                  loading="lazy"
+                />
               </div>
             </Link>
+
             <CollectionCarousel items={COMMAND_CAROUSEL} label="No Comply Command" />
           </div>
         </section>
@@ -350,14 +336,16 @@ function NoComplyHome() {
               to="/projects/no-comply/caught-on-film"
               search={{ cat: "all", q: "" }}
               aria-label="Open Caught on Film, Collection #2"
-              className="block overflow-hidden border border-black/20"
+              className="block w-full max-w-7xl overflow-hidden border border-black/20"
             >
-              <img
-                src={caughtOnFilmHeader}
-                alt="Caught on Film collection contact sheet"
-                className="aspect-[1672/940] h-auto w-full object-cover transition-transform duration-700 hover:scale-[1.01]"
-                loading="lazy"
-              />
+              <div className="aspect-[1672/940] w-full overflow-hidden">
+                <img
+                  src={caughtOnFilmHeader}
+                  alt="Caught on Film collection contact sheet"
+                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.01]"
+                  loading="lazy"
+                />
+              </div>
             </Link>
             <CollectionCarousel items={CAUGHT_ON_FILM_CAROUSEL} label="Caught on Film" />
           </div>
@@ -369,24 +357,22 @@ function NoComplyHome() {
               to="/projects/no-comply/media"
               className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
             >
-              <p className="nc-display text-sm tracking-[0.3em] text-black">Media</p>
-              <p className="nc-display mt-2 text-2xl text-black">Press &amp; Film →</p>
+              <p className="nc-display text-2xl text-black">Media</p>
             </Link>
             <Link
               to="/projects/no-comply/about"
               className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
             >
-              <p className="nc-display text-sm tracking-[0.3em] text-black">About</p>
-              <p className="nc-display mt-2 text-2xl text-black">The Manifesto →</p>
+              <p className="nc-display text-2xl text-black">About</p>
             </Link>
             <Link
               to="/projects/no-comply/command"
               search={{ cat: "all", sort: "order", q: "" }}
               className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
             >
-              <p className="nc-display text-sm tracking-[0.3em] text-black">Collection #1</p>
-              <p className="nc-display mt-2 text-2xl text-black">No Comply Command →</p>
+              <p className="nc-display text-2xl text-black">No Comply Command</p>
             </Link>
+
           </div>
         </section>
 
