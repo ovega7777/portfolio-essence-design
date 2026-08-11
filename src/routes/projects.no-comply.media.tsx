@@ -110,6 +110,36 @@ const media: {
     collection: "caught-on-film",
     fullWidth: true,
   },
+  {
+    src: cof07.url,
+    alt: "Model in white ribbed The End tank top against a red backdrop",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof08.url,
+    alt: "Cropped film-strip printed denim jacket with matching wide-leg jeans",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof09.url,
+    alt: "Black studded velour The End track jacket and matching trousers",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof10.url,
+    alt: "NC-17 No Comply USA cap worn over a film-strip printed headscarf with red lens sunglasses",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof11.url,
+    alt: "Black-and-white film-strip contact print artwork",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof11.url,
+    alt: "Black-and-white film-strip contact print artwork, repeated panel",
+    collection: "caught-on-film",
+  },
 ];
 
 export const Route = createFileRoute("/projects/no-comply/media")({
