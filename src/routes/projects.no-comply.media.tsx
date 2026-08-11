@@ -24,6 +24,11 @@ import cof03 from "../assets/no-comply/caught-on-film/cof-03.png.asset.json";
 import cof04 from "../assets/no-comply/caught-on-film/cof-04.png.asset.json";
 import cof05 from "../assets/no-comply/caught-on-film/cof-05.png.asset.json";
 import cof06 from "../assets/no-comply/caught-on-film/cof-06.png.asset.json";
+import cof07 from "../assets/no-comply/caught-on-film/cof-07.png.asset.json";
+import cof08 from "../assets/no-comply/caught-on-film/cof-08.png.asset.json";
+import cof09 from "../assets/no-comply/caught-on-film/cof-09.png.asset.json";
+import cof10 from "../assets/no-comply/caught-on-film/cof-10.png.asset.json";
+import cof11 from "../assets/no-comply/caught-on-film/cof-11.png.asset.json";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
 type MediaCollection = "command" | "caught-on-film";
