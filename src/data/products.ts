@@ -1374,11 +1374,11 @@ export const products: Product[] = [
         sizes: ["XS", "S", "M", "L", "XL"],
         images: {
           frontProduct: {
-            url: "/__l5e/assets-v1/93235a6c-89b3-45d7-a908-955b17581260/denim-jacket-black-front.png",
+            url: "/__l5e/assets-v1/ff7c79cb-4882-4b87-a947-46f01dc55106/denim-jacket-black-front-v2.png",
             alt: "Black On Film Denim Jacket — front flat lay",
           },
           modelFront: {
-            url: "/__l5e/assets-v1/446e518c-67e9-4a98-8370-e00b5a06ede4/denim-black-look-1.png",
+            url: "/__l5e/assets-v1/275e1b78-aae9-4279-a1f2-b054f43f01e2/denim-black-look-3.png",
             alt: "Model wearing the black On Film Denim Jacket — look 1",
           },
           modelBack: {
@@ -1387,12 +1387,8 @@ export const products: Product[] = [
           },
           extraShots: [
             {
-              url: "/__l5e/assets-v1/275e1b78-aae9-4279-a1f2-b054f43f01e2/denim-black-look-3.png",
+              url: "/__l5e/assets-v1/446e518c-67e9-4a98-8370-e00b5a06ede4/denim-black-look-1.png",
               alt: "Model wearing the black On Film Denim Jacket — look 3",
-            },
-            {
-              url: "/__l5e/assets-v1/398582cf-3eca-4246-b492-9d8747c4628a/denim-black-look-4.png",
-              alt: "Model wearing the black On Film Denim Jacket — look 4",
             },
           ],
         },
