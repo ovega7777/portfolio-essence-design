@@ -16,14 +16,21 @@ export const Route = createFileRoute("/products/$slug")({
     if (!product) throw notFound();
     return { product };
   },
-  head: ({ loaderData }) => ({
-    meta: [
-      { title: loaderData ? `${loaderData.product.name} — NO COMPLY USA` : "Product" },
-      loaderData
-        ? { name: "description", content: loaderData.product.description }
-        : { name: "robots", content: "noindex" },
-    ],
-  }),
+  head: ({ loaderData }) => {
+    const title = loaderData ? `${loaderData.product.name} — NO COMPLY USA` : "Product";
+    const description = loaderData?.product.description ?? "NO COMPLY USA product detail.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
+        ...(!loaderData ? [{ name: "robots", content: "noindex" }] : []),
+      ],
+    };
+  },
   notFoundComponent: () => (
     <div className="no-comply flex min-h-screen items-center justify-center bg-white p-10 text-center">
       <div>

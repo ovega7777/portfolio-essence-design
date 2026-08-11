@@ -13,7 +13,9 @@ const COLLECTION = collections[1];
 const collectionProducts = products
   .filter((product) => product.collectionId === COLLECTION.id)
   .sort((a, b) => a.displayOrder - b.displayOrder);
-const CATEGORIES = getCategories(COLLECTION.id);
+const CATEGORY_ORDER = ["Tops", "Outerwear", "Bottoms"];
+const availableCategories = new Set(getCategories(COLLECTION.id));
+const CATEGORIES = CATEGORY_ORDER.filter((category) => availableCategories.has(category));
 
 const searchSchema = z.object({
   cat: fallback(z.string(), "all").default("all"),

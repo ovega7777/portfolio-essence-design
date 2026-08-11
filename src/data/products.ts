@@ -1216,6 +1216,296 @@ export const products: Product[] = [
       },
     ],
   },
+  {
+    id: "caught-nc17-rating-tee-black",
+    slug: "caught-nc17-rating-tee-black",
+    name: "NC-17 RATING TEE",
+    collectionId: "collection-2",
+    category: "Tops",
+    price: 75,
+    description:
+      "Cropped NC-17 rating tee printed with the Caught on Film collection's content-warning graphic. Cut in a relaxed silhouette with a clean crew neckline.",
+    featured: true,
+    displayOrder: 1,
+    swatchGroup: "nc17-tee",
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-NC17-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: "/__l5e/assets-v1/44741192-ffc9-4eae-abdf-5b6ccbc8fdc1/nc17-black-front.png",
+            alt: "Black NC-17 Rating Tee — front flat lay",
+          },
+          modelFront: {
+            url: "/__l5e/assets-v1/cd030686-bf3f-45b7-b689-1b5c87873efa/nc17-black-model-1.png",
+            alt: "Model wearing the black NC-17 Rating Tee — look 1",
+          },
+          modelBack: {
+            url: "/__l5e/assets-v1/556cf18d-c953-4c2b-b578-c0b1f2c6a772/nc17-black-model-2.png",
+            alt: "Model wearing the black NC-17 Rating Tee — look 2",
+          },
+          extraShots: [
+            {
+              url: "/__l5e/assets-v1/b6689eb8-8cb0-4b24-95c5-8f08439c49c5/nc17-rating-detail.png",
+              alt: "NC-17 rating label graphic detail",
+            },
+          ],
+        },
+      },
+      {
+        id: "white",
+        color: "White",
+        swatch: "#f4f4f1",
+        sku: "NC-COF-NC17-WHT",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: "/__l5e/assets-v1/7b3a6376-3d3c-47ec-84e0-00d45d52ce1d/nc17-white-front.png",
+            alt: "White NC-17 Rating Tee — front flat lay",
+          },
+          modelFront: {
+            url: "/__l5e/assets-v1/4dfad4d4-79c6-4bf2-a260-ccb1870fed0d/nc17-white-model-1.png",
+            alt: "Male model wearing the white NC-17 Rating Tee",
+          },
+          modelBack: {
+            url: "/__l5e/assets-v1/b38640a7-1c71-494f-bfd8-cdcceac22403/nc17-white-model-2.png",
+            alt: "Female model wearing the white NC-17 Rating Tee",
+          },
+          extraShots: [
+            {
+              url: "/__l5e/assets-v1/b6689eb8-8cb0-4b24-95c5-8f08439c49c5/nc17-rating-detail.png",
+              alt: "NC-17 rating label graphic detail",
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-nc17-rating-tee-red",
+    slug: "caught-nc17-rating-tee-red",
+    name: "NC-17 RATING TEE",
+    collectionId: "collection-2",
+    category: "Tops",
+    price: 75,
+    description:
+      "Cropped NC-17 rating tee printed with the Caught on Film collection's content-warning graphic. Cut in a relaxed silhouette with a clean crew neckline.",
+    featured: true,
+    displayOrder: 2,
+    swatchGroup: "nc17-tee",
+    variants: [
+      {
+        id: "red",
+        color: "Red",
+        swatch: "#9f1017",
+        sku: "NC-COF-NC17-RED",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: "/__l5e/assets-v1/9665427a-039f-4eb1-9b3b-f709f9a1080f/nc17-red-front.png",
+            alt: "Red NC-17 Rating Tee — front flat lay",
+          },
+          modelFront: {
+            url: "/__l5e/assets-v1/68c007f3-a8c9-45f6-837b-4a2cba69aa91/nc17-red-model-1.png",
+            alt: "Model wearing the red NC-17 Rating Tee — look 1",
+          },
+          modelBack: {
+            url: "/__l5e/assets-v1/69caff9a-8aa1-40d7-b415-8fcaedf611b0/nc17-red-model-2.png",
+            alt: "Model wearing the red NC-17 Rating Tee — look 2",
+          },
+          extraShots: [
+            {
+              url: "/__l5e/assets-v1/b6689eb8-8cb0-4b24-95c5-8f08439c49c5/nc17-rating-detail.png",
+              alt: "NC-17 rating label graphic detail",
+            },
+          ],
+        },
+      },
+      {
+        id: "white",
+        color: "White",
+        swatch: "#f4f4f1",
+        sku: "NC-COF-NC17-WHT",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: "/__l5e/assets-v1/7b3a6376-3d3c-47ec-84e0-00d45d52ce1d/nc17-white-front.png",
+            alt: "White NC-17 Rating Tee — front flat lay",
+          },
+          modelFront: {
+            url: "/__l5e/assets-v1/4dfad4d4-79c6-4bf2-a260-ccb1870fed0d/nc17-white-model-1.png",
+            alt: "Male model wearing the white NC-17 Rating Tee",
+          },
+          modelBack: {
+            url: "/__l5e/assets-v1/b38640a7-1c71-494f-bfd8-cdcceac22403/nc17-white-model-2.png",
+            alt: "Female model wearing the white NC-17 Rating Tee",
+          },
+          extraShots: [
+            {
+              url: "/__l5e/assets-v1/b6689eb8-8cb0-4b24-95c5-8f08439c49c5/nc17-rating-detail.png",
+              alt: "NC-17 rating label graphic detail",
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-on-film-denim-jacket",
+    slug: "caught-on-film-denim-jacket",
+    name: "ON FILM DENIM JACKET",
+    collectionId: "collection-2",
+    category: "Outerwear",
+    price: 215,
+    description:
+      "Structured denim jacket printed with the Caught on Film contact-sheet motif. Finished with a pointed collar, chest pockets, and metal hardware.",
+    featured: true,
+    displayOrder: 3,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#121212",
+        sku: "NC-COF-DJKT-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: "/__l5e/assets-v1/93235a6c-89b3-45d7-a908-955b17581260/denim-jacket-black-front.png",
+            alt: "Black On Film Denim Jacket — front flat lay",
+          },
+          modelFront: {
+            url: "/__l5e/assets-v1/446e518c-67e9-4a98-8370-e00b5a06ede4/denim-black-look-1.png",
+            alt: "Model wearing the black On Film Denim Jacket — look 1",
+          },
+          modelBack: {
+            url: "/__l5e/assets-v1/fdf170ff-7dea-4dae-9a82-64ee06b98de8/denim-black-look-2.png",
+            alt: "Model wearing the black On Film Denim Jacket — look 2",
+          },
+          extraShots: [
+            {
+              url: "/__l5e/assets-v1/275e1b78-aae9-4279-a1f2-b054f43f01e2/denim-black-look-3.png",
+              alt: "Model wearing the black On Film Denim Jacket — look 3",
+            },
+            {
+              url: "/__l5e/assets-v1/398582cf-3eca-4246-b492-9d8747c4628a/denim-black-look-4.png",
+              alt: "Model wearing the black On Film Denim Jacket — look 4",
+            },
+          ],
+        },
+      },
+      {
+        id: "blue",
+        color: "Blue",
+        swatch: "#315e7d",
+        sku: "NC-COF-DJKT-BLU",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: "/__l5e/assets-v1/bd668c80-1b25-42ed-878d-4d064b636d23/denim-jacket-blue-front.png",
+            alt: "Blue On Film Denim Jacket — front flat lay",
+          },
+          modelFront: {
+            url: "/__l5e/assets-v1/ab4bdd8a-0c73-475d-988e-b75bb469521c/denim-blue-look-1.png",
+            alt: "Model wearing the blue On Film Denim Jacket — look 1",
+          },
+          modelBack: {
+            url: "/__l5e/assets-v1/4bc5bec0-527c-4ced-a9f9-65e383bfe267/denim-blue-look-2.png",
+            alt: "Model wearing the blue On Film Denim Jacket — look 2",
+          },
+          extraShots: [
+            {
+              url: "/__l5e/assets-v1/ee31c6ee-3211-491d-9c94-749b4c0189c2/denim-blue-look-3.webp",
+              alt: "Model wearing the blue On Film Denim Jacket — look 3",
+            },
+            {
+              url: "/__l5e/assets-v1/57e74f6a-a10b-4abb-89a2-40bcefe2fa82/denim-blue-look-4.png",
+              alt: "Model wearing the blue On Film Denim Jacket — look 4",
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-on-film-denim-jeans",
+    slug: "caught-on-film-denim-jeans",
+    name: "ON FILM DENIM JEANS",
+    collectionId: "collection-2",
+    category: "Bottoms",
+    price: 185,
+    description:
+      "Wide-leg denim jeans printed throughout with the Caught on Film contact-sheet motif. A relaxed full-length cut designed as the counterpart to the On Film Denim Jacket.",
+    featured: true,
+    displayOrder: 4,
+    variants: [
+      {
+        id: "blue",
+        color: "Blue",
+        swatch: "#315e7d",
+        sku: "NC-COF-DJNS-BLU",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: "/__l5e/assets-v1/26a5920b-bf24-4940-917c-84ed1512e223/denim-jeans-blue-front.png",
+            alt: "Blue On Film Denim Jeans — front flat lay",
+          },
+          modelFront: {
+            url: "/__l5e/assets-v1/ab4bdd8a-0c73-475d-988e-b75bb469521c/denim-blue-look-1.png",
+            alt: "Model wearing the blue On Film Denim Jeans — look 1",
+          },
+          modelBack: {
+            url: "/__l5e/assets-v1/4bc5bec0-527c-4ced-a9f9-65e383bfe267/denim-blue-look-2.png",
+            alt: "Model wearing the blue On Film Denim Jeans — look 2",
+          },
+          extraShots: [
+            {
+              url: "/__l5e/assets-v1/57e74f6a-a10b-4abb-89a2-40bcefe2fa82/denim-blue-look-4.png",
+              alt: "Model wearing the blue On Film Denim Jeans — look 3",
+            },
+            {
+              url: "/__l5e/assets-v1/ee31c6ee-3211-491d-9c94-749b4c0189c2/denim-blue-look-3.webp",
+              alt: "Model wearing the blue On Film Denim Jeans — look 4",
+            },
+          ],
+        },
+      },
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#121212",
+        sku: "NC-COF-DJNS-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: "/__l5e/assets-v1/13905228-029d-4859-8246-21830a298af3/denim-jeans-black-front.png",
+            alt: "Black On Film Denim Jeans — front flat lay",
+          },
+          modelFront: {
+            url: "/__l5e/assets-v1/398582cf-3eca-4246-b492-9d8747c4628a/denim-black-look-4.png",
+            alt: "Model wearing the black On Film Denim Jeans — look 1",
+          },
+          modelBack: {
+            url: "/__l5e/assets-v1/275e1b78-aae9-4279-a1f2-b054f43f01e2/denim-black-look-3.png",
+            alt: "Model wearing the black On Film Denim Jeans — look 2",
+          },
+          extraShots: [
+            {
+              url: "/__l5e/assets-v1/fdf170ff-7dea-4dae-9a82-64ee06b98de8/denim-black-look-2.png",
+              alt: "Model wearing the black On Film Denim Jeans — look 3",
+            },
+            {
+              url: "/__l5e/assets-v1/446e518c-67e9-4a98-8370-e00b5a06ede4/denim-black-look-1.png",
+              alt: "Model wearing the black On Film Denim Jeans — look 4",
+            },
+          ],
+        },
+      },
+    ],
+  },
 ];
 
 
