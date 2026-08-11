@@ -1401,7 +1401,7 @@ export const products: Product[] = [
         sizes: ["XS", "S", "M", "L", "XL"],
         images: {
           frontProduct: {
-            url: "/__l5e/assets-v1/bd668c80-1b25-42ed-878d-4d064b636d23/denim-jacket-blue-front.png",
+            url: "/__l5e/assets-v1/cddb074d-ebd9-4aa6-a219-07226cdc5192/denim-jacket-blue-front.png",
             alt: "Blue On Film Denim Jacket — front flat lay",
           },
           modelFront: {
