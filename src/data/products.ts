@@ -1241,11 +1241,11 @@ export const products: Product[] = [
             alt: "Black NC-17 Rating Tee — front flat lay",
           },
           modelFront: {
-            url: "/__l5e/assets-v1/cd030686-bf3f-45b7-b689-1b5c87873efa/nc17-black-model-1.png",
+            url: "/__l5e/assets-v1/556cf18d-c953-4c2b-b578-c0b1f2c6a772/nc17-black-model-2.png",
             alt: "Model wearing the black NC-17 Rating Tee — look 1",
           },
           modelBack: {
-            url: "/__l5e/assets-v1/556cf18d-c953-4c2b-b578-c0b1f2c6a772/nc17-black-model-2.png",
+            url: "/__l5e/assets-v1/cd030686-bf3f-45b7-b689-1b5c87873efa/nc17-black-model-1.png",
             alt: "Model wearing the black NC-17 Rating Tee — look 2",
           },
           extraShots: [
