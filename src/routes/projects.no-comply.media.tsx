@@ -18,7 +18,7 @@ import media08 from "../assets/no-comply/media/media-08-oxblood-knit-pleated.png
 import media09 from "../assets/no-comply/media/media-09-olive-anorak-back.png.asset.json";
 import media10 from "../assets/no-comply/media/media-10-black-anorak-hood.png.asset.json";
 import portfolioVideo from "../assets/no-comply/media/no-comply-portfolio.mp4.asset.json";
-import cof01 from "../assets/no-comply/caught-on-film/cof-01.png.asset.json";
+import cof01 from "../assets/no-comply/caught-on-film/cof-01-trim.png.asset.json";
 import cof02 from "../assets/no-comply/caught-on-film/cof-02.png.asset.json";
 import cof03 from "../assets/no-comply/caught-on-film/cof-03.png.asset.json";
 import cof04 from "../assets/no-comply/caught-on-film/cof-04.png.asset.json";
@@ -207,13 +207,13 @@ function NoComplyMedia() {
             No campaign imagery yet
           </p>
         ) : (
-          <div className="grid grid-cols-1 gap-px bg-black sm:grid-cols-2">
+          <div className="grid grid-cols-1 items-stretch gap-px bg-black sm:grid-cols-2">
             {visible.map((item, index) => (
               <figure
                 key={`${item.src}-${index}`}
-                className={`${item.type === "video" ? "bg-black" : "bg-white"} ${
-                  item.fullWidth ? "sm:col-span-full" : ""
-                }`}
+                className={`m-0 flex items-center justify-center p-0 leading-none ${
+                  item.type === "video" ? "bg-black" : "bg-white"
+                } ${item.fullWidth ? "sm:col-span-full" : ""}`}
               >
                 {item.type === "video" ? (
                   <video
