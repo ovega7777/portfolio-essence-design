@@ -90,13 +90,13 @@ const media: {
     collection: "caught-on-film",
   },
   {
-    src: cof03.url,
-    alt: "Model in red film-strip mesh long-sleeve top with black wide-leg denim",
+    src: cof04.url,
+    alt: "Model with film-strip headscarf carrying the film-strip tote bag",
     collection: "caught-on-film",
   },
   {
-    src: cof04.url,
-    alt: "Model with film-strip headscarf carrying the film-strip tote bag",
+    src: cof03.url,
+    alt: "Model in red film-strip mesh long-sleeve top with black wide-leg denim",
     collection: "caught-on-film",
   },
   {
@@ -208,33 +208,37 @@ function NoComplyMedia() {
           </p>
         ) : (
           <div className="grid grid-cols-1 items-stretch gap-px bg-black sm:grid-cols-2">
-            {visible.map((item, index) => (
-              <figure
-                key={`${item.src}-${index}`}
-                className={`m-0 flex items-center justify-center p-0 leading-none ${
-                  item.type === "video" ? "bg-black" : "bg-white"
-                } ${item.fullWidth ? "sm:col-span-full" : ""}`}
-              >
-                {item.type === "video" ? (
-                  <video
-                    src={item.src}
-                    controls
-                    playsInline
-                    preload="metadata"
-                    aria-label={item.alt}
-                    className="block h-auto w-full bg-black object-contain"
-                  />
-                ) : (
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="block h-auto w-full object-contain"
-                  />
-                )}
-              </figure>
-            ))}
+            {visible.map((item, index) => {
+              const topAlignFirstPair =
+                active === "caught-on-film" && (index === 1 || index === 2);
+              return (
+                <figure
+                  key={`${item.src}-${index}`}
+                  className={`m-0 flex ${topAlignFirstPair ? "items-start" : "items-center"} justify-center p-0 leading-none ${
+                    item.type === "video" ? "bg-black" : "bg-white"
+                  } ${item.fullWidth ? "sm:col-span-full" : ""}`}
+                >
+                  {item.type === "video" ? (
+                    <video
+                      src={item.src}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      aria-label={item.alt}
+                      className="block h-auto w-full bg-black object-contain"
+                    />
+                  ) : (
+                    <img
+                      src={item.src}
+                      alt={item.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="block h-auto w-full object-contain"
+                    />
+                  )}
+                </figure>
+              );
+            })}
           </div>
         )}
       </main>
