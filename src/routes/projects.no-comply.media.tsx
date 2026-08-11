@@ -90,13 +90,13 @@ const media: {
     collection: "caught-on-film",
   },
   {
-    src: cof03.url,
-    alt: "Model in red film-strip mesh long-sleeve top with black wide-leg denim",
+    src: cof04.url,
+    alt: "Model with film-strip headscarf carrying the film-strip tote bag",
     collection: "caught-on-film",
   },
   {
-    src: cof04.url,
-    alt: "Model with film-strip headscarf carrying the film-strip tote bag",
+    src: cof03.url,
+    alt: "Model in red film-strip mesh long-sleeve top with black wide-leg denim",
     collection: "caught-on-film",
   },
   {
