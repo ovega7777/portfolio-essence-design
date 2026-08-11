@@ -1462,10 +1462,6 @@ export const products: Product[] = [
               url: "/__l5e/assets-v1/57e74f6a-a10b-4abb-89a2-40bcefe2fa82/denim-blue-look-4.png",
               alt: "Model wearing the blue On Film Denim Jeans — look 3",
             },
-            {
-              url: "/__l5e/assets-v1/ee31c6ee-3211-491d-9c94-749b4c0189c2/denim-blue-look-3.webp",
-              alt: "Model wearing the blue On Film Denim Jeans — look 4",
-            },
           ],
         },
       },
