@@ -208,9 +208,9 @@ function NoComplyMedia() {
           </p>
         ) : (
           <div className="grid grid-cols-1 gap-px bg-black sm:grid-cols-2">
-            {visible.map((item) => (
+            {visible.map((item, index) => (
               <figure
-                key={item.src}
+                key={`${item.src}-${index}`}
                 className={`${item.type === "video" ? "bg-black" : "bg-white"} ${
                   item.fullWidth ? "sm:col-span-full" : ""
                 }`}
