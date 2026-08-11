@@ -24,6 +24,11 @@ import cof03 from "../assets/no-comply/caught-on-film/cof-03.png.asset.json";
 import cof04 from "../assets/no-comply/caught-on-film/cof-04.png.asset.json";
 import cof05 from "../assets/no-comply/caught-on-film/cof-05.png.asset.json";
 import cof06 from "../assets/no-comply/caught-on-film/cof-06.png.asset.json";
+import cof07 from "../assets/no-comply/caught-on-film/cof-07.png.asset.json";
+import cof08 from "../assets/no-comply/caught-on-film/cof-08.png.asset.json";
+import cof09 from "../assets/no-comply/caught-on-film/cof-09.png.asset.json";
+import cof10 from "../assets/no-comply/caught-on-film/cof-10.png.asset.json";
+import cof11 from "../assets/no-comply/caught-on-film/cof-11.png.asset.json";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
 type MediaCollection = "command" | "caught-on-film";
@@ -105,6 +110,36 @@ const media: {
     collection: "caught-on-film",
     fullWidth: true,
   },
+  {
+    src: cof07.url,
+    alt: "Model in white ribbed The End tank top against a red backdrop",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof08.url,
+    alt: "Cropped film-strip printed denim jacket with matching wide-leg jeans",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof09.url,
+    alt: "Black studded velour The End track jacket and matching trousers",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof10.url,
+    alt: "NC-17 No Comply USA cap worn over a film-strip printed headscarf with red lens sunglasses",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof11.url,
+    alt: "Black-and-white film-strip contact print artwork",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof11.url,
+    alt: "Black-and-white film-strip contact print artwork, repeated panel",
+    collection: "caught-on-film",
+  },
 ];
 
 export const Route = createFileRoute("/projects/no-comply/media")({
@@ -173,9 +208,9 @@ function NoComplyMedia() {
           </p>
         ) : (
           <div className="grid grid-cols-1 gap-px bg-black sm:grid-cols-2">
-            {visible.map((item) => (
+            {visible.map((item, index) => (
               <figure
-                key={item.src}
+                key={`${item.src}-${index}`}
                 className={`${item.type === "video" ? "bg-black" : "bg-white"} ${
                   item.fullWidth ? "sm:col-span-full" : ""
                 }`}
