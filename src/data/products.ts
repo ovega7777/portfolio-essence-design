@@ -104,6 +104,16 @@ import trousersBlackModel2Back from "@/assets/products/pleated-trousers/black/mo
 import trousersBrownFront from "@/assets/products/pleated-trousers/brown/front.png.asset.json";
 import trousersBrownBack from "@/assets/products/pleated-trousers/brown/back.png.asset.json";
 
+import onFilmMockRedFront from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/red/front.png";
+import onFilmMockRedModel1 from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/red/model-1.png";
+import onFilmMockRedModel2 from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/red/model-2.png";
+import onFilmMockBlackFront from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/black/front.png";
+import onFilmMockBlackModel1 from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/black/model-1.png";
+import onFilmMockBlackModel2 from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/black/model-2.png";
+import onFilmMockBlueFront from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/blue/front.png";
+import onFilmMockBlueModel1 from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/blue/model-1.png";
+import onFilmMockBlueModel2 from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/blue/model-2.png";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1211,6 +1221,99 @@ export const products: Product[] = [
           modelBack: {
             url: americanDistressHatBlackModelMan,
             alt: "Man wearing the black American Distress Hat",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-on-film-mock-long-sleeve-red",
+    slug: "caught-on-film-mock-long-sleeve-red",
+    name: "ON FILM MOCK LONG SLEEVE",
+    collectionId: "collection-2",
+    category: "Tops",
+    price: 195,
+    description:
+      "Fitted mock-neck long sleeve printed throughout with the Caught on Film contact-sheet motif.",
+    featured: true,
+    displayOrder: 5,
+    swatchGroup: "on-film-mock-long-sleeve",
+    variants: [
+      {
+        id: "red",
+        color: "Red",
+        swatch: "#9f1017",
+        sku: "NC-COF-MOCK-RED",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: onFilmMockRedFront,
+            alt: "Red On Film Mock Long Sleeve — front product shot",
+          },
+          modelFront: {
+            url: onFilmMockRedModel1,
+            alt: "Model wearing the red On Film Mock Long Sleeve — look 1",
+          },
+          modelBack: {
+            url: onFilmMockRedModel2,
+            alt: "Model wearing the red On Film Mock Long Sleeve — look 2",
+          },
+        },
+      },
+      {
+        id: "blue",
+        color: "Blue",
+        swatch: "#315e7d",
+        sku: "NC-COF-MOCK-BLU",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: onFilmMockBlueFront,
+            alt: "Blue On Film Mock Long Sleeve — front product shot",
+          },
+          modelFront: {
+            url: onFilmMockBlueModel1,
+            alt: "Model wearing the blue On Film Mock Long Sleeve — look 1",
+          },
+          modelBack: {
+            url: onFilmMockBlueModel2,
+            alt: "Model wearing the blue On Film Mock Long Sleeve — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-on-film-mock-long-sleeve-black",
+    slug: "caught-on-film-mock-long-sleeve-black",
+    name: "ON FILM MOCK LONG SLEEVE",
+    collectionId: "collection-2",
+    category: "Tops",
+    price: 195,
+    description:
+      "Fitted mock-neck long sleeve printed throughout with the Caught on Film contact-sheet motif.",
+    featured: true,
+    displayOrder: 6,
+    swatchGroup: "on-film-mock-long-sleeve",
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-MOCK-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: onFilmMockBlackFront,
+            alt: "Black On Film Mock Long Sleeve — front product shot",
+          },
+          modelFront: {
+            url: onFilmMockBlackModel1,
+            alt: "Model wearing the black On Film Mock Long Sleeve — look 1",
+          },
+          modelBack: {
+            url: onFilmMockBlackModel2,
+            alt: "Model wearing the black On Film Mock Long Sleeve — look 2",
           },
         },
       },
