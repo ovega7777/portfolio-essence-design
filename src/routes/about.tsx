@@ -71,6 +71,15 @@ function About() {
               <span className="font-medium">Lucky Day Co</span>, a refined
               commercial framework for luxury sales and distribution.
             </p>
+            <a
+              href="/nicholas-curzon-resume-2026.pdf"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View Nicholas Curzon's resume (opens in a new tab)"
+              className="inline-flex min-h-14 items-center border border-foreground px-[30px] py-5 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
+            >
+              View Resume →
+            </a>
           </div>
         </div>
       </section>

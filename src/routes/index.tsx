@@ -13,17 +13,17 @@ function Home() {
   return (
     <SiteFrame className="[--background:#fff] [--card:#fff] [--foreground:#111] [--muted-foreground:#666] [--border:#d9d9d9]">
       <section className="mx-auto max-w-6xl px-6 pb-16 pt-10 md:pb-20 md:pt-14">
-        <div className="grid items-end gap-8 md:grid-cols-12 md:gap-10">
+        <div className="grid items-start gap-8 md:grid-cols-12 md:gap-10">
           <div className="md:col-span-5">
             <img
               src={noComplyPrimary}
               alt="Nicholas Curzon creative direction portrait featuring a black patched jacket"
               width={960}
               height={1280}
-              className="h-auto w-full bg-neutral-100 object-contain"
+              className="h-auto w-[88%] bg-neutral-100 object-contain"
             />
           </div>
-          <div className="md:col-span-7 md:pb-2">
+          <div className="md:col-span-7">
             <p className="eyebrow mb-4">Portfolio — 2026</p>
             <h1 className="font-serif text-5xl leading-[0.9] tracking-tight sm:text-6xl lg:text-8xl">
               Nicholas <span className="italic">Curzon</span>
@@ -33,12 +33,15 @@ function Home() {
               apparel, brand identities, campaign imagery, and digital
               experiences with a focused commercial point of view.
             </p>
-            <Link
-              to="/about"
-              className="mt-7 inline-flex border-b border-black pb-1 text-[11px] font-bold uppercase tracking-[0.25em] transition-opacity hover:opacity-55 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            <a
+              href="/nicholas-curzon-resume-2026.pdf"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="View Nicholas Curzon's resume (opens in a new tab)"
+              className="mt-7 inline-flex min-h-14 items-center border border-black px-[30px] py-5 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
               View Resume →
-            </Link>
+            </a>
           </div>
         </div>
       </section>
