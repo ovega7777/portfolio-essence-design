@@ -180,6 +180,10 @@ import onFilmScarfFront from "@/assets/products/caught-on-film/on-film-scarf/bla
 import onFilmScarfModel1 from "@/assets/products/caught-on-film/on-film-scarf/black-white/model-1.jpg";
 import onFilmScarfModel2 from "@/assets/products/caught-on-film/on-film-scarf/black-white/model-2.jpg";
 
+import onFilmToteFront from "@/assets/products/caught-on-film/on-film-tote-bag/black-white/front.jpg";
+import onFilmToteModel2 from "@/assets/products/caught-on-film/on-film-tote-bag/black-white/model-2.jpg";
+import onFilmToteModel3 from "@/assets/products/caught-on-film/on-film-tote-bag/black-white/model-3.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1839,6 +1843,48 @@ export const products: Product[] = [
             url: onFilmScarfModel2,
             alt: "Model wearing the black and white On Film Scarf — look 2",
           },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-on-film-tote-bag",
+    slug: "caught-on-film-tote-bag",
+    name: "ON FILM TOTE BAG",
+    collectionId: "collection-2",
+    category: "Accessories",
+    price: 150,
+    description:
+      "Structured black-and-white tote bag covered in the Caught on Film contact-sheet print with long black handles.",
+    featured: true,
+    carouselHover: true,
+    displayOrder: 19,
+    variants: [
+      {
+        id: "black-white",
+        color: "BLACK/WHITE",
+        swatch: "#1a1a1a",
+        sku: "NC-COF-FILM-TOTE",
+        sizes: ["ONE SIZE FITS ALL"],
+        images: {
+          frontProduct: {
+            url: onFilmToteFront,
+            alt: "Black and white On Film Tote Bag — product shot",
+          },
+          modelFront: {
+            url: onFilmScarfModel2,
+            alt: "Model carrying the black and white On Film Tote Bag — look 1",
+          },
+          modelBack: {
+            url: onFilmToteModel2,
+            alt: "Model carrying the black and white On Film Tote Bag — look 2",
+          },
+          extraShots: [
+            {
+              url: onFilmToteModel3,
+              alt: "Model carrying the black and white On Film Tote Bag — look 3",
+            },
+          ],
         },
       },
     ],
