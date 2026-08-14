@@ -93,9 +93,11 @@ function CommandCollection() {
       document.getElementById("products")?.scrollIntoView({ behavior: "smooth" }),
     );
   const chooseCategory = (cat: string) => {
-    setCategory(cat);
     setMenuOpen(false);
-    showProducts();
+    navigate({
+      to: "/projects/no-comply/designs",
+      search: { cat, sort: "order", q: "" },
+    });
   };
   const chooseCollection = (collectionId: string) => {
     setMenuOpen(false);

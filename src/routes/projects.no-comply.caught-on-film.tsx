@@ -60,14 +60,12 @@ function CaughtOnFilmCollection() {
       search: (previous: SearchState) => ({ ...previous, q }),
       replace: true,
     });
-  const showProducts = () =>
-    requestAnimationFrame(() =>
-      document.getElementById("caught-on-film-products")?.scrollIntoView({ behavior: "smooth" }),
-    );
   const chooseCategory = (cat: string) => {
-    setCategory(cat);
     setMenuOpen(false);
-    showProducts();
+    navigate({
+      to: "/projects/no-comply/designs",
+      search: { cat, sort: "order", q: "" },
+    });
   };
   const openMenu = (focusSearch = false) => {
     setFocusMenuSearch(focusSearch);
@@ -206,7 +204,7 @@ function CaughtOnFilmCollection() {
               </p>
               <div className="mt-5 flex flex-col gap-4 text-xl uppercase tracking-[0.05em]">
                 <Link
-                  to="/projects/no-comply"
+                  to="/projects/no-comply/command"
                   search={{ cat: "all", sort: "order", q: "" }}
                   onClick={() => setMenuOpen(false)}
                 >

@@ -16,7 +16,7 @@ import { collections } from "@/data/collections";
 import { LogoBannerHUD } from "@/components/no-comply/logo-banner-hud";
 
 const COMMAND = collections[0];
-const CATEGORIES = getCategories(COMMAND.id);
+const CATEGORIES = getCategories();
 const CAUGHT_ON_FILM = collections[1];
 
 const toCarouselItems = (collectionId: string, featuredOnly = false): CarouselItem[] =>
@@ -94,9 +94,9 @@ function NoComplyHome() {
     setFocusMenuSearch(false);
     setMenuOpen(true);
   };
-  const goToCommand = (cat: string, q = "") => {
+  const goToDesigns = (cat: string, q = "") => {
     setMenuOpen(false);
-    navigate({ to: "/projects/no-comply/command", search: { cat, sort: "order", q } });
+    navigate({ to: "/projects/no-comply/designs", search: { cat, sort: "order", q } });
   };
 
   useEffect(() => {
@@ -168,7 +168,7 @@ function NoComplyHome() {
             <form
               onSubmit={(event) => {
                 event.preventDefault();
-                goToCommand("all", menuQuery);
+                goToDesigns("all", menuQuery);
               }}
               className="mt-6 flex h-14 items-center gap-4 border border-black/25 bg-white px-4 transition-colors focus-within:border-black"
             >
@@ -193,7 +193,7 @@ function NoComplyHome() {
               <div className="mt-5 flex flex-col items-start gap-3.5">
                 <button
                   type="button"
-                  onClick={() => goToCommand("all")}
+                  onClick={() => goToDesigns("all")}
                   className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
                 >
                   All Designs
@@ -202,7 +202,7 @@ function NoComplyHome() {
                   <button
                     key={category}
                     type="button"
-                    onClick={() => goToCommand(category)}
+                    onClick={() => goToDesigns(category)}
                     className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
                   >
                     {category}
