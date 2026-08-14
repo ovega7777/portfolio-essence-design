@@ -81,9 +81,15 @@ export function SiteFooter() {
   );
 }
 
-export function SiteFrame({ children }: { children: ReactNode }) {
+export function SiteFrame({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className={`min-h-screen bg-background text-foreground ${className}`}>
       <SiteNav />
       <main className="pt-20">{children}</main>
       <SiteFooter />

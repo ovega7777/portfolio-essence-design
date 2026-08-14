@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
-import noComplyThumb from "../assets/no-comply-hero.png.asset.json";
+import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
+import noComplySecondary from "../assets/home/no-comply-secondary.jpg";
 import luckyDayThumb from "../assets/lucky-day-thumb.jpg";
 
 export const Route = createFileRoute("/")({
@@ -9,102 +10,88 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <SiteFrame>
-      {/* Hero */}
-      <section className="mx-auto max-w-6xl px-6 pt-6 pb-32 md:pt-10 md:pb-40">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-8">
-            <p className="eyebrow mb-8">Portfolio — 2026</p>
-            <h1 className="font-serif text-5xl leading-[0.95] tracking-tight md:text-7xl lg:text-8xl">
-              Creative <span className="italic">Commerce</span>
-            </h1>
-            <p className="mt-10 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              Nicholas Curzon blends the precision of pattern-making with the
-              strategic rigor of international business. Currently scaling
-              family-led sales operations with a designer's eye.
-            </p>
+    <SiteFrame className="[--background:#fff] [--card:#fff] [--foreground:#111] [--muted-foreground:#666] [--border:#d9d9d9]">
+      <section className="mx-auto max-w-6xl px-6 pb-16 pt-10 md:pb-20 md:pt-14">
+        <div className="grid items-end gap-8 md:grid-cols-12 md:gap-10">
+          <div className="md:col-span-5">
+            <img
+              src={noComplyPrimary}
+              alt="Nicholas Curzon creative direction portrait featuring a black patched jacket"
+              width={960}
+              height={1280}
+              className="h-auto w-full bg-neutral-100 object-contain"
+            />
           </div>
-          <div className="flex flex-col justify-end pb-2 lg:col-span-4">
-            <div className="space-y-8 border-l border-border pl-6 md:pl-8 text-base md:text-lg">
-              <div>
-                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
-                  Education
-                </p>
-                <p className="font-semibold">Fashion Institute of Technology</p>
-                <p className="text-muted-foreground">
-                  Bachelor of Science in Fashion Business Management
-                </p>
-                <p className="mt-3 font-semibold">University of Miami Business School</p>
-                <p className="text-muted-foreground">
-                  Master of Science in International Business
-                </p>
-              </div>
-              <div>
-                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
-                  Focus
-                </p>
-                <p className="font-semibold">Sales Strategy & Product Design</p>
-              </div>
-              <div>
-                <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.2em] text-foreground">
-                  Based
-                </p>
-                <p className="font-semibold">New York / Miami</p>
-              </div>
-            </div>
+          <div className="md:col-span-7 md:pb-2">
+            <p className="eyebrow mb-4">Portfolio — 2026</p>
+            <h1 className="font-serif text-5xl leading-[0.9] tracking-tight sm:text-6xl lg:text-8xl">
+              Nicholas <span className="italic">Curzon</span>
+            </h1>
+            <p className="mt-6 max-w-2xl text-base leading-relaxed text-black/70 md:text-lg">
+              Product designer, graphic designer, and creative director shaping
+              apparel, brand identities, campaign imagery, and digital
+              experiences with a focused commercial point of view.
+            </p>
+            <Link
+              to="/about"
+              className="mt-7 inline-flex border-b border-black pb-1 text-[11px] font-bold uppercase tracking-[0.25em] transition-opacity hover:opacity-55 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            >
+              View Resume →
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Selected Works */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="mb-12 flex items-end justify-between">
+      <section className="mx-auto max-w-6xl border-t border-black/15 px-6 pb-16 pt-12 md:pb-20 md:pt-14">
+        <div className="mb-8 flex items-end justify-between md:mb-10">
           <h2 className="font-serif text-4xl">Selected Works</h2>
-          <div className="mx-8 mb-3 h-px flex-1 bg-border" />
+          <div className="mx-6 mb-3 hidden h-px flex-1 bg-black/15 sm:block" />
           <Link
             to="/projects"
-            className="text-[11px] font-bold uppercase tracking-[0.25em] hover:underline"
+            className="text-[11px] font-bold uppercase tracking-[0.25em] hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
           >
             View all
           </Link>
         </div>
 
-        <div className="grid gap-16 md:grid-cols-2">
+        <div className="space-y-12 md:space-y-14">
           <ProjectCard
             to="/projects/no-comply"
-            title="No Comply"
-            meta="Visual Identity & Apparel Design"
-            src={noComplyThumb.url}
-            alt="No Comply — brutalist streetwear moodboard"
+            number="01"
+            title="NO COMPLY USA"
+            description="Product design, graphic design, and creative direction for an experimental apparel brand—developing its collections, visual identity, campaign imagery, graphics, and digital presentation."
+            src={noComplyPrimary}
+            alt="NO COMPLY USA campaign model wearing a black patched jacket"
+            secondarySrc={noComplySecondary}
+            secondaryAlt="NO COMPLY USA campaign models in black and navy apparel"
           />
           <ProjectCard
             to="/projects/lucky-day-co"
-            title="Lucky Day Co"
-            meta="Business Development & Brand Strategy"
+            number="02"
+            title="LUCKY DAY CO."
+            description="Product design, graphic design, and creative direction for a refined lifestyle brand—shaping its identity, packaging, campaign visuals, and cohesive customer-facing experience."
             src={luckyDayThumb}
             alt="Lucky Day Co — refined product still life"
           />
         </div>
       </section>
 
-      {/* About preview */}
-      <section className="mx-auto max-w-6xl px-6 py-24 border-t border-border">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <p className="eyebrow">About</p>
-          </div>
-          <div className="md:col-span-8">
-            <p className="font-serif text-3xl leading-snug md:text-4xl">
-              A designer's discipline applied to the architecture of sales —
-              built on a foundation of pattern-making, international business,
-              and a family legacy of commercial craft.
-            </p>
-            <Link
-              to="/about"
-              className="mt-10 inline-block text-[11px] font-bold uppercase tracking-[0.25em] border-b border-foreground pb-1 hover:text-muted-foreground hover:border-muted-foreground"
-            >
-              Read More
-            </Link>
+      <section className="mx-auto max-w-6xl border-t border-black/15 px-6 py-12 md:py-14">
+        <div className="grid gap-7 md:grid-cols-12 md:gap-10">
+          <h2 className="eyebrow text-black md:col-span-4">Project Contributions</h2>
+          <div className="grid gap-x-8 gap-y-3 text-lg md:col-span-8 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              "Product Design",
+              "Graphic Design",
+              "Branding",
+              "Creative Direction",
+              "Campaign Development",
+              "Digital Experience",
+            ].map((contribution) => (
+              <p key={contribution} className="border-t border-black/15 pt-3">
+                {contribution}
+              </p>
+            ))}
           </div>
         </div>
       </section>
@@ -114,37 +101,73 @@ function Home() {
 
 function ProjectCard({
   to,
+  number,
   title,
-  meta,
+  description,
   src,
   alt,
+  secondarySrc,
+  secondaryAlt,
 }: {
   to: "/projects/no-comply" | "/projects/lucky-day-co";
+  number: string;
   title: string;
-  meta: string;
+  description: string;
   src: string;
   alt: string;
+  secondarySrc?: string;
+  secondaryAlt?: string;
 }) {
   return (
-    <Link to={to} className="group block">
-      <div className="mb-6 overflow-hidden bg-secondary">
+    <Link
+      to={to}
+      className="group block border-t border-black pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+    >
+      <div className="mb-4 flex items-center justify-between gap-4">
+        <span className="eyebrow text-black">{number}</span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
+          View Project →
+        </span>
+      </div>
+      <div
+        className={`mb-5 overflow-hidden bg-neutral-100 ${
+          secondarySrc ? "grid items-start gap-2 md:grid-cols-[1.45fr_1fr]" : ""
+        }`}
+      >
         <img
           src={src}
           alt={alt}
           loading="lazy"
           width={1600}
           height={1067}
-          className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className="h-auto w-full object-contain transition-opacity duration-300 group-hover:opacity-90"
         />
+        {secondarySrc && secondaryAlt && (
+          <img
+            src={secondarySrc}
+            alt={secondaryAlt}
+            loading="lazy"
+            width={1280}
+            height={1280}
+            className="h-auto w-full object-contain transition-opacity duration-300 group-hover:opacity-90"
+          />
+        )}
       </div>
-      <div className="flex items-start justify-between">
-        <div>
-          <h3 className="font-serif text-2xl">{title}</h3>
-          <p className="mt-1 text-sm italic text-muted-foreground">{meta}</p>
+      <div className="grid gap-3 md:grid-cols-12 md:gap-8">
+        <h3 className="font-serif text-3xl leading-none md:col-span-4 md:text-4xl">
+          {title}
+        </h3>
+        <div className="flex items-start gap-5 md:col-span-8">
+          <p className="max-w-3xl text-sm leading-relaxed text-black/65 md:text-base">
+            {description}
+          </p>
+          <span
+            aria-hidden
+            className="ml-auto grid size-9 shrink-0 place-items-center rounded-full border border-black transition-colors group-hover:bg-black group-hover:text-white"
+          >
+            →
+          </span>
         </div>
-        <span className="grid size-10 place-items-center rounded-full border border-border transition-colors group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent">
-          →
-        </span>
       </div>
     </Link>
   );
