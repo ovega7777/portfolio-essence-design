@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
 import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
-import noComplySecondary from "../assets/home/no-comply-secondary.jpg";
+import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
+import noComplyCover03 from "../assets/home/no-comply-cover-03.jpg";
 import luckyDayThumb from "../assets/lucky-day-thumb.jpg";
 
 export const Route = createFileRoute("/")({
@@ -62,8 +63,16 @@ function Home() {
             description="Product design, graphic design, and creative direction for an experimental apparel brand—developing its collections, visual identity, campaign imagery, graphics, and digital presentation."
             src={noComplyPrimary}
             alt="NO COMPLY USA campaign model wearing a black patched jacket"
-            secondarySrc={noComplySecondary}
-            secondaryAlt="NO COMPLY USA campaign models in black and navy apparel"
+            additionalImages={[
+              {
+                src: noComplyCover02,
+                alt: "NO COMPLY USA campaign model wearing a black patched shirt and plaid trousers",
+              },
+              {
+                src: noComplyCover03,
+                alt: "NO COMPLY USA campaign model wearing a black patched jacket and carrying a black bag",
+              },
+            ]}
           />
           <ProjectCard
             to="/projects/lucky-day-co"
@@ -106,8 +115,7 @@ function ProjectCard({
   description,
   src,
   alt,
-  secondarySrc,
-  secondaryAlt,
+  additionalImages,
 }: {
   to: "/projects/no-comply" | "/projects/lucky-day-co";
   number: string;
@@ -115,8 +123,7 @@ function ProjectCard({
   description: string;
   src: string;
   alt: string;
-  secondarySrc?: string;
-  secondaryAlt?: string;
+  additionalImages?: Array<{ src: string; alt: string }>;
 }) {
   return (
     <Link
@@ -131,27 +138,28 @@ function ProjectCard({
       </div>
       <div
         className={`mb-5 overflow-hidden bg-neutral-100 ${
-          secondarySrc ? "grid items-start gap-2 md:grid-cols-[1.45fr_1fr]" : ""
+          additionalImages?.length ? "grid grid-cols-1 gap-0 md:grid-cols-3" : ""
         }`}
       >
         <img
           src={src}
           alt={alt}
           loading="lazy"
-          width={1600}
-          height={1067}
-          className="h-auto w-full object-contain transition-opacity duration-300 group-hover:opacity-90"
+          width={960}
+          height={1280}
+          className="block h-auto w-full transition-opacity duration-300 group-hover:opacity-90"
         />
-        {secondarySrc && secondaryAlt && (
+        {additionalImages?.map((image) => (
           <img
-            src={secondarySrc}
-            alt={secondaryAlt}
+            key={image.src}
+            src={image.src}
+            alt={image.alt}
             loading="lazy"
-            width={1280}
+            width={960}
             height={1280}
-            className="h-auto w-full object-contain transition-opacity duration-300 group-hover:opacity-90"
+            className="hidden h-auto w-full transition-opacity duration-300 group-hover:opacity-90 md:block"
           />
-        )}
+        ))}
       </div>
       <div className="grid gap-3 md:grid-cols-12 md:gap-8">
         <h3 className="font-serif text-3xl leading-none md:col-span-4 md:text-4xl">
