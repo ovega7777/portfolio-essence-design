@@ -294,9 +294,15 @@ function CaughtOnFilmCollection() {
 
             {displayed.length > 0 ? (
               <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
-                {displayed.map((product) => (
-                  <ProductCard key={product.id} product={product} />
-                ))}
+                {displayed.flatMap((product) =>
+                  (product.listingVariantIds ?? [product.variants[0].id]).map((variantId) => (
+                    <ProductCard
+                      key={`${product.id}-${variantId}`}
+                      product={product}
+                      initialVariantId={variantId}
+                    />
+                  )),
+                )}
               </div>
             ) : (
               <div className="flex min-h-[360px] items-center justify-center py-20 text-center">

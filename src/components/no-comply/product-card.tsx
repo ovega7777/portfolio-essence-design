@@ -2,13 +2,16 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { getGroupedVariants, type Product } from "@/data/products";
 
-type Props = { product: Product };
+type Props = { product: Product; initialVariantId?: string };
 
-export function ProductCard({ product }: Props) {
+export function ProductCard({ product, initialVariantId }: Props) {
   const navigate = useNavigate();
-  const [variantId, setVariantId] = useState(product.variants[0].id);
-  const variant =
-    product.variants.find((v) => v.id === variantId) ?? product.variants[0];
+  const [variantId, setVariantId] = useState(
+    product.variants.some((variant) => variant.id === initialVariantId)
+      ? initialVariantId!
+      : product.variants[0].id,
+  );
+  const variant = product.variants.find((v) => v.id === variantId) ?? product.variants[0];
 
   const grouped = getGroupedVariants(product);
   const selectedKey = `${product.slug}:${variant.id}`;
@@ -16,8 +19,7 @@ export function ProductCard({ product }: Props) {
   const [showModel, setShowModel] = useState(false);
 
   const displayed =
-    (previewKey &&
-      grouped.find((g) => `${g.productSlug}:${g.variantId}` === previewKey)) ||
+    (previewKey && grouped.find((g) => `${g.productSlug}:${g.variantId}` === previewKey)) ||
     grouped.find((g) => `${g.productSlug}:${g.variantId}` === selectedKey) ||
     grouped[0];
 

@@ -30,6 +30,8 @@ export type Product = {
   displayOrder: number;
   /** Products sharing the same swatchGroup show a unified color-selector row. */
   swatchGroup?: string;
+  /** Variant ids that receive individual collection cards. Defaults to the first variant. */
+  listingVariantIds?: string[];
   variants: ProductVariant[];
 };
 
@@ -113,6 +115,16 @@ import onFilmMockBlackModel2 from "@/assets/products/caught-on-film/on-film-mock
 import onFilmMockBlueFront from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/blue/front.png";
 import onFilmMockBlueModel1 from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/blue/model-1.png";
 import onFilmMockBlueModel2 from "@/assets/products/caught-on-film/on-film-mock-long-sleeve/blue/model-2.png";
+
+import nc17HoodieBlackFront from "@/assets/products/caught-on-film/nc17-hoodie/black/front.jpg";
+import nc17HoodieBlackModel1 from "@/assets/products/caught-on-film/nc17-hoodie/black/model-1.jpg";
+import nc17HoodieBlackModel2 from "@/assets/products/caught-on-film/nc17-hoodie/black/model-2.jpg";
+import nc17HoodieWhiteFront from "@/assets/products/caught-on-film/nc17-hoodie/white/front.jpg";
+import nc17HoodieWhiteModel1 from "@/assets/products/caught-on-film/nc17-hoodie/white/model-1.jpg";
+import nc17HoodieWhiteModel2 from "@/assets/products/caught-on-film/nc17-hoodie/white/model-2.jpg";
+import nc17HoodieRedFront from "@/assets/products/caught-on-film/nc17-hoodie/red/front.jpg";
+import nc17HoodieRedModel1 from "@/assets/products/caught-on-film/nc17-hoodie/red/model-1.jpg";
+import nc17HoodieRedModel2 from "@/assets/products/caught-on-film/nc17-hoodie/red/model-2.jpg";
 
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
@@ -1221,6 +1233,84 @@ export const products: Product[] = [
           modelBack: {
             url: americanDistressHatBlackModelMan,
             alt: "Man wearing the black American Distress Hat",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-nc17-hoodie",
+    slug: "caught-nc17-hoodie",
+    name: "NC-17 HOODIE",
+    collectionId: "collection-2",
+    category: "Tops",
+    price: 145,
+    description:
+      "Pullover hoodie printed with the Caught on Film collection's NC-17 content-warning graphic. Cut with a relaxed fit, drawstring-free hood, and kangaroo pocket.",
+    featured: true,
+    displayOrder: 7,
+    listingVariantIds: ["black", "white"],
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-HOOD-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: nc17HoodieBlackFront,
+            alt: "Black NC-17 Hoodie — front product shot",
+          },
+          modelFront: {
+            url: nc17HoodieBlackModel1,
+            alt: "Model wearing the black NC-17 Hoodie — look 1",
+          },
+          modelBack: {
+            url: nc17HoodieBlackModel2,
+            alt: "Model wearing the black NC-17 Hoodie — look 2",
+          },
+        },
+      },
+      {
+        id: "white",
+        color: "White",
+        swatch: "#f4f4f1",
+        sku: "NC-COF-HOOD-WHT",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: nc17HoodieWhiteFront,
+            alt: "White NC-17 Hoodie — front product shot",
+          },
+          modelFront: {
+            url: nc17HoodieWhiteModel1,
+            alt: "Model wearing the white NC-17 Hoodie — look 1",
+          },
+          modelBack: {
+            url: nc17HoodieWhiteModel2,
+            alt: "Model wearing the white NC-17 Hoodie — look 2",
+          },
+        },
+      },
+      {
+        id: "red",
+        color: "Red",
+        swatch: "#a80f19",
+        sku: "NC-COF-HOOD-RED",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: nc17HoodieRedFront,
+            alt: "Red NC-17 Hoodie — front product shot",
+          },
+          modelFront: {
+            url: nc17HoodieRedModel1,
+            alt: "Model wearing the red NC-17 Hoodie — look 1",
+          },
+          modelBack: {
+            url: nc17HoodieRedModel2,
+            alt: "Model wearing the red NC-17 Hoodie — look 2",
           },
         },
       },
