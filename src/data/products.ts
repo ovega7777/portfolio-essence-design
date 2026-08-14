@@ -158,6 +158,10 @@ import starTruckerHatBlackModel1 from "@/assets/products/caught-on-film/star-stu
 import starTruckerHatBlackModel2 from "@/assets/products/caught-on-film/star-studded-trucker-hat/black/model-2.jpg";
 import starTruckerHatBlackModel3 from "@/assets/products/caught-on-film/star-studded-trucker-hat/black/model-3.jpg";
 
+import studdedSlippersBlackFront from "@/assets/products/caught-on-film/studded-slippers/black/front.jpg";
+import studdedSlippersBlackBack from "@/assets/products/caught-on-film/studded-slippers/black/back.jpg";
+import studdedSlippersBlackModel1 from "@/assets/products/caught-on-film/studded-slippers/black/model-1.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1636,6 +1640,45 @@ export const products: Product[] = [
               alt: "Model wearing the black Star Studded Trucker Hat — look 3",
             },
           ],
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-studded-slippers",
+    slug: "caught-studded-slippers",
+    name: "STUDDED SLIPPERS",
+    collectionId: "collection-2",
+    category: "Accessories",
+    price: 215,
+    description:
+      "Black slip-on slippers with a tonal textured upper and double rows of silver studs around the platform sole.",
+    featured: false,
+    displayOrder: 14,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-STUD-SLIP-BLK",
+        sizes: ["5", "6", "7", "8", "9", "10", "11", "12", "13"],
+        images: {
+          frontProduct: {
+            url: studdedSlippersBlackFront,
+            alt: "Black Studded Slippers — front product view",
+          },
+          backProduct: {
+            url: studdedSlippersBlackBack,
+            alt: "Black Studded Slippers — rear product view",
+          },
+          modelFront: {
+            url: studdedSlippersBlackModel1,
+            alt: "Model wearing the black Studded Slippers — look 1",
+          },
+          modelBack: {
+            url: studdedShortsBlackModel2,
+            alt: "Model wearing the black Studded Slippers — look 2",
+          },
         },
       },
     ],
