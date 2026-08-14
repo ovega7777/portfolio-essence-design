@@ -27,6 +27,8 @@ export type Product = {
   price: number;
   description: string;
   featured: boolean;
+  /** Enables the alternate product image on its Featured Pieces carousel card. */
+  carouselHover?: boolean;
   displayOrder: number;
   /** Products sharing the same swatchGroup show a unified color-selector row. */
   swatchGroup?: string;
@@ -169,6 +171,10 @@ import nc17PatchCapBlackFront from "@/assets/products/caught-on-film/nc17-patch-
 import nc17PatchCapBlackBack from "@/assets/products/caught-on-film/nc17-patch-cap/black/back.jpg";
 import nc17PatchCapBlackModel1 from "@/assets/products/caught-on-film/nc17-patch-cap/black/model-1.jpg";
 import nc17PatchCapBlackModel2 from "@/assets/products/caught-on-film/nc17-patch-cap/black/model-2.jpg";
+
+import onFilmSkullCapFront from "@/assets/products/caught-on-film/on-film-skull-cap/black-white/front.jpg";
+import onFilmSkullCapBack from "@/assets/products/caught-on-film/on-film-skull-cap/black-white/back.jpg";
+import onFilmSkullCapModel1 from "@/assets/products/caught-on-film/on-film-skull-cap/black-white/model-1.jpg";
 
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
@@ -1756,6 +1762,42 @@ export const products: Product[] = [
           modelBack: {
             url: nc17PatchCapBlackModel2,
             alt: "Model wearing the black NC-17 Patch Cap — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-on-film-skull-cap",
+    slug: "caught-on-film-skull-cap",
+    name: "ON FILM SKULL CAP",
+    collectionId: "collection-2",
+    category: "Accessories",
+    price: 115,
+    description:
+      "Close-fitting skull cap covered in the black-and-white Caught on Film contact-sheet print.",
+    featured: true,
+    carouselHover: true,
+    displayOrder: 17,
+    variants: [
+      {
+        id: "black-white-film-print",
+        color: "Black/White film print",
+        swatch: "#1a1a1a",
+        sku: "NC-COF-FILM-SKULL-CAP",
+        sizes: ["ONE SIZE FITS ALL"],
+        images: {
+          frontProduct: {
+            url: onFilmSkullCapFront,
+            alt: "Black and white On Film Skull Cap — front product view",
+          },
+          backProduct: {
+            url: onFilmSkullCapBack,
+            alt: "Black and white On Film Skull Cap — alternate product views",
+          },
+          modelFront: {
+            url: onFilmSkullCapModel1,
+            alt: "Model wearing the black and white On Film Skull Cap",
           },
         },
       },

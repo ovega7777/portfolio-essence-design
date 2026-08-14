@@ -34,6 +34,7 @@ const toCarouselItems = (collectionId: string, featuredOnly = false): CarouselIt
         name: product.name,
         price: product.price,
         image: variant.images.frontProduct,
+        hoverImage: product.carouselHover ? variant.images.modelFront : undefined,
       };
     });
 

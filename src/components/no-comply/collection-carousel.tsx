@@ -9,6 +9,7 @@ export type CarouselItem = {
   name: string;
   price: number;
   image: { url: string; alt: string };
+  hoverImage?: { url: string; alt: string };
 };
 
 type Props = {
@@ -82,15 +83,25 @@ export function CollectionCarousel({ items, label }: Props) {
             to="/products/$slug"
             params={{ slug: item.productSlug }}
             search={{ variant: item.variantId }}
-            className="w-[68%] shrink-0 snap-start bg-white text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-black sm:w-[46%] md:w-[31%] lg:w-[calc((100%-6rem)/5)]"
+            className="group w-[68%] shrink-0 snap-start bg-white text-black focus:outline-none focus-visible:ring-2 focus-visible:ring-black sm:w-[46%] md:w-[31%] lg:w-[calc((100%-6rem)/5)]"
           >
-            <div className="aspect-[3/4] w-full overflow-hidden bg-white">
+            <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
               <img
                 src={item.image.url}
                 alt={item.image.alt}
                 loading="lazy"
-                className="h-full w-full object-contain p-4"
+                className={`h-full w-full object-contain p-4 ${
+                  item.hoverImage ? "transition-opacity duration-300 group-hover:opacity-0" : ""
+                }`}
               />
+              {item.hoverImage && (
+                <img
+                  src={item.hoverImage.url}
+                  alt={item.hoverImage.alt}
+                  loading="lazy"
+                  className="absolute inset-0 h-full w-full object-contain p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                />
+              )}
             </div>
             <div className="flex items-baseline justify-between gap-3 pt-3">
               <p className="nc-display truncate text-sm tracking-[0.15em] text-black md:text-base">
