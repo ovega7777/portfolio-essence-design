@@ -165,6 +165,11 @@ import studdedSlippersBlackModel1 from "@/assets/products/caught-on-film/studded
 import studdedBeltBlackFront from "@/assets/products/caught-on-film/studded-belt/black/front.jpg";
 import studdedBeltBlackModel1 from "@/assets/products/caught-on-film/studded-belt/black/model-1.jpg";
 
+import nc17PatchCapBlackFront from "@/assets/products/caught-on-film/nc17-patch-cap/black/front.jpg";
+import nc17PatchCapBlackBack from "@/assets/products/caught-on-film/nc17-patch-cap/black/back.jpg";
+import nc17PatchCapBlackModel1 from "@/assets/products/caught-on-film/nc17-patch-cap/black/model-1.jpg";
+import nc17PatchCapBlackModel2 from "@/assets/products/caught-on-film/nc17-patch-cap/black/model-2.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1712,6 +1717,45 @@ export const products: Product[] = [
           modelFront: {
             url: studdedBeltBlackModel1,
             alt: "Model wearing the black Studded Belt",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-nc17-patch-cap",
+    slug: "caught-nc17-patch-cap",
+    name: "NC-17 PATCH CAP",
+    collectionId: "collection-2",
+    category: "Accessories",
+    price: 115,
+    description:
+      "Black adjustable cap with the NC-17 rating patch at the front and crossed-out No Comply USA embroidery at the back.",
+    featured: true,
+    displayOrder: 16,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-NC17-CAP-BLK",
+        sizes: ["ONE SIZE FITS ALL"],
+        images: {
+          frontProduct: {
+            url: nc17PatchCapBlackFront,
+            alt: "Black NC-17 Patch Cap — front product view",
+          },
+          backProduct: {
+            url: nc17PatchCapBlackBack,
+            alt: "Black NC-17 Patch Cap — back product view",
+          },
+          modelFront: {
+            url: nc17PatchCapBlackModel1,
+            alt: "Model wearing the black NC-17 Patch Cap — look 1",
+          },
+          modelBack: {
+            url: nc17PatchCapBlackModel2,
+            alt: "Model wearing the black NC-17 Patch Cap — look 2",
           },
         },
       },
