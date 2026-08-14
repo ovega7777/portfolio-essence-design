@@ -126,6 +126,13 @@ import nc17HoodieRedFront from "@/assets/products/caught-on-film/nc17-hoodie/red
 import nc17HoodieRedModel1 from "@/assets/products/caught-on-film/nc17-hoodie/red/model-1.jpg";
 import nc17HoodieRedModel2 from "@/assets/products/caught-on-film/nc17-hoodie/red/model-2.jpg";
 
+import theEndTankWhiteFront from "@/assets/products/caught-on-film/the-end-studded-tank/white/front.jpg";
+import theEndTankWhiteModel1 from "@/assets/products/caught-on-film/the-end-studded-tank/white/model-1.jpg";
+import theEndTankWhiteModel2 from "@/assets/products/caught-on-film/the-end-studded-tank/white/model-2.jpg";
+import theEndTankBlackFront from "@/assets/products/caught-on-film/the-end-studded-tank/black/front.jpg";
+import theEndTankBlackModel1 from "@/assets/products/caught-on-film/the-end-studded-tank/black/model-1.jpg";
+import theEndTankBlackModel2 from "@/assets/products/caught-on-film/the-end-studded-tank/black/model-2.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1311,6 +1318,63 @@ export const products: Product[] = [
           modelBack: {
             url: nc17HoodieRedModel2,
             alt: "Model wearing the red NC-17 Hoodie — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-the-end-studded-tank",
+    slug: "caught-the-end-studded-tank",
+    name: "THE END STUDDED TANK",
+    collectionId: "collection-2",
+    category: "Tops",
+    price: 115,
+    description:
+      "Fitted ribbed tank finished with a sculpted The End script graphic and studded metal details across the chest.",
+    featured: true,
+    displayOrder: 8,
+    listingVariantIds: ["white", "black"],
+    variants: [
+      {
+        id: "white",
+        color: "White",
+        swatch: "#f4f4f1",
+        sku: "NC-COF-END-TANK-WHT",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: theEndTankWhiteFront,
+            alt: "White The End Studded Tank — front product shot",
+          },
+          modelFront: {
+            url: theEndTankWhiteModel1,
+            alt: "Model wearing the white The End Studded Tank — look 1",
+          },
+          modelBack: {
+            url: theEndTankWhiteModel2,
+            alt: "Model wearing the white The End Studded Tank — look 2",
+          },
+        },
+      },
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-END-TANK-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: theEndTankBlackFront,
+            alt: "Black The End Studded Tank — front product shot",
+          },
+          modelFront: {
+            url: theEndTankBlackModel1,
+            alt: "Model wearing the black The End Studded Tank — look 1",
+          },
+          modelBack: {
+            url: theEndTankBlackModel2,
+            alt: "Model wearing the black The End Studded Tank — look 2",
           },
         },
       },
