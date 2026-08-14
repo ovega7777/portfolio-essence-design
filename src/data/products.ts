@@ -176,6 +176,10 @@ import onFilmSkullCapFront from "@/assets/products/caught-on-film/on-film-skull-
 import onFilmSkullCapBack from "@/assets/products/caught-on-film/on-film-skull-cap/black-white/back.jpg";
 import onFilmSkullCapModel1 from "@/assets/products/caught-on-film/on-film-skull-cap/black-white/model-1.jpg";
 
+import onFilmScarfFront from "@/assets/products/caught-on-film/on-film-scarf/black-white/front.jpg";
+import onFilmScarfModel1 from "@/assets/products/caught-on-film/on-film-scarf/black-white/model-1.jpg";
+import onFilmScarfModel2 from "@/assets/products/caught-on-film/on-film-scarf/black-white/model-2.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1798,6 +1802,42 @@ export const products: Product[] = [
           modelFront: {
             url: onFilmSkullCapModel1,
             alt: "Model wearing the black and white On Film Skull Cap",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-on-film-scarf",
+    slug: "caught-on-film-scarf",
+    name: "ON FILM SCARF",
+    collectionId: "collection-2",
+    category: "Accessories",
+    price: 75,
+    description:
+      "Lightweight scarf covered in the black-and-white Caught on Film contact-sheet print.",
+    featured: true,
+    carouselHover: true,
+    displayOrder: 18,
+    variants: [
+      {
+        id: "black-white-film-print",
+        color: "Black/White film print",
+        swatch: "#1a1a1a",
+        sku: "NC-COF-FILM-SCARF",
+        sizes: ["ONE SIZE FITS ALL"],
+        images: {
+          frontProduct: {
+            url: onFilmScarfFront,
+            alt: "Black and white On Film Scarf — product shot",
+          },
+          modelFront: {
+            url: onFilmScarfModel1,
+            alt: "Model wearing the black and white On Film Scarf — look 1",
+          },
+          modelBack: {
+            url: onFilmScarfModel2,
+            alt: "Model wearing the black and white On Film Scarf — look 2",
           },
         },
       },
