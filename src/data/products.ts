@@ -133,6 +133,10 @@ import theEndTankBlackFront from "@/assets/products/caught-on-film/the-end-studd
 import theEndTankBlackModel1 from "@/assets/products/caught-on-film/the-end-studded-tank/black/model-1.jpg";
 import theEndTankBlackModel2 from "@/assets/products/caught-on-film/the-end-studded-tank/black/model-2.jpg";
 
+import theEndCrewneckBlackFront from "@/assets/products/caught-on-film/the-end-studded-crewneck/black/front.jpg";
+import theEndCrewneckBlackModel1 from "@/assets/products/caught-on-film/the-end-studded-crewneck/black/model-1.jpg";
+import theEndCrewneckBlackModel2 from "@/assets/products/caught-on-film/the-end-studded-crewneck/black/model-2.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1375,6 +1379,41 @@ export const products: Product[] = [
           modelBack: {
             url: theEndTankBlackModel2,
             alt: "Model wearing the black The End Studded Tank — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-the-end-studded-crewneck",
+    slug: "caught-the-end-studded-crewneck",
+    name: "THE END STUDDED CREWNECK",
+    collectionId: "collection-2",
+    category: "Tops",
+    price: 215,
+    description:
+      "Black crewneck top finished with a studded star motif and sculpted The End script graphic across the chest.",
+    featured: true,
+    displayOrder: 9,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-END-CREW-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: theEndCrewneckBlackFront,
+            alt: "Black The End Studded Crewneck — front product shot",
+          },
+          modelFront: {
+            url: theEndCrewneckBlackModel1,
+            alt: "Model wearing the black The End Studded Crewneck — look 1",
+          },
+          modelBack: {
+            url: theEndCrewneckBlackModel2,
+            alt: "Model wearing the black The End Studded Crewneck — look 2",
           },
         },
       },
