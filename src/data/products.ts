@@ -184,6 +184,9 @@ import onFilmToteFront from "@/assets/products/caught-on-film/on-film-tote-bag/b
 import onFilmToteModel2 from "@/assets/products/caught-on-film/on-film-tote-bag/black-white/model-2.jpg";
 import onFilmToteModel3 from "@/assets/products/caught-on-film/on-film-tote-bag/black-white/model-3.jpg";
 
+import ncTheaterGlassesFront from "@/assets/products/caught-on-film/nc-theater-glasses/black-red/front.jpg";
+import ncTheaterGlassesSide from "@/assets/products/caught-on-film/nc-theater-glasses/black-red/side.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1883,6 +1886,52 @@ export const products: Product[] = [
             {
               url: onFilmToteModel3,
               alt: "Model carrying the black and white On Film Tote Bag — look 3",
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-nc-theater-glasses",
+    slug: "caught-nc-theater-glasses",
+    name: "NC THEATER GLASSES",
+    collectionId: "collection-2",
+    category: "Accessories",
+    price: 150,
+    description:
+      "Black theater glasses with red lenses and polished stud detailing along the temples.",
+    featured: true,
+    carouselHover: true,
+    displayOrder: 20,
+    variants: [
+      {
+        id: "black-red",
+        color: "BLACK / RED",
+        swatch: "#111111",
+        sku: "NC-COF-THEATER-GLASSES",
+        sizes: ["ONE SIZE FITS ALL"],
+        images: {
+          frontProduct: {
+            url: ncTheaterGlassesFront,
+            alt: "Black and red NC Theater Glasses — front product view",
+          },
+          backProduct: {
+            url: ncTheaterGlassesSide,
+            alt: "Black and red NC Theater Glasses — side product view",
+          },
+          modelFront: {
+            url: onFilmScarfModel1,
+            alt: "Model wearing the black and red NC Theater Glasses — look 1",
+          },
+          modelBack: {
+            url: studdedShortsBlackModel1,
+            alt: "Model wearing the black and red NC Theater Glasses — look 2",
+          },
+          extraShots: [
+            {
+              url: studdedSlippersBlackModel1,
+              alt: "Model wearing the black and red NC Theater Glasses — look 3",
             },
           ],
         },
