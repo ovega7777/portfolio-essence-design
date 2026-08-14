@@ -153,6 +153,11 @@ import studdedShortsBlackSide from "@/assets/products/caught-on-film/studded-sho
 import studdedShortsBlackModel1 from "@/assets/products/caught-on-film/studded-shorts/black/model-1.jpg";
 import studdedShortsBlackModel2 from "@/assets/products/caught-on-film/studded-shorts/black/model-2.jpg";
 
+import starTruckerHatBlackFront from "@/assets/products/caught-on-film/star-studded-trucker-hat/black/front.jpg";
+import starTruckerHatBlackModel1 from "@/assets/products/caught-on-film/star-studded-trucker-hat/black/model-1.jpg";
+import starTruckerHatBlackModel2 from "@/assets/products/caught-on-film/star-studded-trucker-hat/black/model-2.jpg";
+import starTruckerHatBlackModel3 from "@/assets/products/caught-on-film/star-studded-trucker-hat/black/model-3.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1590,6 +1595,47 @@ export const products: Product[] = [
             url: studdedShortsBlackModel2,
             alt: "Model wearing the black Studded Shorts — look 2",
           },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-star-studded-trucker-hat",
+    slug: "caught-star-studded-trucker-hat",
+    name: "STAR STUDDED TRUCKER HAT",
+    collectionId: "collection-2",
+    category: "Accessories",
+    price: 95,
+    description:
+      "Black mesh-back trucker hat finished with a silver-studded star and The End script across the front panel.",
+    featured: false,
+    displayOrder: 13,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-STAR-HAT-BLK",
+        sizes: ["ONE SIZE"],
+        images: {
+          frontProduct: {
+            url: starTruckerHatBlackFront,
+            alt: "Black Star Studded Trucker Hat — front product shot",
+          },
+          modelFront: {
+            url: starTruckerHatBlackModel1,
+            alt: "Model wearing the black Star Studded Trucker Hat — look 1",
+          },
+          modelBack: {
+            url: starTruckerHatBlackModel2,
+            alt: "Model wearing the black Star Studded Trucker Hat — look 2",
+          },
+          extraShots: [
+            {
+              url: starTruckerHatBlackModel3,
+              alt: "Model wearing the black Star Studded Trucker Hat — look 3",
+            },
+          ],
         },
       },
     ],

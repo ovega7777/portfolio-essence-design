@@ -19,9 +19,11 @@ const COMMAND = collections[0];
 const CATEGORIES = getCategories(COMMAND.id);
 const CAUGHT_ON_FILM = collections[1];
 
-const toCarouselItems = (collectionId: string): CarouselItem[] =>
+const toCarouselItems = (collectionId: string, featuredOnly = false): CarouselItem[] =>
   products
-    .filter((product) => product.collectionId === collectionId)
+    .filter(
+      (product) => product.collectionId === collectionId && (!featuredOnly || product.featured),
+    )
     .sort((a, b) => a.displayOrder - b.displayOrder)
     .map((product) => {
       const variant = product.variants[0];
@@ -36,7 +38,7 @@ const toCarouselItems = (collectionId: string): CarouselItem[] =>
     });
 
 const COMMAND_CAROUSEL = toCarouselItems(COMMAND.id);
-const CAUGHT_ON_FILM_CAROUSEL = toCarouselItems(CAUGHT_ON_FILM.id);
+const CAUGHT_ON_FILM_CAROUSEL = toCarouselItems(CAUGHT_ON_FILM.id, true);
 
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
 const searchSchema = z.object({

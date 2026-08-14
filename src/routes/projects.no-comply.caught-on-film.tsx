@@ -13,7 +13,7 @@ const COLLECTION = collections[1];
 const collectionProducts = products
   .filter((product) => product.collectionId === COLLECTION.id)
   .sort((a, b) => a.displayOrder - b.displayOrder);
-const CATEGORY_ORDER = ["Tops", "Outerwear", "Bottoms"];
+const CATEGORY_ORDER = ["Tops", "Outerwear", "Bottoms", "Accessories"];
 const availableCategories = new Set(getCategories(COLLECTION.id));
 const CATEGORIES = CATEGORY_ORDER.filter((category) => availableCategories.has(category));
 
