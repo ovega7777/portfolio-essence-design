@@ -137,6 +137,17 @@ import theEndCrewneckBlackFront from "@/assets/products/caught-on-film/the-end-s
 import theEndCrewneckBlackModel1 from "@/assets/products/caught-on-film/the-end-studded-crewneck/black/model-1.jpg";
 import theEndCrewneckBlackModel2 from "@/assets/products/caught-on-film/the-end-studded-crewneck/black/model-2.jpg";
 
+import theEndWarmupJacketRedFront from "@/assets/products/caught-on-film/the-end-warmup/jacket/red/front.jpg";
+import theEndWarmupJacketBlackFront from "@/assets/products/caught-on-film/the-end-warmup/jacket/black/front.jpg";
+import theEndWarmupPantRedFront from "@/assets/products/caught-on-film/the-end-warmup/pant/red/front.jpg";
+import theEndWarmupPantRedSide from "@/assets/products/caught-on-film/the-end-warmup/pant/red/side.jpg";
+import theEndWarmupPantBlackFront from "@/assets/products/caught-on-film/the-end-warmup/pant/black/front.jpg";
+import theEndWarmupPantBlackSide from "@/assets/products/caught-on-film/the-end-warmup/pant/black/side.jpg";
+import theEndWarmupRedModel1 from "@/assets/products/caught-on-film/the-end-warmup/models/red/model-1.jpg";
+import theEndWarmupRedModel2 from "@/assets/products/caught-on-film/the-end-warmup/models/red/model-2.jpg";
+import theEndWarmupBlackModel1 from "@/assets/products/caught-on-film/the-end-warmup/models/black/model-1.jpg";
+import theEndWarmupBlackModel2 from "@/assets/products/caught-on-film/the-end-warmup/models/black/model-2.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1414,6 +1425,126 @@ export const products: Product[] = [
           modelBack: {
             url: theEndCrewneckBlackModel2,
             alt: "Model wearing the black The End Studded Crewneck — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-the-end-warmup-jacket",
+    slug: "caught-the-end-warmup-jacket",
+    name: "THE END WARMUP JACKET",
+    collectionId: "collection-2",
+    category: "Outerwear",
+    price: 250,
+    description:
+      "Studded velour warmup jacket with a stand collar, full zip front, side pockets, and The End script artwork across the chest.",
+    featured: true,
+    displayOrder: 10,
+    variants: [
+      {
+        id: "red",
+        color: "Red",
+        swatch: "#790d18",
+        sku: "NC-COF-END-JKT-RED",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: theEndWarmupJacketRedFront,
+            alt: "Red The End Warmup Jacket — front product shot",
+          },
+          modelFront: {
+            url: theEndWarmupRedModel1,
+            alt: "Model wearing the red The End Warmup Jacket — look 1",
+          },
+          modelBack: {
+            url: theEndWarmupRedModel2,
+            alt: "Model wearing the red The End Warmup Jacket — look 2",
+          },
+        },
+      },
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-END-JKT-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: theEndWarmupJacketBlackFront,
+            alt: "Black The End Warmup Jacket — front product shot",
+          },
+          modelFront: {
+            url: theEndWarmupBlackModel1,
+            alt: "Model wearing the black The End Warmup Jacket — look 1",
+          },
+          modelBack: {
+            url: theEndWarmupBlackModel2,
+            alt: "Model wearing the black The End Warmup Jacket — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-the-end-warmup-pant",
+    slug: "caught-the-end-warmup-pant",
+    name: "THE END WARMUP PANT",
+    collectionId: "collection-2",
+    category: "Bottoms",
+    price: 150,
+    description:
+      "Wide-leg velour warmup pant with an elastic waist, side pockets, and double rows of silver studs along each outer seam.",
+    featured: true,
+    displayOrder: 11,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-END-PANT-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: theEndWarmupPantBlackFront,
+            alt: "Black The End Warmup Pant — front product shot",
+          },
+          backProduct: {
+            url: theEndWarmupPantBlackSide,
+            alt: "Black The End Warmup Pant — side product shot",
+          },
+          modelFront: {
+            url: theEndWarmupBlackModel1,
+            alt: "Model wearing the black The End Warmup Pant — look 1",
+          },
+          modelBack: {
+            url: theEndWarmupBlackModel2,
+            alt: "Model wearing the black The End Warmup Pant — look 2",
+          },
+        },
+      },
+      {
+        id: "red",
+        color: "Red",
+        swatch: "#790d18",
+        sku: "NC-COF-END-PANT-RED",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: theEndWarmupPantRedFront,
+            alt: "Red The End Warmup Pant — front product shot",
+          },
+          backProduct: {
+            url: theEndWarmupPantRedSide,
+            alt: "Red The End Warmup Pant — side product shot",
+          },
+          modelFront: {
+            url: theEndWarmupRedModel1,
+            alt: "Model wearing the red The End Warmup Pant — look 1",
+          },
+          modelBack: {
+            url: theEndWarmupRedModel2,
+            alt: "Model wearing the red The End Warmup Pant — look 2",
           },
         },
       },
