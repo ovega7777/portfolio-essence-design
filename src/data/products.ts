@@ -162,6 +162,9 @@ import studdedSlippersBlackFront from "@/assets/products/caught-on-film/studded-
 import studdedSlippersBlackBack from "@/assets/products/caught-on-film/studded-slippers/black/back.jpg";
 import studdedSlippersBlackModel1 from "@/assets/products/caught-on-film/studded-slippers/black/model-1.jpg";
 
+import studdedBeltBlackFront from "@/assets/products/caught-on-film/studded-belt/black/front.jpg";
+import studdedBeltBlackModel1 from "@/assets/products/caught-on-film/studded-belt/black/model-1.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1678,6 +1681,37 @@ export const products: Product[] = [
           modelBack: {
             url: studdedShortsBlackModel2,
             alt: "Model wearing the black Studded Slippers — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-studded-belt",
+    slug: "caught-studded-belt",
+    name: "STUDDED BELT",
+    collectionId: "collection-2",
+    category: "Accessories",
+    price: 185,
+    description:
+      "Black belt edged with silver studs and finished with polished silver buckle and tip hardware.",
+    featured: false,
+    displayOrder: 15,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-STUD-BELT-BLK",
+        sizes: ["ONE SIZE FITS ALL"],
+        images: {
+          frontProduct: {
+            url: studdedBeltBlackFront,
+            alt: "Black Studded Belt — product shot",
+          },
+          modelFront: {
+            url: studdedBeltBlackModel1,
+            alt: "Model wearing the black Studded Belt",
           },
         },
       },

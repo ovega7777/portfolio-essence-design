@@ -176,21 +176,30 @@ function ProductPage() {
                 Size
               </p>
               <div className="flex flex-wrap gap-2">
-                {variant.sizes.map((s: string) => (
-                  <button
-                    key={s}
-                    type="button"
-                    onClick={() => setSize(s)}
-                    aria-pressed={s === size}
-                    className={`nc-display border-2 border-black px-4 py-2 text-[10px] tracking-[0.3em] transition-colors duration-200 ${
-                      s === size
-                        ? "bg-black text-white"
-                        : "bg-white text-black hover:bg-black hover:text-white"
-                    }`}
-                  >
-                    {s}
-                  </button>
-                ))}
+                {variant.sizes.map((s: string) =>
+                  s === "ONE SIZE FITS ALL" ? (
+                    <span
+                      key={s}
+                      className="nc-display border-2 border-black bg-white px-4 py-2 text-[10px] tracking-[0.3em] text-black"
+                    >
+                      {s}
+                    </span>
+                  ) : (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => setSize(s)}
+                      aria-pressed={s === size}
+                      className={`nc-display border-2 border-black px-4 py-2 text-[10px] tracking-[0.3em] transition-colors duration-200 ${
+                        s === size
+                          ? "bg-black text-white"
+                          : "bg-white text-black hover:bg-black hover:text-white"
+                      }`}
+                    >
+                      {s}
+                    </button>
+                  ),
+                )}
               </div>
             </div>
           )}
