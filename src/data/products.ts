@@ -148,6 +148,11 @@ import theEndWarmupRedModel2 from "@/assets/products/caught-on-film/the-end-warm
 import theEndWarmupBlackModel1 from "@/assets/products/caught-on-film/the-end-warmup/models/black/model-1.jpg";
 import theEndWarmupBlackModel2 from "@/assets/products/caught-on-film/the-end-warmup/models/black/model-2.jpg";
 
+import studdedShortsBlackFront from "@/assets/products/caught-on-film/studded-shorts/black/front.jpg";
+import studdedShortsBlackSide from "@/assets/products/caught-on-film/studded-shorts/black/side.jpg";
+import studdedShortsBlackModel1 from "@/assets/products/caught-on-film/studded-shorts/black/model-1.jpg";
+import studdedShortsBlackModel2 from "@/assets/products/caught-on-film/studded-shorts/black/model-2.jpg";
+
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
 import pinupBlackFront from "@/assets/products/army-pinup-tee/black/front.png.asset.json";
@@ -1545,6 +1550,45 @@ export const products: Product[] = [
           modelBack: {
             url: theEndWarmupRedModel2,
             alt: "Model wearing the red The End Warmup Pant — look 2",
+          },
+        },
+      },
+    ],
+  },
+  {
+    id: "caught-studded-shorts",
+    slug: "caught-studded-shorts",
+    name: "STUDDED SHORTS",
+    collectionId: "collection-2",
+    category: "Bottoms",
+    price: 185,
+    description:
+      "Relaxed black velour shorts with an elastic drawstring waist, side pockets, and double rows of silver studs along each outer seam.",
+    featured: true,
+    displayOrder: 12,
+    variants: [
+      {
+        id: "black",
+        color: "Black",
+        swatch: "#0a0a0a",
+        sku: "NC-COF-STUD-SHORT-BLK",
+        sizes: ["XS", "S", "M", "L", "XL"],
+        images: {
+          frontProduct: {
+            url: studdedShortsBlackFront,
+            alt: "Black Studded Shorts — front product shot",
+          },
+          backProduct: {
+            url: studdedShortsBlackSide,
+            alt: "Black Studded Shorts — side product shot",
+          },
+          modelFront: {
+            url: studdedShortsBlackModel1,
+            alt: "Model wearing the black Studded Shorts — look 1",
+          },
+          modelBack: {
+            url: studdedShortsBlackModel2,
+            alt: "Model wearing the black Studded Shorts — look 2",
           },
         },
       },
