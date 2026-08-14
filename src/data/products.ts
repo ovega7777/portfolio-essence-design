@@ -11,6 +11,8 @@ export type ProductVariant = {
   images: {
     frontProduct: ProductImage;
     backProduct?: ProductImage;
+    /** Optional collection-card hover image when it is also stored elsewhere in the gallery. */
+    cardHover?: ProductImage;
     modelFront?: ProductImage;
     modelBack?: ProductImage;
     details?: ProductImage[];
@@ -186,6 +188,10 @@ import onFilmToteModel3 from "@/assets/products/caught-on-film/on-film-tote-bag/
 
 import ncTheaterGlassesFront from "@/assets/products/caught-on-film/nc-theater-glasses/black-red/front.jpg";
 import ncTheaterGlassesSide from "@/assets/products/caught-on-film/nc-theater-glasses/black-red/side.jpg";
+
+import onFilmCigCaseFront from "@/assets/products/caught-on-film/on-film-cig-case/silver/front.jpg";
+import onFilmCigCaseBack from "@/assets/products/caught-on-film/on-film-cig-case/silver/back.jpg";
+import onFilmCigCaseInterior from "@/assets/products/caught-on-film/on-film-cig-case/silver/interior.jpg";
 
 import pinupWhiteFront from "@/assets/products/army-pinup-tee/white/front.png.asset.json";
 import pinupWhiteModel from "@/assets/products/army-pinup-tee/white/model.png.asset.json";
@@ -1939,6 +1945,47 @@ export const products: Product[] = [
     ],
   },
   {
+    id: "caught-on-film-cig-case",
+    slug: "caught-on-film-cig-case",
+    name: "ON FILM CIG CASE",
+    collectionId: "collection-2",
+    category: "Accessories",
+    price: 150,
+    description:
+      "Polished silver cigarette case engraved with the Caught on Film motif and finished with a studded border.",
+    featured: false,
+    displayOrder: 21,
+    variants: [
+      {
+        id: "silver",
+        color: "SILVER",
+        swatch: "#b9b9b9",
+        sku: "NC-COF-CIG-CASE",
+        sizes: ["ONE SIZE FITS ALL"],
+        images: {
+          frontProduct: {
+            url: onFilmCigCaseFront,
+            alt: "Silver On Film Cig Case — engraved front product view",
+          },
+          backProduct: {
+            url: onFilmCigCaseBack,
+            alt: "Silver On Film Cig Case — polished back product view",
+          },
+          cardHover: {
+            url: onFilmCigCaseBack,
+            alt: "Silver On Film Cig Case — polished back product view",
+          },
+          details: [
+            {
+              url: onFilmCigCaseInterior,
+              alt: "Silver On Film Cig Case — open interior detail",
+            },
+          ],
+        },
+      },
+    ],
+  },
+  {
     id: "caught-on-film-mock-long-sleeve-red",
     slug: "caught-on-film-mock-long-sleeve-red",
     name: "ON FILM MOCK LONG SLEEVE",
@@ -2356,6 +2403,7 @@ export const getGroupedVariants = (product: Product): GroupedVariant[] => {
         swatch: v.swatch,
         frontImage: v.images.frontProduct,
         modelImage:
+          v.images.cardHover ??
           v.images.modelFront ??
           (p.slug === "vet-lighter" || p.slug === "nc-patch-kit"
             ? v.images.backProduct
