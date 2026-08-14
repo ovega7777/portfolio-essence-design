@@ -179,7 +179,7 @@ function NoComplyMedia() {
         <div
           role="tablist"
           aria-label="Filter media by collection"
-          className="mb-12 flex flex-wrap items-center gap-6 border-b border-black pb-4"
+          className="mb-12 flex flex-wrap items-center gap-4 border-b border-black pb-4"
         >
           {filters.map((filter) => {
             const isActive = filter.id === active;
@@ -190,10 +190,10 @@ function NoComplyMedia() {
                 role="tab"
                 aria-selected={isActive}
                 onClick={() => setActive(filter.id)}
-                className={`nc-display text-xs uppercase tracking-[0.24em] transition-colors sm:text-sm ${
+                className={`nc-display min-h-14 w-[calc(50%-0.5rem)] min-w-0 px-5 text-[17px] uppercase tracking-[0.24em] transition-colors md:min-h-[72px] md:w-[280px] md:px-8 md:text-[22px] ${
                   isActive
-                    ? "bg-black px-3 py-1.5 text-white"
-                    : "px-3 py-1.5 text-black/55 hover:text-black"
+                    ? "bg-black text-white"
+                    : "text-black/55 hover:text-black"
                 }`}
               >
                 {filter.label}
@@ -245,4 +245,3 @@ function NoComplyMedia() {
     </EditorialPageShell>
   );
 }
-
