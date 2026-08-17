@@ -265,18 +265,18 @@ function NoComplyHome() {
             <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
               <div>
                 <p className="nc-display text-xs tracking-[0.35em] text-black/60">Collection #1</p>
-                <div className="mt-3 flex flex-wrap items-center gap-4 md:gap-6">
+                <div className="mt-3 flex flex-nowrap items-center gap-3 text-5xl md:gap-5 md:text-8xl">
                   <Link
                     to="/projects/no-comply/command"
                     search={{ cat: "all", sort: "order", q: "" }}
-                    className="nc-display inline-flex items-center text-5xl leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55 md:text-8xl"
+                    className="nc-display inline-flex min-w-0 items-center whitespace-nowrap leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55"
                   >
                     No Comply Command
                   </Link>
                   <img
                     src={upsideDownAmericanFlag}
                     alt="Upside-down black-and-white American flag"
-                    className="inline-block h-[3rem] w-auto shrink-0 self-center object-contain md:h-[6rem]"
+                    className="inline-block h-[0.7em] w-auto shrink-0 object-contain"
                   />
                 </div>
               </div>
@@ -354,16 +354,16 @@ function NoComplyHome() {
           </div>
         </section>
 
-        <section className="border-b-2 border-black bg-black px-6 py-24 text-white md:py-32">
+        <section className="border-b-2 border-black bg-black px-6 py-14 text-white md:py-20">
           <div className="mx-auto max-w-4xl">
-            <p className="nc-display mb-8 text-xs tracking-[0.4em] text-white">Manifesto</p>
+            <p className="nc-display mb-5 text-xs tracking-[0.4em] text-white">Manifesto</p>
             <p className="nc-display text-4xl leading-[1.05] tracking-[0.02em] md:text-6xl">
               Compliance is optional.
               <br />
               Craft is not.
             </p>
-            <div className="mt-10 h-px w-24 bg-white" />
-            <p className="mt-10 font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:text-lg">
+            <div className="mt-6 h-px w-24 bg-white md:mt-8" />
+            <p className="mt-6 font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:mt-8 md:text-lg">
               Every garment starts as a pattern. Every pattern starts as a refusal — to smooth the
               edges, to trend-chase, to make it easy. No Comply is what happens when a designer&apos;s
               hand meets an operator&apos;s stubbornness.
@@ -375,20 +375,20 @@ function NoComplyHome() {
           <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
             <Link
               to="/projects/no-comply/media"
-              className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
+              className="group flex min-h-32 items-center justify-center border-2 border-black bg-white p-8 text-center transition-opacity hover:opacity-60"
             >
               <p className="nc-display text-2xl text-black">Media</p>
             </Link>
             <Link
               to="/projects/no-comply/about"
-              className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
+              className="group flex min-h-32 items-center justify-center border-2 border-black bg-white p-8 text-center transition-opacity hover:opacity-60"
             >
               <p className="nc-display text-2xl text-black">About</p>
             </Link>
             <Link
               to="/projects/no-comply/command"
               search={{ cat: "all", sort: "order", q: "" }}
-              className="group block border-2 border-black bg-white p-8 transition-opacity hover:opacity-60"
+              className="group flex min-h-32 items-center justify-center border-2 border-black bg-white p-8 text-center transition-opacity hover:opacity-60"
             >
               <p className="nc-display text-2xl text-black">No Comply Command</p>
             </Link>
