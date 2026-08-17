@@ -6,10 +6,7 @@ export type CarouselItem = {
   key: string;
   productSlug: string;
   variantId: string;
-  name: string;
-  price: number;
   image: { url: string; alt: string };
-  hoverImage?: { url: string; alt: string };
 };
 
 type Props = {
@@ -90,26 +87,8 @@ export function CollectionCarousel({ items, label }: Props) {
                 src={item.image.url}
                 alt={item.image.alt}
                 loading="lazy"
-                className={`h-full w-full object-contain p-4 ${
-                  item.hoverImage ? "transition-opacity duration-300 group-hover:opacity-0" : ""
-                }`}
+                className="h-full w-full object-cover object-[center_20%]"
               />
-              {item.hoverImage && (
-                <img
-                  src={item.hoverImage.url}
-                  alt={item.hoverImage.alt}
-                  loading="lazy"
-                  className="absolute inset-0 h-full w-full object-contain p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-                />
-              )}
-            </div>
-            <div className="flex items-baseline justify-between gap-3 pt-3">
-              <p className="nc-display truncate text-sm tracking-[0.15em] text-black md:text-base">
-                {item.name}
-              </p>
-              <p className="nc-display shrink-0 text-sm tracking-[0.15em] text-black md:text-base">
-                ${item.price}
-              </p>
             </div>
           </Link>
         ))}

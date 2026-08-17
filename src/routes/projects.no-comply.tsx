@@ -31,10 +31,7 @@ const toCarouselItems = (collectionId: string, featuredOnly = false): CarouselIt
         key: product.id,
         productSlug: product.slug,
         variantId: variant.id,
-        name: product.name,
-        price: product.price,
-        image: variant.images.frontProduct,
-        hoverImage: product.carouselHover ? variant.images.modelFront : undefined,
+        image: variant.images.modelFront ?? variant.images.frontProduct,
       };
     });
 
