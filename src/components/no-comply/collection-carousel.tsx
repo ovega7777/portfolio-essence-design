@@ -7,6 +7,7 @@ export type CarouselItem = {
   productSlug: string;
   variantId: string;
   image: { url: string; alt: string };
+  imageFit?: "cover" | "contain";
 };
 
 type Props = {
@@ -87,7 +88,11 @@ export function CollectionCarousel({ items, label }: Props) {
                 src={item.image.url}
                 alt={item.image.alt}
                 loading="lazy"
-                className="h-full w-full object-cover object-[center_20%]"
+                className={
+                  item.imageFit === "contain"
+                    ? "h-full w-full object-contain p-4"
+                    : "h-full w-full object-cover object-[center_20%]"
+                }
               />
             </div>
           </Link>

@@ -19,7 +19,11 @@ const COMMAND = collections[0];
 const CATEGORIES = getCategories();
 const CAUGHT_ON_FILM = collections[1];
 
-const toCarouselItems = (collectionId: string, featuredOnly = false): CarouselItem[] =>
+const toCarouselItems = (
+  collectionId: string,
+  featuredOnly = false,
+  caughtOnFilm = false,
+): CarouselItem[] =>
   products
     .filter(
       (product) => product.collectionId === collectionId && (!featuredOnly || product.featured),
@@ -27,16 +31,21 @@ const toCarouselItems = (collectionId: string, featuredOnly = false): CarouselIt
     .sort((a, b) => a.displayOrder - b.displayOrder)
     .map((product) => {
       const variant = product.variants[0];
+      const isAccessory = product.category.toLowerCase() === "accessories";
       return {
         key: product.id,
         productSlug: product.slug,
         variantId: variant.id,
-        image: variant.images.modelFront ?? variant.images.frontProduct,
+        image:
+          caughtOnFilm && !isAccessory
+            ? variant.images.frontProduct
+            : (variant.images.modelFront ?? variant.images.frontProduct),
+        imageFit: caughtOnFilm ? "contain" : "cover",
       };
     });
 
 const COMMAND_CAROUSEL = toCarouselItems(COMMAND.id);
-const CAUGHT_ON_FILM_CAROUSEL = toCarouselItems(CAUGHT_ON_FILM.id, true);
+const CAUGHT_ON_FILM_CAROUSEL = toCarouselItems(CAUGHT_ON_FILM.id, true, true);
 
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
 const searchSchema = z.object({
