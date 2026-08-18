@@ -377,26 +377,26 @@ function NoComplyHome() {
           </div>
         </section>
 
-        <section className="border-b-2 border-black px-6 py-16">
-          <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-3">
+        <section className="border-b-2 border-black px-6 py-10 md:py-12">
+          <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
             <Link
               to="/projects/no-comply/media"
-              className="group flex min-h-32 items-center justify-center border-2 border-black bg-white p-8 text-center transition-opacity hover:opacity-60"
+              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white"
             >
-              <p className="nc-display text-2xl text-black">Media</p>
+              <p className="nc-display text-xl">Media</p>
             </Link>
             <Link
               to="/projects/no-comply/about"
-              className="group flex min-h-32 items-center justify-center border-2 border-black bg-white p-8 text-center transition-opacity hover:opacity-60"
+              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white"
             >
-              <p className="nc-display text-2xl text-black">About</p>
+              <p className="nc-display text-xl">About</p>
             </Link>
             <Link
               to="/projects/no-comply/command"
               search={{ cat: "all", sort: "order", q: "" }}
-              className="group flex min-h-32 items-center justify-center border-2 border-black bg-white p-8 text-center transition-opacity hover:opacity-60"
+              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white"
             >
-              <p className="nc-display text-2xl text-black">No Comply Command</p>
+              <p className="nc-display text-xl">No Comply Command</p>
             </Link>
 
           </div>
