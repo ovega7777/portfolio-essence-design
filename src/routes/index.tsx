@@ -61,6 +61,7 @@ function Home() {
             to="/projects/no-comply"
             number="01"
             title="NO COMPLY USA"
+            titleClassName="font-sans font-extrabold"
             description="Product design, graphic design, and creative direction for an experimental apparel brand—developing its collections, visual identity, campaign imagery, graphics, and digital presentation."
             src={noComplyPrimary}
             alt="NO COMPLY USA campaign model wearing a black patched jacket"
@@ -79,6 +80,7 @@ function Home() {
             to="/projects/lucky-day-co"
             number="02"
             title="LUCKY DAY CO."
+            titleClassName="font-normal [font-family:'Allura',cursive]"
             description="Product design, graphic design, and creative direction for a refined lifestyle brand—shaping its identity, packaging, campaign visuals, and cohesive customer-facing experience."
             src={luckyDayThumb}
             alt="Lucky Day Co — refined product still life"
@@ -113,6 +115,7 @@ function ProjectCard({
   to,
   number,
   title,
+  titleClassName,
   description,
   src,
   alt,
@@ -121,6 +124,7 @@ function ProjectCard({
   to: "/projects/no-comply" | "/projects/lucky-day-co";
   number: string;
   title: string;
+  titleClassName: string;
   description: string;
   src: string;
   alt: string;
@@ -163,7 +167,7 @@ function ProjectCard({
         ))}
       </div>
       <div className="grid gap-3 md:grid-cols-12 md:gap-8">
-        <h3 className="font-serif text-3xl leading-none md:col-span-4 md:text-4xl">
+        <h3 className={`${titleClassName} text-3xl leading-none md:col-span-4 md:text-4xl`}>
           {title}
         </h3>
         <div className="flex items-start gap-5 md:col-span-8">
