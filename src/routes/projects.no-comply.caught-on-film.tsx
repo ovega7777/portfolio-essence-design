@@ -16,6 +16,7 @@ const collectionProducts = products
 const CATEGORY_ORDER = ["Tops", "Outerwear", "Bottoms", "Accessories"];
 const availableCategories = new Set(getCategories(COLLECTION.id));
 const CATEGORIES = CATEGORY_ORDER.filter((category) => availableCategories.has(category));
+const MENU_CATEGORIES = ["Outerwear", "Tops", "Bottoms", "Accessories"];
 
 const searchSchema = z.object({
   cat: fallback(z.string(), "all").default("all"),
@@ -182,21 +183,14 @@ function CaughtOnFilmCollection() {
               <Search size={22} strokeWidth={1.5} />
             </label>
 
-            <section className="mt-8 border-t border-black/15 pt-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
-                Designs
-              </p>
-              <div className="mt-5 flex flex-col items-start gap-4 text-2xl uppercase tracking-[0.05em]">
-                <button type="button" onClick={() => chooseCategory("all")}>
-                  All designs
-                </button>
-                {CATEGORIES.map((category) => (
-                  <button key={category} type="button" onClick={() => chooseCategory(category)}>
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </section>
+            <div className="mt-8 flex gap-8 border-t border-black/15 pt-7 text-sm uppercase tracking-[0.18em]">
+              <Link to="/projects/no-comply/about" onClick={() => setMenuOpen(false)}>
+                About
+              </Link>
+              <Link to="/projects/no-comply/media" onClick={() => setMenuOpen(false)}>
+                Media
+              </Link>
+            </div>
 
             <section className="mt-8 border-t border-black/15 pt-7">
               <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
@@ -223,14 +217,21 @@ function CaughtOnFilmCollection() {
               </div>
             </section>
 
-            <div className="mt-8 flex gap-8 border-t border-black/15 pt-7 text-sm uppercase tracking-[0.18em]">
-              <Link to="/projects/no-comply/about" onClick={() => setMenuOpen(false)}>
-                About
-              </Link>
-              <Link to="/projects/no-comply/media" onClick={() => setMenuOpen(false)}>
-                Media
-              </Link>
-            </div>
+            <section className="mt-8 border-t border-black/15 pt-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
+                Designs
+              </p>
+              <div className="mt-5 flex flex-col items-start gap-4 text-2xl uppercase tracking-[0.05em]">
+                <button type="button" onClick={() => chooseCategory("all")}>
+                  All designs
+                </button>
+                {MENU_CATEGORIES.map((category) => (
+                  <button key={category} type="button" onClick={() => chooseCategory(category)}>
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </section>
           </aside>
         </div>
       )}

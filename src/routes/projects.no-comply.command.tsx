@@ -23,6 +23,7 @@ const collectionProducts = products
   .sort((a, b) => a.displayOrder - b.displayOrder);
 
 const CATEGORIES = getCategories(COLLECTION.id);
+const MENU_CATEGORIES = ["Outerwear", "Tops", "Bottoms", "Accessories"];
 
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
 type Sort = (typeof SORTS)[number];
@@ -200,30 +201,25 @@ function CommandCollection() {
               <Search aria-hidden className="h-5 w-5 shrink-0" strokeWidth={1.5} />
             </label>
 
-            <div className="mt-7 border-t border-black/10 pt-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
-                Designs
-              </p>
-              <div className="mt-5 flex flex-col items-start gap-3.5">
-                <button
-                  type="button"
-                  onClick={() => chooseCategory("all")}
-                  className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-                >
-                  All Designs
-                </button>
-                {CATEGORIES.map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    onClick={() => chooseCategory(category)}
-                    className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <nav
+              aria-label="No Comply editorial pages"
+              className="mt-7 flex flex-col items-start border-t border-black/10"
+            >
+              <Link
+                to="/projects/no-comply/about"
+                onClick={() => setMenuOpen(false)}
+                className="w-full border-b border-black/10 py-6 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+              >
+                About
+              </Link>
+              <Link
+                to="/projects/no-comply/media"
+                onClick={() => setMenuOpen(false)}
+                className="w-full border-b border-black/10 py-6 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+              >
+                Media
+              </Link>
+            </nav>
 
             <div className="mt-7 border-t border-black/10 pt-6">
               <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
@@ -244,25 +240,30 @@ function CommandCollection() {
               </div>
             </div>
 
-            <nav
-              aria-label="No Comply editorial pages"
-              className="mt-7 flex flex-col items-start border-t border-black/10"
-            >
-              <Link
-                to="/projects/no-comply/about"
-                onClick={() => setMenuOpen(false)}
-                className="w-full border-b border-black/10 py-6 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-              >
-                About
-              </Link>
-              <Link
-                to="/projects/no-comply/media"
-                onClick={() => setMenuOpen(false)}
-                className="w-full border-b border-black/10 py-6 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-              >
-                Media
-              </Link>
-            </nav>
+            <div className="mt-7 border-t border-black/10 pt-6">
+              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
+                Designs
+              </p>
+              <div className="mt-5 flex flex-col items-start gap-3.5">
+                <button
+                  type="button"
+                  onClick={() => chooseCategory("all")}
+                  className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+                >
+                  All Designs
+                </button>
+                {MENU_CATEGORIES.map((category) => (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => chooseCategory(category)}
+                    className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+                  >
+                    {category}
+                  </button>
+                ))}
+              </div>
+            </div>
           </aside>
         </div>
       )}
