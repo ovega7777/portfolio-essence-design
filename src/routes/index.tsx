@@ -91,14 +91,17 @@ function Home() {
       <section className="mx-auto max-w-6xl border-t border-black/15 px-6 py-12 md:py-14">
         <div className="grid gap-7 md:grid-cols-12 md:gap-10">
           <h2 className="eyebrow text-black md:col-span-4">Project Contributions</h2>
-          <div className="grid gap-x-8 gap-y-3 text-lg md:col-span-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-x-8 gap-y-3 text-lg md:col-span-8 md:grid-flow-col md:grid-cols-3 md:grid-rows-3">
             {[
               "Product Design",
               "Graphic Design",
-              "Branding",
+              "Brand Strategy",
               "Creative Direction",
-              "Campaign Development",
+              "Collection Development",
+              "Campaign Art Direction",
+              "Product Merchandising",
               "Digital Experience",
+              "Content Production",
             ].map((contribution) => (
               <p key={contribution} className="border-t border-black/15 pt-3">
                 {contribution}
