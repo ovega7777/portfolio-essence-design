@@ -33,15 +33,13 @@ function Home() {
               apparel, brand identities, campaign imagery, and digital
               experiences with a focused commercial point of view.
             </p>
-            <a
-              href="/nicholas-curzon-resume-2026.pdf"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="View Nicholas Curzon's resume (opens in a new tab)"
+            <Link
+              to="/about"
+              aria-label="About Nicholas Curzon"
               className="mt-7 inline-flex min-h-14 items-center border border-black px-[30px] py-5 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
-              View Resume →
-            </a>
+              About Me →
+            </Link>
           </div>
         </div>
       </section>
