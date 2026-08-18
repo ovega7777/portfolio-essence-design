@@ -79,8 +79,8 @@ function Home() {
           <ProjectCard
             to="/projects/lucky-day-co"
             number="02"
-            title="LUCKY DAY CO."
-            titleClassName="font-normal [font-family:'Allura',cursive]"
+            title="Lucky Day Co"
+            titleClassName="font-normal [font-family:'Dancing_Script',cursive] !text-2xl md:!text-3xl"
             description="Product design, graphic design, and creative direction for a refined lifestyle brand—shaping its identity, packaging, campaign visuals, and cohesive customer-facing experience."
             src={luckyDayThumb}
             alt="Lucky Day Co — refined product still life"
