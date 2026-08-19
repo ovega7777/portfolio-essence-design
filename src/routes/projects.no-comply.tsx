@@ -24,26 +24,34 @@ const toCarouselItems = (
   collectionId: string,
   featuredOnly = false,
   caughtOnFilm = false,
-): CarouselItem[] =>
-  products
+): CarouselItem[] => {
+  const seenStyles = new Set<string>();
+
+  return products
     .filter(
       (product) => product.collectionId === collectionId && (!featuredOnly || product.featured),
     )
     .sort((a, b) => a.displayOrder - b.displayOrder)
+    .filter((product) => {
+      const styleKey = product.swatchGroup ?? product.name;
+      if (seenStyles.has(styleKey)) return false;
+      seenStyles.add(styleKey);
+      return true;
+    })
     .map((product) => {
       const variant = product.variants[0];
       const isAccessory = product.category.toLowerCase() === "accessories";
       return {
         key: product.id,
-        productSlug: product.slug,
-        variantId: variant.id,
+        productName: product.name,
+        collectionSlug: collectionId === COMMAND.id ? "command" : "caught-on-film",
         image:
           caughtOnFilm && !isAccessory
             ? variant.images.frontProduct
             : (variant.images.modelFront ?? variant.images.frontProduct),
-        imageFit: caughtOnFilm ? "contain" : "cover",
       };
     });
+};
 
 const COMMAND_CAROUSEL = toCarouselItems(COMMAND.id);
 const CAUGHT_ON_FILM_CAROUSEL = toCarouselItems(CAUGHT_ON_FILM.id, true, true);
