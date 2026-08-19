@@ -5,9 +5,10 @@ import noComplyUsaLogoBlack from "../../assets/no-comply-usa-logo-black-cropped.
 
 interface EditorialPageShellProps {
   children: ReactNode;
+  backLabel?: string;
 }
 
-export function EditorialPageShell({ children }: EditorialPageShellProps) {
+export function EditorialPageShell({ children, backLabel = "No Comply Command" }: EditorialPageShellProps) {
   return (
     <div className="no-comply min-h-screen bg-white text-black">
       <nav className="border-b-2 border-black bg-black text-white">
@@ -17,7 +18,7 @@ export function EditorialPageShell({ children }: EditorialPageShellProps) {
             search={{ cat: "all", sort: "order", q: "" }}
             className="nc-display text-base tracking-widest text-white transition-opacity hover:opacity-55 sm:text-lg"
           >
-            ← No Comply Command
+            ← {backLabel}
           </Link>
           <Link
             to="/"

@@ -1,6 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 
-import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
 export const Route = createFileRoute("/projects/no-comply/about")({
@@ -9,7 +8,7 @@ export const Route = createFileRoute("/projects/no-comply/about")({
       { title: "About NO COMPLY USA · Nicholas Curzon" },
       {
         name: "description",
-        content: "The concept, visual language, and creative direction behind NO COMPLY COMMAND.",
+        content: "The complete NO COMPLY USA brand and case study by Nicholas Curzon.",
       },
     ],
   }),
@@ -18,62 +17,36 @@ export const Route = createFileRoute("/projects/no-comply/about")({
 
 function NoComplyAbout() {
   return (
-    <EditorialPageShell>
-      <main>
-        <header className="mx-auto max-w-7xl px-6 py-20 md:py-28">
-          <p className="nc-display text-xs uppercase tracking-[0.32em] text-black/55">
-            Collection #1
-          </p>
-          <h1 className="nc-display mt-5 text-6xl leading-[0.9] tracking-[0.02em] md:text-8xl">
-            About
+    <EditorialPageShell backLabel="No Comply USA">
+      <main className="mx-auto max-w-7xl px-6 py-20 md:py-28 lg:py-32">
+        <header>
+          <h1 className="nc-display text-6xl uppercase leading-[0.88] tracking-[0.02em] md:text-8xl lg:text-9xl">
+            ABOUT
             <br />
-            No Comply
+            NO COMPLY USA
           </h1>
-          <div className="mt-12 grid gap-10 border-t border-black pt-8 md:grid-cols-2">
-            <p className="max-w-xl font-punk-body text-xl uppercase leading-relaxed tracking-[0.08em] md:text-2xl">
-              No Comply Command is a study in refusal, uniform, and craft—built through military
-              references, distressed surfaces, graphic insignia, and uncompromising silhouettes.
-            </p>
-            <div className="grid grid-cols-2 gap-px bg-black">
-              <div className="bg-white p-5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-black/50">
-                  Collection
-                </p>
-                <p className="nc-display mt-3 text-2xl">#1 Command</p>
-              </div>
-              <div className="bg-white p-5">
-                <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-black/50">
-                  Format
-                </p>
-                <p className="nc-display mt-3 text-2xl">50 Pieces</p>
-              </div>
-            </div>
-          </div>
         </header>
 
-        <figure className="border-y-2 border-black bg-black">
-          <img
-            src={commandEditorialLook01}
-            alt="No Comply Command editorial look"
-            className="mx-auto block max-h-[88vh] w-full max-w-7xl object-cover object-top"
-          />
-        </figure>
+        <section className="mt-14 grid gap-10 border-t-2 border-black pt-8 md:mt-20 md:grid-cols-2 md:gap-14 md:pt-10 lg:gap-20">
+          <p className="font-punk-body text-xl leading-relaxed tracking-[0.035em] md:text-2xl">
+            NO COMPLY USA is a unisex experimental apparel brand rooted in nonconformity and an
+            open-ended approach to American style. Designed to be worn by both men and women, NO
+            COMPLY USA approaches clothing without rigid gender boundaries while maintaining a
+            recognizable point of view. The brand draws on the rebellious energy of American
+            counterculture throughout history, translating it into a distinctly contemporary visual
+            language.
+          </p>
+          <p className="font-punk-body text-xl leading-relaxed tracking-[0.035em] md:text-2xl">
+            As a case study, NO COMPLY USA demonstrates my ability to develop a brand from start to
+            finish. The project brings together brand strategy and identity, product and graphic
+            design, creative direction, collection development, campaign imagery, merchandising, and
+            digital presentation as one cohesive system. Each touchpoint shows how a broad range of
+            references can be translated into a unified brand world while still allowing the
+            individual collections to explore different visual directions.
+          </p>
+        </section>
 
-        <div className="mx-auto flex max-w-7xl flex-wrap gap-4 px-6 py-12">
-          <Link
-            to="/projects/no-comply"
-            search={{ cat: "all", sort: "order", q: "" }}
-            className="border border-black bg-black px-6 py-3 font-punk-body text-lg uppercase tracking-[0.08em] text-white transition-colors hover:bg-white hover:text-black"
-          >
-            View the collection
-          </Link>
-          <Link
-            to="/projects/no-comply/media"
-            className="border border-black px-6 py-3 font-punk-body text-lg uppercase tracking-[0.08em] transition-colors hover:bg-black hover:text-white"
-          >
-            View media
-          </Link>
-        </div>
+        <div aria-hidden="true" className="mt-16 h-20 border-y-2 border-black bg-black md:mt-24 md:h-28" />
       </main>
     </EditorialPageShell>
   );
