@@ -101,11 +101,10 @@ function About() {
       <section className="mx-auto max-w-6xl px-6 py-24 border-t border-border">
         <div className="grid gap-12 md:grid-cols-3">
           <Detail label="Education">
-            Fashion Institute of Technology
-            <br />
-            University of Miami
-            <br />
-            M.S. International Business
+            <span className="block font-medium">Fashion Institute of Technology</span>
+            <span className="block text-sm text-foreground/65">Fashion Business Management</span>
+            <span className="mt-5 block font-medium">University of Miami</span>
+            <span className="block text-sm text-foreground/65">M.S. International Business</span>
           </Detail>
           <Detail label="Practice">
             Sales Strategy
