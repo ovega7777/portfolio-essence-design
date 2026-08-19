@@ -109,11 +109,15 @@ function About() {
             <span className="block text-sm text-foreground/65">M.S. International Business</span>
           </Detail>
           <Detail label="Practice">
-            Sales Strategy
+            Creative Direction
             <br />
-            Pattern-Making & Product
+            Apparel Product Development
             <br />
-            Brand Development
+            Product &amp; Graphic Design
+            <br />
+            Brand Strategy
+            <br />
+            Digital Experience Design
           </Detail>
           <Detail label="Contact">
             <a
