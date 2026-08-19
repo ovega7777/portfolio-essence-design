@@ -6,6 +6,7 @@ import { z } from "zod";
 
 import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
 import { ProductCard } from "@/components/no-comply/product-card";
+import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { collections } from "@/data/collections";
 import { getCategories, products } from "@/data/products";
 
@@ -319,20 +320,7 @@ function CaughtOnFilmCollection() {
         </section>
       </main>
 
-      <footer className="border-t border-white/20 bg-black px-5 py-8 text-white sm:px-8">
-        <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-5 text-sm uppercase tracking-[0.18em]">
-          <Link
-            to="/projects/no-comply"
-            search={{ cat: "all", sort: "order", q: "" }}
-            className="hover:text-[#f36b21]"
-          >
-            ← Collection #1
-          </Link>
-          <Link to="/" className="hover:text-[#f36b21]">
-            All Projects →
-          </Link>
-        </div>
-      </footer>
+      <CollectionNavigationFooter nextCollection="command" />
     </div>
   );
 }

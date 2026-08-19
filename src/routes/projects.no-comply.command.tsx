@@ -16,6 +16,7 @@ import { products, getCategories, type Product } from "@/data/products";
 import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
 import { LogoBannerHUD } from "@/components/no-comply/logo-banner-hud";
+import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 
 const COLLECTION = collections[0];
 const collectionProducts = products
@@ -406,25 +407,7 @@ function CommandCollection() {
 
         </div>
       </section>
-      <footer className="px-6 py-16">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
-          <div>
-            <p className="nc-display text-sm tracking-[0.3em] text-black">Next Up</p>
-            <Link
-              to="/projects/no-comply/caught-on-film"
-              className="nc-display text-4xl text-black hover:text-black/60"
-            >
-              Caught on Film →
-            </Link>
-          </div>
-          <Link
-            to="/projects/no-comply"
-            className="nc-display border-b-2 border-black pb-1 text-sm tracking-[0.3em] text-black hover:border-black/60 hover:text-black/60"
-          >
-            ← No Comply USA
-          </Link>
-        </div>
-      </footer>
+      <CollectionNavigationFooter nextCollection="caught-on-film" />
     </div>
   );
 }
