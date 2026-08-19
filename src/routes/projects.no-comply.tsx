@@ -164,9 +164,9 @@ function NoComplyHome() {
           />
           <aside
             aria-label="Product navigation"
-            className="absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col overflow-y-auto border-l border-black/10 bg-white px-6 py-6 text-black shadow-2xl sm:px-9 sm:py-8"
+            className="absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col overflow-y-auto border-l border-black/10 bg-white px-6 py-5 text-black shadow-2xl sm:px-9 sm:py-6"
           >
-            <div className="flex items-start justify-between gap-6 border-b border-black/15 pb-6">
+            <div className="flex items-start justify-between gap-6 border-b border-black/15 pb-4">
               <p className="nc-display text-4xl leading-none tracking-[0.04em] sm:text-5xl">
                 NO COMPLY
               </p>
@@ -185,7 +185,7 @@ function NoComplyHome() {
                 event.preventDefault();
                 goToDesigns("all", menuQuery);
               }}
-              className="mt-6 flex h-14 items-center gap-4 border border-black/25 bg-white px-4 transition-colors focus-within:border-black"
+              className="mt-4 flex h-12 items-center gap-4 border border-black/25 bg-white px-4 transition-colors focus-within:border-black"
             >
               <input
                 type="search"
@@ -203,34 +203,34 @@ function NoComplyHome() {
 
             <nav
               aria-label="No Comply editorial pages"
-              className="mt-7 flex flex-col items-start border-t border-black/10"
+              className="mt-5 flex flex-col items-start border-t border-black/10"
             >
               <Link
                 to="/projects/no-comply/about"
                 onClick={() => setMenuOpen(false)}
-                className="w-full border-b border-black/10 py-6 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+                className="w-full border-b border-black/10 py-3.5 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
               >
                 About
               </Link>
               <Link
                 to="/projects/no-comply/media"
                 onClick={() => setMenuOpen(false)}
-                className="w-full border-b border-black/10 py-6 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+                className="w-full border-b border-black/10 py-3.5 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
               >
                 Media
               </Link>
             </nav>
 
-            <div className="mt-7 border-t border-black/10 pt-6">
+            <div className="mt-5 pt-4">
               <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
                 Collections
               </p>
-              <div className="mt-5 flex flex-col items-start gap-3">
+              <div className="mt-2 flex flex-col items-start">
                 <Link
                   to="/projects/no-comply/command"
                   search={{ cat: "all", sort: "order", q: "" }}
                   onClick={() => setMenuOpen(false)}
-                  className="whitespace-nowrap text-left font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+                  className="flex min-h-11 items-center whitespace-nowrap text-left font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
                 >
                   #1 No Comply Command
                 </Link>
@@ -238,22 +238,22 @@ function NoComplyHome() {
                   to="/projects/no-comply/caught-on-film"
                   search={{ cat: "all", q: "" }}
                   onClick={() => setMenuOpen(false)}
-                  className="whitespace-nowrap text-left font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+                  className="flex min-h-11 items-center whitespace-nowrap text-left font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
                 >
                   #2 Caught on Film
                 </Link>
               </div>
             </div>
 
-            <div className="mt-7 border-t border-black/10 pt-6">
+            <div className="mt-5 border-t border-black/10 pt-4">
               <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
                 Designs
               </p>
-              <div className="mt-5 flex flex-col items-start gap-3.5">
+              <div className="mt-2 flex flex-col items-start">
                 <button
                   type="button"
                   onClick={() => goToDesigns("all")}
-                  className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+                  className="flex min-h-11 items-center font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
                 >
                   All Designs
                 </button>
@@ -262,7 +262,7 @@ function NoComplyHome() {
                     key={category}
                     type="button"
                     onClick={() => goToDesigns(category)}
-                    className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
+                    className="flex min-h-11 items-center font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
                   >
                     {category}
                   </button>
