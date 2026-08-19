@@ -12,7 +12,7 @@ import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-fil
 import { getCategories, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
 import { collections } from "@/data/collections";
-import { LogoBannerHUD } from "@/components/no-comply/logo-banner-hud";
+import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 
 const COMMAND = collections[0];
@@ -124,7 +124,7 @@ function NoComplyHome() {
             </span>
           </div>
         </nav>
-        <LogoBannerHUD
+        <LogoBanner
           src={noComplyUsaLogoBlack.url}
           menuOpen={menuOpen}
           onSearch={openProductSearch}

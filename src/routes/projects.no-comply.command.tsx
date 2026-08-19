@@ -14,7 +14,7 @@ import commandAssortmentLook04 from "../assets/no-comply/editorial/command-assor
 import { products, getCategories, type Product } from "@/data/products";
 import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
-import { LogoBannerHUD } from "@/components/no-comply/logo-banner-hud";
+import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 
@@ -138,7 +138,7 @@ function CommandCollection() {
         activeCollection="command"
       />
 
-      <LogoBannerHUD
+      <LogoBanner
         src={noComplyUsaLogoBlack.url}
         menuOpen={menuOpen}
         onSearch={openProductSearch}
