@@ -48,28 +48,42 @@ function About() {
           </div>
           <div className="lg:col-span-7 space-y-8 text-lg leading-relaxed text-foreground/90">
             <p>
-              Nicholas Curzon is a sales strategist and designer working at the
-              intersection of commerce and craft. He began learning
-              pattern-making and industrial design in high school, and carried
-              that discipline through his studies at the{" "}
-              <span className="italic">Fashion Institute of Technology</span>{" "}
-              and the <span className="italic">University of Miami</span>,
-              where he earned a Masters in International Business.
+              My background combines apparel design training, fashion business
+              education, and commercial sales experience. I developed hands-on
+              skills in fashion illustration, patternmaking, textiles, garment
+              construction, and product development before earning a degree in
+              Fashion Business Management from the{" "}
+              <strong>
+                <em>Fashion Institute of Technology</em>
+              </strong>{" "}
+              and a master’s degree in International Business from the{" "}
+              <strong>
+                <em>University of Miami</em>
+              </strong>.
             </p>
             <p>
-              He is a second-generation operator inside his family's sales
-              company — an environment that taught him early that a good
-              product is only as strong as the system that carries it to
-              market. His practice sits between those two worlds: the
-              designer's obsession with the object itself, and the operator's
-              obsession with how it moves.
+              Through my experience in B2B and B2C sales, I have developed a
+              strong understanding of customer needs, market opportunities, and
+              product performance. Collaborating with customers, sales teams,
+              and product-development partners has strengthened my ability to
+              translate commercial insights into relevant product and brand
+              opportunities.
             </p>
             <p>
-              Selected work includes{" "}
-              <span className="font-medium">No Comply</span> — a raw,
-              brutalist visual system for a technical apparel concept — and{" "}
-              <span className="font-medium">Lucky Day Co</span>, a refined
-              commercial framework for luxury sales and distribution.
+              The projects featured in this portfolio demonstrate how I apply
+              that perspective across creative direction, product and graphic
+              design, brand strategy, marketing, and web and digital interface
+              design.{" "}
+              <strong>
+                <em>NO COMPLY USA</em>
+              </strong>{" "}
+              and{" "}
+              <strong>
+                <em>Lucky Day Co.</em>
+              </strong>{" "}
+              serve as case studies of my contributions to collection
+              development, product merchandising, campaign art direction,
+              content production, and digital experiences.
             </p>
             <a
               href="/nicholas-curzon-resume-2026.pdf"
