@@ -1,15 +1,15 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { z } from "zod";
 
 import { ProductCard } from "@/components/no-comply/product-card";
+import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 import { collections } from "@/data/collections";
 import { getCategories, products, type Product } from "@/data/products";
 
 const CATEGORIES = getCategories();
-const MENU_CATEGORIES = ["Outerwear", "Tops", "Bottoms", "Accessories"];
 const COLLECTION_ORDER = new Map(collections.map((collection, index) => [collection.id, index]));
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
 type Sort = (typeof SORTS)[number];
@@ -72,7 +72,6 @@ function compareCatalogOrder(a: Product, b: Product) {
 function AllDesigns() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
-  const searchRef = useRef<HTMLInputElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [focusSearch, setFocusSearch] = useState(false);
 
@@ -91,28 +90,6 @@ function AllDesigns() {
     setFocusSearch(shouldFocusSearch);
     setMenuOpen(true);
   };
-  const chooseCategory = (cat: string) => {
-    setCategory(cat);
-    setMenuOpen(false);
-    requestAnimationFrame(() =>
-      document.getElementById("all-designs-products")?.scrollIntoView({ behavior: "smooth" }),
-    );
-  };
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = "hidden";
-    if (focusSearch) requestAnimationFrame(() => searchRef.current?.focus());
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [focusSearch, menuOpen]);
-
   const displayed = useMemo(() => {
     const query = search.q.trim().toLowerCase();
     let list = products;
@@ -183,94 +160,13 @@ function AllDesigns() {
         </div>
       </nav>
 
-      {menuOpen && (
-        <div className="fixed inset-0 z-[120]">
-          <button
-            type="button"
-            aria-label="Close navigation"
-            onClick={() => setMenuOpen(false)}
-            className="absolute inset-0 cursor-default bg-black/55"
-          />
-          <aside className="absolute right-0 top-0 h-full w-full max-w-md overflow-y-auto bg-white p-7 text-black sm:p-10">
-            <div className="flex items-start justify-between gap-8 border-b border-black/15 pb-7">
-              <div>
-                <p className="nc-display text-4xl leading-none tracking-[0.04em]">NO COMPLY</p>
-                <p className="mt-3 text-xs uppercase tracking-[0.28em] text-black/50">
-                  Product Index
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setMenuOpen(false)}
-                aria-label="Close navigation"
-                className="flex items-center gap-2 text-xs uppercase tracking-[0.2em]"
-              >
-                Close <X size={22} strokeWidth={1.5} />
-              </button>
-            </div>
-
-            <label className="mt-7 flex items-center border border-black/30 px-4 py-3">
-              <span className="sr-only">Search all products</span>
-              <input
-                ref={searchRef}
-                type="search"
-                value={search.q}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search products"
-                className="min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-black/40"
-              />
-              <Search size={22} strokeWidth={1.5} />
-            </label>
-
-            <div className="mt-8 flex gap-8 border-t border-black/15 pt-7 text-sm uppercase tracking-[0.18em]">
-              <Link to="/projects/no-comply/about" onClick={() => setMenuOpen(false)}>
-                About
-              </Link>
-              <Link to="/projects/no-comply/media" onClick={() => setMenuOpen(false)}>
-                Media
-              </Link>
-            </div>
-
-            <section className="mt-8 border-t border-black/15 pt-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
-                Collections
-              </p>
-              <div className="mt-5 flex flex-col gap-4 text-xl uppercase tracking-[0.05em]">
-                <Link
-                  to="/projects/no-comply/command"
-                  search={{ cat: "all", sort: "order", q: "" }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  #1 No Comply Command
-                </Link>
-                <Link
-                  to="/projects/no-comply/caught-on-film"
-                  search={{ cat: "all", q: "" }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  #2 Caught on Film
-                </Link>
-              </div>
-            </section>
-
-            <section className="mt-8 border-t border-black/15 pt-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
-                Designs
-              </p>
-              <div className="mt-5 flex flex-col items-start gap-4 text-2xl uppercase tracking-[0.05em]">
-                <button type="button" onClick={() => chooseCategory("all")}>
-                  All Designs
-                </button>
-                {MENU_CATEGORIES.map((category) => (
-                  <button key={category} type="button" onClick={() => chooseCategory(category)}>
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </section>
-          </aside>
-        </div>
-      )}
+      <StandardNoComplyMenu
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        query={search.q}
+        onQueryChange={setQuery}
+        focusSearch={focusSearch}
+      />
 
       <main
         id="all-designs-products"

@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
-import { Menu, Search, X } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { z } from "zod";
 
 import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
 import { ProductCard } from "@/components/no-comply/product-card";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
+import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 import { collections } from "@/data/collections";
 import { getCategories, products } from "@/data/products";
 
@@ -17,7 +18,6 @@ const collectionProducts = products
 const CATEGORY_ORDER = ["Tops", "Outerwear", "Bottoms", "Accessories"];
 const availableCategories = new Set(getCategories(COLLECTION.id));
 const CATEGORIES = CATEGORY_ORDER.filter((category) => availableCategories.has(category));
-const MENU_CATEGORIES = ["Outerwear", "Tops", "Bottoms", "Accessories"];
 
 const searchSchema = z.object({
   cat: fallback(z.string(), "all").default("all"),
@@ -46,7 +46,6 @@ export const Route = createFileRoute("/projects/no-comply/caught-on-film")({
 function CaughtOnFilmCollection() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
-  const menuSearchRef = useRef<HTMLInputElement>(null);
   const [menuOpen, setMenuOpen] = useState(false);
   const [focusMenuSearch, setFocusMenuSearch] = useState(false);
 
@@ -62,31 +61,10 @@ function CaughtOnFilmCollection() {
       search: (previous: SearchState) => ({ ...previous, q }),
       replace: true,
     });
-  const chooseCategory = (cat: string) => {
-    setMenuOpen(false);
-    navigate({
-      to: "/projects/no-comply/designs",
-      search: { cat, sort: "order", q: "" },
-    });
-  };
   const openMenu = (focusSearch = false) => {
     setFocusMenuSearch(focusSearch);
     setMenuOpen(true);
   };
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = "hidden";
-    if (focusMenuSearch) requestAnimationFrame(() => menuSearchRef.current?.focus());
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [focusMenuSearch, menuOpen]);
 
   const displayed = useMemo(() => {
     let list = collectionProducts;
@@ -146,96 +124,14 @@ function CaughtOnFilmCollection() {
         </div>
       </nav>
 
-      {menuOpen && (
-        <div className="fixed inset-0 z-[120]">
-          <button
-            type="button"
-            aria-label="Close navigation"
-            onClick={() => setMenuOpen(false)}
-            className="absolute inset-0 cursor-default bg-black/65"
-          />
-          <aside className="absolute right-0 top-0 h-full w-full max-w-md overflow-y-auto bg-white p-7 text-black sm:p-10">
-            <div className="flex items-start justify-between gap-8 border-b border-black/15 pb-7">
-              <div>
-                <p className="nc-display text-4xl leading-none tracking-[0.04em]">NO COMPLY</p>
-                <p className="mt-3 text-xs uppercase tracking-[0.28em] text-black/50">
-                  Collection Index
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => setMenuOpen(false)}
-                aria-label="Close navigation"
-                className="flex items-center gap-2 text-xs uppercase tracking-[0.2em]"
-              >
-                Close <X size={22} strokeWidth={1.5} />
-              </button>
-            </div>
-
-            <label className="mt-7 flex items-center border border-black/30 px-4 py-3">
-              <span className="sr-only">Search products</span>
-              <input
-                ref={menuSearchRef}
-                value={search.q}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search products"
-                className="min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-black/40"
-              />
-              <Search size={22} strokeWidth={1.5} />
-            </label>
-
-            <div className="mt-8 flex gap-8 border-t border-black/15 pt-7 text-sm uppercase tracking-[0.18em]">
-              <Link to="/projects/no-comply/about" onClick={() => setMenuOpen(false)}>
-                About
-              </Link>
-              <Link to="/projects/no-comply/media" onClick={() => setMenuOpen(false)}>
-                Media
-              </Link>
-            </div>
-
-            <section className="mt-8 border-t border-black/15 pt-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
-                Collections
-              </p>
-              <div className="mt-5 flex flex-col gap-4 text-xl uppercase tracking-[0.05em]">
-                <Link
-                  to="/projects/no-comply/command"
-                  search={{ cat: "all", sort: "order", q: "" }}
-                  onClick={() => setMenuOpen(false)}
-                >
-                  #1 No Comply Command
-                </Link>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setMenuOpen(false);
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                  className="text-left text-[#d9571b]"
-                >
-                  #2 Caught on Film
-                </button>
-              </div>
-            </section>
-
-            <section className="mt-8 border-t border-black/15 pt-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.28em] text-black/50">
-                Designs
-              </p>
-              <div className="mt-5 flex flex-col items-start gap-4 text-2xl uppercase tracking-[0.05em]">
-                <button type="button" onClick={() => chooseCategory("all")}>
-                  All designs
-                </button>
-                {MENU_CATEGORIES.map((category) => (
-                  <button key={category} type="button" onClick={() => chooseCategory(category)}>
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </section>
-          </aside>
-        </div>
-      )}
+      <StandardNoComplyMenu
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        query={search.q}
+        onQueryChange={setQuery}
+        focusSearch={focusMenuSearch}
+        activeCollection="caught-on-film"
+      />
 
       <main>
         <header className="nc-first-section mx-auto max-w-[1600px] px-5 pb-8 sm:px-8">

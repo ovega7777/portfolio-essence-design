@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
-import { Search, X } from "lucide-react";
 import { z } from "zod";
 
 import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
@@ -17,6 +16,7 @@ import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
 import { LogoBannerHUD } from "@/components/no-comply/logo-banner-hud";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
+import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 
 const COLLECTION = collections[0];
 const collectionProducts = products
@@ -24,7 +24,6 @@ const collectionProducts = products
   .sort((a, b) => a.displayOrder - b.displayOrder);
 
 const CATEGORIES = getCategories(COLLECTION.id);
-const MENU_CATEGORIES = ["Outerwear", "Tops", "Bottoms", "Accessories"];
 
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
 type Sort = (typeof SORTS)[number];
@@ -90,26 +89,6 @@ function CommandCollection() {
     navigate({ to: ".", search: (p: SearchState) => ({ ...p, cat }) });
   const setQuery = (q: string) =>
     navigate({ to: ".", search: (p: SearchState) => ({ ...p, q }), replace: true });
-  const showProducts = () =>
-    requestAnimationFrame(() =>
-      document.getElementById("products")?.scrollIntoView({ behavior: "smooth" }),
-    );
-  const chooseCategory = (cat: string) => {
-    setMenuOpen(false);
-    navigate({
-      to: "/projects/no-comply/designs",
-      search: { cat, sort: "order", q: "" },
-    });
-  };
-  const chooseCollection = (collectionId: string) => {
-    setMenuOpen(false);
-    if (collectionId === COLLECTION.id) {
-      setCategory("all");
-      showProducts();
-      return;
-    }
-    navigate({ to: "/projects/no-comply/caught-on-film" });
-  };
   const openProductSearch = () => {
     setFocusMenuSearch(true);
     setMenuOpen(true);
@@ -118,19 +97,6 @@ function CommandCollection() {
     setFocusMenuSearch(false);
     setMenuOpen(true);
   };
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
 
   const displayed = useMemo(() => {
     let list = collectionProducts;
@@ -163,111 +129,14 @@ function CommandCollection() {
         <div className="h-0.5 w-full bg-white" />
       </nav>
 
-      {menuOpen && (
-        <div className="fixed inset-0 z-[120]">
-          <button
-            type="button"
-            aria-label="Close product menu"
-            onClick={() => setMenuOpen(false)}
-            className="absolute inset-0 cursor-default bg-black/45"
-          />
-          <aside
-            aria-label="Product navigation"
-            className="absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col overflow-y-auto border-l border-black/10 bg-white px-6 py-6 text-black shadow-2xl sm:px-9 sm:py-8"
-          >
-            <div className="flex items-start justify-between gap-6 border-b border-black/15 pb-6">
-              <p className="nc-display text-4xl leading-none tracking-[0.04em] sm:text-5xl">
-                NO COMPLY
-              </p>
-              <button
-                type="button"
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] transition-opacity hover:opacity-45"
-              >
-                Close
-                <X aria-hidden className="h-5 w-5" strokeWidth={1.5} />
-              </button>
-            </div>
-
-            <label className="mt-6 flex h-14 items-center gap-4 border border-black/25 bg-white px-4 transition-colors focus-within:border-black">
-              <input
-                type="search"
-                value={search.q}
-                onChange={(event) => setQuery(event.target.value)}
-                autoFocus={focusMenuSearch}
-                placeholder="Search products"
-                aria-label="Search products in menu"
-                className="min-w-0 flex-1 bg-transparent font-punk-body text-lg tracking-[0.06em] text-black placeholder:text-black/40 focus:outline-none"
-              />
-              <Search aria-hidden className="h-5 w-5 shrink-0" strokeWidth={1.5} />
-            </label>
-
-            <nav
-              aria-label="No Comply editorial pages"
-              className="mt-7 flex flex-col items-start border-t border-black/10"
-            >
-              <Link
-                to="/projects/no-comply/about"
-                onClick={() => setMenuOpen(false)}
-                className="w-full border-b border-black/10 py-6 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-              >
-                About
-              </Link>
-              <Link
-                to="/projects/no-comply/media"
-                onClick={() => setMenuOpen(false)}
-                className="w-full border-b border-black/10 py-6 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-              >
-                Media
-              </Link>
-            </nav>
-
-            <div className="mt-7 border-t border-black/10 pt-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
-                Collections
-              </p>
-              <div className="mt-5 flex flex-col items-start gap-3">
-                {collections.map((collection) => (
-                  <button
-                    key={collection.id}
-                    type="button"
-                    onClick={() => chooseCollection(collection.id)}
-                    className="whitespace-nowrap text-left font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-                  >
-                    #{collection.number}{" "}
-                    {collection.title === "COMMAND" ? "No Comply Command" : collection.title}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="mt-7 border-t border-black/10 pt-6">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
-                Designs
-              </p>
-              <div className="mt-5 flex flex-col items-start gap-3.5">
-                <button
-                  type="button"
-                  onClick={() => chooseCategory("all")}
-                  className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-                >
-                  All Designs
-                </button>
-                {MENU_CATEGORIES.map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    onClick={() => chooseCategory(category)}
-                    className="font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </aside>
-        </div>
-      )}
+      <StandardNoComplyMenu
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        query={search.q}
+        onQueryChange={setQuery}
+        focusSearch={focusMenuSearch}
+        activeCollection="command"
+      />
 
       <LogoBannerHUD
         src={noComplyUsaLogoBlack.url}
@@ -328,7 +197,6 @@ function CommandCollection() {
             ))}
           </div>
 
-
           <div className="mb-12 md:mb-16">
             <h3 className="font-punk-body text-base font-bold uppercase tracking-[0.06em] text-black">
               No Comply Command
@@ -346,7 +214,9 @@ function CommandCollection() {
                     onClick={() => setCategory(category)}
                     aria-pressed={selected}
                     className={`font-punk-body text-sm uppercase tracking-[0.06em] text-black transition-opacity hover:opacity-45 sm:text-base ${
-                      selected ? "font-bold underline decoration-1 underline-offset-4" : "font-normal"
+                      selected
+                        ? "font-bold underline decoration-1 underline-offset-4"
+                        : "font-normal"
                     }`}
                   >
                     {category === "all" ? "All" : category}
@@ -404,7 +274,6 @@ function CommandCollection() {
               loading="lazy"
             />
           </div>
-
         </div>
       </section>
       <CollectionNavigationFooter nextCollection="caught-on-film" />

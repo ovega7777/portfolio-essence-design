@@ -1,7 +1,6 @@
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
-import { Search, X } from "lucide-react";
 import { z } from "zod";
 
 import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
@@ -14,11 +13,11 @@ import { getCategories, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
 import { collections } from "@/data/collections";
 import { LogoBannerHUD } from "@/components/no-comply/logo-banner-hud";
+import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 
 const COMMAND = collections[0];
 const CATEGORIES = getCategories();
 const CAUGHT_ON_FILM = collections[1];
-const MENU_CATEGORIES = ["Outerwear", "Tops", "Bottoms", "Accessories"];
 
 const toCarouselItems = (
   collectionId: string,
@@ -99,7 +98,6 @@ function NoComplyHome() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [focusMenuSearch, setFocusMenuSearch] = useState(false);
   const [menuQuery, setMenuQuery] = useState("");
-  const navigate = Route.useNavigate();
 
   const openProductSearch = () => {
     setFocusMenuSearch(true);
@@ -109,24 +107,6 @@ function NoComplyHome() {
     setFocusMenuSearch(false);
     setMenuOpen(true);
   };
-  const goToDesigns = (cat: string, q = "") => {
-    setMenuOpen(false);
-    navigate({ to: "/projects/no-comply/designs", search: { cat, sort: "order", q } });
-  };
-
-  useEffect(() => {
-    if (!menuOpen) return;
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMenuOpen(false);
-    };
-    document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
-    };
-  }, [menuOpen]);
-
   return (
     <div className="no-comply min-h-screen bg-white text-black">
       <div className="sticky top-0 z-[100] w-full">
@@ -153,129 +133,16 @@ function NoComplyHome() {
         />
       </div>
 
-
-      {menuOpen && (
-        <div className="fixed inset-0 z-[120]">
-          <button
-            type="button"
-            aria-label="Close product menu"
-            onClick={() => setMenuOpen(false)}
-            className="absolute inset-0 cursor-default bg-black/45"
-          />
-          <aside
-            aria-label="Product navigation"
-            className="absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col overflow-y-auto border-l border-black/10 bg-white px-6 py-5 text-black shadow-2xl sm:px-9 sm:py-6"
-          >
-            <div className="flex items-start justify-between gap-6 border-b border-black/15 pb-4">
-              <p className="nc-display text-4xl leading-none tracking-[0.04em] sm:text-5xl">
-                NO COMPLY
-              </p>
-              <button
-                type="button"
-                onClick={() => setMenuOpen(false)}
-                className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] transition-opacity hover:opacity-45"
-              >
-                Close
-                <X aria-hidden className="h-5 w-5" strokeWidth={1.5} />
-              </button>
-            </div>
-
-            <form
-              onSubmit={(event) => {
-                event.preventDefault();
-                goToDesigns("all", menuQuery);
-              }}
-              className="mt-4 flex h-12 items-center gap-4 border border-black/25 bg-white px-4 transition-colors focus-within:border-black"
-            >
-              <input
-                type="search"
-                value={menuQuery}
-                onChange={(event) => setMenuQuery(event.target.value)}
-                autoFocus={focusMenuSearch}
-                placeholder="Search products"
-                aria-label="Search products in menu"
-                className="min-w-0 flex-1 bg-transparent font-punk-body text-lg tracking-[0.06em] text-black placeholder:text-black/40 focus:outline-none"
-              />
-              <button type="submit" aria-label="Search">
-                <Search aria-hidden className="h-5 w-5 shrink-0" strokeWidth={1.5} />
-              </button>
-            </form>
-
-            <nav
-              aria-label="No Comply editorial pages"
-              className="mt-5 flex flex-col items-start border-t border-black/10"
-            >
-              <Link
-                to="/projects/no-comply/about"
-                onClick={() => setMenuOpen(false)}
-                className="w-full border-b border-black/10 py-3.5 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-              >
-                About
-              </Link>
-              <Link
-                to="/projects/no-comply/media"
-                onClick={() => setMenuOpen(false)}
-                className="w-full border-b border-black/10 py-3.5 font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-              >
-                Media
-              </Link>
-            </nav>
-
-            <div className="mt-5 pt-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
-                Collections
-              </p>
-              <div className="mt-2 flex flex-col items-start">
-                <Link
-                  to="/projects/no-comply/command"
-                  search={{ cat: "all", sort: "order", q: "" }}
-                  onClick={() => setMenuOpen(false)}
-                  className="flex min-h-11 items-center whitespace-nowrap text-left font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-                >
-                  #1 No Comply Command
-                </Link>
-                <Link
-                  to="/projects/no-comply/caught-on-film"
-                  search={{ cat: "all", q: "" }}
-                  onClick={() => setMenuOpen(false)}
-                  className="flex min-h-11 items-center whitespace-nowrap text-left font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-                >
-                  #2 Caught on Film
-                </Link>
-              </div>
-            </div>
-
-            <div className="mt-5 border-t border-black/10 pt-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">
-                Designs
-              </p>
-              <div className="mt-2 flex flex-col items-start">
-                <button
-                  type="button"
-                  onClick={() => goToDesigns("all")}
-                  className="flex min-h-11 items-center font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-                >
-                  All Designs
-                </button>
-                {MENU_CATEGORIES.map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    onClick={() => goToDesigns(category)}
-                    className="flex min-h-11 items-center font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45"
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </aside>
-        </div>
-      )}
+      <StandardNoComplyMenu
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        query={menuQuery}
+        onQueryChange={setMenuQuery}
+        focusSearch={focusMenuSearch}
+      />
 
       <main>
         <section className="nc-first-section bg-white px-6 pb-10 text-black md:px-12 md:pb-14">
-
           <div className="mx-auto max-w-7xl">
             <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
               <div>
@@ -406,10 +273,8 @@ function NoComplyHome() {
             >
               <p className="nc-display text-xl">No Comply Command</p>
             </Link>
-
           </div>
         </section>
-
       </main>
 
       <footer className="px-6 py-16">
