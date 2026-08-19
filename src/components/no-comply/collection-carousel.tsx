@@ -1,8 +1,11 @@
 import { Link } from "@tanstack/react-router";
+import useEmblaCarousel from "embla-carousel-react";
 import {
+  useCallback,
   type KeyboardEvent as ReactKeyboardEvent,
   type PointerEvent as ReactPointerEvent,
   type WheelEvent as ReactWheelEvent,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -20,74 +23,84 @@ type Props = {
 };
 
 export function CollectionCarousel({ items, label }: Props) {
-  const trackRef = useRef<HTMLDivElement>(null);
-  const pointerStartRef = useRef({ x: 0, scrollLeft: 0 });
+  const [viewportRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    containScroll: false,
+    duration: 28,
+    loop: true,
+    skipSnaps: false,
+    slidesToScroll: 1,
+  });
+  const prefersReducedMotionRef = useRef(false);
+  const wheelDeltaRef = useRef(0);
+  const wheelResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const pointerStartXRef = useRef(0);
   const draggedRef = useRef(false);
   const [dragging, setDragging] = useState(false);
 
-  const prefersReducedMotion = () =>
-    typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const updatePreference = () => {
+      prefersReducedMotionRef.current = mediaQuery.matches;
+    };
+    updatePreference();
+    mediaQuery.addEventListener("change", updatePreference);
 
-  const scrollByCard = (direction: 1 | -1) => {
-    const el = trackRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("[data-carousel-card]");
-    const step = card ? card.offsetWidth + 24 : el.clientWidth * 0.8;
-    el.scrollBy({
-      left: direction * step,
-      behavior: prefersReducedMotion() ? "auto" : "smooth",
-    });
-  };
+    return () => {
+      mediaQuery.removeEventListener("change", updatePreference);
+      if (wheelResetTimerRef.current) clearTimeout(wheelResetTimerRef.current);
+    };
+  }, []);
 
   const handleWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
-    const el = trackRef.current;
-    if (!el || Math.abs(event.deltaX) >= Math.abs(event.deltaY)) return;
+    if (!emblaApi) return;
 
-    const maxScrollLeft = el.scrollWidth - el.clientWidth;
-    const canScroll =
-      (event.deltaY > 0 && el.scrollLeft < maxScrollLeft) ||
-      (event.deltaY < 0 && el.scrollLeft > 0);
+    const isHorizontalGesture = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+    if (!isHorizontalGesture && !event.shiftKey) return;
 
-    if (canScroll) {
-      event.preventDefault();
-      el.scrollLeft += event.deltaY;
-    }
+    const delta = event.shiftKey && !isHorizontalGesture ? event.deltaY : event.deltaX;
+    if (delta === 0) return;
+
+    event.preventDefault();
+    wheelDeltaRef.current += delta;
+
+    if (wheelResetTimerRef.current) clearTimeout(wheelResetTimerRef.current);
+    wheelResetTimerRef.current = setTimeout(() => {
+      wheelDeltaRef.current = 0;
+    }, 120);
+
+    if (Math.abs(wheelDeltaRef.current) < 24) return;
+
+    const jump = prefersReducedMotionRef.current;
+    if (wheelDeltaRef.current > 0) emblaApi.scrollNext(jump);
+    else emblaApi.scrollPrev(jump);
+    wheelDeltaRef.current = 0;
   };
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse" || event.button !== 0) return;
-    const el = trackRef.current;
-    if (!el) return;
-
-    pointerStartRef.current = { x: event.clientX, scrollLeft: el.scrollLeft };
+    pointerStartXRef.current = event.clientX;
     draggedRef.current = false;
-    setDragging(true);
-    el.setPointerCapture(event.pointerId);
+    if (event.pointerType === "mouse" && event.button === 0) setDragging(true);
   };
 
   const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (!dragging || event.pointerType !== "mouse") return;
-    const el = trackRef.current;
-    if (!el) return;
-
-    const distance = event.clientX - pointerStartRef.current.x;
-    if (Math.abs(distance) > 5) draggedRef.current = true;
-    el.scrollLeft = pointerStartRef.current.scrollLeft - distance;
+    if (Math.abs(event.clientX - pointerStartXRef.current) > 5) draggedRef.current = true;
   };
 
   const stopDragging = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (event.pointerType !== "mouse") return;
-    setDragging(false);
-    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
+    if (event.pointerType === "mouse") setDragging(false);
   };
 
-  const handleKeyDown = (event: ReactKeyboardEvent<HTMLDivElement>) => {
-    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-    event.preventDefault();
-    scrollByCard(event.key === "ArrowRight" ? 1 : -1);
-  };
+  const handleKeyDown = useCallback(
+    (event: ReactKeyboardEvent<HTMLDivElement>) => {
+      if (!emblaApi || (event.key !== "ArrowLeft" && event.key !== "ArrowRight")) return;
+      event.preventDefault();
+      const jump = prefersReducedMotionRef.current;
+      if (event.key === "ArrowRight") emblaApi.scrollNext(jump);
+      else emblaApi.scrollPrev(jump);
+    },
+    [emblaApi],
+  );
 
   if (items.length === 0) return null;
 
@@ -98,8 +111,9 @@ export function CollectionCarousel({ items, label }: Props) {
       </div>
 
       <div
-        ref={trackRef}
+        ref={viewportRef}
         role="region"
+        aria-roledescription="carousel"
         aria-label={`${label} featured products. Scroll horizontally to browse.`}
         tabIndex={0}
         onWheel={handleWheel}
@@ -107,46 +121,49 @@ export function CollectionCarousel({ items, label }: Props) {
         onPointerMove={handlePointerMove}
         onPointerUp={stopDragging}
         onPointerCancel={stopDragging}
+        onPointerLeave={stopDragging}
         onKeyDown={handleKeyDown}
-        className={`flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black motion-reduce:scroll-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden ${
-          dragging ? "cursor-grabbing select-none snap-none" : "cursor-grab"
+        className={`overflow-hidden pb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black ${
+          dragging ? "cursor-grabbing select-none" : "cursor-grab"
         }`}
       >
-        {items.map((item) => (
-          <Link
-            key={item.key}
-            data-carousel-card
-            to={
-              item.collectionSlug === "command"
-                ? "/projects/no-comply/command"
-                : "/projects/no-comply/caught-on-film"
-            }
-            search={
-              item.collectionSlug === "command"
-                ? { cat: "all", sort: "order", q: "" }
-                : { cat: "all", q: "" }
-            }
-            aria-label={`View ${item.productName} in the ${label} collection`}
-            onClick={(event) => {
-              if (draggedRef.current) {
-                event.preventDefault();
-                draggedRef.current = false;
+        <div className="flex touch-pan-y gap-6">
+          {items.map((item) => (
+            <Link
+              key={item.key}
+              data-carousel-card
+              to={
+                item.collectionSlug === "command"
+                  ? "/projects/no-comply/command"
+                  : "/projects/no-comply/caught-on-film"
               }
-            }}
-            draggable={false}
-            className="group w-[84%] shrink-0 snap-start bg-white text-black ring-black/25 transition-shadow hover:ring-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 motion-reduce:transition-none sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4.5rem)/4)]"
-          >
-            <div className="flex aspect-[3/4] w-full items-center justify-center bg-white">
-              <img
-                src={item.image.url}
-                alt={item.image.alt}
-                loading="lazy"
-                draggable={false}
-                className="block max-h-full w-full object-contain"
-              />
-            </div>
-          </Link>
-        ))}
+              search={
+                item.collectionSlug === "command"
+                  ? { cat: "all", sort: "order", q: "" }
+                  : { cat: "all", q: "" }
+              }
+              aria-label={`View ${item.productName} in the ${label} collection`}
+              onClick={(event) => {
+                if (draggedRef.current) {
+                  event.preventDefault();
+                  draggedRef.current = false;
+                }
+              }}
+              draggable={false}
+              className="group min-w-0 w-[84%] shrink-0 bg-white text-black ring-black/25 transition-shadow hover:ring-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 motion-reduce:transition-none sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4.5rem)/4)]"
+            >
+              <div className="flex aspect-[3/4] w-full items-center justify-center bg-white">
+                <img
+                  src={item.image.url}
+                  alt={item.image.alt}
+                  loading="lazy"
+                  draggable={false}
+                  className="block max-h-full w-full object-contain"
+                />
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );
