@@ -374,14 +374,13 @@ function NoComplyHome() {
             <p className="nc-display mb-5 text-xs tracking-[0.4em] text-white">Manifesto</p>
             <p className="nc-display text-4xl leading-[1.05] tracking-[0.02em] md:text-6xl">
               Compliance is optional.
-              <br />
-              Craft is not.
             </p>
-            <div className="mt-6 h-px w-24 bg-white md:mt-8" />
-            <p className="mt-6 font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:mt-8 md:text-lg">
-              Every garment starts as a pattern. Every pattern starts as a refusal — to smooth the
-              edges, to trend-chase, to make it easy. No Comply is what happens when a designer&apos;s
-              hand meets an operator&apos;s stubbornness.
+            <div className="mt-5 h-px w-24 bg-white md:mt-6" />
+            <p className="mt-5 font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:mt-6 md:text-lg">
+              NO COMPLY USA draws from the contradictions, communities, and countercultures that
+              continue to shape American identity. Unisex and unrestricted by a single aesthetic,
+              the brand treats clothing as open territory for experimentation, resistance, and
+              self-expression.
             </p>
           </div>
         </section>
