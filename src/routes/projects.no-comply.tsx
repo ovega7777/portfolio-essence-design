@@ -4,7 +4,6 @@ import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
 import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
-import upsideDownAmericanFlag from "../assets/no-comply/editorial/upside-down-american-flag.jpg";
 import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
 import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
 
@@ -13,6 +12,7 @@ import { getCategories, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
 import { collections } from "@/data/collections";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
+import { NoComplyCommandTitle } from "@/components/no-comply/no-comply-command-title";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 
 const COMMAND = collections[0];
@@ -147,20 +147,7 @@ function NoComplyHome() {
             <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
               <div>
                 <p className="nc-display text-xs tracking-[0.35em] text-black/60">Collection #1</p>
-                <div className="mt-3 flex flex-nowrap items-center gap-3 text-5xl md:gap-5 md:text-8xl">
-                  <Link
-                    to="/projects/no-comply/command"
-                    search={{ cat: "all", sort: "order", q: "" }}
-                    className="nc-display inline-flex min-w-0 items-center whitespace-nowrap leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55"
-                  >
-                    No Comply Command
-                  </Link>
-                  <img
-                    src={upsideDownAmericanFlag}
-                    alt="Upside-down black-and-white American flag"
-                    className="inline-block h-[0.7em] w-auto shrink-0 object-contain"
-                  />
-                </div>
+                <NoComplyCommandTitle linked className="mt-3" />
               </div>
               <Link
                 to="/projects/no-comply/command"

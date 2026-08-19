@@ -6,7 +6,6 @@ import { z } from "zod";
 import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
 import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
-import upsideDownAmericanFlag from "../assets/no-comply/editorial/upside-down-american-flag.jpg";
 import commandAssortmentLook01 from "../assets/no-comply/editorial/command-assortment-gallery/look-01.png";
 import commandAssortmentLook02 from "../assets/no-comply/editorial/command-assortment-gallery/look-02.png";
 import commandAssortmentLook03 from "../assets/no-comply/editorial/command-assortment-gallery/look-03.png";
@@ -15,6 +14,7 @@ import { products, getCategories, type Product } from "@/data/products";
 import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
+import { NoComplyCommandTitle } from "@/components/no-comply/no-comply-command-title";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 
@@ -151,16 +151,7 @@ function CommandCollection() {
       >
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end md:mb-16">
-            <div className="flex min-w-0 flex-wrap items-center gap-4 md:gap-6">
-              <h1 className="nc-display text-5xl leading-[0.9] text-black md:text-8xl">
-                No Comply {COLLECTION.title}
-              </h1>
-              <img
-                src={upsideDownAmericanFlag}
-                alt="Upside-down black-and-white American flag"
-                className="h-auto w-14 shrink-0 sm:w-16 md:w-20"
-              />
-            </div>
+            <NoComplyCommandTitle />
             <span className="nc-display shrink-0 text-xs tracking-[0.3em] text-black sm:text-sm">
               Collection #{COLLECTION.number} / 50 Pieces
             </span>
