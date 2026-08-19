@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import useEmblaCarousel from "embla-carousel-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import {
   useCallback,
   type KeyboardEvent as ReactKeyboardEvent,
@@ -156,6 +157,16 @@ export function CollectionCarousel({ items, label }: Props) {
     [emblaApi],
   );
 
+  const scrollByTwo = useCallback(
+    (direction: -1 | 1) => {
+      if (!emblaApi) return;
+      const target =
+        (emblaApi.selectedScrollSnap() + direction * 2 + items.length) % items.length;
+      emblaApi.scrollTo(target, prefersReducedMotionRef.current);
+    },
+    [emblaApi, items.length],
+  );
+
   if (items.length === 0) return null;
 
   return (
@@ -164,66 +175,94 @@ export function CollectionCarousel({ items, label }: Props) {
         <p className="nc-display text-xs tracking-[0.3em] text-black/60">Featured Pieces</p>
       </div>
 
-      <div
-        ref={setViewportRef}
-        role="region"
-        aria-roledescription="carousel"
-        aria-label={`${label} featured products. Scroll horizontally to browse.`}
-        tabIndex={0}
-        onPointerDown={handlePointerDown}
-        onPointerMove={handlePointerMove}
-        onPointerUp={settlePointerGesture}
-        onPointerCancel={cancelPointerGesture}
-        onPointerLeave={(event) => {
-          if (
-            event.pointerType === "mouse" &&
-            !event.currentTarget.hasPointerCapture(event.pointerId)
-          ) {
-            setDragging(false);
-          }
-        }}
-        onKeyDown={handleKeyDown}
-        className={`overflow-hidden pb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black ${
-          dragging ? "cursor-grabbing select-none" : "cursor-grab"
-        }`}
-      >
-        <div className="flex touch-pan-y gap-6">
-          {items.map((item) => (
-            <Link
-              key={item.key}
-              data-carousel-card
-              to={
-                item.collectionSlug === "command"
-                  ? "/projects/no-comply/command"
-                  : "/projects/no-comply/caught-on-film"
-              }
-              search={
-                item.collectionSlug === "command"
-                  ? { cat: "all", sort: "order", q: "" }
-                  : { cat: "all", q: "" }
-              }
-              aria-label={`View ${item.productName} in the ${label} collection`}
-              onClick={(event) => {
-                if (draggedRef.current) {
-                  event.preventDefault();
-                  draggedRef.current = false;
+      <div className="relative">
+        <div
+          ref={setViewportRef}
+          role="region"
+          aria-roledescription="carousel"
+          aria-label={`${label} featured products. Scroll horizontally to browse.`}
+          tabIndex={0}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={settlePointerGesture}
+          onPointerCancel={cancelPointerGesture}
+          onPointerLeave={(event) => {
+            if (
+              event.pointerType === "mouse" &&
+              !event.currentTarget.hasPointerCapture(event.pointerId)
+            ) {
+              setDragging(false);
+            }
+          }}
+          onKeyDown={handleKeyDown}
+          className={`overflow-hidden pb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black ${
+            dragging ? "cursor-grabbing select-none" : "cursor-grab"
+          }`}
+        >
+          <div className="flex touch-pan-y gap-6">
+            {items.map((item) => (
+              <Link
+                key={item.key}
+                data-carousel-card
+                to={
+                  item.collectionSlug === "command"
+                    ? "/projects/no-comply/command"
+                    : "/projects/no-comply/caught-on-film"
                 }
-              }}
-              draggable={false}
-              className="group min-w-0 w-[84%] shrink-0 bg-white text-black ring-black/25 transition-shadow hover:ring-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 motion-reduce:transition-none sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4.5rem)/4)]"
-            >
-              <div className="flex aspect-[3/4] w-full items-center justify-center bg-white">
-                <img
-                  src={item.image.url}
-                  alt={item.image.alt}
-                  loading="lazy"
-                  draggable={false}
-                  className="block max-h-full w-full object-contain"
-                />
-              </div>
-            </Link>
-          ))}
+                search={
+                  item.collectionSlug === "command"
+                    ? { cat: "all", sort: "order", q: "" }
+                    : { cat: "all", q: "" }
+                }
+                aria-label={`View ${item.productName} in the ${label} collection`}
+                onClick={(event) => {
+                  if (draggedRef.current) {
+                    event.preventDefault();
+                    draggedRef.current = false;
+                  }
+                }}
+                draggable={false}
+                className="group min-w-0 w-[84%] shrink-0 bg-white text-black ring-black/25 transition-shadow hover:ring-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 motion-reduce:transition-none sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4.5rem)/4)]"
+              >
+                <div className="flex aspect-[3/4] w-full items-center justify-center bg-white">
+                  <img
+                    src={item.image.url}
+                    alt={item.image.alt}
+                    loading="lazy"
+                    draggable={false}
+                    className="block max-h-full w-full object-contain"
+                  />
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
+
+        <button
+          type="button"
+          onClick={() => scrollByTwo(-1)}
+          aria-label="Previous two featured products"
+          className="group absolute left-0 top-1/2 z-10 flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center bg-white/80 text-black transition-[color,opacity,transform] hover:opacity-65 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black motion-reduce:transition-none"
+        >
+          <ArrowLeft
+            aria-hidden="true"
+            strokeWidth={1.25}
+            className="size-5 transition-transform group-hover:-translate-x-0.5 group-active:-translate-x-1 motion-reduce:transition-none"
+          />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => scrollByTwo(1)}
+          aria-label="Next two featured products"
+          className="group absolute right-0 top-1/2 z-10 flex size-11 translate-x-1/2 -translate-y-1/2 items-center justify-center bg-white/80 text-black transition-[color,opacity,transform] hover:opacity-65 active:scale-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black motion-reduce:transition-none"
+        >
+          <ArrowRight
+            aria-hidden="true"
+            strokeWidth={1.25}
+            className="size-5 transition-transform group-hover:translate-x-0.5 group-active:translate-x-1 motion-reduce:transition-none"
+          />
+        </button>
       </div>
     </div>
   );
