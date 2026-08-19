@@ -102,7 +102,9 @@ function About() {
         <div className="grid gap-12 md:grid-cols-3">
           <Detail label="Education">
             <span className="block font-medium">Fashion Institute of Technology</span>
-            <span className="block text-sm text-foreground/65">Fashion Business Management</span>
+            <span className="block text-sm text-foreground/65">
+              B.S. Fashion Business Management
+            </span>
             <span className="mt-5 block font-medium">University of Miami</span>
             <span className="block text-sm text-foreground/65">M.S. International Business</span>
           </Detail>
