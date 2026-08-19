@@ -161,7 +161,7 @@ function NoComplyMedia() {
 
   return (
     <EditorialPageShell>
-      <main className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+      <main className="nc-first-section mx-auto max-w-7xl px-6 pb-20 md:pb-28">
         <header className="mb-8 flex items-end justify-between gap-8">
           <div>
             <p className="nc-display text-xs uppercase tracking-[0.32em] text-black/55">

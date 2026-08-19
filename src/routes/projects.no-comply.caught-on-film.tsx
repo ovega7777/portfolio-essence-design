@@ -238,7 +238,7 @@ function CaughtOnFilmCollection() {
       )}
 
       <main>
-        <header className="mx-auto max-w-[1600px] px-5 pb-8 pt-16 sm:px-8 sm:pt-24">
+        <header className="nc-first-section mx-auto max-w-[1600px] px-5 pb-8 sm:px-8">
           <div className="flex flex-col gap-6 border-b border-[#f36b21]/60 pb-8 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="mb-4 text-xs uppercase tracking-[0.32em] text-[#f36b21]">

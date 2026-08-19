@@ -274,7 +274,7 @@ function AllDesigns() {
 
       <main
         id="all-designs-products"
-        className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24"
+        className="nc-first-section mx-auto max-w-[1600px] px-5 pb-16 sm:px-8 sm:pb-24"
       >
         <header className="border-b border-black pb-8">
           <div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between">

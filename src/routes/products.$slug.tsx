@@ -94,7 +94,7 @@ function ProductPage() {
         </div>
       </nav>
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:px-12 md:py-16">
+      <div className="nc-first-section mx-auto grid max-w-7xl gap-10 px-6 pb-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:px-12 md:pb-16">
         <div className="flex flex-col gap-6">
           {ordered.map((img, i) => (
             <button

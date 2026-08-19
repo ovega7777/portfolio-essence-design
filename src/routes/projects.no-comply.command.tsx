@@ -278,7 +278,7 @@ function CommandCollection() {
 
       <section
         id="products"
-        className="border-b-2 border-black bg-white px-6 py-24 md:px-12 md:py-32"
+        className="nc-first-section border-b-2 border-black bg-white px-6 pb-24 md:px-12 md:pb-32"
       >
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end md:mb-16">
