@@ -22,7 +22,7 @@ type Props = {
   label: string;
 };
 
-const INPUT_RESPONSE_SCALE = 0.4;
+const INPUT_RESPONSE_SCALE = 0.5;
 const GESTURE_TRIGGER_DISTANCE = 24;
 const WHEEL_GESTURE_IDLE_MS = 220;
 
