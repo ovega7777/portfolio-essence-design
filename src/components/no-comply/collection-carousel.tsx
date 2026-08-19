@@ -4,7 +4,6 @@ import {
   useCallback,
   type KeyboardEvent as ReactKeyboardEvent,
   type PointerEvent as ReactPointerEvent,
-  type WheelEvent as ReactWheelEvent,
   useEffect,
   useRef,
   useState,
@@ -22,21 +21,35 @@ type Props = {
   label: string;
 };
 
+const INPUT_RESPONSE_SCALE = 0.4;
+const GESTURE_TRIGGER_DISTANCE = 24;
+const WHEEL_GESTURE_IDLE_MS = 220;
+
 export function CollectionCarousel({ items, label }: Props) {
   const [viewportRef, emblaApi] = useEmblaCarousel({
     align: "start",
     containScroll: false,
-    duration: 28,
+    duration: 42,
     loop: true,
     skipSnaps: false,
     slidesToScroll: 1,
   });
   const prefersReducedMotionRef = useRef(false);
   const wheelDeltaRef = useRef(0);
+  const wheelGestureHandledRef = useRef(false);
   const wheelResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const viewportElementRef = useRef<HTMLDivElement | null>(null);
   const pointerStartXRef = useRef(0);
+  const pointerStartSnapRef = useRef(0);
   const draggedRef = useRef(false);
   const [dragging, setDragging] = useState(false);
+  const setViewportRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      viewportElementRef.current = node;
+      viewportRef(node);
+    },
+    [viewportRef],
+  );
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -52,34 +65,51 @@ export function CollectionCarousel({ items, label }: Props) {
     };
   }, []);
 
-  const handleWheel = (event: ReactWheelEvent<HTMLDivElement>) => {
-    if (!emblaApi) return;
+  useEffect(() => {
+    const viewport = viewportElementRef.current;
+    if (!viewport || !emblaApi) return;
 
-    const isHorizontalGesture = Math.abs(event.deltaX) > Math.abs(event.deltaY);
-    if (!isHorizontalGesture && !event.shiftKey) return;
+    const handleWheel = (event: WheelEvent) => {
+      const isHorizontalGesture = Math.abs(event.deltaX) > Math.abs(event.deltaY) * 1.35;
+      if (!isHorizontalGesture && !event.shiftKey) return;
 
-    const delta = event.shiftKey && !isHorizontalGesture ? event.deltaY : event.deltaX;
-    if (delta === 0) return;
+      const delta = event.shiftKey && !isHorizontalGesture ? event.deltaY : event.deltaX;
+      if (delta === 0) return;
 
-    event.preventDefault();
-    wheelDeltaRef.current += delta;
+      event.preventDefault();
+      wheelDeltaRef.current += delta * INPUT_RESPONSE_SCALE;
 
-    if (wheelResetTimerRef.current) clearTimeout(wheelResetTimerRef.current);
-    wheelResetTimerRef.current = setTimeout(() => {
+      if (wheelResetTimerRef.current) clearTimeout(wheelResetTimerRef.current);
+      wheelResetTimerRef.current = setTimeout(() => {
+        wheelDeltaRef.current = 0;
+        wheelGestureHandledRef.current = false;
+      }, WHEEL_GESTURE_IDLE_MS);
+
+      if (
+        wheelGestureHandledRef.current ||
+        Math.abs(wheelDeltaRef.current) < GESTURE_TRIGGER_DISTANCE
+      ) {
+        return;
+      }
+
+      const jump = prefersReducedMotionRef.current;
+      if (wheelDeltaRef.current > 0) emblaApi.scrollNext(jump);
+      else emblaApi.scrollPrev(jump);
+      wheelGestureHandledRef.current = true;
       wheelDeltaRef.current = 0;
-    }, 120);
+    };
 
-    if (Math.abs(wheelDeltaRef.current) < 24) return;
-
-    const jump = prefersReducedMotionRef.current;
-    if (wheelDeltaRef.current > 0) emblaApi.scrollNext(jump);
-    else emblaApi.scrollPrev(jump);
-    wheelDeltaRef.current = 0;
-  };
+    viewport.addEventListener("wheel", handleWheel, { passive: false });
+    return () => viewport.removeEventListener("wheel", handleWheel);
+  }, [emblaApi]);
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+
     pointerStartXRef.current = event.clientX;
+    pointerStartSnapRef.current = emblaApi?.selectedScrollSnap() ?? 0;
     draggedRef.current = false;
+    event.currentTarget.setPointerCapture(event.pointerId);
     if (event.pointerType === "mouse" && event.button === 0) setDragging(true);
   };
 
@@ -87,8 +117,32 @@ export function CollectionCarousel({ items, label }: Props) {
     if (Math.abs(event.clientX - pointerStartXRef.current) > 5) draggedRef.current = true;
   };
 
-  const stopDragging = (event: ReactPointerEvent<HTMLDivElement>) => {
+  const settlePointerGesture = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (emblaApi) {
+      const scaledDistance = (event.clientX - pointerStartXRef.current) * INPUT_RESPONSE_SCALE;
+      const step =
+        Math.abs(scaledDistance) < GESTURE_TRIGGER_DISTANCE ? 0 : scaledDistance < 0 ? 1 : -1;
+      const target = (pointerStartSnapRef.current + step + items.length) % items.length;
+      const jump = prefersReducedMotionRef.current;
+
+      window.setTimeout(() => emblaApi.scrollTo(target, jump), 0);
+    }
+
     if (event.pointerType === "mouse") setDragging(false);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
+
+  const cancelPointerGesture = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (emblaApi) {
+      const jump = prefersReducedMotionRef.current;
+      window.setTimeout(() => emblaApi.scrollTo(pointerStartSnapRef.current, jump), 0);
+    }
+    if (event.pointerType === "mouse") setDragging(false);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
   };
 
   const handleKeyDown = useCallback(
@@ -111,17 +165,23 @@ export function CollectionCarousel({ items, label }: Props) {
       </div>
 
       <div
-        ref={viewportRef}
+        ref={setViewportRef}
         role="region"
         aria-roledescription="carousel"
         aria-label={`${label} featured products. Scroll horizontally to browse.`}
         tabIndex={0}
-        onWheel={handleWheel}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
-        onPointerUp={stopDragging}
-        onPointerCancel={stopDragging}
-        onPointerLeave={stopDragging}
+        onPointerUp={settlePointerGesture}
+        onPointerCancel={cancelPointerGesture}
+        onPointerLeave={(event) => {
+          if (
+            event.pointerType === "mouse" &&
+            !event.currentTarget.hasPointerCapture(event.pointerId)
+          ) {
+            setDragging(false);
+          }
+        }}
         onKeyDown={handleKeyDown}
         className={`overflow-hidden pb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black ${
           dragging ? "cursor-grabbing select-none" : "cursor-grab"
