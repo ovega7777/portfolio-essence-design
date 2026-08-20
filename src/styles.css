@@ -159,6 +159,41 @@
   text-transform: uppercase;
 }
 
+/* Shared collection-catalog rhythm: campaign image -> title -> filters -> products. */
+.no-comply {
+  --nc-collection-header-title-gap: 2rem;
+  --nc-collection-title-filter-gap: 1.25rem;
+  --nc-collection-filter-grid-gap: 1.75rem;
+}
+
+.no-comply .nc-collection-header-to-title {
+  padding-top: var(--nc-collection-header-title-gap);
+}
+
+.no-comply .nc-collection-title-to-filters {
+  margin-top: var(--nc-collection-title-filter-gap);
+}
+
+.no-comply .nc-collection-filters-to-grid {
+  margin-top: var(--nc-collection-filter-grid-gap);
+}
+
+@media (min-width: 640px) {
+  .no-comply {
+    --nc-collection-header-title-gap: 2.5rem;
+    --nc-collection-title-filter-gap: 1.5rem;
+    --nc-collection-filter-grid-gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .no-comply {
+    --nc-collection-header-title-gap: 3.5rem;
+    --nc-collection-title-filter-gap: 1.75rem;
+    --nc-collection-filter-grid-gap: 2.5rem;
+  }
+}
+
 /* Shared offset between NO COMPLY route headers and the first meaningful content. */
 .no-comply .nc-first-section {
   padding-top: 2.5rem;

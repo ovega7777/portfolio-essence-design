@@ -162,12 +162,12 @@ function CaughtOnFilmCollection() {
         </section>
 
         <section id="caught-on-film-products" className="bg-white text-black">
-          <div className="mx-auto max-w-[1600px] px-5 py-16 sm:px-8 sm:py-24">
-            <div className="border-b border-black pb-5">
+          <div className="nc-collection-header-to-title mx-auto max-w-[1600px] px-5 pb-16 sm:px-8 sm:pb-24">
+            <div className="border-b border-black">
               <p className="nc-display text-2xl uppercase tracking-[0.08em] sm:text-3xl">
                 Caught on Film
               </p>
-              <div className="mt-5 flex flex-wrap gap-x-7 gap-y-3 text-sm uppercase tracking-[0.16em]">
+              <div className="nc-collection-title-to-filters flex flex-wrap gap-x-7 gap-y-3 pb-5 text-sm uppercase tracking-[0.16em]">
                 <button
                   type="button"
                   onClick={() => setCategory("all")}
@@ -189,7 +189,7 @@ function CaughtOnFilmCollection() {
             </div>
 
             {displayed.length > 0 ? (
-              <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="nc-collection-filters-to-grid grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
                 {displayed.flatMap((product) =>
                   (product.listingVariantIds ?? [product.variants[0].id]).map((variantId) => (
                     <ProductCard
@@ -201,7 +201,7 @@ function CaughtOnFilmCollection() {
                 )}
               </div>
             ) : (
-              <div className="flex min-h-[360px] items-center justify-center py-20 text-center">
+              <div className="nc-collection-filters-to-grid flex min-h-[360px] items-center justify-center py-20 text-center">
                 <div>
                   <p className="nc-display text-4xl uppercase tracking-[0.08em] sm:text-5xl">
                     Assortment arriving soon

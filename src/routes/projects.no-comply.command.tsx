@@ -159,7 +159,7 @@ function CommandCollection() {
 
           <div
             aria-label="No Comply Command editorial"
-            className="mb-20 grid grid-cols-2 gap-1 bg-black lg:grid-cols-4"
+            className="grid grid-cols-2 gap-1 bg-black lg:grid-cols-4"
           >
             {[
               {
@@ -188,13 +188,13 @@ function CommandCollection() {
             ))}
           </div>
 
-          <div className="mb-12 md:mb-16">
+          <div className="nc-collection-header-to-title">
             <h3 className="font-punk-body text-base font-bold uppercase tracking-[0.06em] text-black">
               No Comply Command
             </h3>
             <nav
               aria-label="Filter products by category"
-              className="mt-4 flex flex-wrap items-center gap-x-7 gap-y-3 border-y border-black/20 py-4 sm:gap-x-9"
+              className="nc-collection-title-to-filters flex flex-wrap items-center gap-x-7 gap-y-3 border-y border-black/20 py-4 sm:gap-x-9"
             >
               {["all", ...CATEGORIES].map((category) => {
                 const selected = activeCategory === category;
@@ -218,7 +218,7 @@ function CommandCollection() {
           </div>
 
           {displayed.length === 0 ? (
-            <div className="border-2 border-dashed border-black/40 p-16 text-center">
+            <div className="nc-collection-filters-to-grid border-2 border-dashed border-black/40 p-16 text-center">
               <p className="nc-display text-2xl text-black">
                 {collectionProducts.length === 0 ? "Collection loading." : "No matches."}
               </p>
@@ -241,7 +241,7 @@ function CommandCollection() {
               )}
             </div>
           ) : (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <div className="nc-collection-filters-to-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {displayed.map((p) => (
                 <ProductCard key={p.id} product={p} />
               ))}
