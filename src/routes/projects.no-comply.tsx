@@ -10,6 +10,7 @@ import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-0
 import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
 import { getCategories, getProductThumbnailImage, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
+import { NoComplyBackButton } from "@/components/no-comply/back-button";
 import { collections } from "@/data/collections";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyCommandTitle } from "@/components/no-comply/no-comply-command-title";
@@ -118,14 +119,7 @@ function NoComplyHome() {
         <NoComplyUtilityBar
           pageName="HOME"
           backControl={
-            <Link
-              to="/"
-              className="nc-display block whitespace-nowrap text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl"
-              aria-label="Back to Nicholas Curzon"
-            >
-              <span className="sm:hidden">← NC</span>
-              <span className="hidden sm:inline">← Nicholas Curzon</span>
-            </Link>
+            <NoComplyBackButton className="nc-display block whitespace-nowrap text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl" />
           }
         />
         <LogoBanner

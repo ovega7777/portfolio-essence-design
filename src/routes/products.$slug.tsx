@@ -4,6 +4,7 @@ import type { ProductVariant } from "@/data/products";
 import { getGroupedVariants, getProductBySlug, type ProductImage } from "@/data/products";
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
+import { NoComplyBackButton } from "@/components/no-comply/back-button";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
 import noComplyUsaLogoBlack from "@/assets/no-comply-usa-logo-black-cropped.png.asset.json";
@@ -88,14 +89,7 @@ function ProductPage() {
         className="z-40"
         pageName={product.name}
         backControl={
-          <Link
-            to="/projects/no-comply"
-            className="nc-display block whitespace-nowrap text-base tracking-widest text-white transition-colors duration-200 hover:text-white/60 md:text-lg"
-            aria-label={`Back to ${collection?.title ?? "NO COMPLY USA"}`}
-          >
-            <span className="sm:hidden">← NC</span>
-            <span className="hidden sm:inline">← {collection?.title ?? "Collection"}</span>
-          </Link>
+          <NoComplyBackButton className="nc-display block whitespace-nowrap text-base tracking-widest text-white transition-colors duration-200 hover:text-white/60 md:text-lg" />
         }
       />
       <LogoBanner src={noComplyUsaLogoBlack.url} />

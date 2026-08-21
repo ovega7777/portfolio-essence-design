@@ -4,6 +4,7 @@ import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
 import { ProductCard } from "@/components/no-comply/product-card";
+import { NoComplyBackButton } from "@/components/no-comply/back-button";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
@@ -129,14 +130,7 @@ function AllDesigns() {
         <NoComplyUtilityBar
           pageName={pageIndicator}
           backControl={
-            <Link
-              to="/projects/no-comply"
-              className="nc-display block whitespace-nowrap text-lg tracking-widest transition-opacity hover:opacity-60 sm:text-xl"
-              aria-label="Back to NO COMPLY USA"
-            >
-              <span className="sm:hidden">← NC</span>
-              <span className="hidden sm:inline">← No Comply USA</span>
-            </Link>
+            <NoComplyBackButton className="nc-display block whitespace-nowrap text-lg tracking-widest transition-opacity hover:opacity-60 sm:text-xl" />
           }
         />
         <LogoBanner
