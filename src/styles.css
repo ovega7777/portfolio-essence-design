@@ -178,6 +178,58 @@
   margin-top: var(--nc-collection-filter-grid-gap);
 }
 
+/* Compact three-panel campaign banner used only by the Caught on Film collection. */
+.no-comply .cof-editorial-banner {
+  overflow: hidden;
+}
+
+.no-comply .cof-editorial-banner__track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  height: clamp(22rem, 32vw, 27.5rem);
+}
+
+.no-comply .cof-editorial-banner__panel {
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.no-comply .cof-editorial-banner__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 639px) {
+  .no-comply .cof-editorial-banner {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .no-comply .cof-editorial-banner::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-comply .cof-editorial-banner__track {
+    display: flex;
+    width: max-content;
+    height: clamp(22rem, 112vw, 27rem);
+  }
+
+  .no-comply .cof-editorial-banner__panel {
+    width: 84vw;
+    flex: 0 0 84vw;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
 @media (min-width: 640px) {
   .no-comply {
     --nc-collection-header-title-gap: 2.5rem;

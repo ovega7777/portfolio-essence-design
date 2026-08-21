@@ -3,7 +3,9 @@ import { useMemo } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
-import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
+import editorialBanner01 from "../assets/no-comply/caught-on-film/editorial-banner/panel-01.jpg";
+import editorialBanner02 from "../assets/no-comply/caught-on-film/editorial-banner/panel-02.jpg";
+import editorialBanner03 from "../assets/no-comply/caught-on-film/editorial-banner/panel-03.jpg";
 import { ProductCard } from "@/components/no-comply/product-card";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import {
@@ -20,6 +22,23 @@ const collectionProducts = products
 const CATEGORY_ORDER = ["Tops", "Outerwear", "Bottoms", "Accessories"];
 const availableCategories = new Set(getCategories(COLLECTION.id));
 const CATEGORIES = CATEGORY_ORDER.filter((category) => availableCategories.has(category));
+const EDITORIAL_BANNER = [
+  {
+    src: editorialBanner01,
+    alt: "Black The End studded tracksuit against a deep red backdrop",
+    position: "50% 45%",
+  },
+  {
+    src: editorialBanner02,
+    alt: "White NC-17 T-shirt styled with an On Film scarf and red theater glasses",
+    position: "50% 37%",
+  },
+  {
+    src: editorialBanner03,
+    alt: "Red On Film long-sleeve top styled with a black studded belt",
+    position: "50% 45%",
+  },
+];
 
 const searchSchema = z.object({
   cat: fallback(z.string(), "all").default("all"),
@@ -94,14 +113,21 @@ function CaughtOnFilmCollection() {
         />
 
         <section
-          className="mx-auto max-w-[1672px] px-0 sm:px-8"
+          className="cof-editorial-banner mx-auto max-w-[1672px] px-0 sm:px-8"
           aria-label="Caught on Film campaign"
         >
-          <img
-            src={caughtOnFilmHeader}
-            alt="Caught on Film campaign contact sheet"
-            className="block h-auto w-full"
-          />
+          <div className="cof-editorial-banner__track">
+            {EDITORIAL_BANNER.map((panel) => (
+              <figure key={panel.src} className="cof-editorial-banner__panel">
+                <img
+                  src={panel.src}
+                  alt={panel.alt}
+                  className="cof-editorial-banner__image"
+                  style={{ objectPosition: panel.position }}
+                />
+              </figure>
+            ))}
+          </div>
         </section>
 
         <section id="caught-on-film-products" className="bg-white text-black">
