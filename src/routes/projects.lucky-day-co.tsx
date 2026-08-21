@@ -25,16 +25,7 @@ export const Route = createFileRoute("/projects/lucky-day-co")({
 function LuckyDay() {
   return (
     <SiteFrame>
-      <section className="mx-auto max-w-6xl px-6 pt-8 pb-16">
-        <div className="mb-10 flex items-center gap-6 text-xs">
-          <Link
-            to="/projects"
-            className="eyebrow hover:text-foreground transition-colors"
-          >
-            ← Projects
-          </Link>
-          <span className="eyebrow">02 / Lucky Day Co</span>
-        </div>
+      <section className="mx-auto max-w-6xl px-6 pt-8 pb-8 md:pt-12 md:pb-12">
         <h1 className="font-serif text-5xl leading-[1] md:text-7xl">
           Lucky Day <span className="italic">Co.</span>
         </h1>
