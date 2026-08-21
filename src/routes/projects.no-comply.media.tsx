@@ -28,6 +28,7 @@ import cof10 from "../assets/no-comply/caught-on-film/cof-10.png.asset.json";
 import cof11 from "../assets/no-comply/caught-on-film/cof-11.png.asset.json";
 import onFilmScarfModel2 from "../assets/products/caught-on-film/on-film-scarf/black-white/model-2.jpg";
 import onFilmSkullCapModel1 from "../assets/products/caught-on-film/on-film-skull-cap/black-white/model-1.jpg";
+import starTruckerHatBlackModel1 from "../assets/products/caught-on-film/star-studded-trucker-hat/black/model-1.jpg";
 import studdedBeltBlackModel1 from "../assets/products/caught-on-film/studded-belt/black/model-1.jpg";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
@@ -102,6 +103,11 @@ const media: {
   {
     src: onFilmSkullCapModel1,
     alt: "Portrait in film-strip printed beanie pulled over the eyes",
+    collection: "caught-on-film",
+  },
+  {
+    src: starTruckerHatBlackModel1,
+    alt: "Model wearing a black Star Studded Trucker Hat and film-strip printed scarf",
     collection: "caught-on-film",
   },
   {
