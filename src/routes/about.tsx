@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
 import portrait from "../assets/about-portrait.jpg";
 
@@ -85,15 +85,13 @@ function About() {
               development, product merchandising, campaign art direction,
               content production, and digital experiences.
             </p>
-            <a
-              href="/nicholas-curzon-resume-2026.pdf"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="View Nicholas Curzon's resume (opens in a new tab)"
+            <Link
+              to="/projects/"
+              aria-label="View projects"
               className="inline-flex min-h-14 items-center border border-foreground px-[30px] py-5 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
             >
-              View Resume →
-            </a>
+              View Projects →
+            </Link>
           </div>
         </div>
       </section>
