@@ -20,7 +20,6 @@ import media10 from "../assets/no-comply/media/media-10-black-anorak-hood.png.as
 import portfolioVideo from "../assets/no-comply/media/no-comply-portfolio.mp4.asset.json";
 import cof01 from "../assets/no-comply/caught-on-film/cof-01-trim.png.asset.json";
 import cof02 from "../assets/no-comply/caught-on-film/cof-02.png.asset.json";
-import cof03 from "../assets/no-comply/caught-on-film/cof-03.png.asset.json";
 import cof06 from "../assets/no-comply/caught-on-film/cof-06.png.asset.json";
 import cof07 from "../assets/no-comply/caught-on-film/cof-07.png.asset.json";
 import cof08 from "../assets/no-comply/caught-on-film/cof-08.png.asset.json";
@@ -29,6 +28,7 @@ import cof10 from "../assets/no-comply/caught-on-film/cof-10.png.asset.json";
 import cof11 from "../assets/no-comply/caught-on-film/cof-11.png.asset.json";
 import onFilmScarfModel2 from "../assets/products/caught-on-film/on-film-scarf/black-white/model-2.jpg";
 import onFilmSkullCapModel1 from "../assets/products/caught-on-film/on-film-skull-cap/black-white/model-1.jpg";
+import studdedBeltBlackModel1 from "../assets/products/caught-on-film/studded-belt/black/model-1.jpg";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
 type MediaCollection = "command" | "caught-on-film";
@@ -95,7 +95,7 @@ const media: {
     collection: "caught-on-film",
   },
   {
-    src: cof03.url,
+    src: studdedBeltBlackModel1,
     alt: "Model in red film-strip mesh long-sleeve top with black wide-leg denim",
     collection: "caught-on-film",
   },
