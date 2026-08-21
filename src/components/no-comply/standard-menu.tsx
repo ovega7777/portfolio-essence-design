@@ -75,7 +75,7 @@ export function StandardNoComplyMenu({
     onClose();
     navigate({
       to: "/projects/no-comply/designs",
-      search: { cat: category, sort: "order", q: searchQuery },
+      search: { cat: category, q: searchQuery },
     });
   };
 
@@ -190,7 +190,7 @@ export function StandardNoComplyMenu({
           <div className="mt-2 flex flex-col items-start">
             <Link
               to="/projects/no-comply/designs"
-              search={{ cat: "all", sort: "order", q: "" }}
+              search={{ cat: "all", q: "" }}
               hash="catalog-controls"
               onClick={onClose}
               className={linkClass}
@@ -201,7 +201,7 @@ export function StandardNoComplyMenu({
               <Link
                 key={category}
                 to="/projects/no-comply/designs"
-                search={{ cat: category, sort: "order", q: "" }}
+                search={{ cat: category, q: "" }}
                 hash="catalog-controls"
                 onClick={onClose}
                 className={linkClass}

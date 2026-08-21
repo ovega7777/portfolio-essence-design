@@ -1,7 +1,5 @@
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 import { useState } from "react";
-import { fallback, zodValidator } from "@tanstack/zod-adapter";
-import { z } from "zod";
 
 import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
@@ -61,15 +59,7 @@ const COMMAND_CAROUSEL = toCarouselItems(COMMAND.id);
 const CAUGHT_ON_FILM_CAROUSEL = toCarouselItems(CAUGHT_ON_FILM.id, true, true);
 const COLLECTION_FEATURE_MEDIA_CLASS = "aspect-[16/9] sm:aspect-[5/2] lg:aspect-[3/1]";
 
-const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
-const searchSchema = z.object({
-  cat: fallback(z.string(), "all").default("all"),
-  sort: fallback(z.enum(SORTS), "order").default("order"),
-  q: fallback(z.string(), "").default(""),
-});
-
 export const Route = createFileRoute("/projects/no-comply")({
-  validateSearch: zodValidator(searchSchema),
   head: () => ({
     meta: [
       { title: "NO COMPLY USA — Collections · Nicholas Curzon" },
