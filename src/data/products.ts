@@ -302,6 +302,7 @@ import vetLighterSilverBack from "@/assets/products/vet-lighter/silver/back.png"
 import vetLighterSilverDetailOpen from "@/assets/products/vet-lighter/silver/detail-open.png";
 import patchKitSpecialtyPatches from "@/assets/products/nc-patch-kit/black/specialty-patches.png";
 import patchKitScriptPatches from "@/assets/products/nc-patch-kit/black/script-patches.png";
+import patchKitSpadePatch from "@/assets/products/nc-patch-kit/black/spade-patch.jpg";
 import pinKitSet from "@/assets/products/nc-pin-kit/standard/pin-set.png";
 import pinKitHoodieStyling from "@/assets/products/nc-pin-kit/standard/hoodie-styling.png";
 import pinKitJacketStyling from "@/assets/products/nc-pin-kit/standard/jacket-styling.png";
@@ -1234,7 +1235,7 @@ export const products: Product[] = [
     category: "Accessories",
     price: 150,
     description:
-      "Complete No Comply patch set featuring 20 black-and-white script patches in four silhouettes, plus four specialty patches: a monochrome flag, USA wordmark, and gothic N and C initials.",
+      "Complete NO COMPLY patch set featuring 20 black-and-white script patches in four silhouettes, plus five specialty patches: a monochrome flag, USA wordmark, Gothic N and C initials, and a skull-and-crossbones Spade patch.",
     featured: false,
     displayOrder: 22,
     variants: [
@@ -1252,6 +1253,12 @@ export const products: Product[] = [
             url: patchKitScriptPatches,
             alt: "NC Patch Kit — 20 script patches",
           },
+          details: [
+            {
+              url: patchKitSpadePatch,
+              alt: "Black-and-white NO COMPLY USA spade patch with skull-and-crossbones embroidery",
+            },
+          ],
         },
       },
     ],
