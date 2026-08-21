@@ -54,6 +54,7 @@ const toCarouselItems = (
 
 const COMMAND_CAROUSEL = toCarouselItems(COMMAND.id);
 const CAUGHT_ON_FILM_CAROUSEL = toCarouselItems(CAUGHT_ON_FILM.id, true, true);
+const COLLECTION_FEATURE_MEDIA_CLASS = "aspect-[16/9] sm:aspect-[5/2] lg:aspect-[3/1]";
 
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
 const searchSchema = z.object({
@@ -144,7 +145,7 @@ function NoComplyHome() {
       <main>
         <section className="nc-first-section bg-white px-6 pb-10 text-black md:px-12 md:pb-14">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
+            <div className="mb-5 flex flex-wrap items-end justify-between gap-5 md:mb-6">
               <div>
                 <p className="nc-display text-xs tracking-[0.35em] text-black/60">Collection #1</p>
                 <NoComplyCommandTitle linked className="mt-3" />
@@ -163,17 +164,19 @@ function NoComplyHome() {
               aria-label="Open No Comply Command, Collection #1"
               className="group block w-full max-w-7xl overflow-hidden border border-black/20"
             >
-              <div className="grid aspect-[1672/940] w-full grid-cols-2 gap-px bg-black/20 transition-transform duration-700 group-hover:scale-[1.01]">
+              <div
+                className={`grid min-h-0 w-full grid-cols-2 gap-px overflow-hidden bg-black/20 transition-transform duration-700 group-hover:scale-[1.01] ${COLLECTION_FEATURE_MEDIA_CLASS}`}
+              >
                 <img
                   src={commandEditorialLook01}
                   alt="No Comply Command editorial look with Captain's Jacket and Cargo Messenger Bag"
-                  className="h-full w-full bg-white object-cover object-top"
+                  className="h-full min-h-0 w-full bg-white object-cover object-[center_28%]"
                   loading="lazy"
                 />
                 <img
                   src={commandEditorialLook02}
                   alt="No Comply Command editorial look with black and navy Sergeant Shirts"
-                  className="h-full w-full bg-white object-cover object-top"
+                  className="h-full min-h-0 w-full bg-white object-cover object-[center_34%]"
                   loading="lazy"
                 />
               </div>
@@ -185,7 +188,7 @@ function NoComplyHome() {
 
         <section className="border-b-2 border-black bg-white px-6 pb-20 pt-10 text-black md:px-12 md:pb-28 md:pt-14">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-8 flex flex-wrap items-end justify-between gap-5">
+            <div className="mb-5 flex flex-wrap items-end justify-between gap-5 md:mb-6">
               <div>
                 <p className="nc-display text-xs tracking-[0.35em] text-black/60">Collection #2</p>
                 <Link
@@ -210,11 +213,11 @@ function NoComplyHome() {
               aria-label="Open Caught on Film, Collection #2"
               className="block w-full max-w-7xl overflow-hidden border border-black/20"
             >
-              <div className="aspect-[1672/940] w-full overflow-hidden">
+              <div className={`w-full overflow-hidden ${COLLECTION_FEATURE_MEDIA_CLASS}`}>
                 <img
                   src={caughtOnFilmHeader}
                   alt="Caught on Film collection contact sheet"
-                  className="h-full w-full object-cover transition-transform duration-700 hover:scale-[1.01]"
+                  className="h-full w-full object-cover object-[center_42%] transition-transform duration-700 hover:scale-[1.01]"
                   loading="lazy"
                 />
               </div>
