@@ -3,7 +3,7 @@ import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-r
 import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
 import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
 
-import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
+import caughtOnFilmHomeCover from "../assets/no-comply/caught-on-film/caught-on-film-home-cover.jpg";
 import { getCategories, getProductThumbnailImage, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
 import { collections } from "@/data/collections";
@@ -168,9 +168,9 @@ function NoComplyHome() {
             >
               <div className={`w-full overflow-hidden ${COLLECTION_FEATURE_MEDIA_CLASS}`}>
                 <img
-                  src={caughtOnFilmHeader}
+                  src={caughtOnFilmHomeCover}
                   alt="Caught on Film collection contact sheet"
-                  className="h-full w-full object-cover object-[center_42%] transition-transform duration-700 hover:scale-[1.01]"
+                  className="h-full w-full bg-black object-contain object-center transition-transform duration-700 hover:scale-[1.01]"
                   loading="lazy"
                 />
               </div>
