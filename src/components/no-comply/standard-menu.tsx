@@ -2,7 +2,7 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-const MENU_CATEGORIES = ["outerwear", "tops", "bottoms", "accessories"];
+import { DESIGN_CATEGORIES, type DesignCategory } from "@/components/no-comply/design-categories";
 
 interface StandardNoComplyMenuProps {
   open: boolean;
@@ -71,7 +71,7 @@ export function StandardNoComplyMenu({
 
   if (!open) return null;
 
-  const goToDesigns = (category: string, searchQuery = "") => {
+  const goToDesigns = (category: DesignCategory, searchQuery = "") => {
     onClose();
     navigate({
       to: "/projects/no-comply/designs",
@@ -188,18 +188,26 @@ export function StandardNoComplyMenu({
         <section className="mt-5 border-t border-black/10 pt-4">
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">Designs</p>
           <div className="mt-2 flex flex-col items-start">
-            <button type="button" onClick={() => goToDesigns("all")} className={linkClass}>
+            <Link
+              to="/projects/no-comply/designs"
+              search={{ cat: "all", sort: "order", q: "" }}
+              hash="catalog-controls"
+              onClick={onClose}
+              className={linkClass}
+            >
               All Designs
-            </button>
-            {MENU_CATEGORIES.map((category) => (
-              <button
+            </Link>
+            {DESIGN_CATEGORIES.slice(1).map((category) => (
+              <Link
                 key={category}
-                type="button"
-                onClick={() => goToDesigns(category)}
+                to="/projects/no-comply/designs"
+                search={{ cat: category, sort: "order", q: "" }}
+                hash="catalog-controls"
+                onClick={onClose}
                 className={linkClass}
               >
                 {category}
-              </button>
+              </Link>
             ))}
           </div>
         </section>

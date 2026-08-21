@@ -7,6 +7,7 @@ import { Lightbox } from "@/components/no-comply/lightbox";
 import { NoComplyBackButton } from "@/components/no-comply/back-button";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
+import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 import noComplyUsaLogoBlack from "@/assets/no-comply-usa-logo-black-cropped.png.asset.json";
 
 type ProductSearch = { variant?: string };
@@ -66,6 +67,9 @@ function ProductPage() {
   const [variantId, setVariantId] = useState(initialVariant);
   const [size, setSize] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuQuery, setMenuQuery] = useState("");
+  const [focusMenuSearch, setFocusMenuSearch] = useState(false);
 
   const variant: ProductVariant =
     product.variants.find((v: ProductVariant) => v.id === variantId) ?? product.variants[0];
@@ -92,7 +96,27 @@ function ProductPage() {
           <NoComplyBackButton className="nc-display block whitespace-nowrap text-base tracking-widest text-white transition-colors duration-200 hover:text-white/60 md:text-lg" />
         }
       />
-      <LogoBanner src={noComplyUsaLogoBlack.url} />
+      <LogoBanner
+        src={noComplyUsaLogoBlack.url}
+        menuOpen={menuOpen}
+        onSearch={() => {
+          setFocusMenuSearch(true);
+          setMenuOpen(true);
+        }}
+        onMenu={() => {
+          setFocusMenuSearch(false);
+          setMenuOpen(true);
+        }}
+      />
+
+      <StandardNoComplyMenu
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        query={menuQuery}
+        onQueryChange={setMenuQuery}
+        focusSearch={focusMenuSearch}
+        activeCollection={collection?.slug === "command" ? "command" : "caught-on-film"}
+      />
 
       <div className="nc-first-section mx-auto grid max-w-7xl gap-10 px-6 pb-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:px-12 md:pb-16">
         <div className="flex flex-col gap-6">

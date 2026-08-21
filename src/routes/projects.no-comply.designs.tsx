@@ -1,24 +1,28 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { createFileRoute, Link, useRouterState } from "@tanstack/react-router";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
 import { ProductCard } from "@/components/no-comply/product-card";
 import { NoComplyBackButton } from "@/components/no-comply/back-button";
+import {
+  DESIGN_CATEGORIES,
+  matchesDesignCategory,
+  type DesignCategory,
+} from "@/components/no-comply/design-categories";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 import noComplyUsaLogoBlack from "@/assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import { collections } from "@/data/collections";
-import { getCategories, products, type Product } from "@/data/products";
+import { products, type Product } from "@/data/products";
 
-const CATEGORIES = getCategories();
 const COLLECTION_ORDER = new Map(collections.map((collection, index) => [collection.id, index]));
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
 type Sort = (typeof SORTS)[number];
 
 const searchSchema = z.object({
-  cat: fallback(z.string(), "all").default("all"),
+  cat: fallback(z.enum(DESIGN_CATEGORIES), "all").default("all"),
   sort: fallback(z.enum(SORTS), "order").default("order"),
   q: fallback(z.string(), "").default(""),
 });
@@ -77,9 +81,11 @@ function AllDesigns() {
   const navigate = Route.useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [focusSearch, setFocusSearch] = useState(false);
+  const catalogControlsRef = useRef<HTMLElement>(null);
+  const locationHash = useRouterState({ select: (state) => state.location.hash });
 
   type SearchState = z.infer<typeof searchSchema>;
-  const setCategory = (cat: string) =>
+  const setCategory = (cat: DesignCategory) =>
     navigate({ to: ".", search: (previous: SearchState) => ({ ...previous, cat }) });
   const setQuery = (q: string) =>
     navigate({
@@ -93,12 +99,15 @@ function AllDesigns() {
     setFocusSearch(shouldFocusSearch);
     setMenuOpen(true);
   };
+  useEffect(() => {
+    if (locationHash !== "catalog-controls") return;
+    requestAnimationFrame(() => catalogControlsRef.current?.focus({ preventScroll: true }));
+  }, [locationHash, search.cat]);
+
   const displayed = useMemo(() => {
     const query = search.q.trim().toLowerCase();
     let list = products;
-    if (search.cat !== "all") {
-      list = list.filter((product) => product.category === search.cat);
-    }
+    list = list.filter((product) => matchesDesignCategory(product.category, search.cat));
     if (query) {
       list = list.filter(
         (product) =>
@@ -178,13 +187,19 @@ function AllDesigns() {
           </div>
         </header>
 
-        <section className="py-10" aria-label="Catalog controls">
+        <section
+          ref={catalogControlsRef}
+          id="catalog-controls"
+          tabIndex={-1}
+          className="scroll-mt-28 py-10 outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4"
+          aria-label="Catalog controls"
+        >
           <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_18rem] lg:items-end">
             <nav
               aria-label="Filter all products by category"
               className="flex flex-wrap gap-x-7 gap-y-3 border-y border-black/20 py-4 text-sm uppercase tracking-[0.16em]"
             >
-              {["all", ...CATEGORIES].map((category) => {
+              {DESIGN_CATEGORIES.map((category) => {
                 const selected = search.cat === category;
                 return (
                   <button
