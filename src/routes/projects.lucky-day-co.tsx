@@ -36,7 +36,7 @@ function LuckyDay() {
         </p>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-16">
+      <section className="mx-auto max-w-6xl space-y-6 px-6 pb-12 md:space-y-8 md:pb-16">
         <img
           src={hero}
           alt="Lucky Day Co — tailored menswear detail"
@@ -44,39 +44,6 @@ function LuckyDay() {
           height={900}
           className="w-full object-cover"
         />
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="grid gap-12 md:grid-cols-12">
-          <div className="md:col-span-4">
-            <p className="eyebrow">The Brief</p>
-          </div>
-          <div className="md:col-span-8 space-y-6 text-lg leading-relaxed">
-            <p>
-              Lucky Day Co needed a commercial identity that could stand next
-              to the objects it sold — something restrained, honest, and quiet
-              enough to let the product lead. The work spans naming systems,
-              sales collateral, and a repeatable framework for how the brand
-              introduces itself to new accounts.
-            </p>
-            <p>
-              The result is a system built on typographic discipline, warm
-              neutral photography, and a service voice that reads more like a
-              trusted operator than a marketer.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="grid gap-6 md:grid-cols-3">
-          <Fact label="Role">Brand Strategy, Sales Systems</Fact>
-          <Fact label="Year">2024</Fact>
-          <Fact label="Scope">Identity, Collateral, Sales Playbook</Fact>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-6xl px-6 pb-24">
         <img
           src={thumb}
           alt="Lucky Day Co — product still life"
@@ -87,7 +54,7 @@ function LuckyDay() {
         />
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-16 border-t border-border">
+      <section className="mx-auto max-w-6xl border-t border-border px-6 py-12 md:py-16">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div>
             <p className="eyebrow mb-2">Next Project</p>
@@ -107,20 +74,5 @@ function LuckyDay() {
         </div>
       </section>
     </SiteFrame>
-  );
-}
-
-function Fact({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="border-t border-border pt-6">
-      <p className="eyebrow mb-3">{label}</p>
-      <p className="text-base">{children}</p>
-    </div>
   );
 }
