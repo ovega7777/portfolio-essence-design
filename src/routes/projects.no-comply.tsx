@@ -18,6 +18,7 @@ import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 const COMMAND = collections[0];
 const CATEGORIES = getCategories();
 const CAUGHT_ON_FILM = collections[1];
+const COMMAND_APPAREL_CATEGORIES = new Set(["outerwear", "tops", "bottoms"]);
 
 const toCarouselItems = (
   collectionId: string,
@@ -28,7 +29,11 @@ const toCarouselItems = (
 
   return products
     .filter(
-      (product) => product.collectionId === collectionId && (!featuredOnly || product.featured),
+      (product) =>
+        product.collectionId === collectionId &&
+        (!featuredOnly || product.featured) &&
+        (collectionId !== COMMAND.id ||
+          COMMAND_APPAREL_CATEGORIES.has(product.category.toLowerCase())),
     )
     .sort((a, b) => a.displayOrder - b.displayOrder)
     .filter((product) => {
@@ -46,7 +51,7 @@ const toCarouselItems = (
         productName: product.name,
         collectionSlug: collectionId === COMMAND.id ? "command" : "caught-on-film",
         image:
-          caughtOnFilm && !isAccessory
+          collectionId === COMMAND.id || (caughtOnFilm && !isAccessory)
             ? specialtyThumbnail
             : specialtyThumbnail !== variant.images.frontProduct
               ? specialtyThumbnail
