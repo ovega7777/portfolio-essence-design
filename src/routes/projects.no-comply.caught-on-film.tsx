@@ -1,12 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
 import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
 import { ProductCard } from "@/components/no-comply/product-card";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
-import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 import {
   CollectionPageTopBar,
   CollectionTitleHeader,
@@ -49,8 +48,6 @@ export const Route = createFileRoute("/projects/no-comply/caught-on-film")({
 function CaughtOnFilmCollection() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [focusMenuSearch, setFocusMenuSearch] = useState(false);
 
   const activeCategory = search.cat;
   const query = search.q.trim().toLowerCase();
@@ -64,11 +61,6 @@ function CaughtOnFilmCollection() {
       search: (previous: SearchState) => ({ ...previous, q }),
       replace: true,
     });
-  const openMenu = (focusSearch = false) => {
-    setFocusMenuSearch(focusSearch);
-    setMenuOpen(true);
-  };
-
   const displayed = useMemo(() => {
     let list = collectionProducts;
     if (activeCategory !== "all") {
@@ -87,21 +79,7 @@ function CaughtOnFilmCollection() {
 
   return (
     <div className="no-comply min-h-screen bg-[#070707] text-white">
-      <CollectionPageTopBar
-        collectionNumber={2}
-        menuOpen={menuOpen}
-        onSearch={() => openMenu(true)}
-        onMenu={() => openMenu(false)}
-      />
-
-      <StandardNoComplyMenu
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        query={search.q}
-        onQueryChange={setQuery}
-        focusSearch={focusMenuSearch}
-        activeCollection="caught-on-film"
-      />
+      <CollectionPageTopBar collectionNumber={2} query={search.q} onQueryChange={setQuery} />
 
       <main>
         <CollectionTitleHeader

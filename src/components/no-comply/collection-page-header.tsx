@@ -1,38 +1,23 @@
 import type { ReactNode } from "react";
 
-import noComplyUsaLogoBlack from "@/assets/no-comply-usa-logo-black-cropped.png.asset.json";
-import { NoComplyBackButton } from "@/components/no-comply/back-button";
-import { LogoBanner } from "@/components/no-comply/logo-banner";
-import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
+import { NoComplySiteHeader } from "@/components/no-comply/site-header";
 
 export function CollectionPageTopBar({
   collectionNumber,
-  menuOpen,
-  onSearch,
-  onMenu,
+  query,
+  onQueryChange,
 }: {
   collectionNumber: 1 | 2;
-  menuOpen: boolean;
-  onSearch: () => void;
-  onMenu: () => void;
+  query: string;
+  onQueryChange: (query: string) => void;
 }) {
   return (
-    <>
-      <NoComplyUtilityBar
-        sticky
-        pageName={`COLLECTION #${collectionNumber}`}
-        backControl={
-          <NoComplyBackButton className="nc-display block whitespace-nowrap text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl" />
-        }
-      />
-
-      <LogoBanner
-        src={noComplyUsaLogoBlack.url}
-        menuOpen={menuOpen}
-        onSearch={onSearch}
-        onMenu={onMenu}
-      />
-    </>
+    <NoComplySiteHeader
+      pageName={`COLLECTION #${collectionNumber}`}
+      query={query}
+      onQueryChange={onQueryChange}
+      activeCollection={collectionNumber === 1 ? "command" : "caught-on-film"}
+    />
   );
 }
 

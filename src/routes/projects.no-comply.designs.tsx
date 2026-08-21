@@ -1,20 +1,16 @@
-import { createFileRoute, Link, useRouterState } from "@tanstack/react-router";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { createFileRoute, useRouterState } from "@tanstack/react-router";
+import { useEffect, useMemo, useRef } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
 import { ProductCard } from "@/components/no-comply/product-card";
-import { NoComplyBackButton } from "@/components/no-comply/back-button";
 import {
   DESIGN_CATEGORIES,
   matchesDesignCategory,
   type DesignCategory,
 } from "@/components/no-comply/design-categories";
 import { DesignsCatalogHeader } from "@/components/no-comply/designs-catalog-header";
-import { LogoBanner } from "@/components/no-comply/logo-banner";
-import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
-import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
-import noComplyUsaLogoBlack from "@/assets/no-comply-usa-logo-black-cropped.png.asset.json";
+import { NoComplySiteHeader } from "@/components/no-comply/site-header";
 import { products } from "@/data/products";
 
 const searchSchema = z.object({
@@ -44,8 +40,6 @@ export const Route = createFileRoute("/projects/no-comply/designs")({
 function AllDesigns() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [focusSearch, setFocusSearch] = useState(false);
   const catalogControlsRef = useRef<HTMLElement>(null);
   const locationHash = useRouterState({ select: (state) => state.location.hash });
 
@@ -58,10 +52,6 @@ function AllDesigns() {
       search: (previous: SearchState) => ({ ...previous, q }),
       replace: true,
     });
-  const openMenu = (shouldFocusSearch = false) => {
-    setFocusSearch(shouldFocusSearch);
-    setMenuOpen(true);
-  };
   useEffect(() => {
     if (locationHash !== "catalog-controls") return;
     requestAnimationFrame(() => catalogControlsRef.current?.focus({ preventScroll: true }));
@@ -90,37 +80,7 @@ function AllDesigns() {
 
   return (
     <div className="no-comply min-h-screen bg-white text-black">
-      <div className="sticky top-0 z-50">
-        <NoComplyUtilityBar
-          pageName={pageIndicator}
-          backControl={
-            <NoComplyBackButton className="nc-display block whitespace-nowrap text-lg tracking-widest transition-opacity hover:opacity-60 sm:text-xl" />
-          }
-        />
-        <LogoBanner
-          src={noComplyUsaLogoBlack.url}
-          menuOpen={menuOpen}
-          onSearch={() => openMenu(true)}
-          onMenu={() => openMenu(false)}
-          leading={
-            <Link
-              to="/projects/no-comply/designs"
-              search={{ cat: "all", q: "" }}
-              className="nc-display hidden text-lg tracking-[0.24em] text-white transition-opacity hover:opacity-60 md:block"
-            >
-              ALL DESIGNS
-            </Link>
-          }
-        />
-      </div>
-
-      <StandardNoComplyMenu
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        query={search.q}
-        onQueryChange={setQuery}
-        focusSearch={focusSearch}
-      />
+      <NoComplySiteHeader pageName={pageIndicator} query={search.q} onQueryChange={setQuery} />
 
       <main
         id="all-designs-products"

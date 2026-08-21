@@ -1,19 +1,14 @@
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
-import { useState } from "react";
 
-import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
 import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
 
 import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
 import { getCategories, getProductThumbnailImage, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
-import { NoComplyBackButton } from "@/components/no-comply/back-button";
 import { collections } from "@/data/collections";
-import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyCommandTitle } from "@/components/no-comply/no-comply-command-title";
-import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
-import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
+import { NoComplySiteHeader } from "@/components/no-comply/site-header";
 
 const COMMAND = collections[0];
 const CATEGORIES = getCategories();
@@ -96,43 +91,9 @@ function NoComply() {
 }
 
 function NoComplyHome() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [focusMenuSearch, setFocusMenuSearch] = useState(false);
-  const [menuQuery, setMenuQuery] = useState("");
-
-  const openProductSearch = () => {
-    setFocusMenuSearch(true);
-    setMenuOpen(true);
-  };
-  const openProductMenu = () => {
-    setFocusMenuSearch(false);
-    setMenuOpen(true);
-  };
   return (
     <div className="no-comply min-h-screen bg-white text-black">
-      <div className="sticky top-0 z-[100] w-full">
-        <NoComplyUtilityBar
-          pageName="HOME"
-          backControl={
-            <NoComplyBackButton className="nc-display block whitespace-nowrap text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl" />
-          }
-        />
-        <LogoBanner
-          src={noComplyUsaLogoBlack.url}
-          menuOpen={menuOpen}
-          onSearch={openProductSearch}
-          onMenu={openProductMenu}
-          theme="dark"
-        />
-      </div>
-
-      <StandardNoComplyMenu
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        query={menuQuery}
-        onQueryChange={setMenuQuery}
-        focusSearch={focusMenuSearch}
-      />
+      <NoComplySiteHeader pageName="HOME" />
 
       <main>
         <section className="nc-first-section bg-white px-6 pb-10 text-black md:px-12 md:pb-14">

@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
@@ -14,7 +14,6 @@ import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
 import { NoComplyCommandTitle } from "@/components/no-comply/no-comply-command-title";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
-import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 import {
   CollectionPageTopBar,
   CollectionTitleHeader,
@@ -79,8 +78,6 @@ function sortProducts(items: Product[], sort: Sort): Product[] {
 function CommandCollection() {
   const search = Route.useSearch();
   const navigate = Route.useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [focusMenuSearch, setFocusMenuSearch] = useState(false);
 
   const activeCategory = search.cat;
   const sort = search.sort;
@@ -91,14 +88,6 @@ function CommandCollection() {
     navigate({ to: ".", search: (p: SearchState) => ({ ...p, cat }) });
   const setQuery = (q: string) =>
     navigate({ to: ".", search: (p: SearchState) => ({ ...p, q }), replace: true });
-  const openProductSearch = () => {
-    setFocusMenuSearch(true);
-    setMenuOpen(true);
-  };
-  const openProductMenu = () => {
-    setFocusMenuSearch(false);
-    setMenuOpen(true);
-  };
 
   const displayed = useMemo(() => {
     let list = collectionProducts;
@@ -115,21 +104,7 @@ function CommandCollection() {
 
   return (
     <div className="no-comply min-h-screen">
-      <CollectionPageTopBar
-        collectionNumber={1}
-        menuOpen={menuOpen}
-        onSearch={openProductSearch}
-        onMenu={openProductMenu}
-      />
-
-      <StandardNoComplyMenu
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        query={search.q}
-        onQueryChange={setQuery}
-        focusSearch={focusMenuSearch}
-        activeCollection="command"
-      />
+      <CollectionPageTopBar collectionNumber={1} query={search.q} onQueryChange={setQuery} />
 
       <CollectionTitleHeader
         collectionNumber={1}

@@ -4,11 +4,7 @@ import type { ProductVariant } from "@/data/products";
 import { getGroupedVariants, getProductBySlug, type ProductImage } from "@/data/products";
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
-import { NoComplyBackButton } from "@/components/no-comply/back-button";
-import { LogoBanner } from "@/components/no-comply/logo-banner";
-import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
-import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
-import noComplyUsaLogoBlack from "@/assets/no-comply-usa-logo-black-cropped.png.asset.json";
+import { NoComplySiteHeader } from "@/components/no-comply/site-header";
 
 type ProductSearch = { variant?: string };
 
@@ -67,9 +63,6 @@ function ProductPage() {
   const [variantId, setVariantId] = useState(initialVariant);
   const [size, setSize] = useState<string | null>(null);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [menuQuery, setMenuQuery] = useState("");
-  const [focusMenuSearch, setFocusMenuSearch] = useState(false);
 
   const variant: ProductVariant =
     product.variants.find((v: ProductVariant) => v.id === variantId) ?? product.variants[0];
@@ -88,33 +81,8 @@ function ProductPage() {
 
   return (
     <div className="no-comply min-h-screen bg-white text-black">
-      <NoComplyUtilityBar
-        sticky
-        className="z-40"
+      <NoComplySiteHeader
         pageName={product.name}
-        backControl={
-          <NoComplyBackButton className="nc-display block whitespace-nowrap text-base tracking-widest text-white transition-colors duration-200 hover:text-white/60 md:text-lg" />
-        }
-      />
-      <LogoBanner
-        src={noComplyUsaLogoBlack.url}
-        menuOpen={menuOpen}
-        onSearch={() => {
-          setFocusMenuSearch(true);
-          setMenuOpen(true);
-        }}
-        onMenu={() => {
-          setFocusMenuSearch(false);
-          setMenuOpen(true);
-        }}
-      />
-
-      <StandardNoComplyMenu
-        open={menuOpen}
-        onClose={() => setMenuOpen(false)}
-        query={menuQuery}
-        onQueryChange={setMenuQuery}
-        focusSearch={focusMenuSearch}
         activeCollection={collection?.slug === "command" ? "command" : "caught-on-film"}
       />
 
