@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
-import noComplyThumb from "../assets/no-comply-hero.png.asset.json";
+import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
+import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
+import noComplyCover03 from "../assets/home/no-comply-cover-03.jpg";
 import luckyDayThumb from "../assets/lucky-day-thumb.jpg";
 
 export const Route = createFileRoute("/projects/")({
@@ -9,8 +11,7 @@ export const Route = createFileRoute("/projects/")({
       { title: "Projects — Nicholas Curzon" },
       {
         name: "description",
-        content:
-          "Selected projects by Nicholas Curzon — No Comply and Lucky Day Co.",
+        content: "Selected projects by Nicholas Curzon — No Comply and Lucky Day Co.",
       },
       { property: "og:title", content: "Projects — Nicholas Curzon" },
       {
@@ -26,26 +27,42 @@ const projects = [
   {
     to: "/projects/no-comply" as const,
     number: "01",
-    title: "No Comply",
-    year: "2025",
-    role: "Visual Identity",
-    meta: "A raw, brutalist visual system for a technical apparel concept.",
-    src: "no-comply",
+    title: "NO COMPLY USA",
+    description:
+      "Product design, graphic design, and creative direction for an experimental apparel brand—developing its collections, visual identity, campaign imagery, graphics, and digital presentation.",
+    images: [
+      {
+        src: noComplyPrimary,
+        alt: "NO COMPLY USA campaign model wearing a black patched jacket",
+      },
+      {
+        src: noComplyCover02,
+        alt: "NO COMPLY USA campaign model wearing a black patched shirt and plaid trousers",
+      },
+      {
+        src: noComplyCover03,
+        alt: "NO COMPLY USA campaign model wearing a black patched jacket and carrying a black bag",
+      },
+    ],
   },
   {
     to: "/projects/lucky-day-co" as const,
     number: "02",
-    title: "Lucky Day Co",
-    year: "2024",
-    role: "Brand Strategy",
-    meta: "A refined commercial framework for luxury sales and distribution.",
-    src: "lucky-day",
+    title: "LUCKY DAY CO",
+    description:
+      "Product design, graphic design, and creative direction for a refined lifestyle brand—shaping its identity, packaging, campaign visuals, and cohesive customer-facing experience.",
+    images: [
+      {
+        src: luckyDayThumb,
+        alt: "Lucky Day Co — refined product still life",
+      },
+    ],
   },
 ];
 
 function ProjectsIndex() {
   return (
-    <SiteFrame>
+    <SiteFrame className="[--background:#fff] [--card:#fff] [--foreground:#111] [--muted-foreground:#666] [--border:#d9d9d9]">
       <section className="mx-auto max-w-6xl px-6 pt-8 pb-16">
         <p className="eyebrow mb-8">Projects</p>
         <h1 className="font-serif text-5xl leading-[1] md:text-7xl">
@@ -54,48 +71,59 @@ function ProjectsIndex() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="grid gap-16 md:grid-cols-2">
-          <ProjectCard project={projects[0]} src={noComplyThumb.url} />
-          <ProjectCard project={projects[1]} src={luckyDayThumb} />
+        <div className="grid gap-12 md:grid-cols-2 md:gap-8 lg:gap-10">
+          {projects.map((project) => (
+            <ProjectCard key={project.to} project={project} />
+          ))}
         </div>
       </section>
     </SiteFrame>
   );
 }
 
-function ProjectCard({
-  project,
-  src,
-}: {
-  project: (typeof projects)[number];
-  src: string;
-}) {
+function ProjectCard({ project }: { project: (typeof projects)[number] }) {
   return (
-    <Link to={project.to} className="group block">
-      <div className="mb-6 flex items-center justify-between">
-        <span className="eyebrow">{project.number}</span>
-        <span className="eyebrow">
-          {project.year} — {project.role}
+    <Link
+      to={project.to}
+      aria-label={`View ${project.title} project`}
+      className="group block border-t border-black pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+    >
+      <div className="mb-4 flex items-center justify-between gap-4">
+        <span className="eyebrow text-black">{project.number}</span>
+        <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
+          View Project →
         </span>
       </div>
-      <div className="mb-6 overflow-hidden bg-secondary">
-        <img
-          src={src}
-          alt={project.title}
-          loading="lazy"
-          width={1600}
-          height={1067}
-          className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+      <div
+        className={`mb-5 grid aspect-[3/2] overflow-hidden bg-neutral-100 ${
+          project.images.length > 1 ? "grid-cols-3" : "grid-cols-1"
+        }`}
+      >
+        {project.images.map((image) => (
+          <img
+            key={image.src}
+            src={image.src}
+            alt={image.alt}
+            loading="lazy"
+            width={960}
+            height={1280}
+            className="h-full w-full object-cover object-top transition-opacity duration-300 group-hover:opacity-90"
+          />
+        ))}
       </div>
-      <div className="flex items-start justify-between">
-        <div>
-          <h2 className="font-serif text-3xl">{project.title}</h2>
-          <p className="mt-2 max-w-md text-sm italic text-muted-foreground">
-            {project.meta}
+      <div className="flex items-start gap-5">
+        <div className="min-w-0">
+          <h2 className="font-sans text-2xl font-extrabold leading-none text-black lg:text-3xl">
+            {project.title}
+          </h2>
+          <p className="mt-3 max-w-lg text-sm leading-relaxed text-black/65">
+            {project.description}
           </p>
         </div>
-        <span className="grid size-10 shrink-0 place-items-center rounded-full border border-border transition-colors group-hover:bg-accent group-hover:text-accent-foreground group-hover:border-accent">
+        <span
+          aria-hidden
+          className="ml-auto grid size-9 shrink-0 place-items-center rounded-full border border-black transition-colors group-hover:bg-black group-hover:text-white"
+        >
           →
         </span>
       </div>
