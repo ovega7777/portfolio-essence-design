@@ -21,13 +21,13 @@ import portfolioVideo from "../assets/no-comply/media/no-comply-portfolio.mp4.as
 import cof01 from "../assets/no-comply/caught-on-film/cof-01-trim.png.asset.json";
 import cof02 from "../assets/no-comply/caught-on-film/cof-02.png.asset.json";
 import cof03 from "../assets/no-comply/caught-on-film/cof-03.png.asset.json";
-import cof04 from "../assets/no-comply/caught-on-film/cof-04.png.asset.json";
 import cof06 from "../assets/no-comply/caught-on-film/cof-06.png.asset.json";
 import cof07 from "../assets/no-comply/caught-on-film/cof-07.png.asset.json";
 import cof08 from "../assets/no-comply/caught-on-film/cof-08.png.asset.json";
 import cof09 from "../assets/no-comply/caught-on-film/cof-09.png.asset.json";
 import cof10 from "../assets/no-comply/caught-on-film/cof-10.png.asset.json";
 import cof11 from "../assets/no-comply/caught-on-film/cof-11.png.asset.json";
+import onFilmScarfModel2 from "../assets/products/caught-on-film/on-film-scarf/black-white/model-2.jpg";
 import onFilmSkullCapModel1 from "../assets/products/caught-on-film/on-film-skull-cap/black-white/model-1.jpg";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
@@ -90,7 +90,7 @@ const media: {
     collection: "caught-on-film",
   },
   {
-    src: cof04.url,
+    src: onFilmScarfModel2,
     alt: "Model with film-strip headscarf carrying the film-strip tote bag",
     collection: "caught-on-film",
   },
