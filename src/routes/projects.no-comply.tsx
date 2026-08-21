@@ -13,6 +13,7 @@ import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/co
 import { collections } from "@/data/collections";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyCommandTitle } from "@/components/no-comply/no-comply-command-title";
+import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 
 const COMMAND = collections[0];
@@ -114,20 +115,19 @@ function NoComplyHome() {
   return (
     <div className="no-comply min-h-screen bg-white text-black">
       <div className="sticky top-0 z-[100] w-full">
-        <nav className="w-full border-b border-white/20 bg-black text-white">
-          <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
+        <NoComplyUtilityBar
+          pageName="HOME"
+          backControl={
             <Link
               to="/"
-              className="nc-display shrink-0 text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl"
+              className="nc-display block whitespace-nowrap text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl"
+              aria-label="Back to Nicholas Curzon"
             >
               <span className="sm:hidden">← NC</span>
               <span className="hidden sm:inline">← Nicholas Curzon</span>
             </Link>
-            <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-white lg:block lg:text-lg">
-              NO COMPLY USA / CASE STUDY
-            </span>
-          </div>
-        </nav>
+          }
+        />
         <LogoBanner
           src={noComplyUsaLogoBlack.url}
           menuOpen={menuOpen}

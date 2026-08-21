@@ -5,6 +5,7 @@ import { Menu, Search } from "lucide-react";
 import { z } from "zod";
 
 import { ProductCard } from "@/components/no-comply/product-card";
+import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 import { collections } from "@/data/collections";
 import { getCategories, products, type Product } from "@/data/products";
@@ -115,23 +116,32 @@ function AllDesigns() {
     (count, product) => count + (product.listingVariantIds?.length ?? 1),
     0,
   );
+  const pageIndicator = search.q.trim()
+    ? "SEARCH RESULTS"
+    : search.cat === "all"
+      ? "ALL DESIGNS"
+      : search.cat.toUpperCase();
 
   return (
     <div className="no-comply min-h-screen bg-white text-black">
-      <nav className="sticky top-0 z-50 border-b-2 border-black bg-black text-white">
-        <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
-          <Link
-            to="/projects/no-comply"
-            className="nc-display shrink-0 text-lg tracking-widest transition-opacity hover:opacity-60 sm:text-xl"
-          >
-            <span className="sm:hidden">← NO COMPLY</span>
-            <span className="hidden sm:inline">← No Comply USA</span>
-          </Link>
-          <span className="nc-display ml-auto hidden text-base tracking-[0.3em] lg:block lg:text-lg">
-            NO COMPLY USA / ALL DESIGNS
-          </span>
-        </div>
-        <div className="flex h-16 items-center border-t border-white/15 px-4 sm:px-6">
+      <div className="sticky top-0 z-50">
+        <NoComplyUtilityBar
+          pageName={pageIndicator}
+          backControl={
+            <Link
+              to="/projects/no-comply"
+              className="nc-display block whitespace-nowrap text-lg tracking-widest transition-opacity hover:opacity-60 sm:text-xl"
+              aria-label="Back to NO COMPLY USA"
+            >
+              <span className="sm:hidden">← NC</span>
+              <span className="hidden sm:inline">← No Comply USA</span>
+            </Link>
+          }
+        />
+        <nav
+          className="flex h-16 items-center border-b-2 border-black bg-black px-4 text-white sm:px-6"
+          aria-label="Design catalog controls"
+        >
           <Link
             to="/projects/no-comply/designs"
             search={{ cat: "all", sort: "order", q: "" }}
@@ -157,8 +167,8 @@ function AllDesigns() {
               <Menu size={24} strokeWidth={1.6} />
             </button>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
 
       <StandardNoComplyMenu
         open={menuOpen}

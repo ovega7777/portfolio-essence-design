@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import noComplyUsaLogoBlack from "@/assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
+import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
 
 export function CollectionPageTopBar({
   collectionNumber,
@@ -17,20 +18,20 @@ export function CollectionPageTopBar({
 }) {
   return (
     <>
-      <nav className="sticky top-0 z-50 border-b-2 border-black bg-black text-white">
-        <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
+      <NoComplyUtilityBar
+        sticky
+        pageName={`COLLECTION #${collectionNumber}`}
+        backControl={
           <Link
             to="/projects/no-comply"
-            className="nc-display shrink-0 text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl"
+            className="nc-display block whitespace-nowrap text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl"
+            aria-label="Back to NO COMPLY USA"
           >
-            ← NO COMPLY USA
+            <span className="sm:hidden">← NC</span>
+            <span className="hidden sm:inline">← NO COMPLY USA</span>
           </Link>
-          <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-white lg:block lg:text-lg">
-            NO COMPLY USA / COLLECTION #{collectionNumber}
-          </span>
-        </div>
-        <div className="h-0.5 w-full bg-white" />
-      </nav>
+        }
+      />
 
       <LogoBanner
         src={noComplyUsaLogoBlack.url}

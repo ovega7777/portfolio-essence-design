@@ -160,7 +160,7 @@ function NoComplyMedia() {
   const visible = media.filter((item) => item.collection === active);
 
   return (
-    <EditorialPageShell>
+    <EditorialPageShell pageName="MEDIA">
       <main className="nc-first-section mx-auto max-w-7xl px-6 pb-20 md:pb-28">
         <header className="mb-8 flex items-end justify-between gap-8">
           <div>

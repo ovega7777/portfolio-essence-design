@@ -4,6 +4,7 @@ import type { ProductVariant } from "@/data/products";
 import { getGroupedVariants, getProductBySlug, type ProductImage } from "@/data/products";
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
+import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
 
 type ProductSearch = { variant?: string };
 
@@ -80,19 +81,21 @@ function ProductPage() {
 
   return (
     <div className="no-comply min-h-screen bg-white text-black">
-      <nav className="sticky top-0 z-40 border-b-2 border-black bg-black text-white">
-        <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-6">
+      <NoComplyUtilityBar
+        sticky
+        className="z-40"
+        pageName={product.name}
+        backControl={
           <Link
             to="/projects/no-comply"
-            className="nc-display text-base tracking-widest text-white transition-colors duration-200 hover:text-white/60 md:text-lg"
+            className="nc-display block whitespace-nowrap text-base tracking-widest text-white transition-colors duration-200 hover:text-white/60 md:text-lg"
+            aria-label={`Back to ${collection?.title ?? "NO COMPLY USA"}`}
           >
-            ← {collection?.title ?? "Collection"}
+            <span className="sm:hidden">← NC</span>
+            <span className="hidden sm:inline">← {collection?.title ?? "Collection"}</span>
           </Link>
-          <span className="nc-display text-xs tracking-[0.3em] text-white md:text-sm">
-            {variant.sku}
-          </span>
-        </div>
-      </nav>
+        }
+      />
 
       <div className="nc-first-section mx-auto grid max-w-7xl gap-10 px-6 pb-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:px-12 md:pb-16">
         <div className="flex flex-col gap-6">
@@ -172,9 +175,7 @@ function ProductPage() {
 
           {variant.sizes.length > 0 && (
             <div className="mt-6">
-              <p className="nc-display mb-3 text-[10px] tracking-[0.3em] text-black">
-                Size
-              </p>
+              <p className="nc-display mb-3 text-[10px] tracking-[0.3em] text-black">Size</p>
               <div className="flex flex-wrap gap-2">
                 {variant.sizes.map((s: string) =>
                   s === "ONE SIZE FITS ALL" ? (
