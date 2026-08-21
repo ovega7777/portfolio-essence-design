@@ -6,6 +6,9 @@ import { z } from "zod";
 import editorialBanner01 from "../assets/no-comply/caught-on-film/editorial-banner/panel-01.jpg";
 import editorialBanner02 from "../assets/no-comply/caught-on-film/editorial-banner/panel-02.jpg";
 import editorialBanner03 from "../assets/no-comply/caught-on-film/editorial-banner/panel-03.jpg";
+import closingEditorial01 from "../assets/no-comply/caught-on-film/closing-editorial/panel-01.jpg";
+import closingEditorial02 from "../assets/no-comply/caught-on-film/closing-editorial/panel-02.jpg";
+import closingEditorial03 from "../assets/no-comply/caught-on-film/closing-editorial/panel-03.jpg";
 import { ProductCard } from "@/components/no-comply/product-card";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import {
@@ -37,6 +40,23 @@ const EDITORIAL_BANNER = [
     src: editorialBanner03,
     alt: "Red On Film long-sleeve top styled with a black studded belt",
     position: "50% 45%",
+  },
+];
+const CLOSING_EDITORIAL = [
+  {
+    src: closingEditorial01,
+    alt: "Model wearing a white The End studded tank top against a deep red backdrop",
+    position: "50% 43%",
+  },
+  {
+    src: closingEditorial02,
+    alt: "Model wearing a black film-print jacket and matching bottoms",
+    position: "50% 44%",
+  },
+  {
+    src: closingEditorial03,
+    alt: "Model wearing an On Film scarf, red theater glasses, and a white NC-17 T-shirt",
+    position: "50% 44%",
   },
 ];
 
@@ -131,7 +151,7 @@ function CaughtOnFilmCollection() {
         </section>
 
         <section id="caught-on-film-products" className="bg-white text-black">
-          <div className="nc-collection-header-to-title mx-auto max-w-[1600px] px-5 pb-16 sm:px-8 sm:pb-24">
+          <div className="nc-collection-header-to-title mx-auto max-w-[1600px] px-5 pb-12 sm:px-8 sm:pb-16 lg:pb-20">
             <div className="border-b border-black">
               <p className="nc-display text-2xl uppercase tracking-[0.08em] sm:text-3xl">
                 Caught on Film
@@ -181,6 +201,28 @@ function CaughtOnFilmCollection() {
                 </div>
               </div>
             )}
+          </div>
+        </section>
+
+        <section
+          className="cof-closing-editorial bg-white px-5 pb-4 sm:px-8 sm:pb-6 lg:pb-8"
+          aria-label="Caught on Film editorial campaign portraits"
+        >
+          <div className="cof-closing-editorial__viewport mx-auto max-w-[1536px]">
+            <div className="cof-closing-editorial__track">
+              {CLOSING_EDITORIAL.map((panel) => (
+                <figure key={panel.src} className="cof-closing-editorial__panel">
+                  <img
+                    src={panel.src}
+                    alt={panel.alt}
+                    className="cof-closing-editorial__image"
+                    style={{ objectPosition: panel.position }}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              ))}
+            </div>
           </div>
         </section>
       </main>

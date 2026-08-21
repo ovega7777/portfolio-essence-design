@@ -230,6 +230,58 @@
   }
 }
 
+/* Static closing editorial used only after the Caught on Film catalog. */
+.no-comply .cof-closing-editorial__viewport {
+  overflow: hidden;
+}
+
+.no-comply .cof-closing-editorial__track {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  height: clamp(21rem, 29vw, 26rem);
+}
+
+.no-comply .cof-closing-editorial__panel {
+  min-width: 0;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.no-comply .cof-closing-editorial__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .no-comply .cof-closing-editorial__viewport {
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .no-comply .cof-closing-editorial__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-comply .cof-closing-editorial__track {
+    display: flex;
+    width: max-content;
+    height: clamp(22rem, 116vw, 28rem);
+  }
+
+  .no-comply .cof-closing-editorial__panel {
+    width: min(82vw, 22rem);
+    flex: 0 0 min(82vw, 22rem);
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
 @media (min-width: 640px) {
   .no-comply {
     --nc-collection-header-title-gap: 2.5rem;
