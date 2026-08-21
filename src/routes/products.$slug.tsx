@@ -4,7 +4,9 @@ import type { ProductVariant } from "@/data/products";
 import { getGroupedVariants, getProductBySlug, type ProductImage } from "@/data/products";
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
+import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
+import noComplyUsaLogoBlack from "@/assets/no-comply-usa-logo-black-cropped.png.asset.json";
 
 type ProductSearch = { variant?: string };
 
@@ -96,6 +98,7 @@ function ProductPage() {
           </Link>
         }
       />
+      <LogoBanner src={noComplyUsaLogoBlack.url} />
 
       <div className="nc-first-section mx-auto grid max-w-7xl gap-10 px-6 pb-12 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:px-12 md:pb-16">
         <div className="flex flex-col gap-6">

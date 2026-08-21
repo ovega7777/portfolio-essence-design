@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 
 import noComplyUsaLogoBlack from "../../assets/no-comply-usa-logo-black-cropped.png.asset.json";
+import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
 
 interface EditorialPageShellProps {
@@ -32,13 +33,7 @@ export function EditorialPageShell({
         }
       />
 
-      <div className="flex h-12 items-center justify-center bg-black px-4">
-        <img
-          src={noComplyUsaLogoBlack.url}
-          alt="No Comply USA"
-          className="h-7 w-auto object-contain"
-        />
-      </div>
+      <LogoBanner src={noComplyUsaLogoBlack.url} />
 
       {children}
     </div>

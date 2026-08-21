@@ -1,12 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
-import { Menu, Search } from "lucide-react";
 import { z } from "zod";
 
 import { ProductCard } from "@/components/no-comply/product-card";
+import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
+import noComplyUsaLogoBlack from "@/assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import { collections } from "@/data/collections";
 import { getCategories, products, type Product } from "@/data/products";
 
@@ -138,36 +139,21 @@ function AllDesigns() {
             </Link>
           }
         />
-        <nav
-          className="flex h-16 items-center border-b-2 border-black bg-black px-4 text-white sm:px-6"
-          aria-label="Design catalog controls"
-        >
-          <Link
-            to="/projects/no-comply/designs"
-            search={{ cat: "all", sort: "order", q: "" }}
-            className="nc-display text-lg tracking-[0.24em] sm:text-xl"
-          >
-            ALL DESIGNS
-          </Link>
-          <div className="ml-auto flex items-center gap-5">
-            <button
-              type="button"
-              aria-label="Search all products"
-              onClick={() => openMenu(true)}
-              className="transition-opacity hover:opacity-60"
+        <LogoBanner
+          src={noComplyUsaLogoBlack.url}
+          menuOpen={menuOpen}
+          onSearch={() => openMenu(true)}
+          onMenu={() => openMenu(false)}
+          leading={
+            <Link
+              to="/projects/no-comply/designs"
+              search={{ cat: "all", sort: "order", q: "" }}
+              className="nc-display hidden text-lg tracking-[0.24em] text-white transition-opacity hover:opacity-60 md:block"
             >
-              <Search size={24} strokeWidth={1.6} />
-            </button>
-            <button
-              type="button"
-              aria-label="Open navigation"
-              onClick={() => openMenu(false)}
-              className="transition-opacity hover:opacity-60"
-            >
-              <Menu size={24} strokeWidth={1.6} />
-            </button>
-          </div>
-        </nav>
+              ALL DESIGNS
+            </Link>
+          }
+        />
       </div>
 
       <StandardNoComplyMenu
