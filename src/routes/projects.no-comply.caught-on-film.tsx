@@ -1,13 +1,16 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
-import { Menu, Search } from "lucide-react";
 import { z } from "zod";
 
 import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
 import { ProductCard } from "@/components/no-comply/product-card";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
+import {
+  CollectionPageTopBar,
+  CollectionTitleHeader,
+} from "@/components/no-comply/collection-page-header";
 import { collections } from "@/data/collections";
 import { getCategories, products } from "@/data/products";
 
@@ -84,45 +87,12 @@ function CaughtOnFilmCollection() {
 
   return (
     <div className="no-comply min-h-screen bg-[#070707] text-white">
-      <nav className="sticky top-0 z-50 border-b border-white/25 bg-black text-white">
-        <div className="mx-auto flex h-14 max-w-[1600px] items-center gap-4 px-5 sm:px-8">
-          <Link
-            to="/"
-            className="nc-display shrink-0 text-base tracking-widest transition-opacity hover:opacity-60 sm:text-lg"
-          >
-            ← Nicholas Curzon
-          </Link>
-          <span className="nc-display ml-auto hidden text-sm tracking-[0.22em] md:block">
-            NO COMPLY USA / COLLECTION #2
-          </span>
-        </div>
-        <div className="flex h-16 items-center border-t border-white/15 px-5 sm:px-8">
-          <Link
-            to="/projects/no-comply/caught-on-film"
-            className="nc-display text-lg tracking-[0.24em] text-[#f36b21] sm:text-xl"
-          >
-            CAUGHT ON FILM
-          </Link>
-          <div className="ml-auto flex items-center gap-5">
-            <button
-              type="button"
-              aria-label="Search Caught on Film products"
-              onClick={() => openMenu(true)}
-              className="transition-colors hover:text-[#f36b21]"
-            >
-              <Search size={24} strokeWidth={1.6} />
-            </button>
-            <button
-              type="button"
-              aria-label="Open navigation"
-              onClick={() => openMenu(false)}
-              className="transition-colors hover:text-[#f36b21]"
-            >
-              <Menu size={24} strokeWidth={1.6} />
-            </button>
-          </div>
-        </div>
-      </nav>
+      <CollectionPageTopBar
+        collectionNumber={2}
+        menuOpen={menuOpen}
+        onSearch={() => openMenu(true)}
+        onMenu={() => openMenu(false)}
+      />
 
       <StandardNoComplyMenu
         open={menuOpen}
@@ -134,21 +104,16 @@ function CaughtOnFilmCollection() {
       />
 
       <main>
-        <header className="nc-first-section mx-auto max-w-[1600px] px-5 pb-8 sm:px-8">
-          <div className="flex flex-col gap-6 border-b border-[#f36b21]/60 pb-8 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="mb-4 text-xs uppercase tracking-[0.32em] text-[#f36b21]">
-                Collection #2
-              </p>
-              <h1 className="nc-display text-[clamp(3.5rem,9vw,9rem)] leading-[0.78] tracking-[0.03em]">
-                Caught on Film
-              </h1>
-            </div>
-            <p className="nc-display shrink-0 text-sm uppercase tracking-[0.2em] text-[#f36b21]">
-              Collection #2 / {String(collectionProducts.length).padStart(2, "0")} Pieces
-            </p>
-          </div>
-        </header>
+        <CollectionTitleHeader
+          collectionNumber={2}
+          pieceCount={collectionProducts.length}
+          theme="caught-on-film"
+          title={
+            <h1 className="nc-display text-[clamp(3.5rem,9vw,9rem)] leading-[0.78] tracking-[0.03em]">
+              Caught on Film
+            </h1>
+          }
+        />
 
         <section
           className="mx-auto max-w-[1672px] px-0 sm:px-8"

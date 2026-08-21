@@ -1,9 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
-import noComplyUsaLogoBlack from "../assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
 import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
 import commandAssortmentLook01 from "../assets/no-comply/editorial/command-assortment-gallery/look-01.png";
@@ -13,10 +12,13 @@ import commandAssortmentLook04 from "../assets/no-comply/editorial/command-assor
 import { products, getCategories, type Product } from "@/data/products";
 import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
-import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyCommandTitle } from "@/components/no-comply/no-comply-command-title";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
+import {
+  CollectionPageTopBar,
+  CollectionTitleHeader,
+} from "@/components/no-comply/collection-page-header";
 
 const COLLECTION = collections[0];
 const collectionProducts = products
@@ -113,21 +115,12 @@ function CommandCollection() {
 
   return (
     <div className="no-comply min-h-screen">
-      <nav className="sticky top-0 z-50 border-b-2 border-black bg-black text-white">
-        <div className="mx-auto flex h-14 max-w-7xl items-center gap-4 px-4 sm:px-6">
-          <Link
-            to="/projects/no-comply"
-            className="nc-display shrink-0 text-lg tracking-widest text-white transition-colors duration-200 hover:text-white/60 sm:text-xl"
-          >
-            <span className="sm:hidden">← NO COMPLY</span>
-            <span className="hidden sm:inline">← No Comply USA</span>
-          </Link>
-          <span className="nc-display ml-auto hidden text-base tracking-[0.3em] text-white lg:block lg:text-lg">
-            NO COMPLY USA / COLLECTION #1
-          </span>
-        </div>
-        <div className="h-0.5 w-full bg-white" />
-      </nav>
+      <CollectionPageTopBar
+        collectionNumber={1}
+        menuOpen={menuOpen}
+        onSearch={openProductSearch}
+        onMenu={openProductMenu}
+      />
 
       <StandardNoComplyMenu
         open={menuOpen}
@@ -138,25 +131,18 @@ function CommandCollection() {
         activeCollection="command"
       />
 
-      <LogoBanner
-        src={noComplyUsaLogoBlack.url}
-        menuOpen={menuOpen}
-        onSearch={openProductSearch}
-        onMenu={openProductMenu}
+      <CollectionTitleHeader
+        collectionNumber={1}
+        pieceCount={50}
+        theme="command"
+        title={<NoComplyCommandTitle />}
       />
 
       <section
         id="products"
-        className="nc-first-section border-b-2 border-black bg-white px-6 pb-24 md:px-12 md:pb-32"
+        className="border-b-2 border-black bg-white px-6 pb-24 md:px-12 md:pb-32"
       >
         <div className="mx-auto max-w-7xl">
-          <div className="mb-12 grid gap-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end md:mb-16">
-            <NoComplyCommandTitle />
-            <span className="nc-display shrink-0 text-xs tracking-[0.3em] text-black sm:text-sm">
-              Collection #{COLLECTION.number} / 50 Pieces
-            </span>
-          </div>
-
           <div
             aria-label="No Comply Command editorial"
             className="grid grid-cols-2 gap-1 bg-black lg:grid-cols-4"

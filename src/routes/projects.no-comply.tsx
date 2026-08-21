@@ -8,7 +8,7 @@ import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-0
 import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
 
 import caughtOnFilmHeader from "../assets/no-comply/caught-on-film/caught-on-film-header.png";
-import { getCategories, products } from "@/data/products";
+import { getCategories, getProductThumbnailImage, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
 import { collections } from "@/data/collections";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
@@ -40,14 +40,17 @@ const toCarouselItems = (
     .map((product) => {
       const variant = product.variants[0];
       const isAccessory = product.category.toLowerCase() === "accessories";
+      const specialtyThumbnail = getProductThumbnailImage(product, variant);
       return {
         key: product.id,
         productName: product.name,
         collectionSlug: collectionId === COMMAND.id ? "command" : "caught-on-film",
         image:
           caughtOnFilm && !isAccessory
-            ? variant.images.frontProduct
-            : (variant.images.modelFront ?? variant.images.frontProduct),
+            ? specialtyThumbnail
+            : specialtyThumbnail !== variant.images.frontProduct
+              ? specialtyThumbnail
+              : (variant.images.modelFront ?? variant.images.frontProduct),
       };
     });
 };

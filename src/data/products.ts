@@ -48,6 +48,32 @@ export type GroupedVariant = {
   modelImage?: { url: string; alt: string };
 };
 
+const SPECIALTY_THUMBNAIL_PRODUCTS = new Set(["ZIP KNIT HOODIE", "SERGEANT SHIRT"]);
+
+/**
+ * Returns the image used as the default thumbnail on every product-discovery
+ * surface. Zip Knit Hoodie and Sergeant Shirt intentionally use the third
+ * image in the selected colorway's gallery; variants without three images
+ * safely fall back to their primary product image.
+ */
+export const getProductThumbnailImage = (
+  product: Product,
+  variant: ProductVariant,
+): ProductImage => {
+  if (!SPECIALTY_THUMBNAIL_PRODUCTS.has(product.name)) {
+    return variant.images.frontProduct;
+  }
+
+  const gallery: ProductImage[] = [variant.images.frontProduct];
+  if (variant.images.backProduct) gallery.push(variant.images.backProduct);
+  if (variant.images.details) gallery.push(...variant.images.details);
+  if (variant.images.modelFront) gallery.push(variant.images.modelFront);
+  if (variant.images.modelBack) gallery.push(variant.images.modelBack);
+  if (variant.images.extraShots) gallery.push(...variant.images.extraShots);
+
+  return gallery[2] ?? gallery[0];
+};
+
 /**
  * Products live in this file. To add a new product:
  *   1. Upload images through the asset system.
@@ -2401,7 +2427,7 @@ export const getGroupedVariants = (product: Product): GroupedVariant[] => {
         variantId: v.id,
         color: v.color,
         swatch: v.swatch,
-        frontImage: v.images.frontProduct,
+        frontImage: getProductThumbnailImage(p, v),
         modelImage:
           v.images.cardHover ??
           v.images.modelFront ??
