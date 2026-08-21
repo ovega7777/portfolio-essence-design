@@ -29,7 +29,7 @@ const projects = [
     number: "01",
     title: "NO COMPLY USA",
     description:
-      "Product design, graphic design, and creative direction for an experimental apparel brand—developing its collections, visual identity, campaign imagery, graphics, and digital presentation.",
+      "NO COMPLY USA is a unisex experimental apparel brand rooted in nonconformity and an open-ended approach to American style. Drawing from the rebellious energy of American counterculture, the brand translates varied influences into a distinctly contemporary visual language.",
     images: [
       {
         src: noComplyPrimary,
@@ -50,7 +50,7 @@ const projects = [
     number: "02",
     title: "LUCKY DAY CO",
     description:
-      "Product design, graphic design, and creative direction for a refined lifestyle brand—shaping its identity, packaging, campaign visuals, and cohesive customer-facing experience.",
+      "Lucky Day Co. is an elegant jewelry and lifestyle brand grounded in classic design, responsibly sourced materials, and transparent pricing. Each piece is designed with care as a personal charm, created to carry meaning and invite good luck into everyday life.",
     images: [
       {
         src: luckyDayThumb,
