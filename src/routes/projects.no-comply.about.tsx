@@ -18,16 +18,17 @@ export const Route = createFileRoute("/projects/no-comply/about")({
 function NoComplyAbout() {
   return (
     <EditorialPageShell pageName="ABOUT">
-      <main className="nc-first-section mx-auto max-w-7xl px-6 pb-20 md:pb-28 lg:pb-32">
+      <main className="nc-first-section mx-auto max-w-7xl px-6 pb-20 !pt-8 sm:!pt-10 md:pb-28 lg:pb-32 lg:!pt-14">
         <header>
-          <h1 className="nc-display text-6xl uppercase leading-[0.88] tracking-[0.02em] md:text-8xl lg:text-9xl">
-            ABOUT
-            <br />
-            NO COMPLY USA
+          <h1 className="nc-display uppercase tracking-[0.02em]">
+            <span className="block text-6xl leading-[0.82] md:text-8xl lg:text-9xl">ABOUT</span>
+            <span className="mt-1 block text-[2.5rem] leading-[0.88] md:text-[4rem] lg:text-[5.25rem]">
+              NO COMPLY USA
+            </span>
           </h1>
         </header>
 
-        <section className="mt-14 grid gap-10 border-t-2 border-black pt-8 md:mt-20 md:grid-cols-2 md:gap-14 md:pt-10 lg:gap-20">
+        <section className="mt-8 grid gap-10 border-t-2 border-black pt-8 md:mt-10 md:grid-cols-2 md:gap-14 md:pt-10 lg:mt-12 lg:gap-20">
           <p className="font-punk-body text-xl leading-relaxed tracking-[0.035em] md:text-2xl">
             NO COMPLY USA is a unisex experimental apparel brand rooted in nonconformity and an
             open-ended approach to American style. Designed to be worn by both men and women, NO
