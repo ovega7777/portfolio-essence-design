@@ -381,3 +381,30 @@
   background: var(--nc-red);
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
 }
+
+/* A locally hosted script keeps the Lucky Day identity consistent on every device. */
+@font-face {
+  font-family: "Pinyon Script";
+  src: url("/fonts/pinyon-script/PinyonScript-Regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+.lucky-day-wordmark {
+  display: inline-block;
+  font-family: "Pinyon Script", cursive;
+  font-size: clamp(2.25rem, 4vw, 3rem);
+  font-weight: 400;
+  font-style: normal;
+  font-synthesis: none;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+  padding-inline: 0.08em;
+}
+
+.lucky-day-wordmark--hero {
+  font-size: clamp(2.75rem, 8vw, 6rem);
+}

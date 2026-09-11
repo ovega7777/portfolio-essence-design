@@ -1,3 +1,4 @@
+import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
 import hero from "../assets/lucky-day-hero.jpg";
@@ -27,7 +28,7 @@ function LuckyDay() {
     <SiteFrame>
       <section className="mx-auto max-w-6xl px-6 pt-8 pb-8 md:pt-12 md:pb-12">
         <h1 className="font-serif text-5xl leading-[1] md:text-7xl">
-          Lucky Day <span className="italic">Co.</span>
+          <LuckyDayWordmark hero />
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
           Lucky Day Co. is an elegant jewelry and lifestyle brand centered on timeless design,

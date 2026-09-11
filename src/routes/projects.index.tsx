@@ -1,3 +1,4 @@
+import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
 import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
@@ -49,7 +50,7 @@ const projects = [
   {
     to: "/projects/lucky-day-co" as const,
     number: "02",
-    title: "LUCKY DAY CO",
+    title: "Lucky Day Co.",
     description:
       "Lucky Day Co. is an elegant jewelry and lifestyle brand grounded in classic design, responsibly sourced materials, and transparent pricing. Each piece is designed with care as a personal charm, created to carry meaning and invite good luck into everyday life.",
     images: [
@@ -115,7 +116,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       <div className="flex items-start gap-5">
         <div className="min-w-0">
           <h2 className="font-sans text-2xl font-extrabold leading-none text-black lg:text-3xl">
-            {project.to === "/projects/no-comply" ? <AnimatedWordmark /> : project.title}
+            {project.to === "/projects/no-comply" ? <AnimatedWordmark /> : <LuckyDayWordmark />}
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-black/65">
             {project.description}
