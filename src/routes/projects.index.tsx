@@ -114,8 +114,8 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
         ))}
       </div>
       <div className="flex items-start gap-5">
-        <div className="min-w-0">
-          <h2 className="font-sans text-2xl font-extrabold leading-none text-black lg:text-3xl">
+        <div className="projects-card-copy min-w-0">
+          <h2 className="projects-card-title font-sans text-2xl font-extrabold leading-none text-black lg:text-3xl">
             {project.to === "/projects/no-comply" ? <AnimatedWordmark /> : <LuckyDayWordmark />}
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-black/65">
