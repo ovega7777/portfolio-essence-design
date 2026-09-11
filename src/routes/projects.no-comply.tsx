@@ -232,7 +232,7 @@ function NoComplyHome() {
         </section>
 
         <section className="px-6 pt-10 md:pt-12">
-          <nav aria-label="Explore NO COMPLY USA" className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 lg:grid-cols-5">
+          <nav aria-label="Explore NO COMPLY USA" className="nc-home-explore mx-auto grid max-w-7xl gap-4 md:grid-cols-2 lg:grid-cols-4">
             <Link
               to="/projects/no-comply/media"
               className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
@@ -258,13 +258,6 @@ function NoComplyHome() {
               className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
               <p className="nc-display text-xl">No Comply Command</p>
-            </Link>
-            <Link
-              to="/projects/no-comply/caught-on-film"
-              search={{ cat: "all" }}
-              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
-            >
-              <p className="nc-display text-xl">Caught on Film</p>
             </Link>
           </nav>
         </section>
