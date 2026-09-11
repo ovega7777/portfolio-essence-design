@@ -45,6 +45,8 @@ const toCarouselItems = (
       return {
         key: product.id,
         productName: product.name,
+        productSlug: product.slug,
+        variantId: variant.id,
         price: product.price,
         productImage: specialtyThumbnail,
         modelImage: usesDetailPrimaryImage(product) ? undefined : variant.images.modelFront,
@@ -165,7 +167,6 @@ function NoComplyHome() {
             <CollectionCarousel
               items={COMMAND_CAROUSEL}
               label="No Comply Command"
-              collectionSlug="command"
             />
           </div>
         </section>
@@ -210,7 +211,6 @@ function NoComplyHome() {
             <CollectionCarousel
               items={CAUGHT_ON_FILM_CAROUSEL}
               label="Caught on Film"
-              collectionSlug="caught-on-film"
             />
           </div>
         </section>

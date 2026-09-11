@@ -13,6 +13,8 @@ import {
 export type CarouselItem = {
   key: string;
   productName: string;
+  productSlug: string;
+  variantId: string;
   price: number;
   productImage: { url: string; alt: string };
   modelImage?: { url: string; alt: string };
@@ -22,7 +24,6 @@ export type CarouselItem = {
 type Props = {
   items: CarouselItem[];
   label: string;
-  collectionSlug: "command" | "caught-on-film";
 };
 
 // Both collection carousels use the same modest input gain. Arrow steps are independent.
@@ -31,7 +32,7 @@ const WHEEL_RESPONSE_SCALE = 0.5 * INPUT_SENSITIVITY;
 const WHEEL_DURATION = 20;
 const CLICK_MOVEMENT_THRESHOLD = 5;
 
-export function CollectionCarousel({ items, label, collectionSlug }: Props) {
+export function CollectionCarousel({ items, label }: Props) {
   const [viewportRef, emblaApi] = useEmblaCarousel({
     align: "start",
     containScroll: false,
@@ -226,17 +227,10 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
               <Link
                 key={item.key}
                 data-carousel-card
-                to={
-                  collectionSlug === "command"
-                    ? "/projects/no-comply/command"
-                    : "/projects/no-comply/caught-on-film"
-                }
-                search={
-                  collectionSlug === "command"
-                    ? { cat: "all", sort: "order" }
-                    : { cat: "all" }
-                }
-                aria-label={`View ${item.productName} in the ${label} collection`}
+                to="/products/$slug"
+                params={{ slug: item.productSlug }}
+                search={{ variant: item.variantId }}
+                aria-label={`View ${item.productName}`}
                 onClick={(event) => {
                   if (event.detail !== 0 && draggedRef.current) {
                     event.preventDefault();
