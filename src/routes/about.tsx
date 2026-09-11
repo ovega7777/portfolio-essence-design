@@ -96,8 +96,8 @@ function About() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 py-24 border-t border-border">
-        <div className="grid gap-12 md:grid-cols-3">
+      <section className="portfolio-about-details mx-auto max-w-6xl px-6 py-24 border-t border-border">
+        <div className="portfolio-about-details-grid grid gap-12 md:grid-cols-3">
           <Detail label="Education">
             <span className="block font-medium">Fashion Institute of Technology</span>
             <span className="block text-sm text-foreground/65">
