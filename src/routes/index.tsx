@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
 import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
+import { AnimatedWordmark } from "@/components/no-comply/animated-wordmark";
 import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
 import noComplyCover03 from "../assets/home/no-comply-cover-03.jpg";
 import luckyDayThumb from "../assets/lucky-day-thumb.jpg";
@@ -171,7 +172,7 @@ function ProjectCard({
       </div>
       <div className="grid gap-3 md:grid-cols-12 md:gap-8">
         <h3 className={`${titleClassName} text-3xl leading-none md:col-span-4 md:text-4xl`}>
-          {title}
+          {to === "/projects/no-comply" ? <AnimatedWordmark /> : title}
         </h3>
         <div className="flex items-start gap-5 md:col-span-8">
           <p className="max-w-3xl text-sm leading-relaxed text-black/65 md:text-base">

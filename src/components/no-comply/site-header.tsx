@@ -1,6 +1,5 @@
 import { useState } from "react";
 
-import noComplyUsaLogoBlack from "@/assets/no-comply-usa-logo-black-cropped.png.asset.json";
 import { NoComplyBackButton } from "@/components/no-comply/back-button";
 import { LogoBanner } from "@/components/no-comply/logo-banner";
 import { NoComplyUtilityBar } from "@/components/no-comply/page-indicator";
@@ -40,7 +39,6 @@ export function NoComplySiteHeader({
       />
 
       <LogoBanner
-        src={noComplyUsaLogoBlack.url}
         menuOpen={menuOpen}
         onSearch={() => openMenu(true)}
         onMenu={() => openMenu(false)}

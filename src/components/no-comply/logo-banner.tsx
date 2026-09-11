@@ -1,23 +1,15 @@
 import { Menu, Search } from "lucide-react";
+import { AnimatedWordmark } from "./animated-wordmark";
 
-export function NoComplyHeaderLogo({ src }: { src: string }) {
-  return (
-    <img
-      data-no-comply-header-logo
-      src={src}
-      alt="NO COMPLY USA"
-      className="block h-7 w-auto max-w-[42vw] object-contain object-center sm:max-w-none"
-    />
-  );
+export function NoComplyHeaderLogo() {
+  return <AnimatedWordmark banner />;
 }
 
 export function LogoBanner({
-  src,
   menuOpen,
   onSearch,
   onMenu,
 }: {
-  src: string;
   menuOpen: boolean;
   onSearch: () => void;
   onMenu: () => void;
@@ -25,7 +17,7 @@ export function LogoBanner({
   return (
     <header className="relative h-12 overflow-hidden border-b-2 border-black bg-black">
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-4">
-        <NoComplyHeaderLogo src={src} />
+        <NoComplyHeaderLogo />
       </div>
       <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center sm:right-4">
         <button
