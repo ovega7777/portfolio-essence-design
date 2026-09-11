@@ -70,12 +70,12 @@ export function SiteFooter() {
           <p className="eyebrow mb-3">Get in touch</p>
           <a
             href="mailto:nicholasc@curzonco.com"
-            className="font-serif text-3xl hover:text-muted-foreground transition-colors"
+            className="portfolio-contact-address font-serif text-3xl hover:text-muted-foreground transition-colors"
           >
             nicholasc@curzonco.com
           </a>
         </div>
-        <div className="flex flex-wrap gap-8 text-[10px] font-semibold uppercase tracking-[0.25em]">
+        <div className="portfolio-footer-links flex flex-wrap gap-8 text-[10px] font-semibold uppercase tracking-[0.25em]">
           <a
             href="https://www.linkedin.com/in/nicholascurzon/"
             target="_blank"

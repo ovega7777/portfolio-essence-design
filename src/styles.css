@@ -567,11 +567,13 @@
   .portfolio-site .lucky-day-wordmark { max-width: 100%; font-size: clamp(30px,8vw,44px); }
   .portfolio-next-project a { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; }
   .portfolio-next-project .font-serif { font-size: clamp(26px,7.5vw,40px); }
-  .portfolio-footer { padding-block: 36px; }
+  .portfolio-footer { padding-block: 28px; padding-bottom: max(28px, env(safe-area-inset-bottom)); }
   .portfolio-footer a { display: inline-flex; align-items: center; min-height: 44px; }
-  .portfolio-footer a[href^="mailto:"] { max-width: 100%; overflow-wrap: anywhere; font-size: clamp(19px,5.8vw,30px); }
-  .portfolio-footer > div { gap: 20px; }
-  .portfolio-footer > div > div:last-child { gap: 8px 20px; }
+  .portfolio-footer .portfolio-contact-address { max-width: 100%; overflow-wrap: anywhere; font-size: clamp(19px,5.8vw,30px); }
+  .portfolio-footer > div { gap: 16px; }
+  .portfolio-footer .portfolio-footer-links { display: grid; grid-template-columns: max-content max-content; width: 100%; gap: 8px 24px; font-size: 10px; line-height: 1.5; }
+  .portfolio-footer-links > a { font-size: inherit; }
+  .portfolio-footer-links > span { grid-column: 1 / -1; font-size: 9px; letter-spacing: .18em; overflow-wrap: anywhere; }
 
   .nc-utility-bar > div:first-child { min-height: 56px; height: auto; gap: 8px; padding-inline: max(16px,env(safe-area-inset-left)); padding-top: env(safe-area-inset-top); }
   [data-no-comply-back-button] { display: flex; align-items: center; min-height: 44px; font-size: 14px; }
