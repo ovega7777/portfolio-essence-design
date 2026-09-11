@@ -16,12 +16,13 @@ const duration = stepTimes[STEPS];
 const letters = [[78, 145], [145, 215], [243, 310], [310, 379], [379, 460],
   [460, 525], [525, 570], [570, 639], [660, 727], [727, 794], [794, 866]];
 
-export function AnimatedWordmark({ banner = false }: { banner?: boolean }) {
+export function AnimatedWordmark({ banner = false, animated = true }: { banner?: boolean; animated?: boolean }) {
   const id = useId().replace(/:/g, "");
   const rootRef = useRef<HTMLSpanElement>(null);
   const [phase, setPhase] = useState("idle");
 
   useEffect(() => {
+    if (!animated) return;
     const root = rootRef.current;
     if (!root) return;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -71,12 +72,12 @@ export function AnimatedWordmark({ banner = false }: { banner?: boolean }) {
       media.removeEventListener("change", onMotionChange);
       animations.forEach((animation) => animation.cancel());
     };
-  }, []);
+  }, [animated]);
 
   return (
     <span
       ref={rootRef}
-      data-wordmark-state={phase}
+      data-wordmark-state={animated ? phase : "done"}
       data-no-comply-header-logo={banner || undefined}
       className={banner
         ? "inline-flex h-7 w-[206.888889px] max-w-[42vw] shrink-0 items-center sm:max-w-none"
@@ -84,7 +85,7 @@ export function AnimatedWordmark({ banner = false }: { banner?: boolean }) {
     >
       <span className="relative block w-full" style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}>
         <img src={wordmark} alt="NO COMPLY USA" width={WIDTH} height={HEIGHT} className="block h-auto w-full" />
-        <svg
+        {animated && <svg
           aria-hidden="true"
           focusable="false"
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
@@ -109,7 +110,7 @@ export function AnimatedWordmark({ banner = false }: { banner?: boolean }) {
             </g>
           ))}
           <image href={wordmark} width={WIDTH} height={HEIGHT} clipPath={`url(#${id}-strike)`} />
-        </svg>
+        </svg>}
       </span>
     </span>
   );
