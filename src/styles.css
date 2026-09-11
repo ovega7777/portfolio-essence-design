@@ -762,3 +762,10 @@
   .projects-card-copy { width: 100%; }
   .projects-card-title { display: flex; justify-content: center; align-items: center; text-align: center; }
 }
+
+@media (max-width: 768px), (max-width: 1024px) and (max-height: 500px) {
+  .portfolio-site > main > .portfolio-about-intro { padding-bottom: 20px; }
+  .portfolio-site > main > .portfolio-about-body { padding-top: 0; }
+  .portfolio-about-portrait { display: block; width: 66%; max-width: 240px; height: auto; margin-inline: auto; object-fit: contain; }
+  .portfolio-about-body > .grid { gap: 24px; }
+}

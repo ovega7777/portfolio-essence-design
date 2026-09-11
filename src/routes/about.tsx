@@ -25,7 +25,7 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <SiteFrame>
-      <section className="mx-auto max-w-6xl px-6 pt-8 pb-24">
+      <section className="portfolio-about-intro mx-auto max-w-6xl px-6 pt-8 pb-24">
         <p className="eyebrow mb-8">About Me</p>
         <h1 className="font-serif text-5xl leading-[1] md:text-7xl">
           A designer's eye
@@ -34,7 +34,7 @@ function About() {
         </h1>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section className="portfolio-about-body mx-auto max-w-6xl px-6 pb-24">
         <div className="grid gap-16 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <img
@@ -43,7 +43,7 @@ function About() {
               loading="lazy"
               width={1200}
               height={1500}
-              className="w-full object-cover"
+              className="portfolio-about-portrait w-full object-cover"
             />
           </div>
           <div className="lg:col-span-7 space-y-8 text-lg leading-relaxed text-foreground/90">
