@@ -12,11 +12,12 @@ export function ContactDetails({ compact = false }: { compact?: boolean }) {
         </a>
         <a
           href="https://www.linkedin.com/in/nicholascurzon"
+          aria-label="Nicholas Curzon on LinkedIn"
           target="_blank"
           rel="noreferrer"
-          className="inline-flex min-h-11 items-center text-[10px] font-semibold uppercase tracking-[0.25em] hover:text-muted-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
+          className="inline-flex min-h-11 max-w-full items-center text-sm font-normal normal-case tracking-normal [overflow-wrap:anywhere] hover:text-muted-foreground transition-colors focus-visible:outline-2 focus-visible:outline-offset-4"
         >
-          LinkedIn
+          linkedin.com/in/nicholascurzon
         </a>
       </div>
     </div>
