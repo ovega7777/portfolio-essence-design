@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { getGroupedVariants, type Product } from "@/data/products";
+import { getGroupedVariants, usesDetailPrimaryImage, type Product } from "@/data/products";
 
 type Props = { product: Product; initialVariantId?: string; collectionGrid?: boolean; catalog?: boolean };
 
@@ -24,8 +24,9 @@ export function ProductCard({ product, initialVariantId, collectionGrid = false,
     grouped[0];
 
   const front = displayed.frontImage;
-  const modelFront = displayed.modelImage ?? variant.images.modelFront ??
-    (catalog ? variant.images.details?.[0] ?? variant.images.backProduct : undefined);
+  const modelFront = usesDetailPrimaryImage(product) ? undefined :
+    (displayed.modelImage ?? variant.images.modelFront ??
+      (catalog ? variant.images.details?.[0] ?? variant.images.backProduct : undefined));
   const frontImagePadding = product.category === "Bottoms" ? "p-7" : "p-4";
 
   const details = (

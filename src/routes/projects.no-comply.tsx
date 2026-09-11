@@ -5,7 +5,7 @@ import commandEditorialLook01 from "../assets/no-comply/home/command-portrait.jp
 import commandEditorialLook02 from "../assets/no-comply/home/command-seated.jpg";
 
 import caughtOnFilmHomeCover from "../assets/no-comply/home/caught-on-film.jpg";
-import { getCategories, getProductThumbnailImage, products } from "@/data/products";
+import { getCategories, getProductThumbnailImage, usesDetailPrimaryImage, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
 import { collections } from "@/data/collections";
 import { NoComplyCommandTitle } from "@/components/no-comply/no-comply-command-title";
@@ -46,8 +46,8 @@ const toCarouselItems = (
         key: product.id,
         productName: product.name,
         price: product.price,
-        productImage: variant.images.frontProduct,
-        modelImage: variant.images.modelFront,
+        productImage: specialtyThumbnail,
+        modelImage: usesDetailPrimaryImage(product) ? undefined : variant.images.modelFront,
         image:
           collectionId === COMMAND.id || (caughtOnFilm && !isAccessory)
             ? specialtyThumbnail

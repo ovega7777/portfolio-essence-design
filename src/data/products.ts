@@ -50,28 +50,30 @@ export type GroupedVariant = {
 
 const SPECIALTY_THUMBNAIL_PRODUCTS = new Set(["ZIP KNIT HOODIE", "SERGEANT SHIRT"]);
 
-/**
- * Returns the image used as the default thumbnail on every product-discovery
- * surface. Zip Knit Hoodie and Sergeant Shirt intentionally use the third
- * image in the selected colorway's gallery; variants without three images
- * safely fall back to their primary product image.
- */
-export const getProductThumbnailImage = (
-  product: Product,
-  variant: ProductVariant,
-): ProductImage => {
-  if (!SPECIALTY_THUMBNAIL_PRODUCTS.has(product.name)) {
-    return variant.images.frontProduct;
-  }
+export const usesDetailPrimaryImage = (product: Product): boolean =>
+  SPECIALTY_THUMBNAIL_PRODUCTS.has(product.name);
 
-  const gallery: ProductImage[] = [variant.images.frontProduct];
-  if (variant.images.backProduct) gallery.push(variant.images.backProduct);
-  if (variant.images.details) gallery.push(...variant.images.details);
-  if (variant.images.modelFront) gallery.push(variant.images.modelFront);
-  if (variant.images.modelBack) gallery.push(variant.images.modelBack);
-  if (variant.images.extraShots) gallery.push(...variant.images.extraShots);
+const originalGalleryImages = (variant: ProductVariant): ProductImage[] => [
+  variant.images.frontProduct,
+  ...(variant.images.backProduct ? [variant.images.backProduct] : []),
+  ...(variant.images.details ?? []),
+  ...(variant.images.modelFront ? [variant.images.modelFront] : []),
+  ...(variant.images.modelBack ? [variant.images.modelBack] : []),
+  ...(variant.images.extraShots ?? []),
+];
 
-  return gallery[2] ?? gallery[0];
+/** Specialty styles consistently lead with original stack image #3 in each colorway. */
+export const getProductThumbnailImage = (product: Product, variant: ProductVariant): ProductImage =>
+  usesDetailPrimaryImage(product)
+    ? originalGalleryImages(variant)[2] ?? variant.images.frontProduct
+    : variant.images.frontProduct;
+
+/** Promote the primary detail without duplicating it or losing any other gallery images. */
+export const getProductGalleryImages = (product: Product, variant: ProductVariant): ProductImage[] => {
+  const images = originalGalleryImages(variant);
+  return usesDetailPrimaryImage(product) && images.length > 2
+    ? [images[2], ...images.slice(0, 2), ...images.slice(3)]
+    : images;
 };
 
 /**

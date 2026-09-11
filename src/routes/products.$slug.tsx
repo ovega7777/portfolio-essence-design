@@ -3,7 +3,7 @@ import { CollectionNavigationFooter } from "@/components/no-comply/collection-na
 import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import type { ProductVariant } from "@/data/products";
-import { getGroupedVariants, getProductBySlug, type ProductImage } from "@/data/products";
+import { getGroupedVariants, getProductBySlug, getProductGalleryImages } from "@/data/products";
 import { getCollection } from "@/data/collections";
 import { Lightbox } from "@/components/no-comply/lightbox";
 import { NoComplySiteHeader } from "@/components/no-comply/site-header";
@@ -50,10 +50,6 @@ export const Route = createFileRoute("/products/$slug")({
   component: ProductPage,
 });
 
-function orderedImages(images: ProductImage[]): ProductImage[] {
-  return images;
-}
-
 function ProductPage() {
   const { product } = Route.useLoaderData();
   const { variant: variantSearch } = Route.useSearch();
@@ -71,15 +67,7 @@ function ProductPage() {
 
   const grouped = getGroupedVariants(product);
 
-  const stack: ProductImage[] = [];
-  stack.push(variant.images.frontProduct);
-  if (variant.images.backProduct) stack.push(variant.images.backProduct);
-  if (variant.images.details) stack.push(...variant.images.details);
-  if (variant.images.modelFront) stack.push(variant.images.modelFront);
-  if (variant.images.modelBack) stack.push(variant.images.modelBack);
-  if (variant.images.extraShots) stack.push(...variant.images.extraShots);
-
-  const ordered = orderedImages(stack);
+  const ordered = getProductGalleryImages(product, variant);
 
   return (
     <div className="no-comply min-h-screen bg-white text-black">
