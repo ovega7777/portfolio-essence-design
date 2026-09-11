@@ -123,32 +123,10 @@ function CaughtOnFilmCollection() {
       <main>
         <CollectionTitleHeader
           collectionNumber={2}
-          pieceCount={collectionProducts.length}
-          theme="caught-on-film"
-          title={
-            <h1 className="nc-display text-[clamp(3.5rem,9vw,9rem)] leading-[0.78] tracking-[0.03em]">
-              Caught on Film
-            </h1>
-          }
+          pieceCount={41}
+          title="CAUGHT ON FILM"
+          images={EDITORIAL_BANNER}
         />
-
-        <section
-          className="cof-editorial-banner mx-auto max-w-[1672px] px-0 sm:px-8"
-          aria-label="Caught on Film campaign"
-        >
-          <div className="cof-editorial-banner__track">
-            {EDITORIAL_BANNER.map((panel) => (
-              <figure key={panel.src} className="cof-editorial-banner__panel">
-                <img
-                  src={panel.src}
-                  alt={panel.alt}
-                  className="cof-editorial-banner__image"
-                  style={{ objectPosition: panel.position }}
-                />
-              </figure>
-            ))}
-          </div>
-        </section>
 
         <section id="caught-on-film-products" className="bg-white text-black">
           <div className="nc-collection-header-to-title mx-auto max-w-[1600px] px-5 pb-12 sm:px-8 sm:pb-16 lg:pb-20">
