@@ -13,7 +13,7 @@ export const Route = createFileRoute("/")({
 
 function Home() {
   return (
-    <SiteFrame className="[--background:#fff] [--card:#fff] [--foreground:#111] [--muted-foreground:#666] [--border:#d9d9d9]">
+    <SiteFrame className="portfolio-home [--background:#fff] [--card:#fff] [--foreground:#111] [--muted-foreground:#666] [--border:#d9d9d9]">
       <section className="mx-auto max-w-6xl px-6 pb-16 pt-10 md:pb-20 md:pt-14">
         <div className="portfolio-hero-layout grid items-center gap-8 md:grid-cols-12 md:gap-10">
           <div className="portfolio-hero-visual md:col-span-5">

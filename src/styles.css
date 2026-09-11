@@ -735,3 +735,18 @@
   .portfolio-about-details-grid a { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; overflow-wrap: anywhere; }
   .portfolio-footer > div { flex-direction: column; align-items: flex-start; }
 }
+
+/* One desktop content boundary for the homepage, including its dividers. */
+@media (min-width: 1025px) {
+  .portfolio-home > main > section,
+  .portfolio-home .portfolio-nav > div,
+  .portfolio-home .portfolio-footer > div {
+    width: calc(100% - 96px);
+    max-width: 1104px;
+    margin-inline: auto;
+    padding-inline: 0;
+  }
+  .portfolio-home > main > section { padding-block: 56px; }
+  .portfolio-home > main > .portfolio-contributions { padding-block: 32px; }
+  .portfolio-home .portfolio-footer { padding-block: 40px; }
+}
