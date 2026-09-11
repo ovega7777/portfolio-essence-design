@@ -2,9 +2,9 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { getGroupedVariants, type Product } from "@/data/products";
 
-type Props = { product: Product; initialVariantId?: string; collectionGrid?: boolean };
+type Props = { product: Product; initialVariantId?: string; collectionGrid?: boolean; catalog?: boolean };
 
-export function ProductCard({ product, initialVariantId, collectionGrid = false }: Props) {
+export function ProductCard({ product, initialVariantId, collectionGrid = false, catalog = false }: Props) {
   const navigate = useNavigate();
   const [variantId, setVariantId] = useState(
     product.variants.some((variant) => variant.id === initialVariantId)
@@ -24,7 +24,8 @@ export function ProductCard({ product, initialVariantId, collectionGrid = false 
     grouped[0];
 
   const front = displayed.frontImage;
-  const modelFront = displayed.modelImage ?? variant.images.modelFront;
+  const modelFront = displayed.modelImage ?? variant.images.modelFront ??
+    (catalog ? variant.images.details?.[0] ?? variant.images.backProduct : undefined);
   const frontImagePadding = product.category === "Bottoms" ? "p-7" : "p-4";
 
   const details = (
@@ -60,7 +61,7 @@ export function ProductCard({ product, initialVariantId, collectionGrid = false 
             alt={front.alt}
             loading="lazy"
             className={`nc-product-front absolute inset-0 h-full w-full object-contain ${frontImagePadding} transition-opacity duration-[250ms] ease-in-out ${
-              !showModel ? "opacity-100" : "opacity-0"
+              !modelFront || !showModel ? "opacity-100" : "opacity-0"
             }`}
           />
           {modelFront && (

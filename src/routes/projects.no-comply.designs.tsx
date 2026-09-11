@@ -1,3 +1,4 @@
+import { CollectionProductGrid } from "@/components/no-comply/collection-product-grid";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { createFileRoute, useRouterState } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef } from "react";
@@ -8,6 +9,7 @@ import { ProductCard } from "@/components/no-comply/product-card";
 import {
   DESIGN_CATEGORIES,
   matchesDesignCategory,
+  normalizeDesignCategory,
   type DesignCategory,
 } from "@/components/no-comply/design-categories";
 import { DesignsCatalogHeader } from "@/components/no-comply/designs-catalog-header";
@@ -15,7 +17,7 @@ import { NoComplySiteHeader } from "@/components/no-comply/site-header";
 import { products } from "@/data/products";
 
 const searchSchema = z.object({
-  cat: fallback(z.enum(DESIGN_CATEGORIES), "all").default("all"),
+  cat: z.preprocess(normalizeDesignCategory, z.enum(DESIGN_CATEGORIES)),
   q: fallback(z.string(), "").default(""),
 });
 
@@ -46,10 +48,10 @@ function AllDesigns() {
 
   type SearchState = z.infer<typeof searchSchema>;
   const setCategory = (cat: DesignCategory) =>
-    navigate({ to: ".", search: (previous: SearchState) => ({ ...previous, cat }) });
+    navigate({ to: "/projects/no-comply/designs", search: (previous: SearchState) => ({ ...previous, cat }) });
   const setQuery = (q: string) =>
     navigate({
-      to: ".",
+      to: "/projects/no-comply/designs",
       search: (previous: SearchState) => ({ ...previous, q }),
       replace: true,
     });
@@ -85,7 +87,7 @@ function AllDesigns() {
 
       <main
         id="all-designs-products"
-        className="nc-first-section mx-auto max-w-[1600px] px-5 sm:px-8"
+        className="nc-designs-catalog nc-first-section mx-auto max-w-[1600px] px-5 sm:px-8"
       >
         <DesignsCatalogHeader
           ref={catalogControlsRef}
@@ -94,17 +96,19 @@ function AllDesigns() {
         />
 
         {displayed.length > 0 ? (
-          <div className="grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
+          <CollectionProductGrid className="nc-designs-grid grid">
             {displayed.flatMap((product) =>
               (product.listingVariantIds ?? [product.variants[0].id]).map((variantId) => (
                 <ProductCard
                   key={`${product.id}-${variantId}`}
                   product={product}
                   initialVariantId={variantId}
+                  collectionGrid
+                  catalog
                 />
               )),
             )}
-          </div>
+          </CollectionProductGrid>
         ) : (
           <div className="flex min-h-[360px] items-center justify-center border-2 border-dashed border-black/30 py-20 text-center">
             <div>
@@ -114,7 +118,7 @@ function AllDesigns() {
               </p>
               <button
                 type="button"
-                onClick={() => navigate({ to: ".", search: { cat: "all", q: "" } })}
+                onClick={() => navigate({ to: "/projects/no-comply/designs", search: { cat: "all", q: "" } })}
                 className="mt-6 border border-black px-5 py-3 text-xs uppercase tracking-[0.2em] transition-colors hover:bg-black hover:text-white"
               >
                 Reset filters

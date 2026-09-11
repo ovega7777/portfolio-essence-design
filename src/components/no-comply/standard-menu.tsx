@@ -1,8 +1,8 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
 import { Search, X } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-import { DESIGN_CATEGORIES, type DesignCategory } from "@/components/no-comply/design-categories";
+import { DESIGN_CATEGORIES, DESIGN_CATEGORY_LABELS, normalizeDesignCategory, type DesignCategory } from "@/components/no-comply/design-categories";
 
 interface StandardNoComplyMenuProps {
   open: boolean;
@@ -22,6 +22,10 @@ export function StandardNoComplyMenu({
   activeCollection,
 }: StandardNoComplyMenuProps) {
   const navigate = useNavigate();
+  const catalogCategory = useRouterState({
+    select: (state) => state.location.pathname.replace(/\/$/, "") === "/projects/no-comply/designs"
+      ? normalizeDesignCategory(state.location.search.cat) : null,
+  });
   const panelRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
@@ -188,25 +192,17 @@ export function StandardNoComplyMenu({
         <section className="mt-5 border-t border-black/10 pt-4">
           <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-black/55">Designs</p>
           <div className="mt-2 flex flex-col items-start">
-            <Link
-              to="/projects/no-comply/designs"
-              search={{ cat: "all", q: "" }}
-              hash="catalog-controls"
-              onClick={onClose}
-              className={linkClass}
-            >
-              All Designs
-            </Link>
-            {DESIGN_CATEGORIES.slice(1).map((category) => (
+            {DESIGN_CATEGORIES.map((category) => (
               <Link
                 key={category}
                 to="/projects/no-comply/designs"
                 search={{ cat: category, q: "" }}
                 hash="catalog-controls"
                 onClick={onClose}
-                className={linkClass}
+                aria-current={catalogCategory === category ? "page" : undefined}
+                className={`${linkClass} ${catalogCategory === category ? "font-bold underline underline-offset-4" : ""}`}
               >
-                {category}
+                {category === "all" ? "All Designs" : DESIGN_CATEGORY_LABELS[category]}
               </Link>
             ))}
           </div>
