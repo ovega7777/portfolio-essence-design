@@ -1,3 +1,4 @@
+import { ContactDetails } from "@/components/contact-details";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
 import portrait from "../assets/about-portrait.jpg";
@@ -117,23 +118,9 @@ function About() {
             <br />
             Digital Experience Design
           </Detail>
-          <Detail label="Contact">
-            <a
-              href="mailto:nicholasc@curzonco.com"
-              className="hover:text-muted-foreground"
-            >
-              nicholasc@curzonco.com
-            </a>
-            <br />
-            <a
-              href="https://www.linkedin.com/in/nicholascurzon/"
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-muted-foreground"
-            >
-              LinkedIn
-            </a>
-          </Detail>
+          <div className="border-t border-border pt-6">
+            <ContactDetails compact />
+          </div>
         </div>
       </section>
     </SiteFrame>

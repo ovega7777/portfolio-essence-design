@@ -1,3 +1,4 @@
+import { ContactDetails } from "./contact-details";
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type ReactNode } from "react";
 
@@ -66,30 +67,8 @@ export function SiteFooter() {
   return (
     <footer className="portfolio-footer border-t border-border py-20">
       <div className="mx-auto flex max-w-6xl flex-col items-start gap-10 px-6 md:flex-row md:items-center md:justify-between">
-        <div>
-          <p className="eyebrow mb-3">Get in touch</p>
-          <a
-            href="mailto:nicholasc@curzonco.com"
-            className="portfolio-contact-address font-serif text-3xl hover:text-muted-foreground transition-colors"
-          >
-            nicholasc@curzonco.com
-          </a>
-        </div>
+        <ContactDetails />
         <div className="portfolio-footer-links flex flex-wrap gap-8 text-[10px] font-semibold uppercase tracking-[0.25em]">
-          <a
-            href="https://www.linkedin.com/in/nicholascurzon/"
-            target="_blank"
-            rel="noreferrer"
-            className="hover:text-muted-foreground transition-colors"
-          >
-            LinkedIn
-          </a>
-          <a
-            href="mailto:nicholasc@curzonco.com"
-            className="hover:text-muted-foreground transition-colors"
-          >
-            Email
-          </a>
           <span className="text-muted-foreground">
             © {new Date().getFullYear()} Nicholas Curzon
           </span>
