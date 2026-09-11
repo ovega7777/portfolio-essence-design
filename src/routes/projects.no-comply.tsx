@@ -1,10 +1,10 @@
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 
-import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
-import commandEditorialLook02 from "../assets/no-comply/editorial/command-look-02.png";
+import commandEditorialLook01 from "../assets/no-comply/home/command-portrait.jpg";
+import commandEditorialLook02 from "../assets/no-comply/home/command-seated.jpg";
 
-import caughtOnFilmHomeCover from "../assets/no-comply/caught-on-film/caught-on-film-home-cover.jpg";
+import caughtOnFilmHomeCover from "../assets/no-comply/home/caught-on-film.jpg";
 import { getCategories, getProductThumbnailImage, products } from "@/data/products";
 import { CollectionCarousel, type CarouselItem } from "@/components/no-comply/collection-carousel";
 import { collections } from "@/data/collections";
@@ -57,7 +57,32 @@ const toCarouselItems = (
 
 const COMMAND_CAROUSEL = toCarouselItems(COMMAND.id);
 const CAUGHT_ON_FILM_CAROUSEL = toCarouselItems(CAUGHT_ON_FILM.id, true, true);
-const COLLECTION_FEATURE_MEDIA_CLASS = "aspect-[16/9] sm:aspect-[5/2] lg:aspect-[3/1]";
+type CollectionCoverImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
+function CollectionCover({ images }: { images: CollectionCoverImage[] }) {
+  return (
+    <div
+      className="collection-cover mx-auto grid w-full min-w-0 max-w-7xl items-start gap-px border border-black/20"
+      // Natural aspect ratios give the portrait/square pair a 3:4 column split
+      // (42.86% / 57.14%) and equal heights without cropping either original.
+      style={{ gridTemplateColumns: images.map(({ width, height }) => `minmax(0, ${width / height}fr)`).join(" ") }}
+    >
+      {images.map((image) => (
+        <img
+          key={image.src}
+          {...image}
+          className="block h-auto w-full min-w-0 object-contain object-center"
+          loading="lazy"
+        />
+      ))}
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/projects/no-comply")({
   head: () => ({
@@ -114,24 +139,24 @@ function NoComplyHome() {
               to="/projects/no-comply/command"
               search={{ cat: "all", sort: "order", q: "" }}
               aria-label="Open No Comply Command, Collection #1"
-              className="group block w-full max-w-7xl overflow-hidden border border-black/20"
+              className="block w-full min-w-0"
             >
-              <div
-                className={`grid min-h-0 w-full grid-cols-2 gap-px overflow-hidden bg-black/20 transition-transform duration-700 group-hover:scale-[1.01] ${COLLECTION_FEATURE_MEDIA_CLASS}`}
-              >
-                <img
-                  src={commandEditorialLook01}
-                  alt="No Comply Command editorial look with Captain's Jacket and Cargo Messenger Bag"
-                  className="h-full min-h-0 w-full bg-white object-cover object-[center_28%]"
-                  loading="lazy"
-                />
-                <img
-                  src={commandEditorialLook02}
-                  alt="No Comply Command editorial look with black and navy Sergeant Shirts"
-                  className="h-full min-h-0 w-full bg-white object-cover object-[center_34%]"
-                  loading="lazy"
-                />
-              </div>
+              <CollectionCover
+                images={[
+                  {
+                    src: commandEditorialLook01,
+                    alt: "No Comply Command editorial look with Captain's Jacket and Cargo Messenger Bag",
+                    width: 960,
+                    height: 1280,
+                  },
+                  {
+                    src: commandEditorialLook02,
+                    alt: "No Comply Command editorial look with black and navy Sergeant Shirts",
+                    width: 1254,
+                    height: 1254,
+                  },
+                ]}
+              />
             </Link>
 
             <CollectionCarousel
@@ -166,16 +191,18 @@ function NoComplyHome() {
               to="/projects/no-comply/caught-on-film"
               search={{ cat: "all", q: "" }}
               aria-label="Open Caught on Film, Collection #2"
-              className="block w-full max-w-7xl overflow-hidden border border-black/20"
+              className="block w-full min-w-0"
             >
-              <div className={`w-full overflow-hidden ${COLLECTION_FEATURE_MEDIA_CLASS}`}>
-                <img
-                  src={caughtOnFilmHomeCover}
-                  alt="Caught on Film collection contact sheet"
-                  className="h-full w-full bg-black object-contain object-center transition-transform duration-700 hover:scale-[1.01]"
-                  loading="lazy"
-                />
-              </div>
+              <CollectionCover
+                images={[
+                  {
+                    src: caughtOnFilmHomeCover,
+                    alt: "Caught on Film collection contact sheet",
+                    width: 1280,
+                    height: 720,
+                  },
+                ]}
+              />
             </Link>
             <CollectionCarousel
               items={CAUGHT_ON_FILM_CAROUSEL}
