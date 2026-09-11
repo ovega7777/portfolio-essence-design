@@ -13,6 +13,9 @@ import {
 export type CarouselItem = {
   key: string;
   productName: string;
+  price: number;
+  productImage: { url: string; alt: string };
+  modelImage?: { url: string; alt: string };
   image: { url: string; alt: string };
 };
 
@@ -94,6 +97,23 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
     return () => viewport.removeEventListener("wheel", handleWheel);
   }, [emblaApi]);
 
+  useEffect(() => {
+    if (!emblaApi) return;
+    // A gentle proximity snap only after momentum finishes, and only on mobile.
+    const settleNearCard = () => {
+      if (!window.matchMedia("(max-width: 768px)").matches || activePointerRef.current !== null) return;
+      const engine = emblaApi.internalEngine();
+      const nearest = engine.scrollTarget.byDistance(0, true);
+      const pitch = engine.slideRects[0]?.width + 4;
+      if (Math.abs(nearest.distance) > 0.5 && Math.abs(nearest.distance) <= pitch * 0.18) {
+        engine.scrollBody.useBaseFriction().useDuration(prefersReducedMotionRef.current ? 0 : 18);
+        engine.scrollTo.distance(nearest.distance, false);
+      }
+    };
+    emblaApi.on("settle", settleNearCard);
+    return () => { emblaApi.off("settle", settleNearCard); };
+  }, [emblaApi]);
+
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
 
@@ -171,7 +191,7 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
   if (items.length === 0) return null;
 
   return (
-    <div className="relative mt-6 lg:mt-8">
+    <div className="nc-featured-carousel relative mt-6 lg:mt-8">
       <div className="mb-2 flex items-center justify-between gap-4 lg:mb-3">
         <p className="nc-display text-xs tracking-[0.3em] text-black/60">Featured Pieces</p>
       </div>
@@ -200,7 +220,7 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
             dragging ? "cursor-grabbing select-none" : "cursor-grab"
           }`}
         >
-          <div className="flex touch-pan-y gap-6">
+          <div className="nc-featured-track flex touch-pan-y gap-6">
             {items.map((item) => (
               <Link
                 key={item.key}
@@ -225,14 +245,24 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
                 draggable={false}
                 className="group min-w-0 w-[84%] shrink-0 bg-white text-black ring-black/25 transition-shadow hover:ring-1 focus:outline-none focus-visible:outline-solid focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-black motion-reduce:transition-none sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4.5rem)/4)]"
               >
-                <div className="flex aspect-[3/4] w-full items-center justify-center bg-white">
-                  <img
-                    src={item.image.url}
-                    alt={item.image.alt}
-                    loading="lazy"
-                    draggable={false}
-                    className="block max-h-full w-full object-contain"
-                  />
+                <div className="nc-featured-image flex aspect-[3/4] w-full items-center justify-center bg-white">
+                  <picture className="nc-featured-default">
+                    <source media="(max-width: 768px)" srcSet={item.productImage.url} />
+                    <img
+                      src={item.image.url}
+                      alt={item.image.alt}
+                      loading="lazy"
+                      draggable={false}
+                      className="block max-h-full w-full object-contain"
+                    />
+                  </picture>
+                  {item.modelImage && (
+                    <img className="nc-featured-model" src={item.modelImage.url} alt="" loading="lazy" draggable={false} />
+                  )}
+                </div>
+                <div className="nc-featured-details">
+                  <span title={item.productName}>{item.productName}</span>
+                  <span>${item.price.toFixed(2)}</span>
                 </div>
               </Link>
             ))}

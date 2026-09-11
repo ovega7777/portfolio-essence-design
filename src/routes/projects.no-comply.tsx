@@ -45,6 +45,9 @@ const toCarouselItems = (
       return {
         key: product.id,
         productName: product.name,
+        price: product.price,
+        productImage: variant.images.frontProduct,
+        modelImage: variant.images.modelFront,
         image:
           collectionId === COMMAND.id || (caughtOnFilm && !isAccessory)
             ? specialtyThumbnail
@@ -117,13 +120,13 @@ function NoComply() {
 
 function NoComplyHome() {
   return (
-    <div className="no-comply min-h-screen bg-white text-black">
+    <div className="no-comply nc-mobile-home min-h-screen bg-white text-black">
       <NoComplySiteHeader pageName="HOME" />
 
       <main>
-        <section className="nc-first-section bg-white px-6 text-black md:px-12">
+        <section className="nc-home-collection nc-first-section bg-white px-6 text-black md:px-12">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-5 flex flex-wrap items-end justify-between gap-5 md:mb-6">
+            <div className="nc-home-collection-heading mb-5 flex flex-wrap items-end justify-between gap-5 md:mb-6">
               <div>
                 <NoComplyCommandTitle linked />
               </div>
@@ -167,9 +170,9 @@ function NoComplyHome() {
           </div>
         </section>
 
-        <section className="border-b-2 border-black bg-white px-6 py-6 text-black md:px-12 lg:py-10">
+        <section className="nc-home-collection border-b-2 border-black bg-white px-6 py-6 text-black md:px-12 lg:py-10">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-5 flex flex-wrap items-end justify-between gap-5 md:mb-6">
+            <div className="nc-home-collection-heading mb-5 flex flex-wrap items-end justify-between gap-5 md:mb-6">
               <div>
                 <Link
                   to="/projects/no-comply/caught-on-film"
