@@ -38,7 +38,7 @@ function Home() {
             <Link
               to="/about"
               aria-label="About Nicholas Curzon"
-              className="mt-7 inline-flex min-h-14 items-center border border-black px-[30px] py-5 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+              className="portfolio-about-button mx-auto mt-7 flex w-fit min-h-14 items-center justify-center border border-black px-[30px] py-5 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
               About Me
             </Link>
@@ -172,7 +172,7 @@ function ProjectCard({
         ))}
       </div>
       <div className="grid gap-3 md:grid-cols-12 md:gap-8">
-        <h3 className={`${titleClassName} text-3xl leading-none md:col-span-4 md:text-4xl`}>
+        <h3 className={`portfolio-project-title ${titleClassName} flex items-center justify-center text-center text-3xl leading-none md:col-span-4 md:text-4xl`}>
           {to === "/projects/no-comply" ? <AnimatedWordmark animated={false} /> : <LuckyDayWordmark />}
         </h3>
         <div className="flex items-start gap-5 md:col-span-8">
