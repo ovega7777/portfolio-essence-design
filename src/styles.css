@@ -769,3 +769,13 @@
   .portfolio-about-portrait { display: block; width: 66%; max-width: 240px; height: auto; margin-inline: auto; object-fit: contain; }
   .portfolio-about-body > .grid { gap: 24px; }
 }
+
+/* Mobile reading rhythm: avoid doubled section gaps and oversized body copy. */
+@media (max-width: 768px), (max-width: 1024px) and (max-height: 500px) {
+  .portfolio-site > main > section + section:not(.border-t) { padding-top: 0; }
+  .portfolio-about-biography, .portfolio-site .portfolio-project-intro { font-size: 16px; line-height: 1.65; }
+  .portfolio-about-biography > p + p { margin-top: 20px; }
+  .portfolio-site .portfolio-project-intro { margin-top: 20px; }
+  .projects-card-copy > p, .portfolio-project-title + div > p { font-size: 15px; line-height: 1.65; }
+  .no-comply .nc-about-page { padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); }
+}

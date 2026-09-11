@@ -47,7 +47,7 @@ function About() {
               className="portfolio-about-portrait w-full object-cover"
             />
           </div>
-          <div className="lg:col-span-7 space-y-8 text-lg leading-relaxed text-foreground/90">
+          <div className="portfolio-about-biography lg:col-span-7 space-y-8 text-lg leading-relaxed text-foreground/90">
             <p>
               My background combines apparel design training, fashion business
               education, and commercial sales experience. I developed hands-on
