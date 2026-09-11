@@ -30,9 +30,11 @@ function LuckyDay() {
           Lucky Day <span className="italic">Co.</span>
         </h1>
         <p className="mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-          A refined commercial framework for luxury sales and distribution —
-          developed to translate a family legacy of commercial craft into a
-          contemporary, service-forward brand.
+          Lucky Day Co. is an elegant jewelry and lifestyle brand centered on timeless design,
+          ethically sourced materials, and consistent, transparent pricing based on material and
+          labor costs. Drawing from symbols of good fortune found across cultures, each piece is
+          designed as a personal charm—created to carry meaning and invite good luck into everyday
+          life.
         </p>
       </section>
 
