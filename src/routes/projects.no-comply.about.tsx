@@ -19,7 +19,7 @@ export const Route = createFileRoute("/projects/no-comply/about")({
 function NoComplyAbout() {
   return (
     <EditorialPageShell pageName="ABOUT">
-      <main className="nc-first-section mx-auto max-w-7xl px-6 !pt-8 sm:!pt-10 lg:!pt-14">
+      <main className="nc-about-page nc-first-section mx-auto max-w-7xl px-6 !pt-8 sm:!pt-10 lg:!pt-14">
         <header>
           <h1 className="nc-display uppercase tracking-[0.02em]">
             <span className="block text-6xl leading-[0.82] md:text-8xl lg:text-9xl">ABOUT</span>

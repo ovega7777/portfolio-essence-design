@@ -47,7 +47,7 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl border-t border-black/15 px-6 pb-16 pt-12 md:pb-20 md:pt-14">
-        <div className="mb-8 flex items-end justify-between md:mb-10">
+        <div className="portfolio-section-heading mb-8 flex items-end justify-between md:mb-10">
           <h2 className="font-serif text-4xl">Selected Works</h2>
           <div className="mx-6 mb-3 hidden h-px flex-1 bg-black/15 sm:block" />
           <Link
@@ -147,7 +147,7 @@ function ProjectCard({
         </span>
       </div>
       <div
-        className={`mb-5 overflow-hidden bg-neutral-100 ${
+        className={`portfolio-project-images mb-5 overflow-hidden bg-neutral-100 ${
           additionalImages?.length ? "grid grid-cols-1 gap-0 md:grid-cols-3" : ""
         }`}
       >

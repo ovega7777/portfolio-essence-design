@@ -57,7 +57,7 @@ function LuckyDay() {
         />
       </section>
 
-      <section className="mx-auto max-w-6xl border-t border-border px-6 py-12 md:py-16">
+      <section className="portfolio-next-project mx-auto max-w-6xl border-t border-border px-6 py-12 md:py-16">
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div>
             <p className="eyebrow mb-2">Next Project</p>

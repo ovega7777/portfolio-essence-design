@@ -101,10 +101,11 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
     if (!emblaApi) return;
     // A gentle proximity snap only after momentum finishes, and only on mobile.
     const settleNearCard = () => {
-      if (!window.matchMedia("(max-width: 768px)").matches || activePointerRef.current !== null) return;
+      if (!window.matchMedia("(max-width: 768px), (max-width: 1024px) and (max-height: 500px)").matches || activePointerRef.current !== null) return;
       const engine = emblaApi.internalEngine();
       const nearest = engine.scrollTarget.byDistance(0, true);
-      const pitch = engine.slideRects[0]?.width + 4;
+      const gap = Number.parseFloat(getComputedStyle(emblaApi.containerNode()).columnGap) || 0;
+      const pitch = engine.slideRects[0]?.width + gap;
       if (Math.abs(nearest.distance) > 0.5 && Math.abs(nearest.distance) <= pitch * 0.18) {
         engine.scrollBody.useBaseFriction().useDuration(prefersReducedMotionRef.current ? 0 : 18);
         engine.scrollTo.distance(nearest.distance, false);
@@ -247,7 +248,7 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
               >
                 <div className="nc-featured-image flex aspect-[3/4] w-full items-center justify-center bg-white">
                   <picture className="nc-featured-default">
-                    <source media="(max-width: 768px)" srcSet={item.productImage.url} />
+                    <source media="(max-width: 768px), (max-width: 1024px) and (max-height: 500px)" srcSet={item.productImage.url} />
                     <img
                       src={item.image.url}
                       alt={item.image.alt}

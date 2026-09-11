@@ -19,7 +19,7 @@ export function CollectionNavigationFooter({
   const destination = destinations[nextPage];
 
   return (
-    <footer className="bg-white pt-24 text-black md:pt-32">
+    <footer className="nc-bottom-navigation bg-white pt-24 text-black md:pt-32">
       <div className="border-t-2 border-black px-6 py-16">
         <nav
           aria-label="NO COMPLY USA bottom navigation"

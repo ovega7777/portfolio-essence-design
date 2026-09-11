@@ -124,7 +124,7 @@ export function LightboxTextHUD({
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="fixed bottom-4 right-4 z-[110] w-[280px] border-2 border-black bg-white p-4 shadow-[4px_4px_0_0_#000]"
+      className="nc-lightbox-editor fixed bottom-4 right-4 z-[110] w-[280px] border-2 border-black bg-white p-4 shadow-[4px_4px_0_0_#000]"
     >
       <div className="mb-3 flex items-center justify-between">
         <p className="nc-display text-[10px] tracking-[0.3em] text-black">

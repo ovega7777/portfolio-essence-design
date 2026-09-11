@@ -164,7 +164,7 @@ function NoComplyMedia() {
 
   return (
     <EditorialPageShell pageName="MEDIA">
-      <main className="nc-first-section mx-auto max-w-7xl px-6">
+      <main className="nc-media-page nc-first-section mx-auto max-w-7xl px-6">
         <header className={`mb-8 flex items-end justify-between gap-8 ${active === "caught-on-film" ? "flex-wrap" : ""}`}>
           <div>
             <p className="nc-display text-xs uppercase tracking-[0.32em] text-black/55">
@@ -210,7 +210,7 @@ function NoComplyMedia() {
             No campaign imagery yet
           </p>
         ) : (
-          <div className={`grid grid-cols-1 items-stretch gap-px sm:grid-cols-2 ${active === "caught-on-film" ? "bg-white" : "bg-black"}`}>
+          <div className={`nc-media-grid grid grid-cols-1 items-stretch gap-px sm:grid-cols-2 ${active === "caught-on-film" ? "bg-white" : "bg-black"}`}>
             {visible.map((item, index) => {
               const topAlign = active === "caught-on-film";
               return (
@@ -218,7 +218,7 @@ function NoComplyMedia() {
                   key={`${item.src}-${index}`}
                   className={`m-0 flex ${topAlign ? "items-start" : "items-center"} justify-center p-0 leading-none ${
                     item.type === "video" ? "bg-black" : "bg-white"
-                  } ${item.fullWidth ? "sm:col-span-full" : ""}`}
+                  } ${item.fullWidth ? "nc-media-wide sm:col-span-full" : ""}`}
                 >
                   {item.type === "video" ? (
                     <video

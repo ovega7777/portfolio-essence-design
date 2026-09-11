@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ProductImage } from "@/data/products";
 import { LightboxTextHUD, useLightboxTextOverrides } from "./LightboxTextHUD";
 
@@ -37,6 +37,8 @@ export function Lightbox({
   onNavigateVariant,
 }: Props) {
   const [index, setIndex] = useState(startIndex);
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const swipeStart = useRef<{ x: number; y: number } | null>(null);
   const count = images.length;
 
   const { overrides } = useLightboxTextOverrides(productSlug);
@@ -61,7 +63,15 @@ export function Lightbox({
   const next = useCallback(() => setIndex((i) => (i + 1) % count), [count]);
 
   useEffect(() => {
+    const previousFocus = document.activeElement as HTMLElement | null;
+    dialogRef.current?.querySelector<HTMLButtonElement>('button[aria-label="Close"]')?.focus();
     const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Tab") {
+        const controls = Array.from(dialogRef.current?.querySelectorAll<HTMLElement>('button:not([disabled]), input, [tabindex="0"]') ?? []);
+        if (e.shiftKey && document.activeElement === controls[0]) { e.preventDefault(); controls.at(-1)?.focus(); }
+        else if (!e.shiftKey && document.activeElement === controls.at(-1)) { e.preventDefault(); controls[0]?.focus(); }
+      }
+      if ((e.target as HTMLElement).matches('input') && e.key !== "Escape") return;
       if (e.key === "Escape") onClose();
       else if (e.key === "ArrowLeft") prev();
       else if (e.key === "ArrowRight") next();
@@ -72,6 +82,7 @@ export function Lightbox({
     return () => {
       document.removeEventListener("keydown", onKey);
       document.body.style.overflow = prevOverflow;
+      previousFocus?.focus();
     };
   }, [onClose, prev, next]);
 
@@ -80,10 +91,11 @@ export function Lightbox({
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label="Image viewer"
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-white p-4 md:p-10"
+      className="nc-image-viewer fixed inset-0 z-[100] flex items-center justify-center bg-white p-4 md:p-10"
       onClick={onClose}
     >
       <button
@@ -127,6 +139,13 @@ export function Lightbox({
 
       <figure
         className="relative flex max-h-full max-w-6xl flex-col items-center"
+        onTouchStart={event => { const touch = event.touches[0]; swipeStart.current = { x: touch.clientX, y: touch.clientY }; }}
+        onTouchEnd={event => {
+          const start = swipeStart.current; swipeStart.current = null;
+          if (!start) return;
+          const touch = event.changedTouches[0], dx = touch.clientX - start.x, dy = touch.clientY - start.y;
+          if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) { if (dx < 0) next(); else prev(); }
+        }}
         onClick={(e) => e.stopPropagation()}
       >
         <img

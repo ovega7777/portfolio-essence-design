@@ -1,3 +1,4 @@
+import { ProductGallery } from "@/components/no-comply/product-gallery";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
@@ -87,25 +88,8 @@ function ProductPage() {
         activeCollection={collection?.slug === "command" ? "command" : "caught-on-film"}
       />
 
-      <div className="nc-first-section mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:px-12">
-        <div className="flex flex-col gap-6">
-          {ordered.map((img, i) => (
-            <button
-              key={img.url}
-              type="button"
-              onClick={() => setLightboxIndex(i)}
-              className="group block w-full bg-white"
-              aria-label={`Open ${img.alt}`}
-            >
-              <img
-                src={img.url}
-                alt={img.alt}
-                loading={i === 0 ? "eager" : "lazy"}
-                className="block h-auto w-full object-contain"
-              />
-            </button>
-          ))}
-        </div>
+      <div className="nc-product-layout nc-first-section mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:px-12">
+        <ProductGallery key={`${product.slug}:${variant.id}`} images={ordered} onOpen={setLightboxIndex} />
 
         <aside className="md:sticky md:top-24 md:h-fit">
           {collection && (

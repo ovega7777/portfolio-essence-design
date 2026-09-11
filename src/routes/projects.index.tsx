@@ -97,7 +97,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
         </span>
       </div>
       <div
-        className={`mb-5 grid aspect-[3/2] overflow-hidden bg-neutral-100 ${
+        className={`portfolio-project-images mb-5 grid aspect-[3/2] overflow-hidden bg-neutral-100 ${
           project.images.length > 1 ? "grid-cols-3" : "grid-cols-1"
         }`}
       >

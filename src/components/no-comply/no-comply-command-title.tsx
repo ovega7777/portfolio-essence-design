@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import upsideDownAmericanFlag from "@/assets/no-comply/editorial/upside-down-american-flag.jpg";
 
 const groupClassName =
-  "nc-display flex min-w-0 flex-nowrap items-center gap-3 text-[clamp(2.5rem,7.5vw,6rem)] leading-none tracking-[0.03em] md:gap-5";
+  "nc-command-title-group nc-display flex min-w-0 flex-nowrap items-center gap-3 text-[clamp(2.5rem,7.5vw,6rem)] leading-none tracking-[0.03em] md:gap-5";
 
 const titleClassName =
   "min-w-0 whitespace-nowrap [font:inherit] [letter-spacing:inherit] [line-height:inherit]";
