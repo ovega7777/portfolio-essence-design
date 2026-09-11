@@ -527,6 +527,7 @@
 
 /* Shared mobile portfolio rhythm; desktop typography and composition stay intact. */
 .portfolio-menu-toggle, .nc-product-gallery-controls { display: none; }
+.portfolio-nav-name, .portfolio-menu-toggle { font-family: var(--font-sans); font-size: 11px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
 @media (max-width: 768px), (max-width: 1024px) and (max-height: 500px) {
   :root { --mobile-gutter: 16px; }
   .portfolio-site, .no-comply { overflow-wrap: break-word; }
@@ -543,7 +544,7 @@
   }
   .portfolio-nav { padding-top: env(safe-area-inset-top); }
   .portfolio-nav > div { height: 64px; padding-inline: var(--mobile-gutter); }
-  .portfolio-nav > div > a { display: flex; align-items: center; min-height: 44px; font-size: 23px; }
+  .portfolio-nav > div > a { display: flex; align-items: center; min-height: 44px; }
   .portfolio-menu-toggle { display: flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
   .portfolio-nav-links { display: none; }
   .portfolio-nav-links.is-open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 8px 16px; background: var(--background); border-bottom: 1px solid var(--border); max-height: calc(100dvh - 64px); overflow-y: auto; }

@@ -22,7 +22,7 @@ export function SiteNav() {
         <Link
           to="/"
           onClick={() => setOpen(false)}
-          className="font-serif text-2xl font-semibold tracking-tight hover:opacity-70 transition-opacity"
+          className="portfolio-nav-name hover:opacity-70 transition-opacity"
         >
           Nicholas Curzon
         </Link>
