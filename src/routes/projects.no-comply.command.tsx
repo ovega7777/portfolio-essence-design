@@ -1,3 +1,4 @@
+import { mobileImagePairStyle } from "@/components/no-comply/editorial-image-layout";
 import { CollectionProductGrid } from "@/components/no-comply/collection-product-grid";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo } from "react";
@@ -190,6 +191,7 @@ function CommandCollection() {
 
           <div
             aria-label="No Comply Command assortment editorial gallery"
+            style={mobileImagePairStyle([{ width: 1086, height: 1448 }, { width: 1254, height: 1254 }])}
             className="nc-command-closing-gallery mt-20 grid items-start gap-1 bg-black md:mt-28 md:grid-cols-[5fr_7fr]"
           >
             <img

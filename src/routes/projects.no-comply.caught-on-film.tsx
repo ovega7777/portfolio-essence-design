@@ -1,3 +1,4 @@
+import { mobileImagePairStyle } from "@/components/no-comply/editorial-image-layout";
 import { CollectionProductGrid } from "@/components/no-comply/collection-product-grid";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo } from "react";
@@ -29,11 +30,15 @@ const CATEGORIES = CATEGORY_ORDER.filter((category) => availableCategories.has(c
 const EDITORIAL_BANNER = [
   {
     src: editorialBanner01,
+    width: 758,
+    height: 843,
     alt: "Black The End studded tracksuit against a deep red backdrop",
     position: "50% 45%",
   },
   {
     src: editorialBanner02,
+    width: 928,
+    height: 1184,
     alt: "White NC-17 T-shirt styled with an On Film scarf and red theater glasses",
     position: "50% 37%",
   },
@@ -46,11 +51,15 @@ const EDITORIAL_BANNER = [
 const CLOSING_EDITORIAL = [
   {
     src: closingEditorial01,
+    width: 1031,
+    height: 1280,
     alt: "Model wearing a white The End studded tank top against a deep red backdrop",
     position: "50% 43%",
   },
   {
     src: closingEditorial02,
+    width: 928,
+    height: 1098,
     alt: "Model wearing a black film-print jacket and matching bottoms",
     position: "50% 44%",
   },
@@ -173,7 +182,7 @@ function CaughtOnFilmCollection() {
           aria-label="Caught on Film editorial campaign portraits"
         >
           <div className="cof-closing-editorial__viewport mx-auto max-w-[1536px]">
-            <div className="cof-closing-editorial__track">
+            <div className="cof-closing-editorial__track" style={mobileImagePairStyle(CLOSING_EDITORIAL)}>
               {CLOSING_EDITORIAL.map((panel) => (
                 <figure key={panel.src} className="cof-closing-editorial__panel">
                   <img

@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { mobileImagePairStyle } from "./editorial-image-layout";
 
 import { NoComplySiteHeader } from "@/components/no-comply/site-header";
 
@@ -19,6 +20,8 @@ type OpeningImage = {
   src: string;
   alt: string;
   position?: string;
+  width?: number;
+  height?: number;
 };
 
 export function CollectionTitleHeader({
@@ -59,6 +62,7 @@ export function CollectionTitleHeader({
         className="nc-collection-opening px-6 md:px-12"
       >
         <div
+          style={mobileImagePairStyle(images)}
           className={`mx-auto grid max-w-7xl gap-1 bg-black ${images.length === 4 ? "grid-cols-2 lg:grid-cols-4" : "grid-cols-3"}`}
         >
           {images.map((image) => (
