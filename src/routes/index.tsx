@@ -22,12 +22,12 @@ function Home() {
               alt="Nicholas Curzon creative direction portrait featuring a black patched jacket"
               width={960}
               height={1280}
-              className="h-auto w-[88%] bg-neutral-100 object-contain"
+              className="portfolio-hero-image h-auto w-[88%] bg-neutral-100 object-contain"
             />
           </div>
           <div className="md:col-span-7">
             <p className="eyebrow mb-4">Portfolio</p>
-            <h1 className="font-serif text-5xl leading-[0.9] tracking-tight sm:text-6xl lg:text-8xl">
+            <h1 className="portfolio-hero-name font-serif text-5xl leading-[0.9] tracking-tight sm:text-6xl lg:text-8xl">
               Nicholas <span className="italic">Curzon</span>
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-black/70 md:text-lg">
