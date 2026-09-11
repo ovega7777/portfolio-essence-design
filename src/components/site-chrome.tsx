@@ -66,13 +66,11 @@ export function SiteNav() {
 export function SiteFooter() {
   return (
     <footer className="portfolio-footer border-t border-border py-20">
-      <div className="mx-auto flex max-w-6xl flex-col items-start gap-10 px-6 md:flex-row md:items-center md:justify-between">
+      <div className="portfolio-footer-inner mx-auto max-w-6xl px-6">
         <ContactDetails />
-        <div className="portfolio-footer-links flex flex-wrap gap-8 text-[10px] font-semibold uppercase tracking-[0.25em]">
-          <span className="text-muted-foreground">
-            © {new Date().getFullYear()} Nicholas Curzon
-          </span>
-        </div>
+        <p className="portfolio-copyright text-muted-foreground">
+          © {new Date().getFullYear()} Nicholas Curzon
+        </p>
       </div>
     </footer>
   );

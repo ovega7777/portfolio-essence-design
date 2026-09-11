@@ -570,11 +570,7 @@
   .portfolio-next-project .font-serif { font-size: clamp(26px,7.5vw,40px); }
   .portfolio-footer { padding-block: 28px; padding-bottom: max(28px, env(safe-area-inset-bottom)); }
   .portfolio-footer a { display: inline-flex; align-items: center; min-height: 44px; }
-  .portfolio-footer .portfolio-contact-address { max-width: 100%; overflow-wrap: anywhere; font-size: clamp(19px,5.8vw,30px); }
   .portfolio-footer > div { gap: 16px; }
-  .portfolio-footer .portfolio-footer-links { display: grid; grid-template-columns: max-content max-content; width: 100%; gap: 8px 24px; font-size: 10px; line-height: 1.5; }
-  .portfolio-footer-links > a { font-size: inherit; }
-  .portfolio-footer-links > span { grid-column: 1 / -1; font-size: 9px; letter-spacing: .18em; overflow-wrap: anywhere; }
 
   .nc-utility-bar > div:first-child { min-height: 56px; height: auto; gap: 8px; padding-inline: max(16px,env(safe-area-inset-left)); padding-top: env(safe-area-inset-top); }
   [data-no-comply-back-button] { display: flex; align-items: center; min-height: 44px; font-size: 14px; }
@@ -778,4 +774,23 @@
   .portfolio-site .portfolio-project-intro { margin-top: 20px; }
   .projects-card-copy > p, .portfolio-project-title + div > p { font-size: 15px; line-height: 1.65; }
   .no-comply .nc-about-page { padding-inline: max(16px, env(safe-area-inset-left)) max(16px, env(safe-area-inset-right)); }
+}
+
+/* Shared contact alignment for the portfolio footer and About contact block. */
+.portfolio-contact-heading { margin: 0 0 12px; }
+.portfolio-contact-links { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; }
+.portfolio-contact-links a { display: inline-flex; align-items: center; min-height: 44px; max-width: 100%; overflow-wrap: anywhere; text-decoration-thickness: 1px; text-underline-offset: 5px; transition: color .2s; }
+.portfolio-contact-links a:hover { color: var(--muted-foreground); text-decoration-line: underline; }
+.portfolio-contact-links a:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.portfolio-contact-address { font-family: var(--font-serif); font-size: 28px; line-height: 1.25; letter-spacing: -.02em; }
+.portfolio-contact-linkedin { font-size: 14px; line-height: 1.5; letter-spacing: 0; text-transform: none; }
+.portfolio-contact-details--compact .portfolio-contact-address { font-size: 20px; }
+.portfolio-site .portfolio-footer { padding-block: 48px; }
+.portfolio-footer-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 32px; }
+.portfolio-copyright { margin: 0; padding-bottom: 12px; font-size: 10px; line-height: 1.6; letter-spacing: .15em; text-transform: uppercase; }
+@media (max-width: 768px), (max-width: 1024px) and (max-height: 500px) {
+  .portfolio-site .portfolio-footer { padding-top: 28px; padding-bottom: max(24px, env(safe-area-inset-bottom)); }
+  .portfolio-footer .portfolio-footer-inner { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .portfolio-contact-address { font-size: clamp(20px, 5.6vw, 26px); }
+  .portfolio-copyright { width: 100%; border-top: 1px solid var(--border); padding: 16px 0 0; font-size: 9px; }
 }
