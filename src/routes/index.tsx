@@ -40,7 +40,7 @@ function Home() {
               aria-label="About Nicholas Curzon"
               className="mt-7 inline-flex min-h-14 items-center border border-black px-[30px] py-5 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
-              About Me →
+              About Me
             </Link>
           </div>
         </div>
@@ -143,7 +143,7 @@ function ProjectCard({
       <div className="mb-4 flex items-center justify-between gap-4">
         <span className="eyebrow text-black">{number}</span>
         <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-          View Project →
+          View Project
         </span>
       </div>
       <div
@@ -179,12 +179,6 @@ function ProjectCard({
           <p className="max-w-3xl text-sm leading-relaxed text-black/65 md:text-base">
             {description}
           </p>
-          <span
-            aria-hidden
-            className="ml-auto grid size-9 shrink-0 place-items-center rounded-full border border-black transition-colors group-hover:bg-black group-hover:text-white"
-          >
-            →
-          </span>
         </div>
       </div>
     </Link>

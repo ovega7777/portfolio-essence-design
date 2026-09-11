@@ -90,7 +90,7 @@ function About() {
               aria-label="View projects"
               className="inline-flex min-h-14 items-center border border-foreground px-[30px] py-5 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
             >
-              View Projects →
+              View Projects
             </Link>
           </div>
         </div>
@@ -131,7 +131,7 @@ function About() {
               rel="noreferrer"
               className="hover:text-muted-foreground"
             >
-              LinkedIn ↗
+              LinkedIn
             </a>
           </Detail>
         </div>

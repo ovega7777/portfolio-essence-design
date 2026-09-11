@@ -93,7 +93,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       <div className="mb-4 flex items-center justify-between gap-4">
         <span className="eyebrow text-black">{project.number}</span>
         <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-          View Project →
+          View Project
         </span>
       </div>
       <div
@@ -122,12 +122,6 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
             {project.description}
           </p>
         </div>
-        <span
-          aria-hidden
-          className="ml-auto grid size-9 shrink-0 place-items-center rounded-full border border-black transition-colors group-hover:bg-black group-hover:text-white"
-        >
-          →
-        </span>
       </div>
     </Link>
   );
