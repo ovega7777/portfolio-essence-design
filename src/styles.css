@@ -607,10 +607,11 @@
   .no-comply nav button { min-height: 44px; min-width: 44px; }
   .nc-bottom-navigation { padding-top: 40px; }
   .nc-bottom-navigation > div { padding: 28px max(16px,env(safe-area-inset-left)) max(28px,env(safe-area-inset-bottom)); }
-  .nc-bottom-navigation nav { gap: 20px; }
+  .nc-bottom-navigation nav { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 20px; }
   .nc-bottom-navigation a { min-height: 44px; display: flex; flex-direction: column; justify-content: center; max-width: 100%; }
-  .nc-bottom-navigation a > span:last-child { font-size: clamp(28px,8vw,36px); line-height: 1.15; }
-  .nc-bottom-navigation a:last-child { flex-shrink: 1; }
+  .nc-bottom-navigation a > span:last-child { font-size: clamp(24px,6vw,36px); line-height: 1.15; overflow-wrap: normal; }
+  .nc-bottom-navigation a:first-child { min-width: 0; }
+  .nc-bottom-navigation a:last-child { justify-self: end; white-space: nowrap; }
   .nc-about-page > section { grid-template-columns: minmax(0,1fr); gap: 24px; }
   .nc-about-page > section p { font-size: 18px; }
   .nc-media-page header { flex-wrap: wrap; gap: 16px; }
@@ -695,4 +696,9 @@
   .nc-command-collection .nc-collection-opening img:nth-child(n+3) { display: none; }
   .nc-command-relocated-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; margin-top: 4px; }
   .nc-command-relocated-images img { display: block; width: 100%; height: auto; min-width: 0; }
+}
+
+@media (max-width: 359px) {
+  .nc-bottom-navigation nav { grid-template-columns: minmax(0, 1fr); }
+  .nc-bottom-navigation a:last-child { justify-self: end; }
 }
