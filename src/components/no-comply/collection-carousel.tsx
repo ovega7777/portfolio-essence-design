@@ -22,9 +22,10 @@ type Props = {
   collectionSlug: "command" | "caught-on-film";
 };
 
-const INPUT_RESPONSE_SCALE = 0.5;
-const GESTURE_TRIGGER_DISTANCE = 24;
-const WHEEL_GESTURE_IDLE_MS = 220;
+// Both collection carousels use the same modest input gain. Arrow steps are independent.
+const INPUT_SENSITIVITY = 1.12;
+const WHEEL_RESPONSE_SCALE = 0.5 * INPUT_SENSITIVITY;
+const WHEEL_DURATION = 20;
 const CLICK_MOVEMENT_THRESHOLD = 5;
 
 export function CollectionCarousel({ items, label, collectionSlug }: Props) {
@@ -32,19 +33,17 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
     align: "start",
     containScroll: false,
     duration: 42,
+    dragFree: true,
     loop: true,
     skipSnaps: false,
     slidesToScroll: 1,
   });
   const prefersReducedMotionRef = useRef(false);
-  const wheelDeltaRef = useRef(0);
-  const wheelGestureHandledRef = useRef(false);
-  const wheelResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const viewportElementRef = useRef<HTMLDivElement | null>(null);
   const pointerStartXRef = useRef(0);
   const pointerStartYRef = useRef(0);
   const activePointerRef = useRef<number | null>(null);
-  const pointerStartSnapRef = useRef(0);
+  const pointerLastXRef = useRef(0);
   const draggedRef = useRef(false);
   const [dragging, setDragging] = useState(false);
   const setViewportRef = useCallback(
@@ -65,7 +64,6 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
 
     return () => {
       mediaQuery.removeEventListener("change", updatePreference);
-      if (wheelResetTimerRef.current) clearTimeout(wheelResetTimerRef.current);
     };
   }, []);
 
@@ -74,33 +72,22 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
     if (!viewport || !emblaApi) return;
 
     const handleWheel = (event: WheelEvent) => {
-      const isHorizontalGesture = Math.abs(event.deltaX) > Math.abs(event.deltaY) * 1.35;
-      if (!isHorizontalGesture && !event.shiftKey) return;
-
-      const delta = event.shiftKey && !isHorizontalGesture ? event.deltaY : event.deltaX;
+      // Leave browser zoom gestures alone, including trackpad pinch-to-zoom.
+      if (event.ctrlKey || activePointerRef.current !== null) return;
+      const isHorizontalGesture = Math.abs(event.deltaX) > Math.abs(event.deltaY);
+      const delta = isHorizontalGesture ? event.deltaX : event.deltaY;
       if (delta === 0) return;
 
       event.preventDefault();
-      wheelDeltaRef.current += delta * INPUT_RESPONSE_SCALE;
-
-      if (wheelResetTimerRef.current) clearTimeout(wheelResetTimerRef.current);
-      wheelResetTimerRef.current = setTimeout(() => {
-        wheelDeltaRef.current = 0;
-        wheelGestureHandledRef.current = false;
-      }, WHEEL_GESTURE_IDLE_MS);
-
-      if (
-        wheelGestureHandledRef.current ||
-        Math.abs(wheelDeltaRef.current) < GESTURE_TRIGGER_DISTANCE
-      ) {
-        return;
-      }
-
-      const jump = prefersReducedMotionRef.current;
-      if (wheelDeltaRef.current > 0) emblaApi.scrollNext(jump);
-      else emblaApi.scrollPrev(jump);
-      wheelGestureHandledRef.current = true;
-      wheelDeltaRef.current = 0;
+      const unit = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewport.clientWidth : 1;
+      // Normalize wheel units and limit a single coarse wheel event to a quarter viewport.
+      const limit = viewport.clientWidth / 4;
+      const distance = Math.max(-limit, Math.min(limit, delta * unit * WHEEL_RESPONSE_SCALE));
+      const engine = emblaApi.internalEngine();
+      engine.scrollBody
+        .useBaseFriction()
+        .useDuration(prefersReducedMotionRef.current ? 0 : WHEEL_DURATION);
+      engine.scrollTo.distance(-distance, false);
     };
 
     viewport.addEventListener("wheel", handleWheel, { passive: false });
@@ -113,13 +100,22 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
     activePointerRef.current = event.pointerId;
     pointerStartXRef.current = event.clientX;
     pointerStartYRef.current = event.clientY;
-    pointerStartSnapRef.current = emblaApi?.selectedScrollSnap() ?? 0;
+    pointerLastXRef.current = event.clientX;
     draggedRef.current = false;
     if (event.pointerType === "mouse" && event.button === 0) setDragging(true);
   };
 
   const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (activePointerRef.current !== event.pointerId) return;
+    const deltaX = event.clientX - pointerLastXRef.current;
+    pointerLastXRef.current = event.clientX;
+    const horizontal =
+      Math.abs(event.clientX - pointerStartXRef.current) >
+      Math.abs(event.clientY - pointerStartYRef.current);
+    if (horizontal && emblaApi) {
+      // Embla handles the base drag and release momentum; add only the 12% gain.
+      emblaApi.internalEngine().target.add(deltaX * (INPUT_SENSITIVITY - 1));
+    }
     if (
       Math.hypot(event.clientX - pointerStartXRef.current, event.clientY - pointerStartYRef.current) >
       CLICK_MOVEMENT_THRESHOLD
@@ -133,15 +129,6 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
   const settlePointerGesture = (event: ReactPointerEvent<HTMLDivElement>) => {
     if (activePointerRef.current !== event.pointerId) return;
     activePointerRef.current = null;
-    if (emblaApi) {
-      const scaledDistance = (event.clientX - pointerStartXRef.current) * INPUT_RESPONSE_SCALE;
-      const step =
-        Math.abs(scaledDistance) < GESTURE_TRIGGER_DISTANCE ? 0 : scaledDistance < 0 ? 1 : -1;
-      const target = (pointerStartSnapRef.current + step + items.length) % items.length;
-      const jump = prefersReducedMotionRef.current;
-
-      window.setTimeout(() => emblaApi.scrollTo(target, jump), 0);
-    }
 
     if (event.pointerType === "mouse") setDragging(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
@@ -153,10 +140,7 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
     if (activePointerRef.current !== event.pointerId) return;
     activePointerRef.current = null;
     draggedRef.current = true;
-    if (emblaApi) {
-      const jump = prefersReducedMotionRef.current;
-      window.setTimeout(() => emblaApi.scrollTo(pointerStartSnapRef.current, jump), 0);
-    }
+
     if (event.pointerType === "mouse") setDragging(false);
     if (event.currentTarget.hasPointerCapture(event.pointerId)) {
       event.currentTarget.releasePointerCapture(event.pointerId);
