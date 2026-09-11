@@ -20,7 +20,7 @@ export function NoComplyCommandTitle({
       {linked ? (
         <Link
           to="/projects/no-comply/command"
-          search={{ cat: "all", sort: "order", q: "" }}
+          search={{ cat: "all", sort: "order" }}
           className={`${titleClassName} text-black transition-opacity hover:opacity-55`}
         >
           NO COMPLY COMMAND

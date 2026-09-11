@@ -1,34 +1,26 @@
-import { Link, useNavigate, useRouterState } from "@tanstack/react-router";
-import { Search, X } from "lucide-react";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { X } from "lucide-react";
 import { useEffect, useRef } from "react";
 
-import { DESIGN_CATEGORIES, DESIGN_CATEGORY_LABELS, normalizeDesignCategory, type DesignCategory } from "@/components/no-comply/design-categories";
+import { DESIGN_CATEGORIES, DESIGN_CATEGORY_LABELS, normalizeDesignCategory } from "@/components/no-comply/design-categories";
 
 interface StandardNoComplyMenuProps {
   open: boolean;
   onClose: () => void;
-  query: string;
-  onQueryChange: (query: string) => void;
-  focusSearch?: boolean;
   activeCollection?: "command" | "caught-on-film";
 }
 
 export function StandardNoComplyMenu({
   open,
   onClose,
-  query,
-  onQueryChange,
-  focusSearch = false,
   activeCollection,
 }: StandardNoComplyMenuProps) {
-  const navigate = useNavigate();
   const catalogCategory = useRouterState({
     select: (state) => state.location.pathname.replace(/\/$/, "") === "/projects/no-comply/designs"
       ? normalizeDesignCategory(state.location.search.cat) : null,
   });
   const panelRef = useRef<HTMLElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const searchRef = useRef<HTMLInputElement>(null);
   const onCloseRef = useRef(onClose);
   onCloseRef.current = onClose;
 
@@ -36,8 +28,7 @@ export function StandardNoComplyMenu({
     if (!open) return;
 
     const previouslyFocused = document.activeElement as HTMLElement | null;
-    const focusTarget = focusSearch ? searchRef.current : closeRef.current;
-    requestAnimationFrame(() => focusTarget?.focus());
+    requestAnimationFrame(() => closeRef.current?.focus());
     document.body.style.overflow = "hidden";
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -71,17 +62,9 @@ export function StandardNoComplyMenu({
       document.body.style.overflow = "";
       previouslyFocused?.focus();
     };
-  }, [focusSearch, open]);
+  }, [open]);
 
   if (!open) return null;
-
-  const goToDesigns = (category: DesignCategory, searchQuery = "") => {
-    onClose();
-    navigate({
-      to: "/projects/no-comply/designs",
-      search: { cat: category, q: searchQuery },
-    });
-  };
 
   const linkClass =
     "flex min-h-11 w-full items-center whitespace-nowrap text-left font-punk-body text-xl uppercase tracking-[0.06em] transition-opacity hover:opacity-45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black";
@@ -118,34 +101,9 @@ export function StandardNoComplyMenu({
           </button>
         </div>
 
-        <form
-          onSubmit={(event) => {
-            event.preventDefault();
-            goToDesigns("all", query);
-          }}
-          className="mt-4 flex h-12 items-center gap-4 border border-black/25 bg-white px-4 transition-colors focus-within:border-black"
-        >
-          <input
-            ref={searchRef}
-            type="search"
-            value={query}
-            onChange={(event) => onQueryChange(event.target.value)}
-            placeholder="Search products"
-            aria-label="Search products in menu"
-            className="min-w-0 flex-1 bg-transparent font-punk-body text-lg tracking-[0.06em] text-black placeholder:text-black/40 focus:outline-none"
-          />
-          <button
-            type="submit"
-            aria-label="Search"
-            className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
-          >
-            <Search aria-hidden className="h-5 w-5 shrink-0" strokeWidth={1.5} />
-          </button>
-        </form>
-
         <nav
           aria-label="No Comply editorial pages"
-          className="mt-5 flex flex-col items-start border-t border-black/10"
+          className="mt-2 flex flex-col items-start"
         >
           <Link
             to="/projects/no-comply/about"
@@ -170,7 +128,7 @@ export function StandardNoComplyMenu({
           <div className="mt-2 flex flex-col items-start">
             <Link
               to="/projects/no-comply/command"
-              search={{ cat: "all", sort: "order", q: "" }}
+              search={{ cat: "all", sort: "order" }}
               onClick={onClose}
               aria-current={activeCollection === "command" ? "page" : undefined}
               className={`${linkClass} ${activeCollection === "command" ? "text-black" : ""}`}
@@ -179,7 +137,7 @@ export function StandardNoComplyMenu({
             </Link>
             <Link
               to="/projects/no-comply/caught-on-film"
-              search={{ cat: "all", q: "" }}
+              search={{ cat: "all" }}
               onClick={onClose}
               aria-current={activeCollection === "caught-on-film" ? "page" : undefined}
               className={`${linkClass} ${activeCollection === "caught-on-film" ? "text-[#d9571b]" : ""}`}
@@ -196,7 +154,7 @@ export function StandardNoComplyMenu({
               <Link
                 key={category}
                 to="/projects/no-comply/designs"
-                search={{ cat: category, q: "" }}
+                search={{ cat: category }}
                 hash="catalog-controls"
                 onClick={onClose}
                 aria-current={catalogCategory === category ? "page" : undefined}

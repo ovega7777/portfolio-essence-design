@@ -4,18 +4,12 @@ import { NoComplySiteHeader } from "@/components/no-comply/site-header";
 
 export function CollectionPageTopBar({
   collectionNumber,
-  query,
-  onQueryChange,
 }: {
   collectionNumber: 1 | 2;
-  query: string;
-  onQueryChange: (query: string) => void;
 }) {
   return (
     <NoComplySiteHeader
       pageName={`COLLECTION #${collectionNumber}`}
-      query={query}
-      onQueryChange={onQueryChange}
       activeCollection={collectionNumber === 1 ? "command" : "caught-on-film"}
     />
   );

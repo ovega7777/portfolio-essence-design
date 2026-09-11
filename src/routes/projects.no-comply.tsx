@@ -132,7 +132,7 @@ function NoComplyHome() {
               </div>
               <Link
                 to="/projects/no-comply/command"
-                search={{ cat: "all", sort: "order", q: "" }}
+                search={{ cat: "all", sort: "order" }}
                 className="nc-display border-b border-black pb-1 text-sm tracking-[0.25em] text-black transition-opacity hover:opacity-55"
               >
                 Enter Collection →
@@ -140,7 +140,7 @@ function NoComplyHome() {
             </div>
             <Link
               to="/projects/no-comply/command"
-              search={{ cat: "all", sort: "order", q: "" }}
+              search={{ cat: "all", sort: "order" }}
               aria-label="Open No Comply Command, Collection #1"
               className="block w-full min-w-0"
             >
@@ -176,7 +176,7 @@ function NoComplyHome() {
               <div>
                 <Link
                   to="/projects/no-comply/caught-on-film"
-                  search={{ cat: "all", q: "" }}
+                  search={{ cat: "all" }}
                   className="nc-display block text-5xl leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55 md:text-8xl"
                 >
                   Caught on Film
@@ -184,7 +184,7 @@ function NoComplyHome() {
               </div>
               <Link
                 to="/projects/no-comply/caught-on-film"
-                search={{ cat: "all", q: "" }}
+                search={{ cat: "all" }}
                 className="nc-display border-b border-black pb-1 text-sm tracking-[0.25em] text-black transition-opacity hover:opacity-55"
               >
                 Enter Collection →
@@ -192,7 +192,7 @@ function NoComplyHome() {
             </div>
             <Link
               to="/projects/no-comply/caught-on-film"
-              search={{ cat: "all", q: "" }}
+              search={{ cat: "all" }}
               aria-label="Open Caught on Film, Collection #2"
               className="block w-full min-w-0"
             >
@@ -247,7 +247,7 @@ function NoComplyHome() {
             </Link>
             <Link
               to="/projects/no-comply/command"
-              search={{ cat: "all", sort: "order", q: "" }}
+              search={{ cat: "all", sort: "order" }}
               className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white"
             >
               <p className="nc-display text-xl">No Comply Command</p>

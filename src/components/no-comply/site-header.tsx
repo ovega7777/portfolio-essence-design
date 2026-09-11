@@ -7,27 +7,14 @@ import { StandardNoComplyMenu } from "@/components/no-comply/standard-menu";
 
 interface NoComplySiteHeaderProps {
   pageName: string;
-  query?: string;
-  onQueryChange?: (query: string) => void;
   activeCollection?: "command" | "caught-on-film";
 }
 
 export function NoComplySiteHeader({
   pageName,
-  query,
-  onQueryChange,
   activeCollection,
 }: NoComplySiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [focusSearch, setFocusSearch] = useState(false);
-  const [internalQuery, setInternalQuery] = useState("");
-  const menuQuery = query ?? internalQuery;
-  const setMenuQuery = onQueryChange ?? setInternalQuery;
-
-  const openMenu = (shouldFocusSearch: boolean) => {
-    setFocusSearch(shouldFocusSearch);
-    setMenuOpen(true);
-  };
 
   return (
     <>
@@ -40,16 +27,12 @@ export function NoComplySiteHeader({
 
       <LogoBanner
         menuOpen={menuOpen}
-        onSearch={() => openMenu(true)}
-        onMenu={() => openMenu(false)}
+        onMenu={() => setMenuOpen(true)}
       />
 
       <StandardNoComplyMenu
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
-        query={menuQuery}
-        onQueryChange={setMenuQuery}
-        focusSearch={focusSearch}
         activeCollection={activeCollection}
       />
     </>

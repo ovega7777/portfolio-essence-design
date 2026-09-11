@@ -63,7 +63,6 @@ const CLOSING_EDITORIAL = [
 
 const searchSchema = z.object({
   cat: fallback(z.string(), "all").default("all"),
-  q: fallback(z.string(), "").default(""),
 });
 
 export const Route = createFileRoute("/projects/no-comply/caught-on-film")({
@@ -90,36 +89,21 @@ function CaughtOnFilmCollection() {
   const navigate = Route.useNavigate();
 
   const activeCategory = search.cat;
-  const query = search.q.trim().toLowerCase();
   type SearchState = z.infer<typeof searchSchema>;
 
   const setCategory = (cat: string) =>
     navigate({ to: ".", search: (previous: SearchState) => ({ ...previous, cat }) });
-  const setQuery = (q: string) =>
-    navigate({
-      to: ".",
-      search: (previous: SearchState) => ({ ...previous, q }),
-      replace: true,
-    });
   const displayed = useMemo(() => {
     let list = collectionProducts;
     if (activeCategory !== "all") {
       list = list.filter((product) => product.category === activeCategory);
     }
-    if (query) {
-      list = list.filter(
-        (product) =>
-          product.name.toLowerCase().includes(query) ||
-          product.description.toLowerCase().includes(query) ||
-          product.variants.some((variant) => variant.sku.toLowerCase().includes(query)),
-      );
-    }
     return list;
-  }, [activeCategory, query]);
+  }, [activeCategory]);
 
   return (
     <div className="no-comply min-h-screen bg-[#070707] text-white">
-      <CollectionPageTopBar collectionNumber={2} query={search.q} onQueryChange={setQuery} />
+      <CollectionPageTopBar collectionNumber={2} />
 
       <main>
         <CollectionTitleHeader

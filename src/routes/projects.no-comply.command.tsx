@@ -32,7 +32,6 @@ type Sort = (typeof SORTS)[number];
 const searchSchema = z.object({
   cat: fallback(z.string(), "all").default("all"),
   sort: fallback(z.enum(SORTS), "order").default("order"),
-  q: fallback(z.string(), "").default(""),
 });
 
 export const Route = createFileRoute("/projects/no-comply/command")({
@@ -82,30 +81,19 @@ function CommandCollection() {
 
   const activeCategory = search.cat;
   const sort = search.sort;
-  const query = search.q.trim().toLowerCase();
 
   type SearchState = z.infer<typeof searchSchema>;
   const setCategory = (cat: string) =>
     navigate({ to: ".", search: (p: SearchState) => ({ ...p, cat }) });
-  const setQuery = (q: string) =>
-    navigate({ to: ".", search: (p: SearchState) => ({ ...p, q }), replace: true });
-
   const displayed = useMemo(() => {
     let list = collectionProducts;
     if (activeCategory !== "all") list = list.filter((p) => p.category === activeCategory);
-    if (query)
-      list = list.filter(
-        (p) =>
-          p.name.toLowerCase().includes(query) ||
-          p.description.toLowerCase().includes(query) ||
-          p.variants.some((v) => v.sku.toLowerCase().includes(query)),
-      );
     return sortProducts(list, sort);
-  }, [activeCategory, query, sort]);
+  }, [activeCategory, sort]);
 
   return (
     <div className="no-comply min-h-screen">
-      <CollectionPageTopBar collectionNumber={1} query={search.q} onQueryChange={setQuery} />
+      <CollectionPageTopBar collectionNumber={1} />
 
       <CollectionTitleHeader
         collectionNumber={1}
@@ -178,13 +166,12 @@ function CommandCollection() {
               <p className="nc-display mt-3 text-xs tracking-[0.3em] text-black/70">
                 {collectionProducts.length === 0
                   ? "Products land here as they're added."
-                  : "Try a different search or category."}
+                  : "Try a different category."}
               </p>
-              {(search.q || activeCategory !== "all") && (
+              {(activeCategory !== "all") && (
                 <button
                   type="button"
                   onClick={() => {
-                    setQuery("");
                     setCategory("all");
                   }}
                   className="nc-display mt-6 border-2 border-black bg-white px-3 py-1.5 text-xs tracking-[0.25em] text-black hover:bg-black hover:text-white"

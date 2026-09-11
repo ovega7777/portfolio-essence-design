@@ -1,4 +1,4 @@
-import { Menu, Search } from "lucide-react";
+import { Menu } from "lucide-react";
 import { AnimatedWordmark } from "./animated-wordmark";
 
 export function NoComplyHeaderLogo() {
@@ -7,11 +7,9 @@ export function NoComplyHeaderLogo() {
 
 export function LogoBanner({
   menuOpen,
-  onSearch,
   onMenu,
 }: {
   menuOpen: boolean;
-  onSearch: () => void;
   onMenu: () => void;
 }) {
   return (
@@ -20,15 +18,6 @@ export function LogoBanner({
         <NoComplyHeaderLogo />
       </div>
       <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center sm:right-4">
-        <button
-          type="button"
-          onClick={onSearch}
-          aria-label="Search products"
-          aria-controls="no-comply-standard-menu"
-          className="flex h-11 w-11 items-center justify-center text-white transition-opacity hover:opacity-60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-        >
-          <Search aria-hidden className="h-6 w-6" strokeWidth={1.8} />
-        </button>
         <button
           type="button"
           onClick={onMenu}

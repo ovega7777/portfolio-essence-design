@@ -2,7 +2,7 @@ import { CollectionProductGrid } from "@/components/no-comply/collection-product
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { createFileRoute, useRouterState } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef } from "react";
-import { fallback, zodValidator } from "@tanstack/zod-adapter";
+import { zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
 
 import { ProductCard } from "@/components/no-comply/product-card";
@@ -18,7 +18,6 @@ import { products } from "@/data/products";
 
 const searchSchema = z.object({
   cat: z.preprocess(normalizeDesignCategory, z.enum(DESIGN_CATEGORIES)),
-  q: fallback(z.string(), "").default(""),
 });
 
 export const Route = createFileRoute("/projects/no-comply/designs")({
@@ -49,41 +48,19 @@ function AllDesigns() {
   type SearchState = z.infer<typeof searchSchema>;
   const setCategory = (cat: DesignCategory) =>
     navigate({ to: "/projects/no-comply/designs", search: (previous: SearchState) => ({ ...previous, cat }) });
-  const setQuery = (q: string) =>
-    navigate({
-      to: "/projects/no-comply/designs",
-      search: (previous: SearchState) => ({ ...previous, q }),
-      replace: true,
-    });
   useEffect(() => {
     if (locationHash !== "catalog-controls") return;
     requestAnimationFrame(() => catalogControlsRef.current?.focus({ preventScroll: true }));
   }, [locationHash, search.cat]);
 
-  const displayed = useMemo(() => {
-    const query = search.q.trim().toLowerCase();
-    let list = products;
-    list = list.filter((product) => matchesDesignCategory(product.category, search.cat));
-    if (query) {
-      list = list.filter(
-        (product) =>
-          product.name.toLowerCase().includes(query) ||
-          product.description.toLowerCase().includes(query) ||
-          product.variants.some(
-            (variant) =>
-              variant.sku.toLowerCase().includes(query) ||
-              variant.color.toLowerCase().includes(query),
-          ),
-      );
-    }
-    return list;
-  }, [search.cat, search.q]);
-
-  const pageIndicator = search.q.trim() ? "SEARCH RESULTS" : "ALL DESIGNS";
+  const displayed = useMemo(
+    () => products.filter((product) => matchesDesignCategory(product.category, search.cat)),
+    [search.cat],
+  );
 
   return (
     <div className="no-comply min-h-screen bg-white text-black">
-      <NoComplySiteHeader pageName={pageIndicator} query={search.q} onQueryChange={setQuery} />
+      <NoComplySiteHeader pageName="ALL DESIGNS" />
 
       <main
         id="all-designs-products"
@@ -114,11 +91,11 @@ function AllDesigns() {
             <div>
               <p className="nc-display text-4xl uppercase tracking-[0.08em]">No matches</p>
               <p className="mt-4 text-sm uppercase tracking-[0.2em] text-black/50">
-                Try a different search or category.
+                Try a different category.
               </p>
               <button
                 type="button"
-                onClick={() => navigate({ to: "/projects/no-comply/designs", search: { cat: "all", q: "" } })}
+                onClick={() => navigate({ to: "/projects/no-comply/designs", search: { cat: "all" } })}
                 className="mt-6 border border-black px-5 py-3 text-xs uppercase tracking-[0.2em] transition-colors hover:bg-black hover:text-white"
               >
                 Reset filters

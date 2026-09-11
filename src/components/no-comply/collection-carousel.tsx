@@ -232,8 +232,8 @@ export function CollectionCarousel({ items, label, collectionSlug }: Props) {
                 }
                 search={
                   collectionSlug === "command"
-                    ? { cat: "all", sort: "order", q: "" }
-                    : { cat: "all", q: "" }
+                    ? { cat: "all", sort: "order" }
+                    : { cat: "all" }
                 }
                 aria-label={`View ${item.productName} in the ${label} collection`}
                 onClick={(event) => {
