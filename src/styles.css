@@ -688,3 +688,11 @@
 @media (min-width: 640px) and (max-width: 1024px) {
   .no-comply > header > div:last-child { right: max(16px,env(safe-area-inset-right)); }
 }
+
+/* Move the second Command header row to the closing gallery on mobile. */
+.nc-command-relocated-images { display: none; }
+@media (max-width: 768px), (max-width: 1024px) and (max-height: 500px) {
+  .nc-command-collection .nc-collection-opening img:nth-child(n+3) { display: none; }
+  .nc-command-relocated-images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; margin-top: 4px; }
+  .nc-command-relocated-images img { display: block; width: 100%; height: auto; min-width: 0; }
+}

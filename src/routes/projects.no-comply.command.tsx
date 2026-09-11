@@ -93,7 +93,7 @@ function CommandCollection() {
   }, [activeCategory, sort]);
 
   return (
-    <div className="no-comply min-h-screen">
+    <div className="no-comply nc-command-collection min-h-screen">
       <CollectionPageTopBar collectionNumber={1} />
 
       <CollectionTitleHeader
@@ -204,6 +204,22 @@ function CommandCollection() {
               src={commandEditorialLook02}
               alt="No Comply Command editorial look with black and navy Sergeant Shirts"
               className="aspect-square h-auto w-full bg-white object-cover"
+              loading="lazy"
+            />
+          </div>
+          <div className="nc-command-relocated-images" aria-label="No Comply Command additional editorial looks">
+            <img
+              src={commandAssortmentLook03}
+              alt="No Comply Command look featuring the American Distress Hoodie"
+              width={1086}
+              height={1448}
+              loading="lazy"
+            />
+            <img
+              src={commandAssortmentLook04}
+              alt="No Comply Command look featuring the Sergeant Shirt"
+              width={1086}
+              height={1448}
               loading="lazy"
             />
           </div>
