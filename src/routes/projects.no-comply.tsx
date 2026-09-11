@@ -232,27 +232,41 @@ function NoComplyHome() {
         </section>
 
         <section className="px-6 pt-10 md:pt-12">
-          <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
+          <nav aria-label="Explore NO COMPLY USA" className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 lg:grid-cols-5">
             <Link
               to="/projects/no-comply/media"
-              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white"
+              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
               <p className="nc-display text-xl">Media</p>
             </Link>
             <Link
               to="/projects/no-comply/about"
-              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white"
+              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
               <p className="nc-display text-xl">About</p>
             </Link>
             <Link
+              to="/projects/no-comply/designs"
+              search={{ cat: "all" }}
+              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            >
+              <p className="nc-display text-xl">All Designs</p>
+            </Link>
+            <Link
               to="/projects/no-comply/command"
               search={{ cat: "all", sort: "order" }}
-              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white"
+              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
               <p className="nc-display text-xl">No Comply Command</p>
             </Link>
-          </div>
+            <Link
+              to="/projects/no-comply/caught-on-film"
+              search={{ cat: "all" }}
+              className="group flex min-h-20 items-center justify-center border border-black bg-white p-4 text-center text-black transition-colors duration-200 hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            >
+              <p className="nc-display text-xl">Caught on Film</p>
+            </Link>
+          </nav>
         </section>
       </main>
 
