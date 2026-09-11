@@ -13,8 +13,10 @@ export type BottomNavigationDestination = keyof typeof destinations;
 
 export function CollectionNavigationFooter({
   nextPage,
+  returnToHome = false,
 }: {
   nextPage: BottomNavigationDestination;
+  returnToHome?: boolean;
 }) {
   const destination = destinations[nextPage];
 
@@ -36,11 +38,11 @@ export function CollectionNavigationFooter({
             </span>
           </Link>
           <Link
-            to="/projects/no-comply"
-            aria-label="Back to NO COMPLY USA"
+            to={returnToHome ? "/" : "/projects/no-comply"}
+            aria-label={returnToHome ? "Back to portfolio home" : "Back to NO COMPLY USA"}
             className="nc-display shrink-0 rounded-sm border-b-2 border-black px-1 pb-1 pt-2 text-sm tracking-[0.3em] text-black transition-colors hover:border-black/60 hover:text-black/60 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
           >
-            ← NO COMPLY USA
+            {returnToHome ? "← HOME" : "← NO COMPLY USA"}
           </Link>
         </nav>
       </div>

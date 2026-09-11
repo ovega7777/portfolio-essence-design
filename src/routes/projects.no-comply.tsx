@@ -263,7 +263,7 @@ function NoComplyHome() {
         </section>
       </main>
 
-      <CollectionNavigationFooter nextPage="lucky-day-co" />
+      <CollectionNavigationFooter nextPage="lucky-day-co" returnToHome />
     </div>
   );
 }
