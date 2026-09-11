@@ -100,8 +100,7 @@ function NoComplyHome() {
           <div className="mx-auto max-w-7xl">
             <div className="mb-5 flex flex-wrap items-end justify-between gap-5 md:mb-6">
               <div>
-                <p className="nc-display text-xs tracking-[0.35em] text-black/60">Collection #1</p>
-                <NoComplyCommandTitle linked className="mt-3" />
+                <NoComplyCommandTitle linked />
               </div>
               <Link
                 to="/projects/no-comply/command"
@@ -147,11 +146,10 @@ function NoComplyHome() {
           <div className="mx-auto max-w-7xl">
             <div className="mb-5 flex flex-wrap items-end justify-between gap-5 md:mb-6">
               <div>
-                <p className="nc-display text-xs tracking-[0.35em] text-black/60">Collection #2</p>
                 <Link
                   to="/projects/no-comply/caught-on-film"
                   search={{ cat: "all", q: "" }}
-                  className="nc-display mt-3 block text-5xl leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55 md:text-8xl"
+                  className="nc-display block text-5xl leading-none tracking-[0.03em] text-black transition-opacity hover:opacity-55 md:text-8xl"
                 >
                   Caught on Film
                 </Link>

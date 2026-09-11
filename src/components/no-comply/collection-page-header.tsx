@@ -47,9 +47,6 @@ export function CollectionTitleHeader({
       <header className="nc-collection-title-header nc-first-section mx-auto max-w-[1600px] px-5 pb-8 sm:px-8">
         <div className="nc-collection-title-rule flex flex-col gap-6 border-b border-black pb-8 md:flex-row md:items-end md:justify-between">
           <div className="min-w-0">
-            <p className="mb-4 text-xs uppercase tracking-[0.32em] text-black">
-              COLLECTION #{collectionNumber}
-            </p>
             <div className="nc-display flex min-w-0 flex-nowrap items-center gap-3 text-[clamp(1.5rem,7.5vw,6rem)] leading-none tracking-[0.03em] md:gap-5">
               <h1 className="min-w-0 whitespace-nowrap [font:inherit] [letter-spacing:inherit] [line-height:inherit]">
                 {title}
