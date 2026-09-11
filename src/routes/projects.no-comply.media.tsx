@@ -18,18 +18,18 @@ import media08 from "../assets/no-comply/media/media-08-oxblood-knit-pleated.png
 import media09 from "../assets/no-comply/media/media-09-olive-anorak-back.png.asset.json";
 import media10 from "../assets/no-comply/media/media-10-black-anorak-hood.png.asset.json";
 import portfolioVideo from "../assets/no-comply/media/no-comply-portfolio.mp4.asset.json";
-import cof01 from "../assets/no-comply/caught-on-film/cof-01-trim.png.asset.json";
-import cof02 from "../assets/no-comply/caught-on-film/cof-02.png.asset.json";
-import cof06 from "../assets/no-comply/caught-on-film/cof-06.png.asset.json";
-import cof07 from "../assets/no-comply/caught-on-film/cof-07.png.asset.json";
-import cof08 from "../assets/no-comply/caught-on-film/cof-08.png.asset.json";
-import cof09 from "../assets/no-comply/caught-on-film/cof-09.png.asset.json";
-import cof10 from "../assets/no-comply/caught-on-film/cof-10.png.asset.json";
-import cof11 from "../assets/no-comply/caught-on-film/cof-11.png.asset.json";
-import onFilmScarfModel2 from "../assets/products/caught-on-film/on-film-scarf/black-white/model-2.jpg";
-import onFilmSkullCapModel1 from "../assets/products/caught-on-film/on-film-skull-cap/black-white/model-1.jpg";
-import starTruckerHatBlackModel1 from "../assets/products/caught-on-film/star-studded-trucker-hat/black/model-1.jpg";
-import studdedBeltBlackModel1 from "../assets/products/caught-on-film/studded-belt/black/model-1.jpg";
+import cof01 from "../assets/no-comply/caught-on-film/media-campaign/campaign-01.jpg";
+import cof02 from "../assets/no-comply/caught-on-film/media-campaign/campaign-02.jpg";
+import cof03 from "../assets/no-comply/caught-on-film/media-campaign/campaign-03.jpg";
+import cof04 from "../assets/no-comply/caught-on-film/media-campaign/campaign-04.jpg";
+import cof05 from "../assets/no-comply/caught-on-film/media-campaign/campaign-05.jpg";
+import cof06 from "../assets/no-comply/caught-on-film/media-campaign/campaign-06.jpg";
+import cof07 from "../assets/no-comply/caught-on-film/media-campaign/campaign-07.jpg";
+import cof08 from "../assets/no-comply/caught-on-film/media-campaign/campaign-08.jpg";
+import cof09 from "../assets/no-comply/caught-on-film/media-campaign/campaign-09.jpg";
+import cof10 from "../assets/no-comply/caught-on-film/media-campaign/campaign-10.jpg";
+import cof11 from "../assets/no-comply/caught-on-film/media-campaign/campaign-11.jpg";
+import cof12 from "../assets/no-comply/caught-on-film/media-campaign/campaign-12.jpg";
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
 
 type MediaCollection = "command" | "caught-on-film";
@@ -80,71 +80,67 @@ const media: {
     fullWidth: true,
   },
   {
-    src: cof01.url,
-    alt: "NO COMPLY film-strip logotype artwork",
+    src: cof01,
+    alt: "NO COMPLY horizontal filmstrip logotype artwork",
     collection: "caught-on-film",
     fullWidth: true,
   },
   {
-    src: cof02.url,
-    alt: "Model in film-strip headscarf and NC-17 rated white tee",
+    src: cof02,
+    alt: "Model wearing a filmstrip scarf and carrying a matching tote bag",
     collection: "caught-on-film",
   },
   {
-    src: onFilmScarfModel2,
-    alt: "Model with film-strip headscarf carrying the film-strip tote bag",
+    src: cof03,
+    alt: "Red filmstrip long-sleeve top with a black studded belt",
     collection: "caught-on-film",
   },
   {
-    src: studdedBeltBlackModel1,
-    alt: "Model in red film-strip mesh long-sleeve top with black wide-leg denim",
+    src: cof04,
+    alt: "Portrait wearing a filmstrip beanie pulled over the eyes",
     collection: "caught-on-film",
   },
   {
-    src: onFilmSkullCapModel1,
-    alt: "Portrait in film-strip printed beanie pulled over the eyes",
+    src: cof05,
+    alt: "Model wearing red sunglasses, a filmstrip scarf, and a white NC-17 T-shirt",
     collection: "caught-on-film",
   },
   {
-    src: starTruckerHatBlackModel1,
-    alt: "Model wearing a black Star Studded Trucker Hat and film-strip printed scarf",
+    src: cof06,
+    alt: "Close-up portrait in a black filmstrip denim jacket",
     collection: "caught-on-film",
   },
   {
-    src: cof06.url,
-    alt: "Caught on Film contact sheet of eight campaign frames",
+    src: cof07,
+    alt: "Black studded The End velour tracksuit",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof08,
+    alt: "Model wearing a cropped black filmstrip denim jacket",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof09,
+    alt: "Portrait in a white studded The End tank top",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof10,
+    alt: "Model wearing The End trucker hat under a filmstrip scarf",
+    collection: "caught-on-film",
+  },
+  {
+    src: cof11,
+    alt: "Caught on Film eight-frame campaign collage",
     collection: "caught-on-film",
     fullWidth: true,
   },
   {
-    src: cof07.url,
-    alt: "Model in white ribbed The End tank top against a red backdrop",
+    src: cof12,
+    alt: "Square black-and-white filmstrip contact-sheet artwork",
     collection: "caught-on-film",
-  },
-  {
-    src: cof08.url,
-    alt: "Cropped film-strip printed denim jacket with matching wide-leg jeans",
-    collection: "caught-on-film",
-  },
-  {
-    src: cof09.url,
-    alt: "Black studded velour The End track jacket and matching trousers",
-    collection: "caught-on-film",
-  },
-  {
-    src: cof10.url,
-    alt: "NC-17 No Comply USA cap worn over a film-strip printed headscarf with red lens sunglasses",
-    collection: "caught-on-film",
-  },
-  {
-    src: cof11.url,
-    alt: "Black-and-white film-strip contact print artwork",
-    collection: "caught-on-film",
-  },
-  {
-    src: cof11.url,
-    alt: "Black-and-white film-strip contact print artwork, repeated panel",
-    collection: "caught-on-film",
+    fullWidth: true,
   },
 ];
 
@@ -168,7 +164,7 @@ function NoComplyMedia() {
   return (
     <EditorialPageShell pageName="MEDIA">
       <main className="nc-first-section mx-auto max-w-7xl px-6 pb-20 md:pb-28">
-        <header className="mb-8 flex items-end justify-between gap-8">
+        <header className={`mb-8 flex items-end justify-between gap-8 ${active === "caught-on-film" ? "flex-wrap" : ""}`}>
           <div>
             <p className="nc-display text-xs uppercase tracking-[0.32em] text-black/55">
               No Comply USA
@@ -177,7 +173,7 @@ function NoComplyMedia() {
               Media
             </h1>
           </div>
-          <p className="nc-display hidden text-sm uppercase tracking-[0.24em] sm:block">
+          <p className={`nc-display text-sm uppercase tracking-[0.24em] ${active === "command" ? "hidden sm:block" : ""}`}>
             {String(visible.length).padStart(2, "0")} Campaign Images
           </p>
         </header>
@@ -213,14 +209,13 @@ function NoComplyMedia() {
             No campaign imagery yet
           </p>
         ) : (
-          <div className="grid grid-cols-1 items-stretch gap-px bg-black sm:grid-cols-2">
+          <div className={`grid grid-cols-1 items-stretch gap-px sm:grid-cols-2 ${active === "caught-on-film" ? "bg-white" : "bg-black"}`}>
             {visible.map((item, index) => {
-              const topAlignFirstPair =
-                active === "caught-on-film" && (index === 1 || index === 2);
+              const topAlign = active === "caught-on-film";
               return (
                 <figure
                   key={`${item.src}-${index}`}
-                  className={`m-0 flex ${topAlignFirstPair ? "items-start" : "items-center"} justify-center p-0 leading-none ${
+                  className={`m-0 flex ${topAlign ? "items-start" : "items-center"} justify-center p-0 leading-none ${
                     item.type === "video" ? "bg-black" : "bg-white"
                   } ${item.fullWidth ? "sm:col-span-full" : ""}`}
                 >
