@@ -13,20 +13,21 @@ import {
 export type CarouselItem = {
   key: string;
   productName: string;
-  collectionSlug: "command" | "caught-on-film";
   image: { url: string; alt: string };
 };
 
 type Props = {
   items: CarouselItem[];
   label: string;
+  collectionSlug: "command" | "caught-on-film";
 };
 
 const INPUT_RESPONSE_SCALE = 0.5;
 const GESTURE_TRIGGER_DISTANCE = 24;
 const WHEEL_GESTURE_IDLE_MS = 220;
+const CLICK_MOVEMENT_THRESHOLD = 5;
 
-export function CollectionCarousel({ items, label }: Props) {
+export function CollectionCarousel({ items, label, collectionSlug }: Props) {
   const [viewportRef, emblaApi] = useEmblaCarousel({
     align: "start",
     containScroll: false,
@@ -41,6 +42,8 @@ export function CollectionCarousel({ items, label }: Props) {
   const wheelResetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const viewportElementRef = useRef<HTMLDivElement | null>(null);
   const pointerStartXRef = useRef(0);
+  const pointerStartYRef = useRef(0);
+  const activePointerRef = useRef<number | null>(null);
   const pointerStartSnapRef = useRef(0);
   const draggedRef = useRef(false);
   const [dragging, setDragging] = useState(false);
@@ -105,20 +108,31 @@ export function CollectionCarousel({ items, label }: Props) {
   }, [emblaApi]);
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (event.pointerType === "mouse" && event.button !== 0) return;
+    if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
 
+    activePointerRef.current = event.pointerId;
     pointerStartXRef.current = event.clientX;
+    pointerStartYRef.current = event.clientY;
     pointerStartSnapRef.current = emblaApi?.selectedScrollSnap() ?? 0;
     draggedRef.current = false;
-    event.currentTarget.setPointerCapture(event.pointerId);
     if (event.pointerType === "mouse" && event.button === 0) setDragging(true);
   };
 
   const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
-    if (Math.abs(event.clientX - pointerStartXRef.current) > 5) draggedRef.current = true;
+    if (activePointerRef.current !== event.pointerId) return;
+    if (
+      Math.hypot(event.clientX - pointerStartXRef.current, event.clientY - pointerStartYRef.current) >
+      CLICK_MOVEMENT_THRESHOLD
+    ) {
+      draggedRef.current = true;
+      // Capture only actual drags; capturing a tap here would retarget its click away from the link.
+      event.currentTarget.setPointerCapture(event.pointerId);
+    }
   };
 
   const settlePointerGesture = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (activePointerRef.current !== event.pointerId) return;
+    activePointerRef.current = null;
     if (emblaApi) {
       const scaledDistance = (event.clientX - pointerStartXRef.current) * INPUT_RESPONSE_SCALE;
       const step =
@@ -136,6 +150,9 @@ export function CollectionCarousel({ items, label }: Props) {
   };
 
   const cancelPointerGesture = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (activePointerRef.current !== event.pointerId) return;
+    activePointerRef.current = null;
+    draggedRef.current = true;
     if (emblaApi) {
       const jump = prefersReducedMotionRef.current;
       window.setTimeout(() => emblaApi.scrollTo(pointerStartSnapRef.current, jump), 0);
@@ -170,8 +187,8 @@ export function CollectionCarousel({ items, label }: Props) {
   if (items.length === 0) return null;
 
   return (
-    <div className="relative mt-10">
-      <div className="mb-4 flex items-center justify-between gap-4">
+    <div className="relative mt-6 lg:mt-8">
+      <div className="mb-2 flex items-center justify-between gap-4 lg:mb-3">
         <p className="nc-display text-xs tracking-[0.3em] text-black/60">Featured Pieces</p>
       </div>
 
@@ -195,7 +212,7 @@ export function CollectionCarousel({ items, label }: Props) {
             }
           }}
           onKeyDown={handleKeyDown}
-          className={`overflow-hidden pb-2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black ${
+          className={`overflow-hidden focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black ${
             dragging ? "cursor-grabbing select-none" : "cursor-grab"
           }`}
         >
@@ -205,24 +222,24 @@ export function CollectionCarousel({ items, label }: Props) {
                 key={item.key}
                 data-carousel-card
                 to={
-                  item.collectionSlug === "command"
+                  collectionSlug === "command"
                     ? "/projects/no-comply/command"
                     : "/projects/no-comply/caught-on-film"
                 }
                 search={
-                  item.collectionSlug === "command"
+                  collectionSlug === "command"
                     ? { cat: "all", sort: "order", q: "" }
                     : { cat: "all", q: "" }
                 }
                 aria-label={`View ${item.productName} in the ${label} collection`}
                 onClick={(event) => {
-                  if (draggedRef.current) {
+                  if (event.detail !== 0 && draggedRef.current) {
                     event.preventDefault();
                     draggedRef.current = false;
                   }
                 }}
                 draggable={false}
-                className="group min-w-0 w-[84%] shrink-0 bg-white text-black ring-black/25 transition-shadow hover:ring-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-4 motion-reduce:transition-none sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4.5rem)/4)]"
+                className="group min-w-0 w-[84%] shrink-0 bg-white text-black ring-black/25 transition-shadow hover:ring-1 focus:outline-none focus-visible:outline-solid focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-black motion-reduce:transition-none sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-4.5rem)/4)]"
               >
                 <div className="flex aspect-[3/4] w-full items-center justify-center bg-white">
                   <img

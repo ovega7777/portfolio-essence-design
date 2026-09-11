@@ -44,7 +44,6 @@ const toCarouselItems = (
       return {
         key: product.id,
         productName: product.name,
-        collectionSlug: collectionId === COMMAND.id ? "command" : "caught-on-film",
         image:
           collectionId === COMMAND.id || (caughtOnFilm && !isAccessory)
             ? specialtyThumbnail
@@ -96,7 +95,7 @@ function NoComplyHome() {
       <NoComplySiteHeader pageName="HOME" />
 
       <main>
-        <section className="nc-first-section bg-white px-6 pb-10 text-black md:px-12 md:pb-14">
+        <section className="nc-first-section bg-white px-6 text-black md:px-12">
           <div className="mx-auto max-w-7xl">
             <div className="mb-5 flex flex-wrap items-end justify-between gap-5 md:mb-6">
               <div>
@@ -135,11 +134,15 @@ function NoComplyHome() {
               </div>
             </Link>
 
-            <CollectionCarousel items={COMMAND_CAROUSEL} label="No Comply Command" />
+            <CollectionCarousel
+              items={COMMAND_CAROUSEL}
+              label="No Comply Command"
+              collectionSlug="command"
+            />
           </div>
         </section>
 
-        <section className="border-b-2 border-black bg-white px-6 pb-20 pt-10 text-black md:px-12 md:pb-28 md:pt-14">
+        <section className="border-b-2 border-black bg-white px-6 py-6 text-black md:px-12 lg:py-10">
           <div className="mx-auto max-w-7xl">
             <div className="mb-5 flex flex-wrap items-end justify-between gap-5 md:mb-6">
               <div>
@@ -175,7 +178,11 @@ function NoComplyHome() {
                 />
               </div>
             </Link>
-            <CollectionCarousel items={CAUGHT_ON_FILM_CAROUSEL} label="Caught on Film" />
+            <CollectionCarousel
+              items={CAUGHT_ON_FILM_CAROUSEL}
+              label="Caught on Film"
+              collectionSlug="caught-on-film"
+            />
           </div>
         </section>
 
