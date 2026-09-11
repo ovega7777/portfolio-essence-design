@@ -27,7 +27,7 @@ function LuckyDay() {
   return (
     <SiteFrame>
       <section className="mx-auto max-w-6xl px-6 pt-8 pb-8 md:pt-12 md:pb-12">
-        <h1 className="font-serif text-5xl leading-[1] md:text-7xl">
+        <h1 className="flex items-center justify-center text-center font-serif text-5xl leading-[1] md:text-7xl">
           <LuckyDayWordmark hero />
         </h1>
         <p className="portfolio-project-intro mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
