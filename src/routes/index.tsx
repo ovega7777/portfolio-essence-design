@@ -25,7 +25,7 @@ function Home() {
             />
           </div>
           <div className="md:col-span-7">
-            <p className="eyebrow mb-4">Portfolio — 2026</p>
+            <p className="eyebrow mb-4">Portfolio</p>
             <h1 className="font-serif text-5xl leading-[0.9] tracking-tight sm:text-6xl lg:text-8xl">
               Nicholas <span className="italic">Curzon</span>
             </h1>
