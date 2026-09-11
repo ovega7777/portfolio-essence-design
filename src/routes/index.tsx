@@ -103,7 +103,6 @@ function Home() {
               "Campaign Art Direction",
               "Product Merchandising",
               "Digital Experience",
-              "Content Production",
             ].map((contribution) => (
               <p key={contribution} className="border-t border-black/15 pt-2">
                 {contribution}
