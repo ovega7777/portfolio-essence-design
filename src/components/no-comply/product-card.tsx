@@ -2,9 +2,9 @@ import { Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { getGroupedVariants, type Product } from "@/data/products";
 
-type Props = { product: Product; initialVariantId?: string };
+type Props = { product: Product; initialVariantId?: string; collectionGrid?: boolean };
 
-export function ProductCard({ product, initialVariantId }: Props) {
+export function ProductCard({ product, initialVariantId, collectionGrid = false }: Props) {
   const navigate = useNavigate();
   const [variantId, setVariantId] = useState(
     product.variants.some((variant) => variant.id === initialVariantId)
@@ -27,23 +27,39 @@ export function ProductCard({ product, initialVariantId }: Props) {
   const modelFront = displayed.modelImage ?? variant.images.modelFront;
   const frontImagePadding = product.category === "Bottoms" ? "p-7" : "p-4";
 
+  const details = (
+    <div className="nc-product-details flex items-baseline justify-between gap-3 px-4 pt-3">
+      <div className="min-w-0">
+        <p className="nc-display truncate text-lg tracking-[0.15em] text-black md:text-xl">
+          {product.name}
+        </p>
+        <p className="nc-display text-[10px] tracking-[0.3em] text-black/60">
+          {product.category}
+        </p>
+      </div>
+      <p className="nc-display shrink-0 text-lg tracking-[0.15em] text-black md:text-xl">
+        ${product.price}
+      </p>
+    </div>
+  );
+
   return (
-    <div className="block bg-white text-black">
+    <div className="nc-product-card block bg-white text-black">
       <Link
         to="/products/$slug"
         params={{ slug: displayed.productSlug }}
         search={{ variant: displayed.variantId }}
-        className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
+        className="nc-product-link block focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
         onFocus={() => setShowModel(true)}
         onBlur={() => setShowModel(false)}
       >
-        <div className="relative aspect-[3/4] w-full overflow-hidden bg-white">
+        <div className="nc-product-image relative aspect-[3/4] w-full overflow-hidden bg-white">
           <img
             key={`${displayed.productSlug}-${displayed.variantId}-front`}
             src={front.url}
             alt={front.alt}
             loading="lazy"
-            className={`absolute inset-0 h-full w-full object-contain ${frontImagePadding} transition-opacity duration-[250ms] ease-in-out ${
+            className={`nc-product-front absolute inset-0 h-full w-full object-contain ${frontImagePadding} transition-opacity duration-[250ms] ease-in-out ${
               !showModel ? "opacity-100" : "opacity-0"
             }`}
           />
@@ -54,7 +70,7 @@ export function ProductCard({ product, initialVariantId }: Props) {
               alt={modelFront.alt}
               loading="lazy"
               aria-hidden
-              className={`absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
+              className={`nc-product-model absolute inset-0 h-full w-full object-contain p-4 transition-opacity duration-[250ms] ease-in-out ${
                 showModel ? "opacity-100" : "opacity-0"
               }`}
             />
@@ -68,22 +84,11 @@ export function ProductCard({ product, initialVariantId }: Props) {
             />
           )}
         </div>
+        {collectionGrid && details}
       </Link>
-      <div className="flex items-baseline justify-between gap-3 px-4 pt-3">
-        <div className="min-w-0">
-          <p className="nc-display truncate text-lg tracking-[0.15em] text-black md:text-xl">
-            {product.name}
-          </p>
-          <p className="nc-display text-[10px] tracking-[0.3em] text-black/60">
-            {product.category}
-          </p>
-        </div>
-        <p className="nc-display shrink-0 text-lg tracking-[0.15em] text-black md:text-xl">
-          ${product.price}
-        </p>
-      </div>
+      {!collectionGrid && details}
       {grouped.length > 1 && (
-        <div className="flex items-center gap-2 px-4 pb-3 pt-2">
+        <div className="nc-product-swatches flex items-center gap-2 px-4 pb-3 pt-2">
           {grouped.map((g) => {
             const key = `${g.productSlug}:${g.variantId}`;
             const isOwn = g.productSlug === product.slug;

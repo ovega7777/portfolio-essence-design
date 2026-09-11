@@ -1,3 +1,4 @@
+import { CollectionProductGrid } from "@/components/no-comply/collection-product-grid";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
@@ -129,7 +130,7 @@ function CaughtOnFilmCollection() {
         />
 
         <section id="caught-on-film-products" className="bg-white text-black">
-          <div className="nc-collection-header-to-title mx-auto max-w-[1600px] px-5 pb-12 sm:px-8 sm:pb-16 lg:pb-20">
+          <div className="nc-collection-products-shell nc-collection-header-to-title mx-auto max-w-[1600px] px-5 pb-12 sm:px-8 sm:pb-16 lg:pb-20">
             <div className="border-b border-black">
               <p className="nc-display text-2xl uppercase tracking-[0.08em] sm:text-3xl">
                 Caught on Film
@@ -156,17 +157,18 @@ function CaughtOnFilmCollection() {
             </div>
 
             {displayed.length > 0 ? (
-              <div className="nc-collection-filters-to-grid grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
+              <CollectionProductGrid className="nc-collection-filters-to-grid grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">
                 {displayed.flatMap((product) =>
                   (product.listingVariantIds ?? [product.variants[0].id]).map((variantId) => (
                     <ProductCard
                       key={`${product.id}-${variantId}`}
                       product={product}
                       initialVariantId={variantId}
+                      collectionGrid
                     />
                   )),
                 )}
-              </div>
+              </CollectionProductGrid>
             ) : (
               <div className="nc-collection-filters-to-grid flex min-h-[360px] items-center justify-center py-20 text-center">
                 <div>

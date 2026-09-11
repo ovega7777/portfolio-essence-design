@@ -1,3 +1,4 @@
+import { CollectionProductGrid } from "@/components/no-comply/collection-product-grid";
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
@@ -138,7 +139,7 @@ function CommandCollection() {
         ]}
       />
 
-      <section className="bg-white px-6 md:px-12">
+      <section className="nc-collection-products-shell bg-white px-6 md:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="nc-collection-header-to-title">
             <h3 className="font-punk-body text-base font-bold uppercase tracking-[0.06em] text-black">
@@ -193,16 +194,16 @@ function CommandCollection() {
               )}
             </div>
           ) : (
-            <div className="nc-collection-filters-to-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            <CollectionProductGrid className="nc-collection-filters-to-grid grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {displayed.map((p) => (
-                <ProductCard key={p.id} product={p} />
+                <ProductCard key={p.id} product={p} collectionGrid />
               ))}
-            </div>
+            </CollectionProductGrid>
           )}
 
           <div
             aria-label="No Comply Command assortment editorial gallery"
-            className="mt-20 grid items-start gap-1 bg-black md:mt-28 md:grid-cols-[5fr_7fr]"
+            className="nc-command-closing-gallery mt-20 grid items-start gap-1 bg-black md:mt-28 md:grid-cols-[5fr_7fr]"
           >
             <img
               src={commandEditorialLook01}
