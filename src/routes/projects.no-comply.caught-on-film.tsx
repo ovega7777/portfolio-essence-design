@@ -183,7 +183,7 @@ function CaughtOnFilmCollection() {
         </section>
 
         <section
-          className="cof-closing-editorial bg-white px-5 pb-4 sm:px-8 sm:pb-6 lg:pb-8"
+          className="cof-closing-editorial bg-white px-5 sm:px-8"
           aria-label="Caught on Film editorial campaign portraits"
         >
           <div className="cof-closing-editorial__viewport mx-auto max-w-[1536px]">
@@ -205,7 +205,7 @@ function CaughtOnFilmCollection() {
         </section>
       </main>
 
-      <CollectionNavigationFooter nextCollection="command" />
+      <CollectionNavigationFooter nextPage="command" />
     </div>
   );
 }

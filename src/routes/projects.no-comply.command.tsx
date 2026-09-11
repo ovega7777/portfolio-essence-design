@@ -138,7 +138,7 @@ function CommandCollection() {
         ]}
       />
 
-      <section className="border-b-2 border-black bg-white px-6 pb-24 md:px-12 md:pb-32">
+      <section className="bg-white px-6 md:px-12">
         <div className="mx-auto max-w-7xl">
           <div className="nc-collection-header-to-title">
             <h3 className="font-punk-body text-base font-bold uppercase tracking-[0.06em] text-black">
@@ -219,7 +219,7 @@ function CommandCollection() {
           </div>
         </div>
       </section>
-      <CollectionNavigationFooter nextCollection="caught-on-film" />
+      <CollectionNavigationFooter nextPage="caught-on-film" />
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { createFileRoute } from "@tanstack/react-router";
 
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
@@ -18,7 +19,7 @@ export const Route = createFileRoute("/projects/no-comply/about")({
 function NoComplyAbout() {
   return (
     <EditorialPageShell pageName="ABOUT">
-      <main className="nc-first-section mx-auto max-w-7xl px-6 pb-20 !pt-8 sm:!pt-10 md:pb-28 lg:pb-32 lg:!pt-14">
+      <main className="nc-first-section mx-auto max-w-7xl px-6 !pt-8 sm:!pt-10 lg:!pt-14">
         <header>
           <h1 className="nc-display uppercase tracking-[0.02em]">
             <span className="block text-6xl leading-[0.82] md:text-8xl lg:text-9xl">ABOUT</span>
@@ -52,6 +53,7 @@ function NoComplyAbout() {
           className="mt-16 h-20 border-y-2 border-black bg-black md:mt-24 md:h-28"
         />
       </main>
+      <CollectionNavigationFooter nextPage="media" />
     </EditorialPageShell>
   );
 }

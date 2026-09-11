@@ -1,4 +1,5 @@
-import { createFileRoute, Link, useRouterState } from "@tanstack/react-router";
+import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
+import { createFileRoute, useRouterState } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef } from "react";
 import { fallback, zodValidator } from "@tanstack/zod-adapter";
 import { z } from "zod";
@@ -84,7 +85,7 @@ function AllDesigns() {
 
       <main
         id="all-designs-products"
-        className="nc-first-section mx-auto max-w-[1600px] px-5 pb-16 sm:px-8 sm:pb-24"
+        className="nc-first-section mx-auto max-w-[1600px] px-5 sm:px-8"
       >
         <DesignsCatalogHeader
           ref={catalogControlsRef}
@@ -123,12 +124,7 @@ function AllDesigns() {
         )}
       </main>
 
-      <footer className="border-t border-black/20 px-5 py-8 sm:px-8">
-        <div className="mx-auto flex max-w-[1600px] flex-wrap items-center justify-between gap-5 text-sm uppercase tracking-[0.18em]">
-          <Link to="/projects/no-comply">← No Comply USA</Link>
-          <Link to="/projects">All Projects →</Link>
-        </div>
-      </footer>
+      <CollectionNavigationFooter nextPage="projects" />
     </div>
   );
 }

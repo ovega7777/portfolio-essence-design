@@ -1,3 +1,4 @@
+import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 
 import commandEditorialLook01 from "../assets/no-comply/editorial/command-look-01.png";
@@ -202,7 +203,7 @@ function NoComplyHome() {
           </div>
         </section>
 
-        <section className="border-b-2 border-black px-6 py-10 md:py-12">
+        <section className="px-6 pt-10 md:pt-12">
           <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
             <Link
               to="/projects/no-comply/media"
@@ -227,25 +228,7 @@ function NoComplyHome() {
         </section>
       </main>
 
-      <footer className="px-6 py-16">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6">
-          <div>
-            <p className="nc-display text-sm tracking-[0.3em] text-black">Next Up</p>
-            <Link
-              to="/projects/lucky-day-co"
-              className="nc-display text-4xl text-black hover:text-black/60"
-            >
-              Lucky Day Co →
-            </Link>
-          </div>
-          <Link
-            to="/projects"
-            className="nc-display border-b-2 border-black pb-1 text-sm tracking-[0.3em] text-black hover:border-black/60 hover:text-black/60"
-          >
-            ← All Projects
-          </Link>
-        </div>
-      </footer>
+      <CollectionNavigationFooter nextPage="lucky-day-co" />
     </div>
   );
 }
