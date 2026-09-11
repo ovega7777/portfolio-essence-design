@@ -64,7 +64,7 @@ function LuckyDay() {
               to="/projects/no-comply"
               className="font-serif text-4xl hover:text-muted-foreground"
             >
-              No Comply →
+              NO COMPLY USA →
             </Link>
           </div>
           <Link
