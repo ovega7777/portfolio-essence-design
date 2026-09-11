@@ -183,14 +183,14 @@ function NoComplyHome() {
           <div className="mx-auto max-w-4xl">
             <p className="nc-display mb-5 text-xs tracking-[0.4em] text-white">Manifesto</p>
             <p className="nc-display text-4xl leading-[1.05] tracking-[0.02em] md:text-6xl">
-              Compliance is optional.
+              NO COMPLY OR DIE.
             </p>
             <div className="mt-5 h-px w-24 bg-white md:mt-6" />
             <p className="mt-5 font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:mt-6 md:text-lg">
-              NO COMPLY USA draws from the contradictions, communities, and countercultures that
-              continue to shape American identity. Unisex and unrestricted by a single aesthetic,
-              the brand treats clothing as open territory for experimentation, resistance, and
-              self-expression.
+              NO COMPLY USA rejects fixed definitions of how American clothing should look, who
+              should wear it, and where inspiration should come from. The brand embraces that
+              complexity, combining references across history and counterculture to create unisex
+              clothing that resists classification and leaves room for individuality.
             </p>
           </div>
         </section>
