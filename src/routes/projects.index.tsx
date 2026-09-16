@@ -106,7 +106,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
         </span>
       </div>
       <div
-        className={`portfolio-project-images mb-5 grid overflow-hidden ${project.to === "/projects/mid-mod" ? "aspect-square bg-white" : project.to === "/projects/lucky-day-co" ? "aspect-[1125/1280] bg-white" : "aspect-[3/2] bg-neutral-100"} ${
+        className={`portfolio-project-images ${project.to !== "/projects/no-comply" ? "portfolio-card-main-image" : ""} mb-5 grid overflow-hidden ${project.to === "/projects/mid-mod" ? "aspect-square bg-white" : project.to === "/projects/lucky-day-co" ? "aspect-[1125/1280] bg-white" : "aspect-[3/2] bg-neutral-100"} ${
           project.images.length > 1 ? "grid-cols-3" : "grid-cols-1"
         }`}
       >

@@ -28,7 +28,7 @@ function MidMod() {
       </section>
 
       <section aria-label="MID MOD brand identity" className="mx-auto max-w-6xl px-6 pb-12 md:pb-16">
-        <img {...midModImages[0]} className="mid-mod-hero-image mx-auto block h-auto w-full max-w-[680px] object-contain" />
+        <img {...midModImages[0]} className="portfolio-main-image mid-mod-hero-image mx-auto block h-auto w-full max-w-[680px] object-contain" />
       </section>
 
       <section className="mx-auto max-w-6xl border-t border-border px-6 py-12 md:py-16">

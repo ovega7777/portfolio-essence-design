@@ -45,7 +45,7 @@ function LuckyDay() {
           alt="Lucky Day Co. silver signet rings on a tattooed hand resting on an open book"
           width={1125}
           height={1280}
-          className="block h-auto w-full object-contain"
+          className="portfolio-main-image block h-auto w-full object-contain"
         />
         <img
           src={thumb}
