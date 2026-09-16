@@ -158,7 +158,7 @@ function ProjectCard({
         </span>
       </div>
       <div
-        className={`portfolio-project-images ${to === "/projects/lucky-day-co" ? "portfolio-main-image" : to === "/projects/mid-mod" ? "portfolio-mid-mod-banner" : ""} mb-5 overflow-hidden bg-neutral-100 ${
+        className={`portfolio-project-images ${to !== "/projects/no-comply" ? "portfolio-home-cropped-banner" : ""} mb-5 overflow-hidden bg-neutral-100 ${
           additionalImages?.length ? "grid grid-cols-1 gap-0 md:grid-cols-3" : ""
         }`}
       >

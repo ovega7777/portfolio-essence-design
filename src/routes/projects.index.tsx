@@ -118,7 +118,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
             loading="lazy"
             width={project.to === "/projects/mid-mod" ? 1254 : project.to === "/projects/lucky-day-co" ? 1125 : 960}
             height={project.to === "/projects/mid-mod" ? 1254 : 1280}
-            className={`h-full w-full ${project.to !== "/projects/no-comply" ? "object-contain" : "object-cover object-top"} transition-opacity duration-300 group-hover:opacity-90`}
+            className={`h-full w-full ${project.to === "/projects/mid-mod" ? "object-contain" : project.to === "/projects/lucky-day-co" ? "object-cover object-center" : "object-cover object-top"} transition-opacity duration-300 group-hover:opacity-90`}
           />
         ))}
       </div>
