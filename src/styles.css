@@ -823,3 +823,13 @@
   .no-comply .nc-collection-category-nav { gap: 28px; padding-block: 4px; }
   .no-comply .nc-collection-category-nav button { font-size: 16px; letter-spacing: 0.06em; }
 }
+
+/* MID MOD identity and uncropped campaign artwork. */
+.mid-mod-wordmark { display: inline-block; width: 7em; max-width: 100%; line-height: 1; }
+.mid-mod-wordmark svg { display: block; width: 100%; height: auto; overflow: visible; }
+.mid-mod-wordmark--hero { width: min(100%, 680px); }
+.mid-mod-gallery { display: grid; grid-template-columns: minmax(0, 1fr); gap: 32px; align-items: center; }
+@media (min-width: 769px) {
+  .mid-mod-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+  .mid-mod-gallery > img:first-child { grid-column: 1 / -1; max-width: 880px; justify-self: center; }
+}

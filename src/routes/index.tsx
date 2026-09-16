@@ -1,3 +1,5 @@
+import { MidModWordmark } from "@/components/mid-mod-wordmark";
+import { midModDescription, midModPreview } from "@/data/mid-mod";
 import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
@@ -87,6 +89,15 @@ function Home() {
             src={luckyDayThumb}
             alt="Lucky Day Co — refined product still life"
           />
+          <ProjectCard
+            to="/projects/mid-mod"
+            number="03"
+            title="MID MOD"
+            titleClassName="font-sans font-extrabold"
+            description={midModDescription}
+            src={midModPreview.src}
+            alt={midModPreview.alt}
+          />
         </div>
       </section>
 
@@ -125,7 +136,7 @@ function ProjectCard({
   alt,
   additionalImages,
 }: {
-  to: "/projects/no-comply" | "/projects/lucky-day-co";
+  to: "/projects/no-comply" | "/projects/lucky-day-co" | "/projects/mid-mod";
   number: string;
   title: string;
   titleClassName: string;
@@ -137,12 +148,13 @@ function ProjectCard({
   return (
     <Link
       to={to}
+      aria-label={`View ${title} project`}
       className="group block border-t border-black pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
     >
       <div className="mb-4 flex items-center justify-between gap-4">
         <span className="eyebrow text-black">{number}</span>
         <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-          View Project
+          View Project {to === "/projects/mid-mod" && <span aria-hidden="true">→</span>}
         </span>
       </div>
       <div
@@ -154,8 +166,8 @@ function ProjectCard({
           src={src}
           alt={alt}
           loading="lazy"
-          width={960}
-          height={1280}
+          width={to === "/projects/mid-mod" ? 1254 : 960}
+          height={to === "/projects/mid-mod" ? 1254 : 1280}
           className="block h-auto w-full transition-opacity duration-300 group-hover:opacity-90"
         />
         {additionalImages?.map((image) => (
@@ -172,7 +184,7 @@ function ProjectCard({
       </div>
       <div className="grid gap-3 md:grid-cols-12 md:gap-8">
         <h3 className={`portfolio-project-title ${titleClassName} flex items-center justify-center text-center text-3xl leading-none md:col-span-4 md:text-4xl`}>
-          {to === "/projects/no-comply" ? <AnimatedWordmark animated={false} /> : <LuckyDayWordmark />}
+          {to === "/projects/no-comply" ? <AnimatedWordmark animated={false} /> : to === "/projects/mid-mod" ? <MidModWordmark /> : <LuckyDayWordmark />}
         </h3>
         <div className="flex items-start gap-5 md:col-span-8">
           <p className="max-w-3xl text-sm leading-relaxed text-black/65 md:text-base">

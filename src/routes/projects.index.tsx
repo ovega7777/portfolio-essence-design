@@ -1,3 +1,5 @@
+import { MidModWordmark } from "@/components/mid-mod-wordmark";
+import { midModDescription, midModPreview } from "@/data/mid-mod";
 import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
@@ -13,12 +15,12 @@ export const Route = createFileRoute("/projects/")({
       { title: "Projects — Nicholas Curzon" },
       {
         name: "description",
-        content: "Selected projects by Nicholas Curzon — No Comply and Lucky Day Co.",
+        content: "Selected projects by Nicholas Curzon — No Comply, Lucky Day Co., and MID MOD.",
       },
       { property: "og:title", content: "Projects — Nicholas Curzon" },
       {
         property: "og:description",
-        content: "Selected projects: No Comply and Lucky Day Co.",
+        content: "Selected projects: No Comply, Lucky Day Co., and MID MOD.",
       },
     ],
   }),
@@ -60,6 +62,13 @@ const projects = [
       },
     ],
   },
+  {
+    to: "/projects/mid-mod" as const,
+    number: "03",
+    title: "MID MOD",
+    description: midModDescription,
+    images: [midModPreview],
+  },
 ];
 
 function ProjectsIndex() {
@@ -93,11 +102,11 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       <div className="mb-4 flex items-center justify-between gap-4">
         <span className="eyebrow text-black">{project.number}</span>
         <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-          View Project
+          View Project {project.to === "/projects/mid-mod" && <span aria-hidden="true">→</span>}
         </span>
       </div>
       <div
-        className={`portfolio-project-images mb-5 grid aspect-[3/2] overflow-hidden bg-neutral-100 ${
+        className={`portfolio-project-images mb-5 grid overflow-hidden ${project.to === "/projects/mid-mod" ? "aspect-square bg-white" : "aspect-[3/2] bg-neutral-100"} ${
           project.images.length > 1 ? "grid-cols-3" : "grid-cols-1"
         }`}
       >
@@ -107,16 +116,16 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
             src={image.src}
             alt={image.alt}
             loading="lazy"
-            width={960}
-            height={1280}
-            className="h-full w-full object-cover object-top transition-opacity duration-300 group-hover:opacity-90"
+            width={project.to === "/projects/mid-mod" ? 1254 : 960}
+            height={project.to === "/projects/mid-mod" ? 1254 : 1280}
+            className={`h-full w-full ${project.to === "/projects/mid-mod" ? "object-contain" : "object-cover object-top"} transition-opacity duration-300 group-hover:opacity-90`}
           />
         ))}
       </div>
       <div className="flex items-start gap-5">
         <div className="projects-card-copy min-w-0">
           <h2 className="projects-card-title font-sans text-2xl font-extrabold leading-none text-black lg:text-3xl">
-            {project.to === "/projects/no-comply" ? <AnimatedWordmark /> : <LuckyDayWordmark />}
+            {project.to === "/projects/no-comply" ? <AnimatedWordmark /> : project.to === "/projects/mid-mod" ? <MidModWordmark /> : <LuckyDayWordmark />}
           </h2>
           <p className="mt-3 max-w-lg text-sm leading-relaxed text-black/65">
             {project.description}

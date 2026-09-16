@@ -62,10 +62,10 @@ function LuckyDay() {
           <div>
             <p className="eyebrow mb-2">Next Project</p>
             <Link
-              to="/projects/no-comply"
+              to="/projects/mid-mod"
               className="font-serif text-4xl hover:text-muted-foreground"
             >
-              NO COMPLY USA
+              MID MOD <span aria-hidden="true">→</span>
             </Link>
           </div>
           <Link

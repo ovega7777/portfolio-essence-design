@@ -15,6 +15,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsLuckyDayCoRouteImport } from './routes/projects.lucky-day-co'
+import { Route as ProjectsMidModRouteImport } from './routes/projects.mid-mod'
 import { Route as ProjectsNoComplyRouteImport } from './routes/projects.no-comply'
 import { Route as ProjectsNoComplyAboutRouteImport } from './routes/projects.no-comply.about'
 import { Route as ProjectsNoComplyCaughtOnFilmRouteImport } from './routes/projects.no-comply.caught-on-film'
@@ -50,6 +51,11 @@ const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
 const ProjectsLuckyDayCoRoute = ProjectsLuckyDayCoRouteImport.update({
   id: '/projects/lucky-day-co',
   path: '/projects/lucky-day-co',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsMidModRoute = ProjectsMidModRouteImport.update({
+  id: '/projects/mid-mod',
+  path: '/projects/mid-mod',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsNoComplyRoute = ProjectsNoComplyRouteImport.update({
@@ -90,6 +96,7 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/projects/lucky-day-co': typeof ProjectsLuckyDayCoRoute
+  '/projects/mid-mod': typeof ProjectsMidModRoute
   '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
   '/projects/': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
@@ -104,6 +111,7 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/projects/lucky-day-co': typeof ProjectsLuckyDayCoRoute
+  '/projects/mid-mod': typeof ProjectsMidModRoute
   '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
   '/projects': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
@@ -119,6 +127,7 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/products/$slug': typeof ProductsSlugRoute
   '/projects/lucky-day-co': typeof ProjectsLuckyDayCoRoute
+  '/projects/mid-mod': typeof ProjectsMidModRoute
   '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
   '/projects/': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
@@ -135,6 +144,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/products/$slug'
     | '/projects/lucky-day-co'
+    | '/projects/mid-mod'
     | '/projects/no-comply'
     | '/projects/'
     | '/projects/no-comply/about'
@@ -149,6 +159,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/products/$slug'
     | '/projects/lucky-day-co'
+    | '/projects/mid-mod'
     | '/projects/no-comply'
     | '/projects'
     | '/projects/no-comply/about'
@@ -163,6 +174,7 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/products/$slug'
     | '/projects/lucky-day-co'
+    | '/projects/mid-mod'
     | '/projects/no-comply'
     | '/projects/'
     | '/projects/no-comply/about'
@@ -178,6 +190,7 @@ export interface RootRouteChildren {
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   ProductsSlugRoute: typeof ProductsSlugRoute
   ProjectsLuckyDayCoRoute: typeof ProjectsLuckyDayCoRoute
+  ProjectsMidModRoute: typeof ProjectsMidModRoute
   ProjectsNoComplyRoute: typeof ProjectsNoComplyRouteWithChildren
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
@@ -224,6 +237,13 @@ declare module '@tanstack/react-router' {
       path: '/projects/lucky-day-co'
       fullPath: '/projects/lucky-day-co'
       preLoaderRoute: typeof ProjectsLuckyDayCoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/mid-mod': {
+      id: '/projects/mid-mod'
+      path: '/projects/mid-mod'
+      fullPath: '/projects/mid-mod'
+      preLoaderRoute: typeof ProjectsMidModRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/no-comply': {
@@ -296,6 +316,7 @@ const rootRouteChildren: RootRouteChildren = {
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   ProductsSlugRoute: ProductsSlugRoute,
   ProjectsLuckyDayCoRoute: ProjectsLuckyDayCoRoute,
+  ProjectsMidModRoute: ProjectsMidModRoute,
   ProjectsNoComplyRoute: ProjectsNoComplyRouteWithChildren,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
