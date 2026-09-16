@@ -1,3 +1,4 @@
+import { CollectionCategoryNav } from "@/components/no-comply/collection-category-nav";
 import { mobileImagePairStyle } from "@/components/no-comply/editorial-image-layout";
 import { CollectionProductGrid } from "@/components/no-comply/collection-product-grid";
 import { createFileRoute } from "@tanstack/react-router";
@@ -18,15 +19,12 @@ import {
   CollectionTitleHeader,
 } from "@/components/no-comply/collection-page-header";
 import { collections } from "@/data/collections";
-import { getCategories, products } from "@/data/products";
+import { products } from "@/data/products";
 
 const COLLECTION = collections[1];
 const collectionProducts = products
   .filter((product) => product.collectionId === COLLECTION.id)
   .sort((a, b) => a.displayOrder - b.displayOrder);
-const CATEGORY_ORDER = ["Tops", "Outerwear", "Bottoms", "Accessories"];
-const availableCategories = new Set(getCategories(COLLECTION.id));
-const CATEGORIES = CATEGORY_ORDER.filter((category) => availableCategories.has(category));
 const EDITORIAL_BANNER = [
   {
     src: editorialBanner01,
@@ -128,25 +126,10 @@ function CaughtOnFilmCollection() {
               <p className="nc-display text-2xl uppercase tracking-[0.08em] sm:text-3xl">
                 Caught on Film
               </p>
-              <div className="nc-collection-title-to-filters flex flex-wrap gap-x-7 gap-y-3 pb-5 text-sm uppercase tracking-[0.16em]">
-                <button
-                  type="button"
-                  onClick={() => setCategory("all")}
-                  className={activeCategory === "all" ? "font-bold" : "text-black/55"}
-                >
-                  All
-                </button>
-                {CATEGORIES.map((category) => (
-                  <button
-                    key={category}
-                    type="button"
-                    onClick={() => setCategory(category)}
-                    className={activeCategory === category ? "font-bold" : "text-black/55"}
-                  >
-                    {category}
-                  </button>
-                ))}
-              </div>
+              <CollectionCategoryNav
+                activeCategory={activeCategory}
+                onCategoryChange={setCategory}
+              />
             </div>
 
             {displayed.length > 0 ? (

@@ -162,8 +162,8 @@
 /* Shared collection-catalog rhythm: campaign image -> title -> filters -> products. */
 .no-comply {
   --nc-collection-header-title-gap: 2rem;
-  --nc-collection-title-filter-gap: 1.25rem;
-  --nc-collection-filter-grid-gap: 1.75rem;
+  --nc-collection-title-filter-gap: 0.5rem;
+  --nc-collection-filter-grid-gap: 0.75rem;
 }
 
 .no-comply .nc-collection-header-to-title {
@@ -285,16 +285,16 @@
 @media (min-width: 640px) {
   .no-comply {
     --nc-collection-header-title-gap: 2.5rem;
-    --nc-collection-title-filter-gap: 1.5rem;
-    --nc-collection-filter-grid-gap: 2rem;
+    --nc-collection-title-filter-gap: 0.75rem;
+    --nc-collection-filter-grid-gap: 1rem;
   }
 }
 
 @media (min-width: 1024px) {
   .no-comply {
     --nc-collection-header-title-gap: 3.5rem;
-    --nc-collection-title-filter-gap: 1.75rem;
-    --nc-collection-filter-grid-gap: 2.5rem;
+    --nc-collection-title-filter-gap: 0.75rem;
+    --nc-collection-filter-grid-gap: 1.25rem;
   }
 }
 
@@ -787,10 +787,39 @@
 .portfolio-contact-details--compact .portfolio-contact-address { font-size: 20px; }
 .portfolio-site .portfolio-footer { padding-block: 48px; }
 .portfolio-footer-inner { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 32px; }
+.portfolio-footer-inner--copyright-only > .portfolio-copyright { grid-column: -2 / -1; }
 .portfolio-copyright { margin: 0; padding-bottom: 12px; font-size: 10px; line-height: 1.6; letter-spacing: .15em; text-transform: uppercase; }
 @media (max-width: 768px), (max-width: 1024px) and (max-height: 500px) {
   .portfolio-site .portfolio-footer { padding-top: 28px; padding-bottom: max(24px, env(safe-area-inset-bottom)); }
   .portfolio-footer .portfolio-footer-inner { grid-template-columns: minmax(0, 1fr); gap: 20px; }
   .portfolio-contact-address { font-size: clamp(20px, 5.6vw, 26px); }
   .portfolio-copyright { width: 100%; border-top: 1px solid var(--border); padding: 16px 0 0; font-size: 9px; }
+}
+
+/* One compact, scroll-contained category row for both collection catalogs. */
+.no-comply .nc-collection-category-nav {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: clamp(8px, 2vw, 16px);
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-block: 2px;
+  scrollbar-width: none;
+}
+.no-comply .nc-collection-category-nav::-webkit-scrollbar { display: none; }
+.no-comply .nc-collection-category-nav button {
+  flex: 0 0 auto;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1.25;
+  letter-spacing: 0.025em;
+  white-space: nowrap;
+}
+@media (min-width: 640px) {
+  .no-comply .nc-collection-category-nav { gap: 28px; padding-block: 4px; }
+  .no-comply .nc-collection-category-nav button { font-size: 16px; letter-spacing: 0.06em; }
 }

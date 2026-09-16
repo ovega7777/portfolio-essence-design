@@ -25,7 +25,7 @@ export const Route = createFileRoute("/projects/lucky-day-co")({
 
 function LuckyDay() {
   return (
-    <SiteFrame>
+    <SiteFrame className="[--background:#fff] [&_.portfolio-nav]:bg-white">
       <section className="mx-auto max-w-6xl px-6 pt-8 pb-8 md:pt-12 md:pb-12">
         <h1 className="flex items-center justify-center text-center font-serif text-5xl leading-[1] md:text-7xl">
           <LuckyDayWordmark hero />

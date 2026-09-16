@@ -63,11 +63,11 @@ export function SiteNav() {
   );
 }
 
-export function SiteFooter() {
+export function SiteFooter({ showContact = true }: { showContact?: boolean }) {
   return (
     <footer className="portfolio-footer border-t border-border py-20">
-      <div className="portfolio-footer-inner mx-auto max-w-6xl px-6">
-        <ContactDetails />
+      <div className={`portfolio-footer-inner mx-auto max-w-6xl px-6 ${showContact ? "" : "portfolio-footer-inner--copyright-only"}`}>
+        {showContact && <ContactDetails />}
         <p className="portfolio-copyright text-muted-foreground">
           © {new Date().getFullYear()} Nicholas Curzon
         </p>
@@ -79,15 +79,17 @@ export function SiteFooter() {
 export function SiteFrame({
   children,
   className = "",
+  showFooterContact = true,
 }: {
   children: ReactNode;
   className?: string;
+  showFooterContact?: boolean;
 }) {
   return (
     <div className={`portfolio-site min-h-screen bg-background text-foreground ${className}`}>
       <SiteNav />
       <main className="pt-20">{children}</main>
-      <SiteFooter />
+      <SiteFooter showContact={showFooterContact} />
     </div>
   );
 }

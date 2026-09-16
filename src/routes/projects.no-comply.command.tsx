@@ -1,3 +1,4 @@
+import { CollectionCategoryNav } from "@/components/no-comply/collection-category-nav";
 import { mobileImagePairStyle } from "@/components/no-comply/editorial-image-layout";
 import { CollectionProductGrid } from "@/components/no-comply/collection-product-grid";
 import { createFileRoute } from "@tanstack/react-router";
@@ -11,7 +12,7 @@ import commandAssortmentLook01 from "../assets/no-comply/editorial/command-assor
 import commandAssortmentLook02 from "../assets/no-comply/editorial/command-assortment-gallery/look-02.png";
 import commandAssortmentLook03 from "../assets/no-comply/editorial/command-assortment-gallery/look-03.png";
 import commandAssortmentLook04 from "../assets/no-comply/editorial/command-assortment-gallery/look-04.png";
-import { products, getCategories, type Product } from "@/data/products";
+import { products, type Product } from "@/data/products";
 import { collections } from "@/data/collections";
 import { ProductCard } from "@/components/no-comply/product-card";
 import upsideDownAmericanFlag from "@/assets/no-comply/editorial/upside-down-american-flag.jpg";
@@ -26,7 +27,6 @@ const collectionProducts = products
   .filter((p) => p.collectionId === COLLECTION.id)
   .sort((a, b) => a.displayOrder - b.displayOrder);
 
-const CATEGORIES = getCategories(COLLECTION.id);
 
 const SORTS = ["order", "featured", "az", "za", "price-asc", "price-desc"] as const;
 type Sort = (typeof SORTS)[number];
@@ -134,29 +134,11 @@ function CommandCollection() {
             <h3 className="font-punk-body text-base font-bold uppercase tracking-[0.06em] text-black">
               No Comply Command
             </h3>
-            <nav
-              aria-label="Filter products by category"
-              className="nc-collection-title-to-filters flex flex-wrap items-center gap-x-7 gap-y-3 border-y border-black/20 py-4 sm:gap-x-9"
-            >
-              {["all", ...CATEGORIES].map((category) => {
-                const selected = activeCategory === category;
-                return (
-                  <button
-                    key={category}
-                    type="button"
-                    onClick={() => setCategory(category)}
-                    aria-pressed={selected}
-                    className={`font-punk-body text-sm uppercase tracking-[0.06em] text-black transition-opacity hover:opacity-45 sm:text-base ${
-                      selected
-                        ? "font-bold underline decoration-1 underline-offset-4"
-                        : "font-normal"
-                    }`}
-                  >
-                    {category === "all" ? "All" : category}
-                  </button>
-                );
-              })}
-            </nav>
+            <CollectionCategoryNav
+              activeCategory={activeCategory}
+              onCategoryChange={setCategory}
+              className="border-y border-black/20"
+            />
           </div>
 
           {displayed.length === 0 ? (

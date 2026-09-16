@@ -25,7 +25,7 @@ export const Route = createFileRoute("/about")({
 
 function About() {
   return (
-    <SiteFrame>
+    <SiteFrame className="[--background:#fff]" showFooterContact={false}>
       <section className="portfolio-about-intro mx-auto max-w-6xl px-6 pt-8 pb-24">
         <p className="eyebrow mb-8">About Me</p>
         <h1 className="font-serif text-5xl leading-[1] md:text-7xl">
