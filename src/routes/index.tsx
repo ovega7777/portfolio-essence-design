@@ -7,7 +7,7 @@ import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
 import { AnimatedWordmark } from "@/components/no-comply/animated-wordmark";
 import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
 import noComplyCover03 from "../assets/home/no-comply-cover-03.jpg";
-import luckyDayThumb from "../assets/lucky-day-thumb.jpg";
+import luckyDayThumb from "../assets/lucky-day-main.jpg";
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -87,7 +87,7 @@ function Home() {
             titleClassName="font-sans font-extrabold"
             description="Lucky Day Co. is an elegant jewelry and lifestyle brand grounded in classic design, responsibly sourced materials, and transparent pricing. Each piece is designed with care as a personal charm, created to carry meaning and invite good luck into everyday life."
             src={luckyDayThumb}
-            alt="Lucky Day Co — refined product still life"
+            alt="Lucky Day Co. silver signet rings on a tattooed hand resting on an open book"
           />
           <ProjectCard
             to="/projects/mid-mod"
@@ -166,7 +166,7 @@ function ProjectCard({
           src={src}
           alt={alt}
           loading="lazy"
-          width={to === "/projects/mid-mod" ? 1254 : 960}
+          width={to === "/projects/mid-mod" ? 1254 : to === "/projects/lucky-day-co" ? 1125 : 960}
           height={to === "/projects/mid-mod" ? 1254 : 1280}
           className="block h-auto w-full transition-opacity duration-300 group-hover:opacity-90"
         />

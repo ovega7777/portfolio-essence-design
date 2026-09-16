@@ -1,7 +1,7 @@
 import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
-import hero from "../assets/lucky-day-hero.jpg";
+import hero from "../assets/lucky-day-main.jpg";
 import thumb from "../assets/lucky-day-thumb.jpg";
 
 export const Route = createFileRoute("/projects/lucky-day-co")({
@@ -42,10 +42,10 @@ function LuckyDay() {
       <section className="mx-auto max-w-6xl space-y-6 px-6 pb-12 md:space-y-8 md:pb-16">
         <img
           src={hero}
-          alt="Lucky Day Co — tailored menswear detail"
-          width={1600}
-          height={900}
-          className="w-full object-cover"
+          alt="Lucky Day Co. silver signet rings on a tattooed hand resting on an open book"
+          width={1125}
+          height={1280}
+          className="block h-auto w-full object-contain"
         />
         <img
           src={thumb}

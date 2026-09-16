@@ -7,7 +7,7 @@ import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
 import { AnimatedWordmark } from "@/components/no-comply/animated-wordmark";
 import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
 import noComplyCover03 from "../assets/home/no-comply-cover-03.jpg";
-import luckyDayThumb from "../assets/lucky-day-thumb.jpg";
+import luckyDayThumb from "../assets/lucky-day-main.jpg";
 
 export const Route = createFileRoute("/projects/")({
   head: () => ({
@@ -58,7 +58,7 @@ const projects = [
     images: [
       {
         src: luckyDayThumb,
-        alt: "Lucky Day Co — refined product still life",
+        alt: "Lucky Day Co. silver signet rings on a tattooed hand resting on an open book",
       },
     ],
   },
@@ -106,7 +106,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
         </span>
       </div>
       <div
-        className={`portfolio-project-images mb-5 grid overflow-hidden ${project.to === "/projects/mid-mod" ? "aspect-square bg-white" : "aspect-[3/2] bg-neutral-100"} ${
+        className={`portfolio-project-images mb-5 grid overflow-hidden ${project.to === "/projects/mid-mod" ? "aspect-square bg-white" : project.to === "/projects/lucky-day-co" ? "aspect-[1125/1280] bg-white" : "aspect-[3/2] bg-neutral-100"} ${
           project.images.length > 1 ? "grid-cols-3" : "grid-cols-1"
         }`}
       >
@@ -116,9 +116,9 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
             src={image.src}
             alt={image.alt}
             loading="lazy"
-            width={project.to === "/projects/mid-mod" ? 1254 : 960}
+            width={project.to === "/projects/mid-mod" ? 1254 : project.to === "/projects/lucky-day-co" ? 1125 : 960}
             height={project.to === "/projects/mid-mod" ? 1254 : 1280}
-            className={`h-full w-full ${project.to === "/projects/mid-mod" ? "object-contain" : "object-cover object-top"} transition-opacity duration-300 group-hover:opacity-90`}
+            className={`h-full w-full ${project.to !== "/projects/no-comply" ? "object-contain" : "object-cover object-top"} transition-opacity duration-300 group-hover:opacity-90`}
           />
         ))}
       </div>
