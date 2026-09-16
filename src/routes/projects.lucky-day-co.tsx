@@ -30,7 +30,7 @@ function LuckyDay() {
         <h1 className="flex items-center justify-center text-center font-serif text-5xl leading-[1] md:text-7xl">
           <LuckyDayWordmark hero />
         </h1>
-        <p className="portfolio-project-intro mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+        <p className="portfolio-project-intro mt-8 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl lg:mx-auto lg:max-w-[1104px] lg:text-left">
           Lucky Day Co. is an elegant jewelry and lifestyle brand centered on timeless design,
           ethically sourced materials, and consistent, transparent pricing based on material and
           labor costs. Drawing from symbols of good fortune found across cultures, each piece is

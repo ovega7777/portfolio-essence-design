@@ -73,16 +73,16 @@ const projects = [
 
 function ProjectsIndex() {
   return (
-    <SiteFrame className="[--background:#fff] [--card:#fff] [--foreground:#111] [--muted-foreground:#666] [--border:#d9d9d9]">
-      <section className="mx-auto max-w-6xl px-6 pt-8 pb-16">
+    <SiteFrame className="portfolio-projects-page [--background:#fff] [--card:#fff] [--foreground:#111] [--muted-foreground:#666] [--border:#d9d9d9]">
+      <section className="projects-page-container mx-auto max-w-6xl px-6 pt-8 pb-16">
         <p className="eyebrow mb-8">Projects</p>
         <h1 className="font-serif text-5xl leading-[1] md:text-7xl">
           Selected <span className="italic">Works.</span>
         </h1>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <div className="grid gap-12 md:grid-cols-2 md:gap-8 lg:gap-10">
+      <section className="projects-page-container mx-auto max-w-6xl px-6 pb-24">
+        <div className="projects-page-grid">
           {projects.map((project) => (
             <ProjectCard key={project.to} project={project} />
           ))}
@@ -97,16 +97,16 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
     <Link
       to={project.to}
       aria-label={`View ${project.title} project`}
-      className="group block border-t border-black pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+      className="projects-page-card group block border-t border-black pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
     >
       <div className="mb-4 flex items-center justify-between gap-4">
         <span className="eyebrow text-black">{project.number}</span>
         <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
-          View Project {project.to === "/projects/mid-mod" && <span aria-hidden="true">→</span>}
+          View Project <span aria-hidden="true">→</span>
         </span>
       </div>
       <div
-        className={`portfolio-project-images ${project.to !== "/projects/no-comply" ? "portfolio-card-main-image" : ""} mb-5 grid overflow-hidden ${project.to === "/projects/mid-mod" ? "aspect-square bg-white" : project.to === "/projects/lucky-day-co" ? "aspect-[1125/1280] bg-white" : "aspect-[3/2] bg-neutral-100"} ${
+        className={`portfolio-project-images projects-card-images mb-5 grid overflow-hidden ${project.to === "/projects/mid-mod" ? "aspect-square bg-white" : project.to === "/projects/lucky-day-co" ? "aspect-[1125/1280] bg-white" : "aspect-[3/2] bg-neutral-100"} ${
           project.images.length > 1 ? "grid-cols-3" : "grid-cols-1"
         }`}
       >
@@ -122,12 +122,12 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
           />
         ))}
       </div>
-      <div className="flex items-start gap-5">
+      <div className="projects-card-body">
         <div className="projects-card-copy min-w-0">
           <h2 className="projects-card-title font-sans text-2xl font-extrabold leading-none text-black lg:text-3xl">
             {project.to === "/projects/no-comply" ? <AnimatedWordmark /> : project.to === "/projects/mid-mod" ? <MidModWordmark /> : <LuckyDayWordmark />}
           </h2>
-          <p className="mt-3 max-w-lg text-sm leading-relaxed text-black/65">
+          <p className="projects-card-description mt-3 max-w-lg text-sm leading-relaxed text-black/65">
             {project.description}
           </p>
         </div>
