@@ -28,7 +28,18 @@ function MidMod() {
         <p className="mt-6 max-w-3xl text-lg leading-relaxed md:text-xl">
           Built around a lasting appreciation for mid-century form, function, and craftsmanship, MID MOD gives iconic design a place in contemporary homes. The brand balances collectible vintage pieces with restored finds and thoughtfully selected new designs.
         </p>
-        <dl aria-label="Project details" className="mt-8 grid gap-8 border-t border-border pt-6 sm:grid-cols-2 lg:grid-cols-4">
+      </section>
+
+      <section aria-label="MID MOD visual gallery" className="mx-auto max-w-6xl px-6 pb-12 md:pb-16">
+        <div className="mid-mod-gallery">
+          {midModImages.map((image, index) => (
+            <img key={image.src} {...image} loading={index < 2 ? "eager" : "lazy"} className="block h-auto w-full object-contain" />
+          ))}
+        </div>
+      </section>
+
+      <section aria-label="Project details" className="mx-auto max-w-6xl border-t border-border px-6 py-8 md:py-10">
+        <dl aria-label="Project details" className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {[
             ["Focus", "Brand Identity, Art Direction, Campaign Imagery"],
             ["Categories", "Furniture, Lighting, Décor, Rugs, Art"],
@@ -38,14 +49,6 @@ function MidMod() {
             <div key={label}><dt className="eyebrow mb-4">{label}</dt><dd className="text-base leading-relaxed">{value}</dd></div>
           ))}
         </dl>
-      </section>
-
-      <section aria-label="MID MOD visual gallery" className="mx-auto max-w-6xl px-6 pb-12 md:pb-16">
-        <div className="mid-mod-gallery">
-          {midModImages.map((image, index) => (
-            <img key={image.src} {...image} loading={index < 2 ? "eager" : "lazy"} className="block h-auto w-full object-contain" />
-          ))}
-        </div>
       </section>
 
       <section className="portfolio-next-project mx-auto max-w-6xl border-t border-border px-6 py-12 md:py-16">
