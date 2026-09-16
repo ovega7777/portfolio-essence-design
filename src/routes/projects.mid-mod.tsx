@@ -59,12 +59,22 @@ function MidMod() {
       </section>
 
       <section className="portfolio-next-project mx-auto max-w-6xl border-t border-border px-6 py-12 md:py-16">
-        <div className="flex flex-wrap items-center justify-between gap-6">
-          <div>
+        <div className="flex items-center justify-between gap-6">
+          <div className="min-w-0">
             <p className="eyebrow mb-2">Next Project</p>
-            <Link to="/projects/no-comply" className="font-serif text-4xl hover:text-muted-foreground">NO COMPLY USA <span aria-hidden="true">→</span></Link>
+            <Link
+              to="/projects/no-comply"
+              className="font-serif text-4xl hover:text-muted-foreground"
+            >
+              NO COMPLY USA <span aria-hidden="true">→</span>
+            </Link>
           </div>
-          <Link to="/projects" className="text-[11px] font-bold uppercase tracking-[0.25em] border-b border-foreground pb-1"><span aria-hidden="true">← </span>All Projects</Link>
+          <Link
+            to="/projects"
+            className="shrink-0 text-[11px] font-bold uppercase tracking-[0.25em] border-b border-foreground pb-1"
+          >
+            All Projects
+          </Link>
         </div>
       </section>
     </SiteFrame>

@@ -866,3 +866,11 @@
 @media (min-width: 1280px) {
   .projects-page-grid { max-width: none; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; align-items: start; }
 }
+
+/* Phone-only alignment; tablet and desktop retain their existing layouts. */
+@media (max-width: 639px) {
+  .portfolio-about-biography .portfolio-about-projects-button { display: flex; width: fit-content; margin-inline: auto; }
+  .portfolio-mid-mod h1 .mid-mod-wordmark--hero { width: 94%; margin-inline: auto; }
+  /* Balance the SVG's 29.75-unit trailing whitespace within its 680-unit viewBox. */
+  .portfolio-mid-mod h1 .mid-mod-wordmark--hero svg { transform: translateX(2.1875%); }
+}
