@@ -933,3 +933,24 @@
   .lucky-ring-campaign-grid img:nth-child(-n+2) { height: auto; aspect-ratio: 1125 / 1280; }
   .lucky-ring-campaign-grid img:last-child { grid-column: 1 / -1; }
 }
+
+/* Live NO COMPLY site presentation inside the portfolio case-study entry. */
+.no-comply-browser {
+  border-radius: 8px;
+}
+.no-comply-browser-viewport {
+  --preview-scale: 0.72;
+  aspect-ratio: 16 / 10;
+}
+.no-comply-browser-iframe {
+  width: calc(100% / var(--preview-scale));
+  height: calc(100% / var(--preview-scale));
+  transform: scale(var(--preview-scale));
+  transform-origin: top left;
+}
+@media (max-width: 639px) {
+  .no-comply-browser-viewport {
+    --preview-scale: 0.42;
+    aspect-ratio: 4 / 5;
+  }
+}
