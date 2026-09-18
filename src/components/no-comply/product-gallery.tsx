@@ -16,7 +16,7 @@ export function ProductGallery({ images }: { images: ProductImage[] }) {
         onScroll={() => { if (track.current) setIndex(Math.round(track.current.scrollLeft / track.current.clientWidth)); }}>
         {images.map((img, i) => (
           <figure key={`${img.url}-${i}`} className="block w-full bg-white">
-            <img src={img.url} alt={img.alt} loading={i === 0 ? "eager" : "lazy"} className="block h-auto w-full object-contain object-top" />
+            <img src={img.url} alt={img.alt} loading={i === 0 ? "eager" : "lazy"} className="block h-[min(65svh,540px)] w-full object-contain object-center py-4" />
           </figure>
         ))}
       </div>
