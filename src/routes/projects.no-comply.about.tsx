@@ -49,7 +49,7 @@ function NoComplyAbout() {
         <img
           src={wordmark}
           alt="NO COMPLY USA"
-          className="mx-auto mt-10 block h-auto w-full max-w-[640px] invert min-[769px]:mt-32"
+          className="mx-auto mt-10 block h-auto w-[85%] max-w-[640px] invert min-[769px]:mt-32 min-[769px]:w-full"
         />
       </main>
       <CollectionNavigationFooter nextPage="media" />
