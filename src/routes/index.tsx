@@ -2,9 +2,11 @@ import { MidModWordmark } from "@/components/mid-mod-wordmark";
 import { midModDescription, midModPreview } from "@/data/mid-mod";
 import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteFrame } from "../components/site-chrome";
 import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
 import { AnimatedWordmark } from "@/components/no-comply/animated-wordmark";
+import { NoComplyPreviewDialog } from "@/components/no-comply-live-preview";
 import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
 import noComplyCover03 from "../assets/home/no-comply-cover-03.jpg";
 import luckyDayThumb from "../assets/lucky-day-main.jpg";
@@ -14,6 +16,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const [previewOpen, setPreviewOpen] = useState(false);
   return (
     <SiteFrame className="portfolio-home [--background:#fff] [--card:#fff] [--foreground:#111] [--muted-foreground:#666] [--border:#d9d9d9]">
       <section className="mx-auto max-w-6xl px-6 pb-16 pt-10 md:pb-20 md:pt-14">
@@ -63,6 +66,7 @@ function Home() {
         <div className="space-y-12 md:space-y-14">
           <ProjectCard
             to="/projects/no-comply"
+            onPreview={() => setPreviewOpen(true)}
             number="01"
             title="NO COMPLY USA"
             titleClassName="font-sans font-extrabold"
@@ -122,6 +126,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <NoComplyPreviewDialog open={previewOpen} onOpenChange={setPreviewOpen} />
     </SiteFrame>
   );
 }
@@ -135,6 +141,7 @@ function ProjectCard({
   src,
   alt,
   additionalImages,
+  onPreview,
 }: {
   to: "/projects/no-comply" | "/projects/lucky-day-co" | "/projects/mid-mod";
   number: string;
@@ -144,13 +151,13 @@ function ProjectCard({
   src: string;
   alt: string;
   additionalImages?: Array<{ src: string; alt: string }>;
+  onPreview?: () => void;
 }) {
-  return (
-    <Link
-      to={to}
-      aria-label={`View ${title} project`}
-      className="group block border-t border-black pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
-    >
+  const cardClass =
+    "group block w-full border-t border-black pt-4 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black";
+  const label = `View ${title} project`;
+  const body = (
+    <>
       <div className="mb-4 flex items-center justify-between gap-4">
         <span className="eyebrow text-black">{number}</span>
         <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
@@ -192,6 +199,20 @@ function ProjectCard({
           </p>
         </div>
       </div>
+    </>
+  );
+
+  if (onPreview) {
+    return (
+      <button type="button" onClick={onPreview} aria-label={label} className={cardClass}>
+        {body}
+      </button>
+    );
+  }
+
+  return (
+    <Link to={to} aria-label={label} className={cardClass}>
+      {body}
     </Link>
   );
 }
