@@ -87,7 +87,7 @@ function About() {
               content production, and digital experiences.
             </p>
             <Link
-              to="/projects/"
+              to="/projects"
               aria-label="View projects"
               className="portfolio-about-projects-button inline-flex min-h-14 items-center border border-foreground px-[30px] py-5 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors hover:bg-foreground hover:text-background focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-foreground"
             >
