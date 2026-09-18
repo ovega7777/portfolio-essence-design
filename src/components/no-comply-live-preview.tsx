@@ -163,64 +163,7 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
         </div>
       </nav>
 
-      {/* Shop dropdown */}
-      {megaOpen && (
-        <div className="absolute inset-0 z-40 flex items-start justify-center pt-24">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setMegaOpen(false)} />
-          <div
-            className="relative max-h-[70%] w-[90%] max-w-4xl overflow-y-auto border border-white/5 bg-[#141414]/95 p-7 backdrop-blur-md md:p-12"
-            onMouseLeave={() => setMegaOpen(false)}
-          >
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12">
-              <div>
-                <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Categories</h3>
-                <div className="space-y-1">
-                  {CATEGORY_LINKS.map((c) => (
-                    <MenuLink
-                      key={c.label}
-                      target={c}
-                      className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
-                    />
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Collections</h3>
-                <div className="space-y-1">
-                  {COLLECTION_LINKS.map((c) => (
-                    <MenuLink
-                      key={c.label}
-                      target={c}
-                      className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
-                    />
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Explore</h3>
-                <div className="space-y-1">
-                  {SITE_LINKS.map((c) => (
-                    <MenuLink
-                      key={c.label}
-                      target={c}
-                      className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
-                    />
-                  ))}
-                </div>
-                <div className="mt-8 border-t border-white/10 pt-6">
-                  <p className="text-[10px] uppercase leading-relaxed tracking-[0.2em] text-white/30">
-                    Industrial Rebellion
-                    <br />
-                    American Workwear Reconstructed
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Mobile menu */}
+      {/* Menu */}
       {mobileOpen && (
         <div className="absolute inset-0 z-50">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
