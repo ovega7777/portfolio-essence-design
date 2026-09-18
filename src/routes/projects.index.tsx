@@ -112,9 +112,6 @@ function ProjectCard({
     "projects-page-card group block w-full border-t border-black pt-4 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black";
   const body = (
     <>
-      aria-label={`View ${project.title} project`}
-      className="projects-page-card group block border-t border-black pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
-    >
       <div className="mb-4 flex items-center justify-between gap-4">
         <span className="eyebrow text-black">{project.number}</span>
         <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
@@ -148,6 +145,22 @@ function ProjectCard({
           </p>
         </div>
       </div>
+    </>
+  );
+
+  const label = `View ${project.title} project`;
+
+  if (onPreview) {
+    return (
+      <button type="button" onClick={onPreview} aria-label={label} className={cardClass}>
+        {body}
+      </button>
+    );
+  }
+
+  return (
+    <Link to={project.to} aria-label={label} className={cardClass}>
+      {body}
     </Link>
   );
 }
