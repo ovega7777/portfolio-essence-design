@@ -80,7 +80,7 @@ export function AnimatedWordmark({ banner = false, animated = true }: { banner?:
       data-wordmark-state={animated ? phase : "done"}
       data-no-comply-header-logo={banner || undefined}
       className={banner
-        ? "inline-flex h-7 w-[206.888889px] max-w-[42vw] shrink-0 items-center invert sm:max-w-none"
+        ? "inline-flex h-7 w-[206.888889px] max-w-[42vw] shrink-0 items-center sm:max-w-none"
         : "inline-block w-[7.388889em] max-w-full align-bottom invert"}
     >
       <span className="relative block w-full" style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}>
