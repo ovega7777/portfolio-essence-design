@@ -24,7 +24,7 @@ export function NoComplyUtilityBar({
 }) {
   return (
     <nav
-      className={`nc-utility-bar ${sticky ? "sticky top-0 z-50" : ""} border-b-2 border-black bg-white text-black ${className}`}
+      className={`nc-utility-bar ${sticky ? "sticky top-0 z-50" : ""} bg-white text-black ${className}`}
       aria-label="Page navigation"
     >
       <div className="mx-auto flex h-14 max-w-7xl items-center gap-3 px-4 sm:gap-4 sm:px-6">

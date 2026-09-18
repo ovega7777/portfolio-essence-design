@@ -13,7 +13,7 @@ export function LogoBanner({
   onMenu: () => void;
 }) {
   return (
-    <header className="relative h-12 overflow-hidden border-b-2 border-black bg-white">
+    <header className="relative h-12 overflow-hidden bg-white">
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-4">
         <NoComplyHeaderLogo />
       </div>
