@@ -1,8 +1,12 @@
 import { Menu } from "lucide-react";
-import { AnimatedWordmark } from "./animated-wordmark";
+import { FontChangingLogo } from "./font-changing-logo";
 
 export function NoComplyHeaderLogo() {
-  return <AnimatedWordmark banner cycle />;
+  return (
+    <div data-no-comply-header-logo className="w-[206.888889px] max-w-[42vw] shrink-0 invert sm:max-w-none">
+      <FontChangingLogo />
+    </div>
+  );
 }
 
 export function LogoBanner({
