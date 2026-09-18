@@ -172,8 +172,7 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
           </div>
 
           <div className="flex items-center gap-6 lg:gap-8">
-            <span className={`${navLink} hidden lg:inline`}>About</span>
-            <span className={navLink}>Cart (0)</span>
+            <MenuLink target={SITE_LINKS[2]} className={`${navLink} hidden lg:inline`} />
           </div>
         </div>
       </nav>
