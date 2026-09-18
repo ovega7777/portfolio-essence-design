@@ -10,7 +10,6 @@ import logoGothic from "@/assets/no-comply-landing/logo-gothic.svg";
 import logoPunk from "@/assets/no-comply-landing/logo-punk.svg";
 import logoGraffiti from "@/assets/no-comply-landing/logo-graffiti.svg";
 
-const SITE_URL = "https://riot-reveal-commerce.lovable.app";
 const SHOP_PATH = "/projects/no-comply";
 
 /** logoMain (index 0) is the strikethrough logo the slot machine always lands on. */
@@ -23,17 +22,24 @@ const label = "text-[10px] tracking-[0.3em] uppercase font-medium";
 const display = { fontFamily: '"Bebas Neue", "Oswald", sans-serif' } as const;
 const body = { fontFamily: '"Inter", sans-serif' } as const;
 
-const CATEGORIES = [
-  "Tees",
-  "Hoodies",
-  "Jackets",
-  "Workwear",
-  "Pants",
-  "Headwear",
-  "Accessories",
-  "Equipment",
+type NavTarget = { label: string; to: string; search?: Record<string, string> };
+
+const COLLECTION_LINKS: NavTarget[] = [
+  { label: "No Comply Command", to: "/projects/no-comply/command", search: { cat: "all", sort: "order" } },
+  { label: "Caught on Film", to: "/projects/no-comply/caught-on-film", search: { cat: "all" } },
 ];
-const COLLECTIONS = ["Drop 001", "New Arrivals", "Featured Goods", "Lookbook", "Archive"];
+
+const CATEGORY_LINKS: NavTarget[] = ["Tops", "Outerwear", "Bottoms", "Accessories"].map((cat) => ({
+  label: cat,
+  to: "/projects/no-comply/command",
+  search: { cat, sort: "order" },
+}));
+
+const SITE_LINKS: NavTarget[] = [
+  { label: "Media", to: "/projects/no-comply/media" },
+  { label: "Designs", to: "/projects/no-comply/designs" },
+  { label: "About", to: "/projects/no-comply/about" },
+];
 
 function useSlotMachine() {
   const [logoIndex, setLogoIndex] = useState(0);
@@ -75,12 +81,27 @@ function useSlotMachine() {
 }
 
 /** Interactive recreation of the NO COMPLY USA homepage. */
-export function NoComplyLivePreview() {
+export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void }) {
   const [loaded, setLoaded] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
   const { logoIndex, spinning } = useSlotMachine();
+
+  const MenuLink = ({ target, className }: { target: NavTarget; className: string }) => (
+    <Link
+      to={target.to}
+      search={(target.search ?? {}) as never}
+      className={className}
+      onClick={() => {
+        setMegaOpen(false);
+        setMobileOpen(false);
+        onNavigate?.();
+      }}
+    >
+      {target.label}
+    </Link>
+  );
 
   useEffect(() => {
     const t = window.setTimeout(() => setLoaded(true), 200);
@@ -133,8 +154,8 @@ export function NoComplyLivePreview() {
             >
               Shop
             </button>
-            <span className={navLink}>Archive</span>
-            <span className={navLink}>Media</span>
+            <MenuLink target={SITE_LINKS[0]} className={navLink} />
+            <MenuLink target={SITE_LINKS[1]} className={navLink} />
           </div>
 
           <div className="absolute left-1/2 top-1/2 h-[92px] w-[160px] -translate-x-1/2 translate-y-[-40%] overflow-hidden sm:h-[120px] sm:w-[200px] lg:h-[170px] lg:w-[290px]">
@@ -151,8 +172,7 @@ export function NoComplyLivePreview() {
           </div>
 
           <div className="flex items-center gap-6 lg:gap-8">
-            <span className={`${navLink} hidden lg:inline`}>About</span>
-            <span className={navLink}>Cart (0)</span>
+            <MenuLink target={SITE_LINKS[2]} className={`${navLink} hidden lg:inline`} />
           </div>
         </div>
       </nav>
@@ -169,39 +189,36 @@ export function NoComplyLivePreview() {
               <div>
                 <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Categories</h3>
                 <div className="space-y-1">
-                  {CATEGORIES.map((c) => (
-                    <span
-                      key={c}
-                      className="block cursor-pointer py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
-                    >
-                      {c}
-                    </span>
+                  {CATEGORY_LINKS.map((c) => (
+                    <MenuLink
+                      key={c.label}
+                      target={c}
+                      className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
+                    />
                   ))}
                 </div>
               </div>
               <div>
                 <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Collections</h3>
                 <div className="space-y-1">
-                  {COLLECTIONS.map((c) => (
-                    <span
-                      key={c}
-                      className="block cursor-pointer py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
-                    >
-                      {c}
-                    </span>
+                  {COLLECTION_LINKS.map((c) => (
+                    <MenuLink
+                      key={c.label}
+                      target={c}
+                      className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
+                    />
                   ))}
                 </div>
               </div>
               <div>
-                <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Account</h3>
+                <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Explore</h3>
                 <div className="space-y-1">
-                  {["Search", "Account", "Cart (0)"].map((c) => (
-                    <span
-                      key={c}
-                      className="block cursor-pointer py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
-                    >
-                      {c}
-                    </span>
+                  {SITE_LINKS.map((c) => (
+                    <MenuLink
+                      key={c.label}
+                      target={c}
+                      className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
+                    />
                   ))}
                 </div>
                 <div className="mt-8 border-t border-white/10 pt-6">
@@ -229,23 +246,24 @@ export function NoComplyLivePreview() {
               </button>
             </div>
             <div className="space-y-1 px-6 py-8">
-              {["Shop", "Archive", "Media", "About"].map((item) => (
-                <span
-                  key={item}
-                  style={display}
-                  className="block cursor-pointer py-2 text-3xl uppercase tracking-wider text-white/90 hover:text-white"
-                >
-                  {item}
-                </span>
+              {[...COLLECTION_LINKS, ...SITE_LINKS].map((item) => (
+                <div key={item.label} style={display}>
+                  <MenuLink
+                    target={item}
+                    className="block py-2 text-3xl uppercase tracking-wider text-white/90 hover:text-white"
+                  />
+                </div>
               ))}
             </div>
             <div className="border-t border-white/10 px-6 py-6">
               <p className={`${label} mb-4 text-white/30`}>Categories</p>
               <div className="space-y-1">
-                {CATEGORIES.slice(0, 7).map((c) => (
-                  <span key={c} className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/50 hover:text-white">
-                    {c}
-                  </span>
+                {CATEGORY_LINKS.map((c) => (
+                  <MenuLink
+                    key={c.label}
+                    target={c}
+                    className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/50 hover:text-white"
+                  />
                 ))}
               </div>
             </div>
@@ -284,18 +302,11 @@ export function NoComplyLivePreview() {
         <div style={reveal(2.2)} className="mt-7 flex flex-col items-center gap-3 sm:flex-row">
           <Link
             to={SHOP_PATH}
+            onClick={() => onNavigate?.()}
             className={`${label} inline-block border border-white/30 px-8 py-3 text-white transition-all duration-300 hover:bg-white hover:text-black`}
           >
             Enter Shop
           </Link>
-          <a
-            href={SITE_URL}
-            target="_blank"
-            rel="noreferrer noopener"
-            className={`${label} inline-block border border-white/30 px-8 py-3 text-white transition-all duration-300 hover:bg-white hover:text-black`}
-          >
-            View Full Website
-          </a>
         </div>
       </div>
 
@@ -345,9 +356,6 @@ export function NoComplyPreviewActions() {
       <Link to={SHOP_PATH} className={`${button} bg-black text-white hover:bg-white hover:text-black`}>
         Enter Shop
       </Link>
-      <a href={SITE_URL} target="_blank" rel="noreferrer noopener" className={`${button} hover:bg-black hover:text-white`}>
-        View Full Website
-      </a>
     </div>
   );
 }
@@ -366,7 +374,7 @@ export function NoComplyPreviewDialog({
         <DialogDescription className="sr-only">
           An interactive recreation of the NO COMPLY USA homepage.
         </DialogDescription>
-        {open && <NoComplyLivePreview />}
+        {open && <NoComplyLivePreview onNavigate={() => onOpenChange(false)} />}
       </DialogContent>
     </Dialog>
   );
