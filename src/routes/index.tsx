@@ -10,6 +10,22 @@ import noComplyCover03 from "../assets/home/no-comply-cover-03.jpg";
 import luckyDayThumb from "../assets/lucky-day-main.jpg";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Nicholas Curzon — Creative Commerce Portfolio" },
+      {
+        name: "description",
+        content: "Selected fashion, brand, and digital work by product designer and creative director Nicholas Curzon.",
+      },
+      { property: "og:title", content: "Nicholas Curzon — Creative Commerce Portfolio" },
+      {
+        property: "og:description",
+        content: "Selected fashion, brand, and digital work by product designer and creative director Nicholas Curzon.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Home,
 });
 
@@ -62,7 +78,7 @@ function Home() {
 
         <div className="space-y-12 md:space-y-14">
           <ProjectCard
-            to="/projects/no-comply"
+            to="/projects/no-comply-preview"
             number="01"
             title="NO COMPLY USA"
             titleClassName="font-sans font-extrabold"
@@ -136,7 +152,7 @@ function ProjectCard({
   alt,
   additionalImages,
 }: {
-  to: "/projects/no-comply" | "/projects/lucky-day-co" | "/projects/mid-mod";
+  to: "/projects/no-comply-preview" | "/projects/lucky-day-co" | "/projects/mid-mod";
   number: string;
   title: string;
   titleClassName: string;
@@ -158,7 +174,7 @@ function ProjectCard({
         </span>
       </div>
       <div
-        className={`portfolio-project-images ${to !== "/projects/no-comply" ? "portfolio-home-cropped-banner" : ""} mb-5 overflow-hidden bg-neutral-100 ${
+        className={`portfolio-project-images ${to !== "/projects/no-comply-preview" ? "portfolio-home-cropped-banner" : ""} mb-5 overflow-hidden bg-neutral-100 ${
           additionalImages?.length ? "grid grid-cols-1 gap-0 md:grid-cols-3" : ""
         }`}
       >
@@ -184,7 +200,7 @@ function ProjectCard({
       </div>
       <div className="grid gap-3 md:grid-cols-12 md:gap-8">
         <h3 className={`portfolio-project-title ${titleClassName} flex items-center justify-center text-center text-3xl leading-none md:col-span-4 md:text-4xl`}>
-          {to === "/projects/no-comply" ? <AnimatedWordmark animated={false} /> : to === "/projects/mid-mod" ? <MidModWordmark /> : <LuckyDayWordmark />}
+          {to === "/projects/no-comply-preview" ? <AnimatedWordmark animated={false} /> : to === "/projects/mid-mod" ? <MidModWordmark /> : <LuckyDayWordmark />}
         </h3>
         <div className="flex items-start gap-5 md:col-span-8">
           <p className="max-w-3xl text-sm leading-relaxed text-black/65 md:text-base">

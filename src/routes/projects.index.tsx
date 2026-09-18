@@ -22,6 +22,8 @@ export const Route = createFileRoute("/projects/")({
         property: "og:description",
         content: "Selected projects: No Comply, Lucky Day Co., and MID MOD.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: ProjectsIndex,
@@ -29,7 +31,7 @@ export const Route = createFileRoute("/projects/")({
 
 const projects = [
   {
-    to: "/projects/no-comply" as const,
+    to: "/projects/no-comply-preview" as const,
     number: "01",
     title: "NO COMPLY USA",
     description:
@@ -125,7 +127,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       <div className="projects-card-body">
         <div className="projects-card-copy min-w-0">
           <h2 className="projects-card-title font-sans text-2xl font-extrabold leading-none text-black lg:text-3xl">
-            {project.to === "/projects/no-comply" ? <AnimatedWordmark /> : project.to === "/projects/mid-mod" ? <MidModWordmark /> : <LuckyDayWordmark />}
+            {project.to === "/projects/no-comply-preview" ? <AnimatedWordmark /> : project.to === "/projects/mid-mod" ? <MidModWordmark /> : <LuckyDayWordmark />}
           </h2>
           <p className="projects-card-description mt-3 max-w-lg text-sm leading-relaxed text-black/65">
             {project.description}
