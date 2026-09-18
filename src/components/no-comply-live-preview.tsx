@@ -71,7 +71,7 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
 
       {/* Hero */}
       <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
-        <div className="mb-5 w-[90vw] max-w-[960px] shrink-0 md:mb-7">
+        <div className="mb-5 w-[81vw] max-w-[864px] shrink-0 md:mb-7">
           <FontChangingLogo />
         </div>
         <p
