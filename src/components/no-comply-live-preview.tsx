@@ -246,23 +246,24 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
               </button>
             </div>
             <div className="space-y-1 px-6 py-8">
-              {["Shop", "Archive", "Media", "About"].map((item) => (
-                <span
-                  key={item}
-                  style={display}
-                  className="block cursor-pointer py-2 text-3xl uppercase tracking-wider text-white/90 hover:text-white"
-                >
-                  {item}
-                </span>
+              {[...COLLECTION_LINKS, ...SITE_LINKS].map((item) => (
+                <div key={item.label} style={display}>
+                  <MenuLink
+                    target={item}
+                    className="block py-2 text-3xl uppercase tracking-wider text-white/90 hover:text-white"
+                  />
+                </div>
               ))}
             </div>
             <div className="border-t border-white/10 px-6 py-6">
               <p className={`${label} mb-4 text-white/30`}>Categories</p>
               <div className="space-y-1">
-                {CATEGORIES.slice(0, 7).map((c) => (
-                  <span key={c} className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/50 hover:text-white">
-                    {c}
-                  </span>
+                {CATEGORY_LINKS.map((c) => (
+                  <MenuLink
+                    key={c.label}
+                    target={c}
+                    className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/50 hover:text-white"
+                  />
                 ))}
               </div>
             </div>
