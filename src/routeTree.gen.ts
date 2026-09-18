@@ -13,6 +13,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as ProjectsNoComplyPreviewRouteImport } from './routes/projects.no-comply-preview'
 import { Route as ProjectsNoComplyRouteImport } from './routes/projects.no-comply'
 import { Route as ProjectsMidModRouteImport } from './routes/projects.mid-mod'
 import { Route as ProjectsLuckyDayCoRouteImport } from './routes/projects.lucky-day-co'
@@ -41,6 +42,11 @@ const IndexRoute = IndexRouteImport.update({
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsNoComplyPreviewRoute = ProjectsNoComplyPreviewRouteImport.update({
+  id: '/projects/no-comply-preview',
+  path: '/projects/no-comply-preview',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsNoComplyRoute = ProjectsNoComplyRouteImport.update({
@@ -98,6 +104,7 @@ export interface FileRoutesByFullPath {
   '/projects/lucky-day-co': typeof ProjectsLuckyDayCoRoute
   '/projects/mid-mod': typeof ProjectsMidModRoute
   '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
+  '/projects/no-comply-preview': typeof ProjectsNoComplyPreviewRoute
   '/projects/': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
   '/projects/no-comply/caught-on-film': typeof ProjectsNoComplyCaughtOnFilmRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByTo {
   '/projects/lucky-day-co': typeof ProjectsLuckyDayCoRoute
   '/projects/mid-mod': typeof ProjectsMidModRoute
   '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
+  '/projects/no-comply-preview': typeof ProjectsNoComplyPreviewRoute
   '/projects': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
   '/projects/no-comply/caught-on-film': typeof ProjectsNoComplyCaughtOnFilmRoute
@@ -129,6 +137,7 @@ export interface FileRoutesById {
   '/projects/lucky-day-co': typeof ProjectsLuckyDayCoRoute
   '/projects/mid-mod': typeof ProjectsMidModRoute
   '/projects/no-comply': typeof ProjectsNoComplyRouteWithChildren
+  '/projects/no-comply-preview': typeof ProjectsNoComplyPreviewRoute
   '/projects/': typeof ProjectsIndexRoute
   '/projects/no-comply/about': typeof ProjectsNoComplyAboutRoute
   '/projects/no-comply/caught-on-film': typeof ProjectsNoComplyCaughtOnFilmRoute
@@ -146,6 +155,7 @@ export interface FileRouteTypes {
     | '/projects/lucky-day-co'
     | '/projects/mid-mod'
     | '/projects/no-comply'
+    | '/projects/no-comply-preview'
     | '/projects/'
     | '/projects/no-comply/about'
     | '/projects/no-comply/caught-on-film'
@@ -161,6 +171,7 @@ export interface FileRouteTypes {
     | '/projects/lucky-day-co'
     | '/projects/mid-mod'
     | '/projects/no-comply'
+    | '/projects/no-comply-preview'
     | '/projects'
     | '/projects/no-comply/about'
     | '/projects/no-comply/caught-on-film'
@@ -176,6 +187,7 @@ export interface FileRouteTypes {
     | '/projects/lucky-day-co'
     | '/projects/mid-mod'
     | '/projects/no-comply'
+    | '/projects/no-comply-preview'
     | '/projects/'
     | '/projects/no-comply/about'
     | '/projects/no-comply/caught-on-film'
@@ -192,6 +204,7 @@ export interface RootRouteChildren {
   ProjectsLuckyDayCoRoute: typeof ProjectsLuckyDayCoRoute
   ProjectsMidModRoute: typeof ProjectsMidModRoute
   ProjectsNoComplyRoute: typeof ProjectsNoComplyRouteWithChildren
+  ProjectsNoComplyPreviewRoute: typeof ProjectsNoComplyPreviewRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
@@ -223,6 +236,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects/'
       preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/no-comply-preview': {
+      id: '/projects/no-comply-preview'
+      path: '/projects/no-comply-preview'
+      fullPath: '/projects/no-comply-preview'
+      preLoaderRoute: typeof ProjectsNoComplyPreviewRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/no-comply': {
@@ -318,6 +338,7 @@ const rootRouteChildren: RootRouteChildren = {
   ProjectsLuckyDayCoRoute: ProjectsLuckyDayCoRoute,
   ProjectsMidModRoute: ProjectsMidModRoute,
   ProjectsNoComplyRoute: ProjectsNoComplyRouteWithChildren,
+  ProjectsNoComplyPreviewRoute: ProjectsNoComplyPreviewRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
