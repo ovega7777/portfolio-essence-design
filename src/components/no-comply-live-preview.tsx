@@ -302,18 +302,11 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
         <div style={reveal(2.2)} className="mt-7 flex flex-col items-center gap-3 sm:flex-row">
           <Link
             to={SHOP_PATH}
+            onClick={() => onNavigate?.()}
             className={`${label} inline-block border border-white/30 px-8 py-3 text-white transition-all duration-300 hover:bg-white hover:text-black`}
           >
             Enter Shop
           </Link>
-          <a
-            href={SITE_URL}
-            target="_blank"
-            rel="noreferrer noopener"
-            className={`${label} inline-block border border-white/30 px-8 py-3 text-white transition-all duration-300 hover:bg-white hover:text-black`}
-          >
-            View Full Website
-          </a>
         </div>
       </div>
 
