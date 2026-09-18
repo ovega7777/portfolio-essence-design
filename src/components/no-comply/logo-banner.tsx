@@ -2,7 +2,7 @@ import { Menu } from "lucide-react";
 import { AnimatedWordmark } from "./animated-wordmark";
 
 export function NoComplyHeaderLogo() {
-  return <AnimatedWordmark banner />;
+  return <AnimatedWordmark banner cycle />;
 }
 
 export function LogoBanner({
