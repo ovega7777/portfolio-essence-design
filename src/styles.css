@@ -541,7 +541,7 @@
   .portfolio-menu-toggle { display: flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
   .portfolio-nav-links { display: none; }
   .portfolio-nav-links.is-open { display: flex; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 8px 16px; background: var(--background); border-bottom: 1px solid var(--border); max-height: calc(100dvh - 64px); overflow-y: auto; }
-  .portfolio-nav-links a { display: flex; align-items: center; min-height: 44px; }
+  .portfolio-nav-links a { display: flex; align-items: center; justify-content: flex-end; text-align: right; min-height: 44px; }
   .portfolio-site > main { padding-top: calc(64px + env(safe-area-inset-top)); }
   .portfolio-site > main > section { padding-top: 28px; padding-bottom: 36px; }
   .portfolio-site > main > section > .eyebrow { margin-bottom: 20px; }
