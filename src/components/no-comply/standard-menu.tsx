@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { X } from "lucide-react";
+import { MenuWordmark } from "./menu-wordmark";
 import { useEffect, useRef } from "react";
 
 import { DESIGN_CATEGORIES, DESIGN_CATEGORY_LABELS, normalizeDesignCategory } from "@/components/no-comply/design-categories";
@@ -85,16 +86,14 @@ export function StandardNoComplyMenu({
         aria-label="Product navigation"
         className="absolute right-0 top-0 flex h-full w-full max-w-[420px] flex-col overflow-y-auto border-l border-black/10 bg-white px-6 py-5 text-black shadow-2xl sm:px-9 sm:py-6"
       >
-        <div className="flex items-start justify-between gap-6 border-b border-black/15 pb-4">
-          <p className="nc-display text-4xl leading-none tracking-[0.04em] sm:text-5xl">
-            NO COMPLY
-          </p>
+        <div className="flex items-center justify-between gap-4 border-b border-black/15 pb-4">
+          <MenuWordmark />
           <button
             ref={closeRef}
             type="button"
             onClick={onClose}
             aria-label="Close product menu"
-            className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] transition-opacity hover:opacity-45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            className="flex shrink-0 items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] transition-opacity hover:opacity-45 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
           >
             Close
             <X aria-hidden className="h-5 w-5" strokeWidth={1.5} />

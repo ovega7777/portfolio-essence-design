@@ -4,7 +4,7 @@ import { Menu, X } from "lucide-react";
 
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
-import logoMain from "@/assets/no-comply-landing/logo.svg";
+import { MenuWordmark } from "@/components/no-comply/menu-wordmark";
 import { FontChangingLogo } from "@/components/no-comply/font-changing-logo";
 
 const SHOP_PATH = "/projects/no-comply";
@@ -65,7 +65,7 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
 
   return (
     <div
-      className="relative h-full w-full overflow-hidden bg-black text-white"
+      className="relative h-full w-full overflow-clip bg-black text-white"
       style={body}
     >
       <video
@@ -100,9 +100,9 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
         <div id="no-comply-landing-menu" className="absolute inset-0 z-50">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
           <div className="absolute inset-y-0 left-0 flex w-[85%] max-w-sm flex-col overflow-y-auto border-r border-white/10 bg-[#141414]">
-            <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
-              <img src={logoMain} alt="NO COMPLY USA" className="h-10 w-auto" />
-              <button onClick={() => setMobileOpen(false)} className="text-white/60 hover:text-white" aria-label="Close menu">
+            <div className="flex items-center justify-between gap-4 border-b border-white/10 px-6 py-5">
+              <MenuWordmark dark />
+              <button onClick={() => setMobileOpen(false)} className="shrink-0 text-white/60 hover:text-white" aria-label="Close menu">
                 <X className="h-5 w-5" />
               </button>
             </div>
