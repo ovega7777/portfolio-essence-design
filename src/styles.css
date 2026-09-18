@@ -569,7 +569,7 @@
   [data-no-comply-back-button] { display: flex; align-items: center; min-height: 44px; font-size: 14px; }
   [data-no-comply-page-indicator] { overflow: visible; white-space: normal; text-overflow: clip; overflow-wrap: anywhere; line-height: 1.25; font-size: 10px; padding-block: 8px; }
   #no-comply-standard-menu { height: 100dvh; overscroll-behavior: contain; padding: max(16px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) max(20px,env(safe-area-inset-bottom)); }
-  #no-comply-standard-menu > div:first-child { position: sticky; top: -16px; z-index: 2; background: white; align-items: center; }
+  #no-comply-standard-menu > div:first-child { position: sticky; top: -16px; z-index: 2; background: var(--menu-bg, white); align-items: center; }
   #no-comply-standard-menu button { min-width: 44px; min-height: 44px; }
   .no-comply .nc-first-section { padding-top: 28px; }
   .nc-collection-title-header { padding-bottom: 20px; }
