@@ -374,7 +374,7 @@ export function NoComplyPreviewDialog({
         <DialogDescription className="sr-only">
           An interactive recreation of the NO COMPLY USA homepage.
         </DialogDescription>
-        {open && <NoComplyLivePreview />}
+        {open && <NoComplyLivePreview onNavigate={() => onOpenChange(false)} />}
       </DialogContent>
     </Dialog>
   );
