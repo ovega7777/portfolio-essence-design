@@ -927,3 +927,21 @@
   .lucky-ring-campaign-grid img:nth-child(-n+2) { height: auto; aspect-ratio: 1125 / 1280; }
   .lucky-ring-campaign-grid img:last-child { grid-column: 1 / -1; }
 }
+
+/* Relocate collection totals below the mobile product assortment. */
+.nc-collection-bottom-count { display: none; }
+@media (max-width: 768px) {
+  .nc-collection-title-header .nc-collection-piece-count { display: none; }
+  .no-comply .nc-collection-title-header { padding-top: 20px; padding-bottom: 16px; }
+  .nc-collection-title-rule { gap: 0; padding-bottom: 16px; }
+  .nc-collection-bottom-count {
+    display: block;
+    margin-top: 24px;
+    text-align: right;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: black;
+  }
+  .no-comply .nc-collection-bottom-count + .nc-command-closing-gallery { margin-top: 16px; }
+  #caught-on-film-products > div { padding-bottom: 16px; }
+}

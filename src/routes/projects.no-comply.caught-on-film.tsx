@@ -152,6 +152,9 @@ function CaughtOnFilmCollection() {
                 </div>
               </div>
             )}
+            <p className="nc-collection-bottom-count nc-display">
+              COLLECTION #2 / 41 PIECES
+            </p>
           </div>
         </section>
 

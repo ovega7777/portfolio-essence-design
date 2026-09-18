@@ -167,6 +167,9 @@ function CommandCollection() {
             </CollectionProductGrid>
           )}
 
+          <p className="nc-collection-bottom-count nc-display">
+            COLLECTION #1 / 50 PIECES
+          </p>
           <div
             aria-label="No Comply Command assortment editorial gallery"
             style={mobileImagePairStyle([{ width: 1086, height: 1448 }, { width: 1254, height: 1254 }])}
