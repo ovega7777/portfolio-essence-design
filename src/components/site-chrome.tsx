@@ -33,13 +33,12 @@ export function SiteNav() {
         </button>
         <div id="portfolio-navigation-links" className={`portfolio-nav-links flex gap-8 ${open ? "is-open" : ""}`}>
           <Link
-            to="/"
+            to="/projects"
             onClick={() => setOpen(false)}
             className={link}
             activeProps={{ className: `${link} ${activeLink}` }}
-            activeOptions={{ exact: true }}
           >
-            Home
+            Projects
           </Link>
           <Link
             to="/about"
@@ -50,12 +49,13 @@ export function SiteNav() {
             About Me
           </Link>
           <Link
-            to="/projects"
+            to="/"
             onClick={() => setOpen(false)}
             className={link}
             activeProps={{ className: `${link} ${activeLink}` }}
+            activeOptions={{ exact: true }}
           >
-            Projects
+            Home
           </Link>
         </div>
       </div>
