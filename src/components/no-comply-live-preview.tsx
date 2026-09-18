@@ -154,8 +154,8 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
             >
               Shop
             </button>
-            <span className={navLink}>Archive</span>
-            <span className={navLink}>Media</span>
+            <MenuLink target={SITE_LINKS[0]} className={navLink} />
+            <MenuLink target={SITE_LINKS[1]} className={navLink} />
           </div>
 
           <div className="absolute left-1/2 top-1/2 h-[92px] w-[160px] -translate-x-1/2 translate-y-[-40%] overflow-hidden sm:h-[120px] sm:w-[200px] lg:h-[170px] lg:w-[290px]">
