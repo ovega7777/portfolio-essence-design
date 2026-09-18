@@ -10,7 +10,6 @@ import logoGothic from "@/assets/no-comply-landing/logo-gothic.svg";
 import logoPunk from "@/assets/no-comply-landing/logo-punk.svg";
 import logoGraffiti from "@/assets/no-comply-landing/logo-graffiti.svg";
 
-const SITE_URL = "https://riot-reveal-commerce.lovable.app";
 const SHOP_PATH = "/projects/no-comply";
 
 /** logoMain (index 0) is the strikethrough logo the slot machine always lands on. */
@@ -23,17 +22,24 @@ const label = "text-[10px] tracking-[0.3em] uppercase font-medium";
 const display = { fontFamily: '"Bebas Neue", "Oswald", sans-serif' } as const;
 const body = { fontFamily: '"Inter", sans-serif' } as const;
 
-const CATEGORIES = [
-  "Tees",
-  "Hoodies",
-  "Jackets",
-  "Workwear",
-  "Pants",
-  "Headwear",
-  "Accessories",
-  "Equipment",
+type NavTarget = { label: string; to: string; search?: Record<string, string> };
+
+const COLLECTION_LINKS: NavTarget[] = [
+  { label: "No Comply Command", to: "/projects/no-comply/command", search: { cat: "all", sort: "order" } },
+  { label: "Caught on Film", to: "/projects/no-comply/caught-on-film", search: { cat: "all" } },
 ];
-const COLLECTIONS = ["Drop 001", "New Arrivals", "Featured Goods", "Lookbook", "Archive"];
+
+const CATEGORY_LINKS: NavTarget[] = ["Tops", "Outerwear", "Bottoms", "Accessories"].map((cat) => ({
+  label: cat,
+  to: "/projects/no-comply/command",
+  search: { cat, sort: "order" },
+}));
+
+const SITE_LINKS: NavTarget[] = [
+  { label: "Media", to: "/projects/no-comply/media" },
+  { label: "Designs", to: "/projects/no-comply/designs" },
+  { label: "About", to: "/projects/no-comply/about" },
+];
 
 function useSlotMachine() {
   const [logoIndex, setLogoIndex] = useState(0);
