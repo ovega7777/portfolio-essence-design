@@ -1,50 +1,337 @@
 import { Link } from "@tanstack/react-router";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Menu, X } from "lucide-react";
 
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
+import heroLogo from "@/assets/no-comply-landing/hero-logo.svg";
+import logoMain from "@/assets/no-comply-landing/logo.svg";
+import logoGothic from "@/assets/no-comply-landing/logo-gothic.svg";
+import logoPunk from "@/assets/no-comply-landing/logo-punk.svg";
+import logoGraffiti from "@/assets/no-comply-landing/logo-graffiti.svg";
+
 const SITE_URL = "https://riot-reveal-commerce.lovable.app";
-const FRAME_WIDTH = 1440;
-const FRAME_HEIGHT = 900;
+const SHOP_PATH = "/projects/no-comply";
 
-/** Browser-style window containing the live NO COMPLY USA site, scaled to fit its container. */
-export function NoComplyLivePreview() {
-  const holder = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(0.4);
+/** logoMain (index 0) is the strikethrough logo the slot machine always lands on. */
+const LOGOS = [logoMain, logoGothic, logoPunk, logoGraffiti];
+const TOTAL_STEPS = LOGOS.length * 3 + 1;
 
-  useEffect(() => {
-    const element = holder.current;
-    if (!element) return;
-    const update = () => setScale(element.clientWidth / FRAME_WIDTH);
-    update();
-    const observer = new ResizeObserver(update);
-    observer.observe(element);
-    return () => observer.disconnect();
+const navLink =
+  "text-sm tracking-[0.25em] uppercase font-medium text-white/80 hover:text-white transition-colors duration-300 cursor-pointer";
+const label = "text-[10px] tracking-[0.3em] uppercase font-medium";
+const display = { fontFamily: '"Bebas Neue", "Oswald", sans-serif' } as const;
+const body = { fontFamily: '"Inter", sans-serif' } as const;
+
+const CATEGORIES = [
+  "Tees",
+  "Hoodies",
+  "Jackets",
+  "Workwear",
+  "Pants",
+  "Headwear",
+  "Accessories",
+  "Equipment",
+];
+const COLLECTIONS = ["Drop 001", "New Arrivals", "Featured Goods", "Lookbook", "Archive"];
+
+function useSlotMachine() {
+  const [logoIndex, setLogoIndex] = useState(0);
+  const [spinning, setSpinning] = useState(false);
+  const spinningRef = useRef(false);
+
+  const run = useCallback(() => {
+    if (spinningRef.current) return;
+    spinningRef.current = true;
+    setSpinning(true);
+    let step = 0;
+    const tick = () => {
+      step++;
+      setLogoIndex(step % LOGOS.length);
+      if (step >= TOTAL_STEPS) {
+        setLogoIndex(0);
+        spinningRef.current = false;
+        setSpinning(false);
+        return;
+      }
+      const progress = step / TOTAL_STEPS;
+      window.setTimeout(tick, 60 + Math.pow(progress, 3) * 500);
+    };
+    window.setTimeout(tick, 60);
   }, []);
 
+  useEffect(() => {
+    const start = window.setTimeout(run, 800);
+    return () => window.clearTimeout(start);
+  }, [run]);
+
+  useEffect(() => {
+    if (spinning) return;
+    const repeat = window.setTimeout(run, 8000);
+    return () => window.clearTimeout(repeat);
+  }, [spinning, run]);
+
+  return { logoIndex, spinning };
+}
+
+/** Interactive recreation of the NO COMPLY USA homepage. */
+export function NoComplyLivePreview() {
+  const [loaded, setLoaded] = useState(false);
+  const [megaOpen, setMegaOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [subscribed, setSubscribed] = useState(false);
+  const { logoIndex, spinning } = useSlotMachine();
+
+  useEffect(() => {
+    const t = window.setTimeout(() => setLoaded(true), 200);
+    return () => window.clearTimeout(t);
+  }, []);
+
+  const reveal = (delay: number) =>
+    ({
+      opacity: loaded ? 1 : 0,
+      transform: loaded ? "translateY(0)" : "translateY(20px)",
+      transition: `opacity 0.8s ease ${delay}s, transform 0.8s ease ${delay}s`,
+    }) as const;
+
   return (
-    <div className="overflow-hidden rounded-xl border border-black/15 bg-white shadow-[0_18px_50px_-20px_rgba(0,0,0,0.45)]">
-      <div className="flex items-center gap-2 border-b border-black/10 bg-neutral-100 px-4 py-3">
-        <span className="h-3 w-3 rounded-full bg-[#ff5f57]" />
-        <span className="h-3 w-3 rounded-full bg-[#febc2e]" />
-        <span className="h-3 w-3 rounded-full bg-[#28c840]" />
-        <span className="ml-3 truncate rounded bg-white px-3 py-1 text-[10px] tracking-wide text-black/50">
-          riot-reveal-commerce.lovable.app
-        </span>
-      </div>
-      <div
-        ref={holder}
-        className="relative w-full overflow-hidden bg-black"
-        style={{ height: FRAME_HEIGHT * scale }}
+    <div
+      className="relative h-full w-full overflow-hidden bg-black text-white"
+      style={body}
+    >
+      <video
+        className="absolute inset-0 h-full w-full scale-[2] object-cover object-center md:scale-[1.7]"
+        style={{ minWidth: "100%", minHeight: "100%", objectPosition: "center 42%" }}
+        autoPlay
+        muted
+        loop
+        playsInline
       >
-        <iframe
-          src={SITE_URL}
-          title="NO COMPLY USA live website preview"
-          loading="lazy"
-          allow="autoplay; fullscreen"
-          className="absolute left-0 top-0 origin-top-left border-0"
-          style={{ width: FRAME_WIDTH, height: FRAME_HEIGHT, transform: `scale(${scale})` }}
+        <source src="/no-comply-landing-bg.mp4" type="video/mp4" />
+      </video>
+
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.4) 100%)",
+        }}
+      />
+
+      {/* Header */}
+      <nav className="absolute left-0 right-0 top-0 z-40">
+        <div className="relative flex items-center justify-between px-5 py-5 md:px-14 md:py-8">
+          <button className={`${navLink} lg:hidden`} onClick={() => setMobileOpen(true)} aria-label="Open menu">
+            <Menu className="h-5 w-5" />
+          </button>
+
+          <div className="hidden items-center gap-8 lg:flex">
+            <button
+              className={navLink}
+              onMouseEnter={() => setMegaOpen(true)}
+              onClick={() => setMegaOpen((v) => !v)}
+            >
+              Shop
+            </button>
+            <span className={navLink}>Archive</span>
+            <span className={navLink}>Media</span>
+          </div>
+
+          <div className="absolute left-1/2 top-1/2 h-[92px] w-[160px] -translate-x-1/2 translate-y-[-40%] overflow-hidden sm:h-[120px] sm:w-[200px] lg:h-[170px] lg:w-[290px]">
+            {LOGOS.map((src, i) => (
+              <img
+                key={src}
+                src={src}
+                alt="NO COMPLY USA"
+                className={`absolute inset-0 m-auto h-full w-auto transition-opacity ${
+                  spinning ? "duration-75" : "duration-300"
+                } ${i === logoIndex ? "opacity-100" : "opacity-0"}`}
+              />
+            ))}
+          </div>
+
+          <div className="flex items-center gap-6 lg:gap-8">
+            <span className={`${navLink} hidden lg:inline`}>About</span>
+            <span className={navLink}>Cart (0)</span>
+          </div>
+        </div>
+      </nav>
+
+      {/* Shop dropdown */}
+      {megaOpen && (
+        <div className="absolute inset-0 z-40 flex items-start justify-center pt-24">
+          <div className="absolute inset-0 bg-black/40" onClick={() => setMegaOpen(false)} />
+          <div
+            className="relative max-h-[70%] w-[90%] max-w-4xl overflow-y-auto border border-white/5 bg-[#141414]/95 p-7 backdrop-blur-md md:p-12"
+            onMouseLeave={() => setMegaOpen(false)}
+          >
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12">
+              <div>
+                <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Categories</h3>
+                <div className="space-y-1">
+                  {CATEGORIES.map((c) => (
+                    <span
+                      key={c}
+                      className="block cursor-pointer py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Collections</h3>
+                <div className="space-y-1">
+                  {COLLECTIONS.map((c) => (
+                    <span
+                      key={c}
+                      className="block cursor-pointer py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Account</h3>
+                <div className="space-y-1">
+                  {["Search", "Account", "Cart (0)"].map((c) => (
+                    <span
+                      key={c}
+                      className="block cursor-pointer py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
+                    >
+                      {c}
+                    </span>
+                  ))}
+                </div>
+                <div className="mt-8 border-t border-white/10 pt-6">
+                  <p className="text-[10px] uppercase leading-relaxed tracking-[0.2em] text-white/30">
+                    Industrial Rebellion
+                    <br />
+                    American Workwear Reconstructed
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Mobile menu */}
+      {mobileOpen && (
+        <div className="absolute inset-0 z-50">
+          <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <div className="absolute inset-y-0 left-0 flex w-[85%] max-w-sm flex-col overflow-y-auto border-r border-white/10 bg-[#141414]">
+            <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
+              <img src={logoMain} alt="NO COMPLY USA" className="h-10 w-auto" />
+              <button onClick={() => setMobileOpen(false)} className="text-white/60 hover:text-white" aria-label="Close menu">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="space-y-1 px-6 py-8">
+              {["Shop", "Archive", "Media", "About"].map((item) => (
+                <span
+                  key={item}
+                  style={display}
+                  className="block cursor-pointer py-2 text-3xl uppercase tracking-wider text-white/90 hover:text-white"
+                >
+                  {item}
+                </span>
+              ))}
+            </div>
+            <div className="border-t border-white/10 px-6 py-6">
+              <p className={`${label} mb-4 text-white/30`}>Categories</p>
+              <div className="space-y-1">
+                {CATEGORIES.slice(0, 7).map((c) => (
+                  <span key={c} className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/50 hover:text-white">
+                    {c}
+                  </span>
+                ))}
+              </div>
+            </div>
+            <div className="mt-auto border-t border-white/10 px-6 py-6">
+              <p className="text-[10px] uppercase leading-relaxed tracking-[0.2em] text-white/20">
+                Industrial Rebellion
+                <br />
+                American Workwear Reconstructed
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Hero */}
+      <div className="absolute inset-0 z-30 flex flex-col items-center justify-center px-4 text-center">
+        <img
+          src={heroLogo}
+          alt="NO COMPLY USA"
+          style={{
+            opacity: loaded ? 1 : 0,
+            transform: loaded ? "translateY(0)" : "translateY(40px)",
+            transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
+          }}
+          className="mb-5 h-auto w-[86vw] max-w-[560px] md:mb-8 md:max-w-[820px]"
         />
+        <p
+          style={{ ...display, ...reveal(1.2) }}
+          className="text-2xl uppercase tracking-[0.1em] text-[hsl(0,85%,45%)] md:text-4xl lg:text-5xl"
+        >
+          No Comply or Die
+        </p>
+        <p style={reveal(1.8)} className={`${label} mt-5 text-white/40`}>
+          Drop 001 — Available Now
+        </p>
+        <div style={reveal(2.2)} className="mt-7 flex flex-col items-center gap-3 sm:flex-row">
+          <Link
+            to={SHOP_PATH}
+            className={`${label} inline-block border border-white/30 px-8 py-3 text-white transition-all duration-300 hover:bg-white hover:text-black`}
+          >
+            Enter Shop
+          </Link>
+          <a
+            href={SITE_URL}
+            target="_blank"
+            rel="noreferrer noopener"
+            className={`${label} inline-block border border-white/30 px-8 py-3 text-white transition-all duration-300 hover:bg-white hover:text-black`}
+          >
+            View Full Website
+          </a>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div
+        style={{ opacity: loaded ? 1 : 0, transition: "opacity 1s ease 2.6s" }}
+        className="absolute bottom-0 left-0 right-0 z-30 flex flex-col items-center gap-4 pb-5"
+      >
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            setSubscribed(true);
+          }}
+          className="hidden w-full max-w-xs items-center px-4 sm:flex"
+        >
+          <input
+            name="email"
+            type="email"
+            required
+            placeholder={subscribed ? "You're in. Stay tuned." : "Enter email for news & updates"}
+            className={`${label} flex-1 border border-white/30 bg-transparent px-4 py-2.5 text-white placeholder:text-white/40 focus:border-white/60 focus:outline-none`}
+          />
+          <button
+            type="submit"
+            className={`${label} border border-l-0 border-white/30 px-5 py-2.5 text-white transition-all duration-300 hover:bg-white hover:text-black`}
+          >
+            Submit
+          </button>
+        </form>
+        <div className={`${label} flex gap-4 text-white/30`}>
+          <span>Miami, FL</span>
+          <span>·</span>
+          <span>Drop 001</span>
+          <span>·</span>
+          <span>MMXXVI</span>
+        </div>
       </div>
     </div>
   );
@@ -55,15 +342,10 @@ export function NoComplyPreviewActions() {
     "flex min-h-12 w-full items-center justify-center border border-black px-7 py-4 text-[11px] font-bold uppercase tracking-[0.25em] transition-colors sm:w-auto";
   return (
     <div className="flex flex-col gap-3 sm:flex-row sm:justify-center">
-      <Link to="/projects/no-comply" className={`${button} bg-black text-white hover:bg-white hover:text-black`}>
+      <Link to={SHOP_PATH} className={`${button} bg-black text-white hover:bg-white hover:text-black`}>
         Enter Shop
       </Link>
-      <a
-        href={SITE_URL}
-        target="_blank"
-        rel="noreferrer noopener"
-        className={`${button} hover:bg-black hover:text-white`}
-      >
+      <a href={SITE_URL} target="_blank" rel="noreferrer noopener" className={`${button} hover:bg-black hover:text-white`}>
         View Full Website
       </a>
     </div>
@@ -79,15 +361,12 @@ export function NoComplyPreviewDialog({
 }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[92vh] w-[min(1100px,94vw)] max-w-none overflow-y-auto border-black/10 bg-white p-4 text-black sm:p-6">
-        <DialogTitle className="text-[11px] font-bold uppercase tracking-[0.25em]">
-          NO COMPLY USA — Live Website
-        </DialogTitle>
+      <DialogContent className="h-[100dvh] w-screen max-w-none gap-0 border-0 bg-black p-0 text-white sm:rounded-none">
+        <DialogTitle className="sr-only">NO COMPLY USA</DialogTitle>
         <DialogDescription className="sr-only">
-          A live embedded preview of the NO COMPLY USA website.
+          An interactive recreation of the NO COMPLY USA homepage.
         </DialogDescription>
         {open && <NoComplyLivePreview />}
-        <NoComplyPreviewActions />
       </DialogContent>
     </Dialog>
   );
