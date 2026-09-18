@@ -12,7 +12,7 @@ export function CollectionCategoryNav({
   return (
     <nav
       aria-label="Filter products by category"
-      className={`nc-collection-category-nav nc-collection-title-to-filters ${className}`}
+      className={`nc-collection-category-nav ${className}`}
     >
       {CATEGORIES.map((category) => (
         <button

@@ -120,17 +120,12 @@ function CaughtOnFilmCollection() {
           images={EDITORIAL_BANNER}
         />
 
-        <section id="caught-on-film-products" className="bg-white text-black">
-          <div className="nc-collection-products-shell nc-collection-header-to-title mx-auto max-w-[1600px] px-5 pb-12 sm:px-8 sm:pb-16 lg:pb-20">
-            <div className="border-b border-black">
-              <p className="nc-display text-2xl uppercase tracking-[0.08em] sm:text-3xl">
-                Caught on Film
-              </p>
-              <CollectionCategoryNav
-                activeCategory={activeCategory}
-                onCategoryChange={setCategory}
-              />
-            </div>
+        <section id="caught-on-film-products" className="nc-collection-products-shell bg-white px-6 text-black md:px-12">
+          <div className="nc-collection-header-to-filters mx-auto max-w-7xl pb-12 sm:pb-16 lg:pb-20">
+            <CollectionCategoryNav
+              activeCategory={activeCategory}
+              onCategoryChange={setCategory}
+            />
 
             {displayed.length > 0 ? (
               <CollectionProductGrid className="nc-collection-filters-to-grid grid grid-cols-1 gap-x-6 gap-y-16 sm:grid-cols-2 lg:grid-cols-4">

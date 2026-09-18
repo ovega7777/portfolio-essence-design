@@ -130,14 +130,10 @@ function CommandCollection() {
 
       <section className="nc-collection-products-shell bg-white px-6 md:px-12">
         <div className="mx-auto max-w-7xl">
-          <div className="nc-collection-header-to-title">
-            <h3 className="font-punk-body text-base font-bold uppercase tracking-[0.06em] text-black">
-              No Comply Command
-            </h3>
+          <div className="nc-collection-header-to-filters">
             <CollectionCategoryNav
               activeCategory={activeCategory}
               onCategoryChange={setCategory}
-              className="border-y border-black/20"
             />
           </div>
 
