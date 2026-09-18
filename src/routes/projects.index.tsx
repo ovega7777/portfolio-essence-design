@@ -5,6 +5,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
 import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
 import { AnimatedWordmark } from "@/components/no-comply/animated-wordmark";
+import { NoComplyPreviewDialog } from "@/components/no-comply-live-preview";
+import { useState } from "react";
 import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
 import noComplyCover03 from "../assets/home/no-comply-cover-03.jpg";
 import luckyDayThumb from "../assets/lucky-day-main.jpg";
