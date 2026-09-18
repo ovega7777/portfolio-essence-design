@@ -21,7 +21,7 @@ export function LogoBanner({
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-4">
         <NoComplyHeaderLogo />
       </div>
-      <div className="absolute left-2 top-1/2 flex -translate-y-1/2 items-center sm:left-4">
+      <div className="absolute right-2 top-1/2 flex -translate-y-1/2 items-center sm:right-4">
         <button
           type="button"
           onClick={onMenu}
@@ -32,9 +32,6 @@ export function LogoBanner({
         >
           <Menu aria-hidden className="h-6 w-6" strokeWidth={1.8} />
         </button>
-      </div>
-      <div className="absolute right-2 top-1/2 -translate-y-1/2 sm:right-4" aria-hidden="true">
-        <div className="h-11 w-11" />
       </div>
     </header>
   );
