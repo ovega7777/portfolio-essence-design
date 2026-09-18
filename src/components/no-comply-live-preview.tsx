@@ -58,7 +58,7 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
         <button type="button" onClick={() => setMobileOpen(true)} aria-label="Open menu"
           aria-expanded={mobileOpen} aria-controls="no-comply-standard-menu"
           className="flex h-11 w-11 items-center justify-center text-white/80 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">
-          <Menu className="h-6 w-6" />
+          <Menu className="h-8 w-8" />
         </button>
       </nav>
 
