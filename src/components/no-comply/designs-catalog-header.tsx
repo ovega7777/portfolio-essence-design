@@ -15,13 +15,6 @@ export const DesignsCatalogHeader = forwardRef<HTMLElement, DesignsCatalogHeader
   function DesignsCatalogHeader({ selectedCategory, onCategoryChange }, ref) {
     return (
       <>
-        <header className="border-b border-black pb-5 sm:pb-6">
-          <p className="mb-2 text-xs uppercase tracking-[0.32em] text-black/50">Complete Catalog</p>
-          <h1 className="nc-display text-[clamp(3.5rem,9vw,9rem)] leading-[0.78] tracking-[0.03em]">
-            All Designs
-          </h1>
-        </header>
-
         <section
           ref={ref}
           id="catalog-controls"

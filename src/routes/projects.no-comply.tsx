@@ -1,3 +1,9 @@
+import mobileCommandJacket from "@/assets/no-comply/home/mobile/command-jacket.jpg";
+import mobileCommandTee from "@/assets/no-comply/home/mobile/command-tee.jpg";
+import mobileCommandSeated from "@/assets/no-comply/home/mobile/command-seated.jpg";
+import mobileFilmScarf from "@/assets/no-comply/home/mobile/film-scarf.jpg";
+import mobileFilmTop from "@/assets/no-comply/home/mobile/film-top.jpg";
+import mobileFilmCollage from "@/assets/no-comply/home/mobile/film-collage.jpg";
 import { CollectionNavigationFooter } from "@/components/no-comply/collection-navigation-footer";
 import { createFileRoute, Link, Outlet, useRouterState } from "@tanstack/react-router";
 
@@ -137,14 +143,14 @@ function NoComplyHome() {
                 search={{ cat: "all", sort: "order" }}
                 className="nc-display border-b border-black pb-1 text-sm tracking-[0.25em] text-black transition-opacity hover:opacity-55"
               >
-                Enter Collection →
+                <span className="nc-entry-desktop">Enter Collection →</span><span className="nc-entry-mobile">Enter →</span>
               </Link>
             </div>
             <Link
               to="/projects/no-comply/command"
               search={{ cat: "all", sort: "order" }}
               aria-label="Open No Comply Command, Collection #1"
-              className="block w-full min-w-0"
+              className="nc-home-desktop-cover block w-full min-w-0"
             >
               <CollectionCover
                 images={[
@@ -164,10 +170,17 @@ function NoComplyHome() {
               />
             </Link>
 
+            <Link to="/projects/no-comply/command" search={{ cat: "all", sort: "order" }} className="nc-home-mobile-pair" aria-label="Explore command collection">
+              <img src={mobileCommandJacket} alt="Command leather jacket and messenger bag" loading="lazy" />
+              <img src={mobileCommandTee} alt="Command camouflage tee and pleated trousers" loading="lazy" />
+            </Link>
             <CollectionCarousel
               items={COMMAND_CAROUSEL}
               label="No Comply Command"
             />
+            <Link to="/projects/no-comply/command" search={{ cat: "all", sort: "order" }} className="nc-home-mobile-campaign" aria-label="Explore command collection">
+              <img src={mobileCommandSeated} alt="Command black and navy Sergeant Shirts campaign" loading="lazy" />
+            </Link>
           </div>
         </section>
 
@@ -188,14 +201,14 @@ function NoComplyHome() {
                 search={{ cat: "all" }}
                 className="nc-display border-b border-black pb-1 text-sm tracking-[0.25em] text-black transition-opacity hover:opacity-55"
               >
-                Enter Collection →
+                <span className="nc-entry-desktop">Enter Collection →</span><span className="nc-entry-mobile">Enter →</span>
               </Link>
             </div>
             <Link
               to="/projects/no-comply/caught-on-film"
               search={{ cat: "all" }}
               aria-label="Open Caught on Film, Collection #2"
-              className="block w-full min-w-0"
+              className="nc-home-desktop-cover block w-full min-w-0"
             >
               <CollectionCover
                 images={[
@@ -208,25 +221,31 @@ function NoComplyHome() {
                 ]}
               />
             </Link>
+            <Link to="/projects/no-comply/caught-on-film" search={{ cat: "all" }} className="nc-home-mobile-pair" aria-label="Explore caught-on-film collection">
+              <img src={mobileFilmTop} alt="Caught on Film red film-print top" loading="lazy" />
+              <img src={mobileFilmScarf} alt="Caught on Film scarf, sunglasses and NC-17 tee" loading="lazy" />
+            </Link>
             <CollectionCarousel
               items={CAUGHT_ON_FILM_CAROUSEL}
               label="Caught on Film"
             />
+            <Link to="/projects/no-comply/caught-on-film" search={{ cat: "all" }} className="nc-home-mobile-campaign" aria-label="Explore caught-on-film collection">
+              <img src={mobileFilmCollage} alt="Caught on Film complete campaign contact sheet" loading="lazy" />
+            </Link>
           </div>
         </section>
 
-        <section className="border-b-2 border-black bg-black px-6 py-14 text-white md:py-20">
+        <section className="border-b-2 border-black bg-black px-6 py-10 text-white md:py-12">
           <div className="mx-auto max-w-4xl">
             <p className="nc-display mb-5 text-xs tracking-[0.4em] text-white">Manifesto</p>
             <p className="nc-display text-4xl leading-[1.05] tracking-[0.02em] md:text-6xl">
               NO COMPLY OR DIE.
             </p>
             <div className="mt-5 h-px w-24 bg-white md:mt-6" />
-            <p className="mt-5 font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:mt-6 md:text-lg">
-              NO COMPLY USA rejects fixed definitions of how American clothing should look, who
-              should wear it, and where inspiration should come from. The brand embraces that
-              complexity, combining references across history and counterculture to create unisex
-              clothing that resists classification and leaves room for individuality.
+            <p className="mt-4 max-w-[65ch] text-pretty font-punk-body text-base uppercase leading-relaxed tracking-[0.15em] text-white/80 md:text-lg">
+              NO COMPLY USA creates unisex clothing for people who choose their own path. Inspired
+              by American history and counterculture, the brand brings familiar references together
+              in unexpected ways—without rules, labels, or limits.
             </p>
           </div>
         </section>

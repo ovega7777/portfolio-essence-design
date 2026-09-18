@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import useEmblaCarousel from "embla-carousel-react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import {
@@ -33,6 +33,7 @@ const WHEEL_DURATION = 20;
 const CLICK_MOVEMENT_THRESHOLD = 5;
 
 export function CollectionCarousel({ items, label }: Props) {
+  const returnTo = useLocation({ select: (location) => location.href });
   const [viewportRef, emblaApi] = useEmblaCarousel({
     align: "start",
     containScroll: false,
@@ -41,6 +42,7 @@ export function CollectionCarousel({ items, label }: Props) {
     loop: true,
     skipSnaps: false,
     slidesToScroll: 1,
+    breakpoints: { "(max-width: 639px)": { dragFree: false } },
   });
   const prefersReducedMotionRef = useRef(false);
   const viewportElementRef = useRef<HTMLDivElement | null>(null);
@@ -229,7 +231,7 @@ export function CollectionCarousel({ items, label }: Props) {
                 data-carousel-card
                 to="/products/$slug"
                 params={{ slug: item.productSlug }}
-                search={{ variant: item.variantId }}
+                search={{ variant: item.variantId, returnTo }}
                 aria-label={`View ${item.productName}`}
                 onClick={(event) => {
                   if (event.detail !== 0 && draggedRef.current) {

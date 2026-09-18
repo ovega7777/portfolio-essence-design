@@ -2,6 +2,7 @@ import { CollectionNavigationFooter } from "@/components/no-comply/collection-na
 import { createFileRoute } from "@tanstack/react-router";
 
 import { EditorialPageShell } from "@/components/no-comply/editorial-page-shell";
+import wordmark from "@/assets/no-comply/wordmark.png";
 
 export const Route = createFileRoute("/projects/no-comply/about")({
   head: () => ({
@@ -48,9 +49,10 @@ function NoComplyAbout() {
           </p>
         </section>
 
-        <div
-          aria-hidden="true"
-          className="mt-16 h-20 border-y-2 border-black bg-black md:mt-24 md:h-28"
+        <img
+          src={wordmark}
+          alt="NO COMPLY USA"
+          className="mx-auto mt-10 block h-auto w-full max-w-[640px] invert min-[769px]:mt-32"
         />
       </main>
       <CollectionNavigationFooter nextPage="media" />

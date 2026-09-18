@@ -1,3 +1,6 @@
+import ringCampaign1 from "@/assets/lucky-day/ring-campaign/campaign-01.jpg";
+import ringCampaign2 from "@/assets/lucky-day/ring-campaign/campaign-02.jpg";
+import ringCampaign3 from "@/assets/lucky-day/ring-campaign/campaign-03.jpg";
 import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
@@ -55,6 +58,14 @@ function LuckyDay() {
           height={1067}
           className="w-full object-cover"
         />
+      </section>
+
+      <section aria-label="Lucky Day Co. ring campaign" className="lucky-ring-campaign mx-auto max-w-6xl px-6 pb-12 md:pb-16">
+        <div className="lucky-ring-campaign-grid">
+          <img src={ringCampaign1} alt="Lucky Day Co. silver rings on crossed hands with tattooed arms" width={853} height={1280} loading="lazy" />
+          <img src={ringCampaign2} alt="Lucky Day Co. signet rings on a tattooed hand over an open book with the brand name" width={1125} height={1280} loading="lazy" />
+          <img src={ringCampaign3} alt="Close-up of Lucky Day Co. silver rings on overlapping tattooed hands" width={853} height={1280} loading="lazy" />
+        </div>
       </section>
 
       <section className="portfolio-next-project mx-auto max-w-6xl border-t border-border px-6 py-12 md:py-16">

@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "@tanstack/react-router";
+import { useLocation, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { getGroupedVariants, usesDetailPrimaryImage, type Product } from "@/data/products";
 
@@ -6,6 +6,7 @@ type Props = { product: Product; initialVariantId?: string; collectionGrid?: boo
 
 export function ProductCard({ product, initialVariantId, collectionGrid = false, catalog = false }: Props) {
   const navigate = useNavigate();
+  const returnTo = useLocation({ select: (location) => location.href });
   const [variantId, setVariantId] = useState(
     product.variants.some((variant) => variant.id === initialVariantId)
       ? initialVariantId!
@@ -35,9 +36,11 @@ export function ProductCard({ product, initialVariantId, collectionGrid = false,
         <p className="nc-display truncate text-lg tracking-[0.15em] text-black md:text-xl">
           {product.name}
         </p>
-        <p className="nc-display text-[10px] tracking-[0.3em] text-black/60">
-          {product.category}
-        </p>
+        {!catalog && (
+          <p className="nc-display text-[10px] tracking-[0.3em] text-black/60">
+            {product.category}
+          </p>
+        )}
       </div>
       <p className="nc-display shrink-0 text-lg tracking-[0.15em] text-black md:text-xl">
         ${product.price}
@@ -50,7 +53,7 @@ export function ProductCard({ product, initialVariantId, collectionGrid = false,
       <Link
         to="/products/$slug"
         params={{ slug: displayed.productSlug }}
-        search={{ variant: displayed.variantId }}
+        search={{ variant: displayed.variantId, returnTo }}
         className="nc-product-link block focus:outline-none focus-visible:ring-2 focus-visible:ring-black"
         onFocus={() => setShowModel(true)}
         onBlur={() => setShowModel(false)}
@@ -86,9 +89,8 @@ export function ProductCard({ product, initialVariantId, collectionGrid = false,
             />
           )}
         </div>
-        {collectionGrid && details}
+        {details}
       </Link>
-      {!collectionGrid && details}
       {grouped.length > 1 && (
         <div className="nc-product-swatches flex items-center gap-2 px-4 pb-3 pt-2">
           {grouped.map((g) => {
@@ -116,7 +118,7 @@ export function ProductCard({ product, initialVariantId, collectionGrid = false,
                   navigate({
                     to: "/products/$slug",
                     params: { slug: g.productSlug },
-                    search: { variant: g.variantId },
+                    search: { variant: g.variantId, returnTo },
                   });
                 }}
                 aria-label={`Show ${g.color}`}

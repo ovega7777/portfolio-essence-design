@@ -2,11 +2,9 @@ import { useRef, useState } from "react";
 import type { ProductImage } from "@/data/products";
 
 /** The same ordered images form a desktop stack and a touch-scrollable mobile gallery. */
-export function ProductGallery({ images, onOpen }: { images: ProductImage[]; onOpen: (index: number) => void }) {
+export function ProductGallery({ images }: { images: ProductImage[] }) {
   const track = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
-  const start = useRef(0);
-  const dragged = useRef(false);
   const move = (direction: number) => {
     const target = Math.max(0, Math.min(images.length - 1, index + direction));
     track.current?.scrollTo({ left: target * track.current.clientWidth,
@@ -14,15 +12,13 @@ export function ProductGallery({ images, onOpen }: { images: ProductImage[]; onO
   };
   return (
     <section className="nc-product-gallery" aria-label="Product images">
+      <p className="nc-display mb-3 text-sm tracking-widest">{images.length} images</p>
       <div ref={track} className="nc-product-gallery-track flex flex-col gap-6"
-        onScroll={() => { if (track.current) setIndex(Math.round(track.current.scrollLeft / track.current.clientWidth)); }}
-        onPointerDown={event => { start.current = event.clientX; dragged.current = false; }}
-        onPointerMove={event => { if (event.buttons && Math.abs(event.clientX - start.current) > 8) dragged.current = true; }}>
+        onScroll={() => { if (track.current) setIndex(Math.round(track.current.scrollLeft / track.current.clientWidth)); }}>
         {images.map((img, i) => (
-          <button key={`${img.url}-${i}`} type="button" className="group block w-full bg-white"
-            aria-label={`Open ${img.alt}`} onClick={() => { if (!dragged.current) onOpen(i); }}>
+          <figure key={`${img.url}-${i}`} className="block w-full bg-white">
             <img src={img.url} alt={img.alt} loading={i === 0 ? "eager" : "lazy"} className="block h-auto w-full object-contain" />
-          </button>
+          </figure>
         ))}
       </div>
       <div className="nc-product-gallery-controls">
