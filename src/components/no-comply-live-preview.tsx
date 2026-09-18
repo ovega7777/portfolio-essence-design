@@ -81,12 +81,27 @@ function useSlotMachine() {
 }
 
 /** Interactive recreation of the NO COMPLY USA homepage. */
-export function NoComplyLivePreview() {
+export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void }) {
   const [loaded, setLoaded] = useState(false);
   const [megaOpen, setMegaOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [subscribed, setSubscribed] = useState(false);
   const { logoIndex, spinning } = useSlotMachine();
+
+  const MenuLink = ({ target, className }: { target: NavTarget; className: string }) => (
+    <Link
+      to={target.to}
+      search={(target.search ?? {}) as never}
+      className={className}
+      onClick={() => {
+        setMegaOpen(false);
+        setMobileOpen(false);
+        onNavigate?.();
+      }}
+    >
+      {target.label}
+    </Link>
+  );
 
   useEffect(() => {
     const t = window.setTimeout(() => setLoaded(true), 200);
