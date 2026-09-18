@@ -90,19 +90,6 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
         </Link>
       </div>
 
-      {/* Footer */}
-      <div
-        style={{ opacity: loaded ? 1 : 0, transition: "opacity 1s ease 2.6s" }}
-        className="absolute bottom-0 left-0 right-0 z-30 flex justify-center px-4 pb-[max(20px,env(safe-area-inset-bottom))]"
-      >
-        <div className={`${label} flex gap-4 text-white/30`}>
-          <span>Miami, FL</span>
-          <span>·</span>
-          <span>Drop 001</span>
-          <span>·</span>
-          <span>MMXXVI</span>
-        </div>
-      </div>
     </div>
   );
 }
