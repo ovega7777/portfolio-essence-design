@@ -2,9 +2,11 @@ import { MidModWordmark } from "@/components/mid-mod-wordmark";
 import { midModDescription, midModPreview } from "@/data/mid-mod";
 import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { SiteFrame } from "../components/site-chrome";
 import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
 import { AnimatedWordmark } from "@/components/no-comply/animated-wordmark";
+import { NoComplyPreviewDialog } from "@/components/no-comply-live-preview";
 import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
 import noComplyCover03 from "../assets/home/no-comply-cover-03.jpg";
 import luckyDayThumb from "../assets/lucky-day-main.jpg";
@@ -14,6 +16,7 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
+  const [previewOpen, setPreviewOpen] = useState(false);
   return (
     <SiteFrame className="portfolio-home [--background:#fff] [--card:#fff] [--foreground:#111] [--muted-foreground:#666] [--border:#d9d9d9]">
       <section className="mx-auto max-w-6xl px-6 pb-16 pt-10 md:pb-20 md:pt-14">
