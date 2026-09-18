@@ -74,6 +74,7 @@ const projects = [
 ];
 
 function ProjectsIndex() {
+  const [previewOpen, setPreviewOpen] = useState(false);
   return (
     <SiteFrame className="portfolio-projects-page [--background:#fff] [--card:#fff] [--foreground:#111] [--muted-foreground:#666] [--border:#d9d9d9]">
       <section className="projects-page-container mx-auto max-w-6xl px-6 pt-8 pb-16">
@@ -86,18 +87,31 @@ function ProjectsIndex() {
       <section className="projects-page-container mx-auto max-w-6xl px-6 pb-24">
         <div className="projects-page-grid">
           {projects.map((project) => (
-            <ProjectCard key={project.to} project={project} />
+            <ProjectCard
+              key={project.to}
+              project={project}
+              onPreview={project.to === "/projects/no-comply" ? () => setPreviewOpen(true) : undefined}
+            />
           ))}
         </div>
       </section>
+
+      <NoComplyPreviewDialog open={previewOpen} onOpenChange={setPreviewOpen} />
     </SiteFrame>
   );
 }
 
-function ProjectCard({ project }: { project: (typeof projects)[number] }) {
-  return (
-    <Link
-      to={project.to}
+function ProjectCard({
+  project,
+  onPreview,
+}: {
+  project: (typeof projects)[number];
+  onPreview?: () => void;
+}) {
+  const cardClass =
+    "projects-page-card group block w-full border-t border-black pt-4 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black";
+  const body = (
+    <>
       aria-label={`View ${project.title} project`}
       className="projects-page-card group block border-t border-black pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
     >
