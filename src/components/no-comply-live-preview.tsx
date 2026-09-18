@@ -190,39 +190,36 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
               <div>
                 <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Categories</h3>
                 <div className="space-y-1">
-                  {CATEGORIES.map((c) => (
-                    <span
-                      key={c}
-                      className="block cursor-pointer py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
-                    >
-                      {c}
-                    </span>
+                  {CATEGORY_LINKS.map((c) => (
+                    <MenuLink
+                      key={c.label}
+                      target={c}
+                      className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
+                    />
                   ))}
                 </div>
               </div>
               <div>
                 <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Collections</h3>
                 <div className="space-y-1">
-                  {COLLECTIONS.map((c) => (
-                    <span
-                      key={c}
-                      className="block cursor-pointer py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
-                    >
-                      {c}
-                    </span>
+                  {COLLECTION_LINKS.map((c) => (
+                    <MenuLink
+                      key={c.label}
+                      target={c}
+                      className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
+                    />
                   ))}
                 </div>
               </div>
               <div>
-                <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Account</h3>
+                <h3 className={`${label} mb-4 border-b border-white/10 pb-2 text-white`}>Explore</h3>
                 <div className="space-y-1">
-                  {["Search", "Account", "Cart (0)"].map((c) => (
-                    <span
-                      key={c}
-                      className="block cursor-pointer py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
-                    >
-                      {c}
-                    </span>
+                  {SITE_LINKS.map((c) => (
+                    <MenuLink
+                      key={c.label}
+                      target={c}
+                      className="block py-1.5 text-sm uppercase tracking-[0.15em] text-white/70 transition-colors hover:text-white"
+                    />
                   ))}
                 </div>
                 <div className="mt-8 border-t border-white/10 pt-6">
