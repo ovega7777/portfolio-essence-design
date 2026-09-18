@@ -4,7 +4,7 @@ import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
 import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
-import { AnimatedWordmark } from "@/components/no-comply/animated-wordmark";
+import { FontChangingLogo } from "@/components/no-comply/font-changing-logo";
 import { NoComplyPreviewDialog } from "@/components/no-comply-live-preview";
 import { useState } from "react";
 import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
@@ -138,7 +138,7 @@ function ProjectCard({
       <div className="projects-card-body">
         <div className="projects-card-copy min-w-0">
           <h2 className="projects-card-title font-sans text-2xl font-extrabold leading-none text-black lg:text-3xl">
-            {project.to === "/projects/no-comply" ? <AnimatedWordmark /> : project.to === "/projects/mid-mod" ? <MidModWordmark /> : <LuckyDayWordmark />}
+            {project.to === "/projects/no-comply" ? <span className="inline-block w-[7.388889em] max-w-full align-bottom invert"><FontChangingLogo /></span> : project.to === "/projects/mid-mod" ? <MidModWordmark /> : <LuckyDayWordmark />}
           </h2>
           <p className="projects-card-description mt-3 max-w-lg text-sm leading-relaxed text-black/65">
             {project.description}
