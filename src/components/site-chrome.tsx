@@ -43,7 +43,7 @@ export function SiteNav() {
       </div>
 
       {open && (
-        <div id="portfolio-navigation-links" className="portfolio-nav-links fixed inset-x-0 bottom-0 top-20 z-[-1] bg-foreground text-background">
+        <div id="portfolio-navigation-links" className="portfolio-nav-links fixed inset-x-0 bottom-0 top-16 z-[-1] bg-foreground text-background md:top-20">
           <button
             type="button"
             aria-label="Close menu"
