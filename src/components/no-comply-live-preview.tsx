@@ -1,23 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
-import heroLogo from "@/assets/no-comply-landing/hero-logo.svg";
+import { AnimatedWordmark } from "@/components/no-comply/animated-wordmark";
 import logoMain from "@/assets/no-comply-landing/logo.svg";
-import logoGothic from "@/assets/no-comply-landing/logo-gothic.svg";
-import logoPunk from "@/assets/no-comply-landing/logo-punk.svg";
-import logoGraffiti from "@/assets/no-comply-landing/logo-graffiti.svg";
 
 const SHOP_PATH = "/projects/no-comply";
 
-/** logoMain (index 0) is the strikethrough logo the slot machine always lands on. */
-const LOGOS = [logoMain, logoGothic, logoPunk, logoGraffiti];
-const TOTAL_STEPS = LOGOS.length * 3 + 1;
-
-const navLink =
-  "text-sm tracking-[0.25em] uppercase font-medium text-white/80 hover:text-white transition-colors duration-300 cursor-pointer";
 const label = "text-[10px] tracking-[0.3em] uppercase font-medium";
 const display = { fontFamily: '"Bebas Neue", "Oswald", sans-serif' } as const;
 const body = { fontFamily: '"Inter", sans-serif' } as const;
@@ -41,50 +32,10 @@ const SITE_LINKS: NavTarget[] = [
   { label: "About", to: "/projects/no-comply/about" },
 ];
 
-function useSlotMachine() {
-  const [logoIndex, setLogoIndex] = useState(0);
-  const [spinning, setSpinning] = useState(false);
-  const spinningRef = useRef(false);
-
-  const run = useCallback(() => {
-    if (spinningRef.current) return;
-    spinningRef.current = true;
-    setSpinning(true);
-    let step = 0;
-    const tick = () => {
-      step++;
-      setLogoIndex(step % LOGOS.length);
-      if (step >= TOTAL_STEPS) {
-        setLogoIndex(0);
-        spinningRef.current = false;
-        setSpinning(false);
-        return;
-      }
-      const progress = step / TOTAL_STEPS;
-      window.setTimeout(tick, 60 + Math.pow(progress, 3) * 500);
-    };
-    window.setTimeout(tick, 60);
-  }, []);
-
-  useEffect(() => {
-    const start = window.setTimeout(run, 800);
-    return () => window.clearTimeout(start);
-  }, [run]);
-
-  useEffect(() => {
-    if (spinning) return;
-    const repeat = window.setTimeout(run, 8000);
-    return () => window.clearTimeout(repeat);
-  }, [spinning, run]);
-
-  return { logoIndex, spinning };
-}
-
 /** Interactive recreation of the NO COMPLY USA homepage. */
 export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void }) {
   const [loaded, setLoaded] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { logoIndex, spinning } = useSlotMachine();
 
   const MenuLink = ({ target, className }: { target: NavTarget; className: string }) => (
     <Link
@@ -136,33 +87,17 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
         }}
       />
 
-      {/* Header */}
-      <nav className="absolute left-0 right-0 top-0 z-40">
-        <div className="relative flex items-center justify-between px-5 py-5 md:px-14 md:py-8">
-          <button className={navLink} onClick={() => setMobileOpen(true)} aria-label="Open menu">
-            <Menu className="h-5 w-5" />
-          </button>
-
-          <div className="absolute left-1/2 top-1/2 h-[92px] w-[160px] -translate-x-1/2 translate-y-[-40%] overflow-hidden sm:h-[120px] sm:w-[200px] lg:h-[170px] lg:w-[290px]">
-            {LOGOS.map((src, i) => (
-              <img
-                key={src}
-                src={src}
-                alt="NO COMPLY USA"
-                className={`absolute inset-0 m-auto h-full w-auto transition-opacity ${
-                  spinning ? "duration-75" : "duration-300"
-                } ${i === logoIndex ? "opacity-100" : "opacity-0"}`}
-              />
-            ))}
-          </div>
-
-          <div className="w-5" aria-hidden="true" />
-        </div>
+      <nav aria-label="NO COMPLY USA landing header" className="absolute right-4 top-4 z-40 md:right-6 md:top-6">
+        <button type="button" onClick={() => setMobileOpen(true)} aria-label="Open menu"
+          aria-expanded={mobileOpen} aria-controls="no-comply-landing-menu"
+          className="flex h-11 w-11 items-center justify-center text-white/80 transition-colors hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-white">
+          <Menu className="h-6 w-6" />
+        </button>
       </nav>
 
-      {/* Menu */}
+      {/* Mobile menu */}
       {mobileOpen && (
-        <div className="absolute inset-0 z-50">
+        <div id="no-comply-landing-menu" className="absolute inset-0 z-50">
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
           <div className="absolute inset-y-0 left-0 flex w-[85%] max-w-sm flex-col overflow-y-auto border-r border-white/10 bg-[#141414]">
             <div className="flex items-center justify-between border-b border-white/10 px-6 py-5">
@@ -205,17 +140,10 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
       )}
 
       {/* Hero */}
-      <div className="absolute inset-0 z-30 flex flex-col items-center justify-center px-4 text-center">
-        <img
-          src={heroLogo}
-          alt="NO COMPLY USA"
-          style={{
-            opacity: loaded ? 1 : 0,
-            transform: loaded ? "translateY(0)" : "translateY(40px)",
-            transition: "opacity 0.6s ease 0.3s, transform 0.6s ease 0.3s",
-          }}
-          className="mb-5 h-auto w-[86vw] max-w-[560px] md:mb-8 md:max-w-[820px]"
-        />
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-4 text-center">
+        <div className="mb-5 w-[90vw] max-w-[960px] shrink-0 md:mb-7">
+          <AnimatedWordmark hero />
+        </div>
         <p
           style={{ ...display, ...reveal(1.2) }}
           className="text-2xl uppercase tracking-[0.1em] text-[hsl(0,85%,45%)] md:text-4xl lg:text-5xl"
@@ -270,7 +198,7 @@ export function NoComplyPreviewDialog({
 }) {
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="h-[100dvh] w-screen max-w-none gap-0 border-0 bg-black p-0 text-white sm:rounded-none">
+      <DialogContent showCloseButton={false} className="h-[100dvh] w-screen max-w-none gap-0 border-0 bg-black p-0 text-white sm:rounded-none">
         <DialogTitle className="sr-only">NO COMPLY USA</DialogTitle>
         <DialogDescription className="sr-only">
           An interactive recreation of the NO COMPLY USA homepage.

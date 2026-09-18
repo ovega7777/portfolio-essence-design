@@ -18,7 +18,7 @@ const letters = [[78, 145], [145, 215], [243, 310], [310, 379], [379, 460],
 
 const CYCLE_PAUSE_MS = 5000;
 
-export function AnimatedWordmark({ banner = false, animated = true, cycle = false }: { banner?: boolean; animated?: boolean; cycle?: boolean }) {
+export function AnimatedWordmark({ banner = false, animated = true, cycle = false, hero = false }: { banner?: boolean; animated?: boolean; cycle?: boolean; hero?: boolean }) {
   const id = useId().replace(/:/g, "");
   const rootRef = useRef<HTMLSpanElement>(null);
   const [phase, setPhase] = useState("idle");
@@ -93,7 +93,9 @@ export function AnimatedWordmark({ banner = false, animated = true, cycle = fals
       ref={rootRef}
       data-wordmark-state={animated ? phase : "done"}
       data-no-comply-header-logo={banner || undefined}
-      className={banner
+      className={hero
+        ? "block w-full mix-blend-screen"
+        : banner
         ? "inline-flex h-7 w-[206.888889px] max-w-[42vw] shrink-0 items-center invert sm:max-w-none"
         : "inline-block w-[7.388889em] max-w-full align-bottom invert"}
     >
