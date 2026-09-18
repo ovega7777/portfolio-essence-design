@@ -16,7 +16,9 @@ const duration = stepTimes[STEPS];
 const letters = [[78, 145], [145, 215], [243, 310], [310, 379], [379, 460],
   [460, 525], [525, 570], [570, 639], [660, 727], [727, 794], [794, 866]];
 
-export function AnimatedWordmark({ banner = false, animated = true }: { banner?: boolean; animated?: boolean }) {
+const CYCLE_PAUSE_MS = 5000;
+
+export function AnimatedWordmark({ banner = false, animated = true, cycle = false }: { banner?: boolean; animated?: boolean; cycle?: boolean }) {
   const id = useId().replace(/:/g, "");
   const rootRef = useRef<HTMLSpanElement>(null);
   const [phase, setPhase] = useState("idle");
@@ -27,18 +29,22 @@ export function AnimatedWordmark({ banner = false, animated = true }: { banner?:
     if (!root) return;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
     let disposed = false;
-    let played = false;
+    let started = false;
     let animations: Animation[] = [];
+    let cycleTimer: number | undefined;
     const finish = () => {
       animations.forEach((animation) => animation.cancel());
       animations = [];
-      if (!disposed) setPhase("done");
+      if (disposed) return;
+      setPhase("done");
+      if (cycle && !media.matches) {
+        cycleTimer = window.setTimeout(() => {
+          if (!disposed && !media.matches) void play();
+        }, CYCLE_PAUSE_MS);
+      }
     };
-    const observer = new IntersectionObserver(async (entries) => {
-      if (played || !entries.some((entry) => entry.isIntersecting)) return;
-      played = true;
-      observer.disconnect();
-      if (media.matches) return finish();
+    const play = async () => {
+      if (disposed || media.matches) return finish();
       try {
         await root.querySelector("img")?.decode();
       } catch {
@@ -56,11 +62,18 @@ export function AnimatedWordmark({ banner = false, animated = true }: { banner?:
         { duration, delay: index * 35, iterations: 1, fill: "both", easing: "linear" },
       ));
       Promise.all(animations.map((animation) => animation.finished)).then(finish).catch(() => {});
+    };
+    const observer = new IntersectionObserver((entries) => {
+      if (started || !entries.some((entry) => entry.isIntersecting)) return;
+      started = true;
+      observer.disconnect();
+      void play();
     }, { threshold: 0.1 });
     const onMotionChange = () => {
       if (!media.matches) return;
-      played = true;
+      started = true;
       observer.disconnect();
+      window.clearTimeout(cycleTimer);
       finish();
     };
     if (media.matches) onMotionChange();
@@ -70,9 +83,10 @@ export function AnimatedWordmark({ banner = false, animated = true }: { banner?:
       disposed = true;
       observer.disconnect();
       media.removeEventListener("change", onMotionChange);
+      window.clearTimeout(cycleTimer);
       animations.forEach((animation) => animation.cancel());
     };
-  }, [animated]);
+  }, [animated, cycle]);
 
   return (
     <span
