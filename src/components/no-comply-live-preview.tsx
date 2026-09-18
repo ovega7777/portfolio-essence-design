@@ -356,9 +356,6 @@ export function NoComplyPreviewActions() {
       <Link to={SHOP_PATH} className={`${button} bg-black text-white hover:bg-white hover:text-black`}>
         Enter Shop
       </Link>
-      <a href={SITE_URL} target="_blank" rel="noreferrer noopener" className={`${button} hover:bg-black hover:text-white`}>
-        View Full Website
-      </a>
     </div>
   );
 }
