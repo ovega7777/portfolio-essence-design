@@ -142,21 +142,9 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
       {/* Header */}
       <nav className="absolute left-0 right-0 top-0 z-40">
         <div className="relative flex items-center justify-between px-5 py-5 md:px-14 md:py-8">
-          <button className={`${navLink} lg:hidden`} onClick={() => setMobileOpen(true)} aria-label="Open menu">
+          <button className={navLink} onClick={() => setMobileOpen(true)} aria-label="Open menu">
             <Menu className="h-5 w-5" />
           </button>
-
-          <div className="hidden items-center gap-8 lg:flex">
-            <button
-              className={navLink}
-              onMouseEnter={() => setMegaOpen(true)}
-              onClick={() => setMegaOpen((v) => !v)}
-            >
-              Shop
-            </button>
-            <MenuLink target={SITE_LINKS[0]} className={navLink} />
-            <MenuLink target={SITE_LINKS[1]} className={navLink} />
-          </div>
 
           <div className="absolute left-1/2 top-1/2 h-[92px] w-[160px] -translate-x-1/2 translate-y-[-40%] overflow-hidden sm:h-[120px] sm:w-[200px] lg:h-[170px] lg:w-[290px]">
             {LOGOS.map((src, i) => (
@@ -171,9 +159,7 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
             ))}
           </div>
 
-          <div className="flex items-center gap-6 lg:gap-8">
-            <MenuLink target={SITE_LINKS[2]} className={`${navLink} hidden lg:inline`} />
-          </div>
+          <div className="w-5" aria-hidden="true" />
         </div>
       </nav>
 
