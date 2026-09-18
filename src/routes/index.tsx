@@ -141,6 +141,7 @@ function ProjectCard({
   src,
   alt,
   additionalImages,
+  onPreview,
 }: {
   to: "/projects/no-comply" | "/projects/lucky-day-co" | "/projects/mid-mod";
   number: string;
@@ -150,13 +151,13 @@ function ProjectCard({
   src: string;
   alt: string;
   additionalImages?: Array<{ src: string; alt: string }>;
+  onPreview?: () => void;
 }) {
-  return (
-    <Link
-      to={to}
-      aria-label={`View ${title} project`}
-      className="group block border-t border-black pt-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
-    >
+  const cardClass =
+    "group block w-full border-t border-black pt-4 text-left focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black";
+  const label = `View ${title} project`;
+  const body = (
+    <>
       <div className="mb-4 flex items-center justify-between gap-4">
         <span className="eyebrow text-black">{number}</span>
         <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-black/55">
@@ -198,6 +199,20 @@ function ProjectCard({
           </p>
         </div>
       </div>
+    </>
+  );
+
+  if (onPreview) {
+    return (
+      <button type="button" onClick={onPreview} aria-label={label} className={cardClass}>
+        {body}
+      </button>
+    );
+  }
+
+  return (
+    <Link to={to} aria-label={label} className={cardClass}>
+      {body}
     </Link>
   );
 }
