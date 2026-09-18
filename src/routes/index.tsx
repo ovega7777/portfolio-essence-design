@@ -66,6 +66,7 @@ function Home() {
         <div className="space-y-12 md:space-y-14">
           <ProjectCard
             to="/projects/no-comply"
+            onPreview={() => setPreviewOpen(true)}
             number="01"
             title="NO COMPLY USA"
             titleClassName="font-sans font-extrabold"
@@ -125,6 +126,8 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <NoComplyPreviewDialog open={previewOpen} onOpenChange={setPreviewOpen} />
     </SiteFrame>
   );
 }
