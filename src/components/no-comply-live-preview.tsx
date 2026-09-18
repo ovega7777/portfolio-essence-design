@@ -84,7 +84,6 @@ function useSlotMachine() {
 export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void }) {
   const [loaded, setLoaded] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [subscribed, setSubscribed] = useState(false);
   const { logoIndex, spinning } = useSlotMachine();
 
   const MenuLink = ({ target, className }: { target: NavTarget; className: string }) => (
@@ -223,46 +222,21 @@ export function NoComplyLivePreview({ onNavigate }: { onNavigate?: () => void })
         >
           No Comply or Die
         </p>
-        <p style={reveal(1.8)} className={`${label} mt-5 text-white/40`}>
-          Drop 001 — Available Now
-        </p>
-        <div style={reveal(2.2)} className="mt-7 flex flex-col items-center gap-3 sm:flex-row">
-          <Link
-            to={SHOP_PATH}
-            onClick={() => onNavigate?.()}
-            className={`${label} inline-block border border-white/30 px-8 py-3 text-white transition-all duration-300 hover:bg-white hover:text-black`}
-          >
-            Enter Shop
-          </Link>
-        </div>
+        <Link
+          to={SHOP_PATH}
+          onClick={() => onNavigate?.()}
+          style={reveal(1.8)}
+          className={`${label} mt-4 inline-block border border-white/30 px-8 py-3 text-white transition-all duration-300 hover:bg-white hover:text-black`}
+        >
+          Enter Shop
+        </Link>
       </div>
 
       {/* Footer */}
       <div
         style={{ opacity: loaded ? 1 : 0, transition: "opacity 1s ease 2.6s" }}
-        className="absolute bottom-0 left-0 right-0 z-30 flex flex-col items-center gap-4 pb-5"
+        className="absolute bottom-0 left-0 right-0 z-30 flex justify-center px-4 pb-[max(20px,env(safe-area-inset-bottom))]"
       >
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setSubscribed(true);
-          }}
-          className="hidden w-full max-w-xs items-center px-4 sm:flex"
-        >
-          <input
-            name="email"
-            type="email"
-            required
-            placeholder={subscribed ? "You're in. Stay tuned." : "Enter email for news & updates"}
-            className={`${label} flex-1 border border-white/30 bg-transparent px-4 py-2.5 text-white placeholder:text-white/40 focus:border-white/60 focus:outline-none`}
-          />
-          <button
-            type="submit"
-            className={`${label} border border-l-0 border-white/30 px-5 py-2.5 text-white transition-all duration-300 hover:bg-white hover:text-black`}
-          >
-            Submit
-          </button>
-        </form>
         <div className={`${label} flex gap-4 text-white/30`}>
           <span>Miami, FL</span>
           <span>·</span>
