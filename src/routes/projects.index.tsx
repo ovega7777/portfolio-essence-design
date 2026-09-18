@@ -80,7 +80,7 @@ function ProjectsIndex() {
       <section className="projects-page-container mx-auto max-w-6xl px-6 pt-8 pb-16">
         <p className="eyebrow mb-8">Projects</p>
         <h1 className="font-serif text-5xl leading-[1] md:text-7xl">
-          Selected <span className="italic">Works.</span>
+          Selected <span className="italic">Works</span>
         </h1>
       </section>
 
