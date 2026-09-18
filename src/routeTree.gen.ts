@@ -9,23 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as IndexRouteImport } from './routes/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
-import { Route as ProjectsLuckyDayCoRouteImport } from './routes/projects.lucky-day-co'
-import { Route as ProjectsMidModRouteImport } from './routes/projects.mid-mod'
 import { Route as ProjectsNoComplyRouteImport } from './routes/projects.no-comply'
-import { Route as ProjectsNoComplyAboutRouteImport } from './routes/projects.no-comply.about'
-import { Route as ProjectsNoComplyCaughtOnFilmRouteImport } from './routes/projects.no-comply.caught-on-film'
-import { Route as ProjectsNoComplyCommandRouteImport } from './routes/projects.no-comply.command'
-import { Route as ProjectsNoComplyDesignsRouteImport } from './routes/projects.no-comply.designs'
+import { Route as ProjectsMidModRouteImport } from './routes/projects.mid-mod'
+import { Route as ProjectsLuckyDayCoRouteImport } from './routes/projects.lucky-day-co'
+import { Route as ProductsSlugRouteImport } from './routes/products.$slug'
 import { Route as ProjectsNoComplyMediaRouteImport } from './routes/projects.no-comply.media'
+import { Route as ProjectsNoComplyDesignsRouteImport } from './routes/projects.no-comply.designs'
+import { Route as ProjectsNoComplyCommandRouteImport } from './routes/projects.no-comply.command'
+import { Route as ProjectsNoComplyCaughtOnFilmRouteImport } from './routes/projects.no-comply.caught-on-film'
+import { Route as ProjectsNoComplyAboutRouteImport } from './routes/projects.no-comply.about'
 
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -33,14 +33,9 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ProductsSlugRoute = ProductsSlugRouteImport.update({
-  id: '/products/$slug',
-  path: '/products/$slug',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
@@ -48,9 +43,9 @@ const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   path: '/projects/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsLuckyDayCoRoute = ProjectsLuckyDayCoRouteImport.update({
-  id: '/projects/lucky-day-co',
-  path: '/projects/lucky-day-co',
+const ProjectsNoComplyRoute = ProjectsNoComplyRouteImport.update({
+  id: '/projects/no-comply',
+  path: '/projects/no-comply',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProjectsMidModRoute = ProjectsMidModRouteImport.update({
@@ -58,14 +53,29 @@ const ProjectsMidModRoute = ProjectsMidModRouteImport.update({
   path: '/projects/mid-mod',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsNoComplyRoute = ProjectsNoComplyRouteImport.update({
-  id: '/projects/no-comply',
-  path: '/projects/no-comply',
+const ProjectsLuckyDayCoRoute = ProjectsLuckyDayCoRouteImport.update({
+  id: '/projects/lucky-day-co',
+  path: '/projects/lucky-day-co',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ProjectsNoComplyAboutRoute = ProjectsNoComplyAboutRouteImport.update({
-  id: '/about',
-  path: '/about',
+const ProductsSlugRoute = ProductsSlugRouteImport.update({
+  id: '/products/$slug',
+  path: '/products/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsNoComplyMediaRoute = ProjectsNoComplyMediaRouteImport.update({
+  id: '/media',
+  path: '/media',
+  getParentRoute: () => ProjectsNoComplyRoute,
+} as any)
+const ProjectsNoComplyDesignsRoute = ProjectsNoComplyDesignsRouteImport.update({
+  id: '/designs',
+  path: '/designs',
+  getParentRoute: () => ProjectsNoComplyRoute,
+} as any)
+const ProjectsNoComplyCommandRoute = ProjectsNoComplyCommandRouteImport.update({
+  id: '/command',
+  path: '/command',
   getParentRoute: () => ProjectsNoComplyRoute,
 } as any)
 const ProjectsNoComplyCaughtOnFilmRoute =
@@ -74,19 +84,9 @@ const ProjectsNoComplyCaughtOnFilmRoute =
     path: '/caught-on-film',
     getParentRoute: () => ProjectsNoComplyRoute,
   } as any)
-const ProjectsNoComplyCommandRoute = ProjectsNoComplyCommandRouteImport.update({
-  id: '/command',
-  path: '/command',
-  getParentRoute: () => ProjectsNoComplyRoute,
-} as any)
-const ProjectsNoComplyDesignsRoute = ProjectsNoComplyDesignsRouteImport.update({
-  id: '/designs',
-  path: '/designs',
-  getParentRoute: () => ProjectsNoComplyRoute,
-} as any)
-const ProjectsNoComplyMediaRoute = ProjectsNoComplyMediaRouteImport.update({
-  id: '/media',
-  path: '/media',
+const ProjectsNoComplyAboutRoute = ProjectsNoComplyAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
   getParentRoute: () => ProjectsNoComplyRoute,
 } as any)
 
@@ -197,11 +197,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -211,18 +211,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/products/$slug': {
-      id: '/products/$slug'
-      path: '/products/$slug'
-      fullPath: '/products/$slug'
-      preLoaderRoute: typeof ProductsSlugRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/': {
@@ -232,11 +225,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/lucky-day-co': {
-      id: '/projects/lucky-day-co'
-      path: '/projects/lucky-day-co'
-      fullPath: '/projects/lucky-day-co'
-      preLoaderRoute: typeof ProjectsLuckyDayCoRouteImport
+    '/projects/no-comply': {
+      id: '/projects/no-comply'
+      path: '/projects/no-comply'
+      fullPath: '/projects/no-comply'
+      preLoaderRoute: typeof ProjectsNoComplyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/projects/mid-mod': {
@@ -246,32 +239,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsMidModRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/no-comply': {
-      id: '/projects/no-comply'
-      path: '/projects/no-comply'
-      fullPath: '/projects/no-comply'
-      preLoaderRoute: typeof ProjectsNoComplyRouteImport
+    '/projects/lucky-day-co': {
+      id: '/projects/lucky-day-co'
+      path: '/projects/lucky-day-co'
+      fullPath: '/projects/lucky-day-co'
+      preLoaderRoute: typeof ProjectsLuckyDayCoRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/projects/no-comply/about': {
-      id: '/projects/no-comply/about'
-      path: '/about'
-      fullPath: '/projects/no-comply/about'
-      preLoaderRoute: typeof ProjectsNoComplyAboutRouteImport
-      parentRoute: typeof ProjectsNoComplyRoute
+    '/products/$slug': {
+      id: '/products/$slug'
+      path: '/products/$slug'
+      fullPath: '/products/$slug'
+      preLoaderRoute: typeof ProductsSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/projects/no-comply/caught-on-film': {
-      id: '/projects/no-comply/caught-on-film'
-      path: '/caught-on-film'
-      fullPath: '/projects/no-comply/caught-on-film'
-      preLoaderRoute: typeof ProjectsNoComplyCaughtOnFilmRouteImport
-      parentRoute: typeof ProjectsNoComplyRoute
-    }
-    '/projects/no-comply/command': {
-      id: '/projects/no-comply/command'
-      path: '/command'
-      fullPath: '/projects/no-comply/command'
-      preLoaderRoute: typeof ProjectsNoComplyCommandRouteImport
+    '/projects/no-comply/media': {
+      id: '/projects/no-comply/media'
+      path: '/media'
+      fullPath: '/projects/no-comply/media'
+      preLoaderRoute: typeof ProjectsNoComplyMediaRouteImport
       parentRoute: typeof ProjectsNoComplyRoute
     }
     '/projects/no-comply/designs': {
@@ -281,11 +267,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsNoComplyDesignsRouteImport
       parentRoute: typeof ProjectsNoComplyRoute
     }
-    '/projects/no-comply/media': {
-      id: '/projects/no-comply/media'
-      path: '/media'
-      fullPath: '/projects/no-comply/media'
-      preLoaderRoute: typeof ProjectsNoComplyMediaRouteImport
+    '/projects/no-comply/command': {
+      id: '/projects/no-comply/command'
+      path: '/command'
+      fullPath: '/projects/no-comply/command'
+      preLoaderRoute: typeof ProjectsNoComplyCommandRouteImport
+      parentRoute: typeof ProjectsNoComplyRoute
+    }
+    '/projects/no-comply/caught-on-film': {
+      id: '/projects/no-comply/caught-on-film'
+      path: '/caught-on-film'
+      fullPath: '/projects/no-comply/caught-on-film'
+      preLoaderRoute: typeof ProjectsNoComplyCaughtOnFilmRouteImport
+      parentRoute: typeof ProjectsNoComplyRoute
+    }
+    '/projects/no-comply/about': {
+      id: '/projects/no-comply/about'
+      path: '/about'
+      fullPath: '/projects/no-comply/about'
+      preLoaderRoute: typeof ProjectsNoComplyAboutRouteImport
       parentRoute: typeof ProjectsNoComplyRoute
     }
   }
