@@ -5,6 +5,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteFrame } from "../components/site-chrome";
 import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
+import portrait from "../assets/portfolio-portrait.jpg";
 import { AnimatedWordmark } from "@/components/no-comply/animated-wordmark";
 import { NoComplyPreviewDialog } from "@/components/no-comply-live-preview";
 import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
@@ -23,9 +24,9 @@ function Home() {
         <div className="portfolio-hero-layout grid items-center gap-8 md:grid-cols-12 md:gap-10">
           <div className="portfolio-hero-visual md:col-span-5">
             <img
-              src={noComplyPrimary}
-              alt="Nicholas Curzon creative direction portrait featuring a black patched jacket"
-              width={960}
+              src={portrait}
+              alt="Portrait in a navy pinstripe suit"
+              width={857}
               height={1280}
               className="portfolio-hero-image h-auto w-[88%] bg-neutral-100 object-contain"
             />

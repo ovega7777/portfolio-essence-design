@@ -1,7 +1,7 @@
 import { ContactDetails } from "@/components/contact-details";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
-import portrait from "../assets/about-portrait.jpg";
+import portrait from "../assets/portfolio-portrait.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -40,11 +40,11 @@ function About() {
           <div className="lg:col-span-5">
             <img
               src={portrait}
-              alt="Detail of a tailored garment"
+              alt="Portrait in a navy pinstripe suit"
               loading="lazy"
-              width={1200}
-              height={1500}
-              className="portfolio-about-portrait w-full object-cover"
+              width={857}
+              height={1280}
+              className="portfolio-about-portrait h-auto w-full object-contain"
             />
           </div>
           <div className="portfolio-about-biography lg:col-span-7 space-y-8 text-lg leading-relaxed text-foreground/90">
