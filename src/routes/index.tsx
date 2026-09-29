@@ -4,7 +4,7 @@ import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteFrame } from "../components/site-chrome";
-import noComplyPrimary from "../assets/home/no-comply-primary.jpg";
+import noComplyPrimary from "../assets/home/no-comply-primary.webp";
 import portrait from "../assets/portfolio-portrait.jpg";
 import { AnimatedWordmark } from "@/components/no-comply/animated-wordmark";
 import { NoComplyPreviewDialog } from "@/components/no-comply-live-preview";
