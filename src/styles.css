@@ -745,7 +745,7 @@
 
 /* Keep the About portrait compact on tablet and desktop. */
 @media (min-width: 768px) {
-  .portfolio-about-portrait { display: block; width: 100%; max-width: 200px; height: auto; margin-inline: auto; }
+  .portfolio-about-portrait { display: block; width: 100%; max-width: 240px; height: auto; margin-inline: auto; }
 }
 @media (min-width: 1024px) {
   .portfolio-about-portrait { max-width: 320px; }
