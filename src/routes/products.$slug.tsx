@@ -92,13 +92,7 @@ function ProductDetail() {
         activeCollection={collection?.slug === "command" ? "command" : "caught-on-film"}
       />
 
-      <div className="mx-auto max-w-7xl px-4 pt-6 md:px-12">
-        <a href={returnTo ?? `/projects/no-comply/${collection?.slug ?? "designs"}`}
-          className="nc-display inline-flex min-h-11 items-center text-sm tracking-widest underline underline-offset-4">
-          ← Back to {returnTo?.includes("/designs") ? "Designs" : returnTo?.split("?")[0] === "/projects/no-comply" ? "NO COMPLY USA" : "collection"}
-        </a>
-      </div>
-      <main className="nc-product-layout nc-first-section !pt-6 mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:px-12">
+      <main className="nc-product-layout nc-first-section !pt-0 mx-auto grid max-w-7xl gap-10 px-6 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:px-12">
         <ProductGallery key={`${product.slug}:${variant.id}`} images={ordered} />
 
         <aside className="min-w-0 md:sticky md:top-24 md:h-fit">

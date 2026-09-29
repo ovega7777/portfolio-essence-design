@@ -166,14 +166,9 @@ function NoComplyMedia() {
     <EditorialPageShell pageName="MEDIA">
       <main className="nc-media-page nc-first-section mx-auto max-w-7xl px-6">
         <header className={`mb-8 flex items-end justify-between gap-8 ${active === "caught-on-film" ? "flex-wrap" : ""}`}>
-          <div>
-            <p className="nc-display text-xs uppercase tracking-[0.32em] text-black/55">
-              No Comply USA
-            </p>
-            <h1 className="nc-display mt-4 text-6xl leading-none tracking-[0.02em] md:text-8xl">
-              Media
-            </h1>
-          </div>
+          <h1 className="nc-display text-6xl leading-none tracking-[0.02em] md:text-8xl">
+            Media
+          </h1>
           <p className={`nc-display text-sm uppercase tracking-[0.24em] ${active === "command" ? "hidden sm:block" : ""}`}>
             {String(visible.length).padStart(2, "0")} Campaign Images
           </p>

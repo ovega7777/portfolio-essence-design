@@ -4,8 +4,8 @@ import ringCampaign3 from "@/assets/lucky-day/ring-campaign/campaign-03.jpg";
 import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
-import hero from "../assets/lucky-day-main.jpg";
-import thumb from "../assets/lucky-day-thumb.jpg";
+import ringDesignGroup from "@/assets/lucky-day/ring-campaign/ring-design-group.jpg";
+import ringDesignLineup from "@/assets/lucky-day/ring-campaign/ring-design-lineup.jpg";
 
 export const Route = createFileRoute("/projects/lucky-day-co")({
   head: () => ({
@@ -44,27 +44,21 @@ function LuckyDay() {
 
       <section className="mx-auto max-w-6xl space-y-6 px-6 pb-12 md:space-y-8 md:pb-16">
         <img
-          src={hero}
+          src={ringCampaign2}
           alt="Lucky Day Co. silver signet rings on a tattooed hand resting on an open book"
           width={1125}
           height={1280}
           className="portfolio-main-image block h-auto w-full object-contain"
         />
-        <img
-          src={thumb}
-          alt="Lucky Day Co — product still life"
-          loading="lazy"
-          width={1600}
-          height={1067}
-          className="w-full object-cover"
-        />
+
       </section>
 
       <section aria-label="Lucky Day Co. ring campaign" className="lucky-ring-campaign mx-auto max-w-6xl px-6 pb-12 md:pb-16">
         <div className="lucky-ring-campaign-grid">
           <img src={ringCampaign1} alt="Lucky Day Co. silver rings on crossed hands with tattooed arms" width={853} height={1280} loading="lazy" />
-          <img src={ringCampaign2} alt="Lucky Day Co. signet rings on a tattooed hand over an open book with the brand name" width={1125} height={1280} loading="lazy" />
           <img src={ringCampaign3} alt="Close-up of Lucky Day Co. silver rings on overlapping tattooed hands" width={853} height={1280} loading="lazy" />
+          <img className="lucky-ring-product-study" src={ringDesignGroup} alt="Five silver signet ring designs arranged in two rows on white" width={1280} height={1280} loading="lazy" />
+          <img className="lucky-ring-product-study" src={ringDesignLineup} alt="Five silver signet rings with geometric and cross motifs arranged in a row on white" width={1280} height={834} loading="lazy" />
         </div>
       </section>
 

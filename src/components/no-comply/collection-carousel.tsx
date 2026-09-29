@@ -257,10 +257,6 @@ export function CollectionCarousel({ items, label }: Props) {
                     <img className="nc-featured-model" src={item.modelImage.url} alt="" loading="lazy" draggable={false} />
                   )}
                 </div>
-                <div className="nc-featured-details">
-                  <span title={item.productName}>{item.productName}</span>
-                  <span>${item.price.toFixed(2)}</span>
-                </div>
               </Link>
             ))}
           </div>

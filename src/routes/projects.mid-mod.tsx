@@ -22,7 +22,7 @@ function MidMod() {
           <p className="eyebrow">Furniture &amp; Home Design</p>
           <p className="eyebrow">Founded 2000</p>
         </div>
-        <p className="portfolio-project-intro mt-6 max-w-3xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+        <p className="portfolio-project-intro mt-6 max-w-3xl text-lg leading-relaxed text-black md:text-xl">
           MID MOD is a mid-century modern furniture and home-design company founded in 2000. Its collection brings together new, vintage, and carefully refurbished furniture, lighting, décor, rugs, and art for distinctive, timeless interiors.
         </p>
         <p className="mt-6 max-w-3xl text-lg leading-relaxed md:text-xl">

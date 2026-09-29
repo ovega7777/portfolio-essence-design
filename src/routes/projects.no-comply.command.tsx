@@ -130,14 +130,10 @@ function CommandCollection() {
 
       <section className="nc-collection-products-shell bg-white px-6 md:px-12">
         <div className="mx-auto max-w-7xl">
-          <div className="nc-collection-header-to-title">
-            <h3 className="font-punk-body text-base font-bold uppercase tracking-[0.06em] text-black">
-              No Comply Command
-            </h3>
+          <div className="nc-collection-header-to-filters">
             <CollectionCategoryNav
               activeCategory={activeCategory}
               onCategoryChange={setCategory}
-              className="border-y border-black/20"
             />
           </div>
 
@@ -171,6 +167,9 @@ function CommandCollection() {
             </CollectionProductGrid>
           )}
 
+          <p className="nc-collection-bottom-count nc-display">
+            COLLECTION #1 / 50 PIECES
+          </p>
           <div
             aria-label="No Comply Command assortment editorial gallery"
             style={mobileImagePairStyle([{ width: 1086, height: 1448 }, { width: 1254, height: 1254 }])}
