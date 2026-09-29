@@ -21,7 +21,7 @@ export function NoComplySiteHeader({
       <NoComplyUtilityBar
         pageName={pageName}
         backControl={
-          <NoComplyBackButton className="nc-display block whitespace-nowrap text-base tracking-widest text-white transition-opacity hover:opacity-55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:text-lg" />
+          <NoComplyBackButton className="nc-display block whitespace-nowrap text-base tracking-widest text-black transition-opacity hover:opacity-55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black sm:text-lg" />
         }
       />
 
