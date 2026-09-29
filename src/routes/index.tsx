@@ -28,7 +28,7 @@ function Home() {
               alt="Portrait in a navy pinstripe suit"
               width={857}
               height={1280}
-              className="portfolio-hero-image h-auto w-[88%] bg-neutral-100 object-contain"
+              className="portfolio-hero-image h-auto w-[88%] object-contain"
             />
           </div>
           <div className="portfolio-hero-copy md:col-span-7">
