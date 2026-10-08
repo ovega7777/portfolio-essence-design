@@ -520,6 +520,7 @@
 
 /* Shared mobile portfolio rhythm; desktop typography and composition stay intact. */
 .portfolio-menu-toggle, .nc-product-gallery-controls { display: none; }
+.nc-product-gallery-track > .nc-product-gallery-loop-copy { display: none; }
 .portfolio-nav-name, .portfolio-menu-toggle { font-family: var(--font-sans); font-size: 11px; font-weight: 400; letter-spacing: .12em; text-transform: uppercase; }
 @media (max-width: 768px), (max-width: 1024px) and (max-height: 500px) {
   :root { --mobile-gutter: 16px; }
@@ -619,6 +620,7 @@
   .nc-product-layout dd { overflow-wrap: anywhere; }
   .nc-product-gallery { min-width: 0; }
   .nc-product-gallery-track { display: flex; flex-direction: row; gap: 0; overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain; }
+  .nc-product-gallery-track > .nc-product-gallery-loop-copy { display: block; }
   .nc-product-gallery-track > figure { flex: 0 0 100%; min-width: 0; scroll-snap-align: start; }
   .nc-product-gallery-track img { height: min(65svh,540px); width: 100%; object-fit: contain; }
   .nc-product-gallery-controls { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 8px; }

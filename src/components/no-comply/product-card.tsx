@@ -37,9 +37,6 @@ export function ProductCard({ product, initialVariantId, collectionGrid = false,
           {product.name}
         </p>
       </div>
-      <p className="nc-display shrink-0 text-lg tracking-[0.15em] text-black md:text-xl">
-        ${product.price}
-      </p>
     </div>
   );
 

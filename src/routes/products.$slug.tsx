@@ -104,9 +104,6 @@ function ProductDetail() {
           <h1 className="nc-display text-4xl leading-none text-black md:text-6xl">
             {product.name}
           </h1>
-          <p className="nc-display mt-3 text-xl tracking-[0.2em] text-black md:text-2xl">
-            ${product.price}
-          </p>
 
           <p className="mt-8 font-punk-body text-base uppercase leading-relaxed tracking-[0.1em] text-black/80">
             {product.description}
