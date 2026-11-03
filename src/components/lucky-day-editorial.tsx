@@ -7,11 +7,11 @@ import {
   LUCKY_DAY_EDITORIAL_WIDTH,
 } from "@/data/lucky-day-editorial";
 
-/** 2×4 cover collage of all eight full portrait artworks (no cropping). */
+/** All eight uncropped artworks: two columns on mobile, four on desktop. */
 export function LuckyDayCover({ className = "" }: { className?: string }) {
   return (
     <div
-      className={`grid grid-cols-4 gap-1 bg-white sm:gap-2 ${className}`}
+      className={`lucky-day-cover grid grid-cols-4 gap-1 bg-white sm:gap-2 ${className}`}
       role="img"
       aria-label="Lucky Day Co. editorial series: eight black-and-white portrait posters"
     >
