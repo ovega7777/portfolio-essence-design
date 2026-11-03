@@ -43,7 +43,7 @@ function LuckyDay() {
       </section>
 
       <section aria-label="Lucky Day Co. editorial cover" className="lucky-day-detail-cover mx-auto max-w-6xl px-6 pb-12 md:pb-16">
-        <LuckyDayCover />
+        <LuckyDayCover interactive />
       </section>
 
       <section aria-label="Lucky Day Co. editorial gallery" className="mx-auto max-w-6xl px-6 pb-12 md:pb-16">
