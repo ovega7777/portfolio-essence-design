@@ -957,3 +957,26 @@
 }
 
 .lucky-ring-campaign-grid .lucky-ring-product-study { grid-column: 1 / -1; }
+
+/* Lucky Day editorial photos: subtle shake on hover/focus. */
+@keyframes ldc-photo-shake {
+  0% { transform: rotate(0deg) translate(0, 0); }
+  20% { transform: rotate(-0.8deg) translate(-1px, 0); }
+  40% { transform: rotate(0.7deg) translate(1px, -1px); }
+  60% { transform: rotate(-0.5deg) translate(1px, 0); }
+  80% { transform: rotate(0.4deg) translate(-1px, 1px); }
+  100% { transform: rotate(0deg) translate(0, 0); }
+}
+.ldc-shake-target { will-change: transform; }
+.ldc-shake:hover .ldc-shake-target,
+.ldc-shake:focus-visible .ldc-shake-target,
+.ldc-shake-target:hover {
+  animation: ldc-photo-shake 0.5s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ldc-shake:hover .ldc-shake-target,
+  .ldc-shake:focus-visible .ldc-shake-target,
+  .ldc-shake-target:hover {
+    animation: none;
+  }
+}
