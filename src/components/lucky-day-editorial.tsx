@@ -79,8 +79,16 @@ function LuckyDayLightbox({ index, onIndexChange }: LightboxProps) {
   );
 }
 
-/** All eight uncropped artworks: two columns on mobile, four on desktop. */
-export function LuckyDayCover({ className = "" }: { className?: string }) {
+/** All eight uncropped artworks: two columns on mobile, four on desktop.
+ *  `interactive` adds click-to-enlarge; enable only where the cover isn't
+ *  already nested inside a navigation link (e.g. the project detail page). */
+export function LuckyDayCover({
+  className = "",
+  interactive = false,
+}: {
+  className?: string;
+  interactive?: boolean;
+}) {
   const [index, setIndex] = useState<number | null>(null);
   const total = luckyDayEditorial.length;
 
@@ -90,26 +98,39 @@ export function LuckyDayCover({ className = "" }: { className?: string }) {
         className={`lucky-day-cover grid grid-cols-4 gap-1 bg-white sm:gap-2 ${className}`}
         aria-label="Lucky Day Co. editorial series: eight black-and-white portrait posters"
       >
-        {luckyDayEditorial.map((image, i) => (
-          <button
-            key={image.thumb}
-            type="button"
-            onClick={() => setIndex(i)}
-            aria-label={`Open image ${i + 1} of ${total}: ${image.alt}`}
-            className="ldc-zoom block min-w-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
-          >
-            <img
-              src={image.thumb}
-              alt=""
-              loading="lazy"
-              width={480}
-              height={640}
-              className="block aspect-[3/4] h-auto w-full object-contain"
-            />
-          </button>
-        ))}
+        {luckyDayEditorial.map((image, i) =>
+          interactive ? (
+            <button
+              key={image.thumb}
+              type="button"
+              onClick={() => setIndex(i)}
+              aria-label={`Open image ${i + 1} of ${total}: ${image.alt}`}
+              className="ldc-zoom block min-w-0 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+            >
+              <img
+                src={image.thumb}
+                alt=""
+                loading="lazy"
+                width={480}
+                height={640}
+                className="block aspect-[3/4] h-auto w-full object-contain"
+              />
+            </button>
+          ) : (
+            <span key={image.thumb} className="ldc-zoom block min-w-0">
+              <img
+                src={image.thumb}
+                alt=""
+                loading="lazy"
+                width={480}
+                height={640}
+                className="block aspect-[3/4] h-auto w-full object-contain"
+              />
+            </span>
+          ),
+        )}
       </div>
-      <LuckyDayLightbox index={index} onIndexChange={setIndex} />
+      {interactive && <LuckyDayLightbox index={index} onIndexChange={setIndex} />}
     </>
   );
 }
