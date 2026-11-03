@@ -16,15 +16,16 @@ export function LuckyDayCover({ className = "" }: { className?: string }) {
       aria-label="Lucky Day Co. editorial series: eight black-and-white portrait posters"
     >
       {luckyDayEditorial.map((image) => (
-        <img
-          key={image.thumb}
-          src={image.thumb}
-          alt=""
-          loading="lazy"
-          width={480}
-          height={640}
-          className="ldc-shake-target block aspect-[3/4] h-auto w-full min-w-0 object-contain transition-opacity duration-300 group-hover:opacity-90"
-        />
+        <span key={image.thumb} className="ldc-zoom block min-w-0">
+          <img
+            src={image.thumb}
+            alt=""
+            loading="lazy"
+            width={480}
+            height={640}
+            className="ldc-shake-target block aspect-[3/4] h-auto w-full object-contain"
+          />
+        </span>
       ))}
     </div>
   );
@@ -60,7 +61,7 @@ export function LuckyDayEditorialGallery() {
               type="button"
               onClick={() => setIndex(i)}
               aria-label={`Open image ${i + 1} of ${total}: ${image.alt}`}
-              className="ldc-shake group block w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+              className="ldc-shake ldc-zoom group block w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
               <img
                 src={image.src}
