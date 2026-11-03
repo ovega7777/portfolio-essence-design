@@ -54,7 +54,7 @@ export function LuckyDayEditorialGallery() {
 
   return (
     <>
-      <ul className="grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-2 md:gap-8" aria-label="Lucky Day Co. editorial gallery">
+      <ul className="editorial-gallery grid grid-cols-2 gap-3 sm:gap-6 sm:grid-cols-2 md:gap-8" aria-label="Lucky Day Co. editorial gallery">
         {luckyDayEditorial.map((image, i) => (
           <li key={image.src}>
             <button
