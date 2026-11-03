@@ -23,7 +23,7 @@ export function LuckyDayCover({ className = "" }: { className?: string }) {
           loading="lazy"
           width={480}
           height={640}
-          className="block aspect-[3/4] h-auto w-full min-w-0 object-contain transition-opacity duration-300 group-hover:opacity-90"
+          className="ldc-shake-target block aspect-[3/4] h-auto w-full min-w-0 object-contain transition-opacity duration-300 group-hover:opacity-90"
         />
       ))}
     </div>
@@ -60,7 +60,7 @@ export function LuckyDayEditorialGallery() {
               type="button"
               onClick={() => setIndex(i)}
               aria-label={`Open image ${i + 1} of ${total}: ${image.alt}`}
-              className="group block w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
+              className="ldc-shake group block w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black"
             >
               <img
                 src={image.src}
@@ -68,7 +68,7 @@ export function LuckyDayEditorialGallery() {
                 loading={i < 2 ? "eager" : "lazy"}
                 width={LUCKY_DAY_EDITORIAL_WIDTH}
                 height={LUCKY_DAY_EDITORIAL_HEIGHT}
-                className="block aspect-[3/4] h-auto w-full object-contain transition-opacity duration-300 group-hover:opacity-90"
+                className="ldc-shake-target block aspect-[3/4] h-auto w-full object-contain transition-opacity duration-300 group-hover:opacity-90"
               />
             </button>
           </li>
