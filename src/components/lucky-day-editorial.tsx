@@ -23,7 +23,7 @@ export function LuckyDayCover({ className = "" }: { className?: string }) {
             loading="lazy"
             width={480}
             height={640}
-            className="ldc-shake-target block aspect-[3/4] h-auto w-full object-contain"
+            className="block aspect-[3/4] h-auto w-full object-contain"
           />
         </span>
       ))}
