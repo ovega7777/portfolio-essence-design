@@ -42,12 +42,12 @@ function LuckyDay() {
         </dl>
       </section>
 
-      <section aria-label="Lucky Day Co. editorial cover" className="lucky-day-detail-cover mx-auto max-w-6xl px-6 pb-12 md:pb-16">
+      <section aria-label="Lucky Day Co. editorial cover" className="lucky-day-detail-cover mx-auto max-w-6xl px-6 pb-4 md:pb-6">
         <LuckyDayCover interactive />
       </section>
 
       <section aria-label="Lucky Day Co. editorial gallery" className="mx-auto max-w-6xl px-6 pb-12 md:pb-16">
-        <p className="eyebrow mb-6">Editorial Series</p>
+
         <LuckyDayEditorialGallery />
       </section>
 
