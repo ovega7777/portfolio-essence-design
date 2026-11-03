@@ -958,22 +958,24 @@
 
 .lucky-ring-campaign-grid .lucky-ring-product-study { grid-column: 1 / -1; }
 
-/* Lucky Day editorial photos: subtle shake on hover/focus. */
+/* Lucky Day editorial photos: subtle shake + gentle zoom on hover/focus. */
 @keyframes ldc-photo-shake {
-  0% { transform: rotate(0deg) translate(0, 0); }
-  20% { transform: rotate(-0.8deg) translate(-1px, 0); }
-  40% { transform: rotate(0.7deg) translate(1px, -1px); }
-  60% { transform: rotate(-0.5deg) translate(1px, 0); }
-  80% { transform: rotate(0.4deg) translate(-1px, 1px); }
-  100% { transform: rotate(0deg) translate(0, 0); }
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(-0.3deg) translate(-0.5px, 0); }
+  50% { transform: rotate(0.25deg) translate(0.5px, -0.5px); }
+  75% { transform: rotate(-0.2deg) translate(0, 0.5px); }
+  100% { transform: rotate(0deg); }
 }
+.ldc-zoom { transition: transform 0.35s ease; will-change: transform; }
+.ldc-zoom:hover, .ldc-zoom:focus-visible { transform: scale(1.04); }
 .ldc-shake-target { will-change: transform; }
 .ldc-shake:hover .ldc-shake-target,
 .ldc-shake:focus-visible .ldc-shake-target,
 .ldc-shake-target:hover {
-  animation: ldc-photo-shake 0.5s ease-in-out infinite;
+  animation: ldc-photo-shake 0.9s ease-in-out infinite;
 }
 @media (prefers-reduced-motion: reduce) {
+  .ldc-zoom:hover, .ldc-zoom:focus-visible { transform: none; }
   .ldc-shake:hover .ldc-shake-target,
   .ldc-shake:focus-visible .ldc-shake-target,
   .ldc-shake-target:hover {
