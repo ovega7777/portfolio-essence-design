@@ -38,7 +38,7 @@ function LuckyDay() {
         <dl className="mx-auto mt-6 flex max-w-2xl flex-wrap justify-center gap-x-8 gap-y-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-black/60">
           <div><dt className="sr-only">Role</dt><dd>Editorial Photo Editing</dd></div>
           <div><dt className="sr-only">Role</dt><dd>Graphic Design</dd></div>
-          <div><dt className="sr-only">Credit</dt><dd>Nicholas Curzon</dd></div>
+          <div><dt className="sr-only">Role</dt><dd>Creative Direction</dd></div>
         </dl>
       </section>
 
