@@ -117,7 +117,7 @@ function ProjectCard({
         <LuckyDayCover className="mb-5" />
       ) : (
       <div
-        className={`portfolio-project-images projects-card-images mb-5 grid overflow-hidden ${project.to === "/projects/mid-mod" ? "aspect-square bg-white" : project.to === "/projects/lucky-day-co" ? "aspect-[1125/1280] bg-white" : "aspect-[3/2] bg-neutral-100"} ${
+        className={`portfolio-project-images projects-card-images mb-5 grid overflow-hidden ${project.to === "/projects/mid-mod" ? "aspect-square bg-white" : "aspect-[3/2] bg-neutral-100"} ${
           project.images.length > 1 ? "grid-cols-3" : "grid-cols-1"
         }`}
       >
@@ -127,9 +127,9 @@ function ProjectCard({
             src={image.src}
             alt={image.alt}
             loading="lazy"
-            width={project.to === "/projects/mid-mod" ? 1254 : project.to === "/projects/lucky-day-co" ? 1125 : 960}
+            width={project.to === "/projects/mid-mod" ? 1254 : 960}
             height={project.to === "/projects/mid-mod" ? 1254 : 1280}
-            className={`h-full w-full ${project.to === "/projects/mid-mod" ? "object-contain" : project.to === "/projects/lucky-day-co" ? "object-cover object-center" : "object-cover object-top"} transition-opacity duration-300 group-hover:opacity-90`}
+            className={`h-full w-full ${project.to === "/projects/mid-mod" ? "object-contain" : "object-cover object-top"} transition-opacity duration-300 group-hover:opacity-90`}
           />
         ))}
       </div>
