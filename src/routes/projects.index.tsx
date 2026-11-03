@@ -9,7 +9,8 @@ import { NoComplyPreviewDialog } from "@/components/no-comply-live-preview";
 import { useState } from "react";
 import noComplyCover02 from "../assets/home/no-comply-cover-02.jpg";
 import noComplyCover03 from "../assets/home/no-comply-cover-03.jpg";
-import luckyDayThumb from "../assets/lucky-day/ring-campaign/campaign-02.jpg";
+import { LuckyDayCover } from "@/components/lucky-day-editorial";
+import { luckyDayDescription, luckyDayEditorial } from "@/data/lucky-day-editorial";
 
 export const Route = createFileRoute("/projects/")({
   head: () => ({
@@ -55,14 +56,8 @@ const projects = [
     to: "/projects/lucky-day-co" as const,
     number: "02",
     title: "Lucky Day Co.",
-    description:
-      "Lucky Day Co. is an elegant jewelry and lifestyle brand grounded in classic design, responsibly sourced materials, and transparent pricing. Each piece is designed with care as a personal charm, created to carry meaning and invite good luck into everyday life.",
-    images: [
-      {
-        src: luckyDayThumb,
-        alt: "Lucky Day Co. silver signet rings on a tattooed hand resting on an open book",
-      },
-    ],
+    description: luckyDayDescription,
+    images: [{ src: luckyDayEditorial[0].thumb, alt: luckyDayEditorial[0].alt }],
   },
   {
     to: "/projects/mid-mod" as const,
@@ -118,6 +113,9 @@ function ProjectCard({
           View Project <span aria-hidden="true">→</span>
         </span>
       </div>
+      {project.to === "/projects/lucky-day-co" ? (
+        <LuckyDayCover className="mb-5" />
+      ) : (
       <div
         className={`portfolio-project-images projects-card-images mb-5 grid overflow-hidden ${project.to === "/projects/mid-mod" ? "aspect-square bg-white" : project.to === "/projects/lucky-day-co" ? "aspect-[1125/1280] bg-white" : "aspect-[3/2] bg-neutral-100"} ${
           project.images.length > 1 ? "grid-cols-3" : "grid-cols-1"
@@ -135,6 +133,7 @@ function ProjectCard({
           />
         ))}
       </div>
+      )}
       <div className="projects-card-body">
         <div className="projects-card-copy min-w-0">
           <h2 className="projects-card-title font-sans text-2xl font-extrabold leading-none text-black lg:text-3xl">
