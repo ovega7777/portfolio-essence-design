@@ -1,7 +1,8 @@
 import { LuckyDayWordmark } from "@/components/lucky-day-wordmark";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteFrame } from "../components/site-chrome";
-import { LuckyDayCover, LuckyDayEditorialGallery } from "@/components/lucky-day-editorial";
+import { LuckyDayCover } from "@/components/lucky-day-editorial";
+import { LuckyDayProcessStack } from "@/components/lucky-day-process";
 import { luckyDayDescription } from "@/data/lucky-day-editorial";
 
 export const Route = createFileRoute("/projects/lucky-day-co")({
@@ -46,9 +47,8 @@ function LuckyDay() {
         <LuckyDayCover interactive />
       </section>
 
-      <section aria-label="Lucky Day Co. editorial gallery" className="mx-auto max-w-6xl px-6 pb-12 md:pb-16">
-
-        <LuckyDayEditorialGallery />
+      <section aria-label="Lucky Day Co. process: mood board, AI concepts and tech packs" className="mx-auto max-w-6xl pb-12 md:pb-16">
+        <LuckyDayProcessStack />
       </section>
 
       <section className="portfolio-next-project mx-auto max-w-6xl border-t border-border px-6 py-12 md:py-16">
