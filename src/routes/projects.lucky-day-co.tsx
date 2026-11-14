@@ -47,7 +47,7 @@ function LuckyDay() {
         <LuckyDayCover interactive />
       </section>
 
-      <section aria-label="Lucky Day Co. process: mood board, AI concepts and tech packs" className="mx-auto max-w-6xl pb-12 md:pb-16">
+      <section aria-label="Lucky Day Co. process: mood board, AI concepts and tech packs" className="mx-auto max-w-6xl px-6 pb-12 md:pb-16">
         <LuckyDayProcessStack />
       </section>
 
